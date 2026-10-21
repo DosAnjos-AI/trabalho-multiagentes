@@ -1,0 +1,1 @@
+Regra da Tropical Color, todos os vendedores ativados. Inadimplente não agenda. Prospect, 14 dias. Cliente com uma única compra com o vendedor, 10 dias. Cliente ativo, 7 dias. E os demais, inativos, 14 dias.

@@ -1,0 +1,1 @@
+Regra da Infinitto Design. Cliente ativo, com pedidos nos últimos 60 dias, a cada 14 dias. Risco de inatividade, cliente com pedidos entre 60 e 90 dias, a cada 7 dias. Inativo, cliente sem pedidos há mais de 90 dias, a cada 28 dias. E prospect, cliente com ciclo de vida de prospect, a cada 7 dias.

@@ -1,0 +1,1 @@
+Regra da Ever Limp, todos os vendedores ativados, por curva ABC. Curva A: ativo, 15 dias, e inativo, 7 dias. Curva B: ativo, 21 dias, e inativo, 14 dias. Curva C: ativo, 30 dias, e inativo, 21 dias. E quem não tem curva, prospect, 21 dias.

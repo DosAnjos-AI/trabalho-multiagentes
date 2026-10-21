@@ -1,0 +1,1 @@
+Regra do Compre Fácil, todos os vendedores, carteira fixa, preferindo dia útil. Ativo adimplente, semanal. Ativo inadimplente, 14 dias. Inativo adimplente, 14 dias. Inativo inadimplente não agenda. Sem vendas, 14 dias.

@@ -1,0 +1,1 @@
+Pedido de um card do Basecamp para a Girardi, considerando todos os vendedores ativados, tratados como televendas. Não agenda cliente cujo ramo de atividade seja diferente de 12, 13, 14, 15, 16, 17, 18 e 19. Para os que sobram: ramo 12, a cada 7 dias. Os demais, ramos 13 a 19, a cada 14 dias.

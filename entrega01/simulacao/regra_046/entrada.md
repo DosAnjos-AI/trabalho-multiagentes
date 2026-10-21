@@ -1,0 +1,1 @@
+Regra padrão da empresa, customizável, para todos os vendedores, usando a carteira fixa de cada um. Cliente ativo para o vendedor, a cada 7 dias. Cliente inativo adimplente, a cada 14 dias. Cliente inativo inadimplente, a cada 30 dias. E o restante, os sem venda, a cada 7 dias.

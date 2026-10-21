@@ -1,0 +1,1 @@
+Pedido de um card do Basecamp, só televendas ativado. Cliente com compra com a empresa nos últimos 45 dias não agenda. Prospect, 28 dias. Cliente caminhando para a inatividade, com compra entre 46 e 89 dias, 14 dias. Cliente inativo, para resgate, 21 dias.

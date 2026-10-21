@@ -1,0 +1,1 @@
+Regra da Evermax, só para o televendas, carteira fixa, preferência por dias úteis. Cliente que comprou nos últimos 30 dias, atendimento quinzenal, 14 dias. Cliente sem compra há mais de 30 dias, 28 dias. E cliente que nunca comprou, também 28 dias.

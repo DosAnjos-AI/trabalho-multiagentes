@@ -1,0 +1,1 @@
+Pedido de um card do Basecamp, televendas ativado. Filial e inadimplente não agendam. Prospect, 21 dias. Cliente com compra entre 1 e 29 dias, histórico com mínimo de 14 e máximo de 30 dias. Compra entre 30 e 59 dias, 21 dias. Entre 60 e 89 dias, 21 dias. Sem compra em 90 dias, 21 dias.

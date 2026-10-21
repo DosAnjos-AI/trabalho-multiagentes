@@ -1,0 +1,1 @@
+Regra padrão da Duferro, customizável. Todos os vendedores, carteira fixa. Cliente adimplente, 7 dias. Cliente ativo mas inadimplente, 14 dias. Cliente inativo e inadimplente não agenda. E cliente sem vendas, 7 dias.

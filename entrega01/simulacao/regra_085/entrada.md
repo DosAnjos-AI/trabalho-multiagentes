@@ -1,0 +1,1 @@
+Regra da Pérola, todos os vendedores, carteira fixa. Cliente adimplente, semanal, 7 dias. Cliente ativo inadimplente, 14 dias. Cliente inativo inadimplente, 30 dias. E todo o resto, os sem venda, semanal, 7 dias, preferindo dia útil.

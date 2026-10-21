@@ -1,0 +1,1 @@
+Regra padrão da Roda Viva. Campo: todos os clientes, 30 dias. Televendas, dia útil, sem coincidir o dia com o campo: ativo, 25 dias. Inativo adimplente, 25 dias. Inativo inadimplente, 25 dias. Sem vendas, 25 dias.

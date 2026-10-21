@@ -1,0 +1,1 @@
+Regra padrão da Gomes, customizável, para todos os vendedores juntos, usando a carteira fixa de cada um. Cliente ativo para o vendedor é atendido a cada 7 dias. Cliente inativo que está adimplente, a cada 14 dias. Cliente inativo e inadimplente, a cada 30 dias. E todo o resto, que na prática são os clientes sem venda, a cada 14 dias.

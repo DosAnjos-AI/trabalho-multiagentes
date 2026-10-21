@@ -1,0 +1,1 @@
+Regra padrão da empresa, com televendas e campo, sempre preferindo dia útil. Televendas: ativo adimplente, 14 dias. Ativo inadimplente, 30 dias. Inativo adimplente, 30 dias. Inativo inadimplente, 60 dias. Cliente sem venda, 30 dias. Campo: adimplente, 14 dias. Inadimplente, 30 dias. Cliente sem venda, 30 dias.

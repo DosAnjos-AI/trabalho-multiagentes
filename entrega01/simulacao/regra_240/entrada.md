@@ -1,0 +1,1 @@
+Ticket IMP-471 do Atlassian, televendas ativado. Cliente com compra nos últimos 7 dias não agenda. Manter a regularidade, compra nos últimos 30 dias, 14 dias. Garantir positivação da carteira, até 60 dias, 14 dias. Risco de inatividade, até 90 dias, 7 dias. E clientes inativos, 21 dias.

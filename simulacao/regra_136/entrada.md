@@ -1,0 +1,1 @@
+Pedido de um card do Basecamp para a Multisul, todos os vendedores ativados. Em toda a empresa, cliente do ramo 19, que são funcionários, não agenda. Interior são os vendedores 5, 9, 15, 16, 21, 31 e 33, e capital é o resto do campo. Capital: ativo, 7 dias, e inativo não agenda. Interior: ativo, 14 dias, e inativo não agenda.

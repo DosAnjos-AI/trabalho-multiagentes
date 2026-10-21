@@ -1,0 +1,1 @@
+Regra padrão da Supergiro, customizável, com dois times: campo e televendas. Para o televendas, todos os clientes do time são atendidos a cada 14 dias, com preferência pelos dias úteis. Para o campo, primeiro, cliente sem venda não é agendado. Todos os demais clientes, ativos ou inativos, são visitados a cada 14 dias, também preferindo dias úteis.

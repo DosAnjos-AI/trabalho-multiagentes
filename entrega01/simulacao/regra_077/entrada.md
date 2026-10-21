@@ -1,0 +1,1 @@
+Pedido de um card do Basecamp, só para televendas ativado. Não agenda cliente bloqueado, cliente inadimplente, nem cliente que comprou nos últimos 30 dias. Para os que sobram: prospect, 14 dias; cliente ativo com a empresa, 7 dias; e os demais, inativos, 14 dias.

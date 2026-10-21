@@ -1,0 +1,1 @@
+Pedido de um card do Basecamp, televendas. Todos os casos com 7 dias. Primeira compra, prospect com o vendedor. Prospect ativado, uma única compra e sem compra nos últimos 20 dias. Compra regularmente, compra nos últimos 30 dias. Estimular regularidade, entre 31 e 60 dias. Risco de inatividade, entre 60 e 90 dias. E resgate, sem compra há mais de 90 dias.

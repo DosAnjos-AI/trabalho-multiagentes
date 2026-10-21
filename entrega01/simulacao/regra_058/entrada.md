@@ -1,0 +1,1 @@
+Regra padrão da Ótima Atacado, com televendas e campo, cada um com sua carteira fixa. Para o televendas: cliente inadimplente, 14 dias. Todo o resto usa a frequência calculada pelo histórico de vendas do cliente, mas com limite máximo de 14 dias. Para o campo: adimplente, 7 dias. Ativo inadimplente, 14 dias. Inativo inadimplente, 60 dias. E sem venda, 14 dias.

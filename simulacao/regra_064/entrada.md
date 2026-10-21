@@ -1,0 +1,1 @@
+Regra padrão da Royal Pet, customizável, com televendas e campo. Para o televendas: ativo adimplente, 7 dias. Ativo inadimplente, 14 dias. Inativo adimplente, 14 dias. Inativo inadimplente não agenda. Sem vendas, 14 dias. Para o campo: ativo adimplente, 7 dias. Ativo inadimplente, 14 dias. Inativo adimplente, 14 dias. Inativo inadimplente, 30 dias. Sem vendas, 14 dias.

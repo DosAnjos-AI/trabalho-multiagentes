@@ -1,0 +1,1 @@
+Regra da Brida, usando o padrão do goVendas, todos os vendedores, carteira fixa. Cliente inativo recebe a frequência média dos inativos da empresa. Cliente ativo recebe a média dos ativos da empresa. Cliente sem venda também segue a média dos inativos da empresa.

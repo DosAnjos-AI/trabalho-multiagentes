@@ -1,0 +1,1 @@
+Pedido de um card do Basecamp, só para o televendas ativado. Prospect, que nunca comprou, a cada 30 dias. Cliente ativo para o vendedor, seja adimplente ou inadimplente, a cada 25 dias. E todo o resto, os inativos, adimplentes ou não, a cada 30 dias.

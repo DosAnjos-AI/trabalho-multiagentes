@@ -1,0 +1,1 @@
+Pedido de um card do Basecamp, televendas ativado. Prospect, 25 dias. Ativado, uma única compra com a empresa e sem compra com o vendedor nos últimos 30 dias, 14 dias. Alta frequência de compra, compra com o vendedor nos últimos 30 dias, histórico com mínimo de 7 e máximo de 30 dias. Ativo com a empresa, 14 dias. E inativos, 21 dias.

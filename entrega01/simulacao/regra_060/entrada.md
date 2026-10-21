@@ -1,0 +1,1 @@
+Regra padrão do goVendas com dois times, televendas e campo. Para o televendas: cliente ativo para o vendedor, semanal, 7 dias. Todo o resto, os inativos, quinzenal, 15 dias. Para o campo: cliente ativo, 7 dias, e o resto 15 dias, e nas duas faixas a parametrização é fixa, ou seja, mais rígida para o gerador de agenda.

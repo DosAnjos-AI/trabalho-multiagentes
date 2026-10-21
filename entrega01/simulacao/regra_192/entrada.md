@@ -1,0 +1,1 @@
+Ticket do ProofHub, televendas ativado. Baixado na Receita não agenda. Prospect, 14 dias. Ativo, compra nos últimos 15 dias, 7 dias. Risco de inatividade, compra até 30 dias, 3 dias. E inativo de 30 dias, o resto, 5 dias.

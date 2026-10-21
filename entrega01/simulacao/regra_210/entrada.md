@@ -1,0 +1,1 @@
+Pedido de um card do Basecamp, televendas ativado. Filial, inadimplente e bloqueado não agendam. Ativado, uma única compra com o vendedor, 30 dias. Esquecido, compra entre 181 e 365 dias, 30 dias. Inativo, sem compra há mais de 365 dias, 30 dias. E ativo fidelizado, o restante, 30 dias.

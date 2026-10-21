@@ -1,0 +1,1 @@
+Regra padrão da Macropac, com time interno e externo. Interno: pessoa física, CPF, não agenda. Ativo, 7 dias. Inativo adimplente, 15 dias. Inativo inadimplente não agenda. Cliente sem compra e CPF não agenda. Cliente sem compra e CNPJ, 20 dias. Externo: ativo, 7 dias, e inativo, 15 dias, com as duas faixas fixas.

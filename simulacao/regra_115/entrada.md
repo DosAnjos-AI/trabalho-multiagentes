@@ -1,0 +1,1 @@
+Regra padrão da Frigoforte, só com dois times: o atacado, que são os vendedores 510, 617 e 596, e o salmão, que são os vendedores 613, 614 e 568. Atacado, todos os clientes a cada 7 dias. Salmão, todos os clientes a cada 2 dias.

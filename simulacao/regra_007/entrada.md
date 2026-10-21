@@ -1,0 +1,1 @@
+Essa é a regra padrão da Nutri Distribuidora e vale só para os vendedores de televendas, usando a carteira fixa deles. São três faixas bem simples. Cliente inativo para o vendedor, a gente liga a cada 30 dias. Cliente ativo para o vendedor, a cada 14 dias. E cliente sem venda, que ainda não comprou, a cada 7 dias, porque é o que a gente mais quer ativar.

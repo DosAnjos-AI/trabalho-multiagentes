@@ -1,0 +1,1 @@
+Regra padrão da Magnavet, customizável. Vale para todos os vendedores da empresa, olhando a carteira fixa de cada um. Todos os clientes, sem exceção, são atendidos a cada 30 dias, e a gente prefere que isso caia em dia útil.

@@ -1,0 +1,1 @@
+Regra da Nordece, televendas ativados. Não agenda cliente com tipo de cobrança DH sem crédito, ou seja, crédito igual ou menor que zero. Não agenda cliente com tipo de cobrança BK com crédito disponível abaixo de 199 reais. Não agenda inadimplente. Cliente ativo, 7 dias. Cliente inativo, 14 dias. Cliente sem venda, 14 dias.

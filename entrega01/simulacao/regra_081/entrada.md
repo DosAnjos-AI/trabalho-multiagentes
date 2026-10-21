@@ -1,0 +1,1 @@
+Regra da Recife Doces, todos os vendedores, carteira fixa, preferindo dia útil. Cliente ativo adimplente, semanal. Cliente ativo inadimplente, 21 dias. Cliente inativo, 30 dias. Cliente inativo e inadimplente não agenda. Cliente sem vendas, 30 dias.

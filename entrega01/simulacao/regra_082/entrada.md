@@ -1,0 +1,1 @@
+Regra da Rede EPI, todos os vendedores, carteira fixa, preferindo dia útil. Cliente ativo adimplente, semanal. Cliente ativo inadimplente, 14 dias. Inativo adimplente, 30 dias. Inativo inadimplente não agenda. Cliente sem vendas, 30 dias.

@@ -1,0 +1,1 @@
+Regra padrão da STO. Pega todos os vendedores ativados no Govendas e a carteira fixa deles. Primeiro: pessoa física, CPF, não agenda de jeito nenhum. Depois, para o restante: cliente ativo e adimplente, 7 dias. Cliente ativo e inadimplente, 14 dias. Cliente inativo e adimplente, 14 dias. Cliente inativo e inadimplente, não agenda. E cliente sem vendas, 14 dias.

@@ -1,0 +1,1 @@
+Regra da Goiás Clean, só televendas ativado, atualizada em 30 de janeiro de 2026, a partir do ticket IMP-434. Cliente que comprou nos últimos 7 dias não agenda. Para os demais, todos com preferência por dias úteis e sábado: prospects, 14 dias. Ativos com compra entre 7 e 30 dias, 14 dias. Entre 30 e 60 dias, 14 dias. Entre 60 e 90 dias, 14 dias. E inativos, 14 dias.

@@ -1,0 +1,1 @@
+Pedido de um card do Basecamp para a Cescom, todos os vendedores, carteira fixa. Filial não agenda. Cliente ativo adimplente, semanal, respeitando a preferência de dia do vendedor. Ativo inadimplente, 14 dias. Inativo adimplente, 14 dias. Inativo inadimplente, 30 dias, também com a preferência do vendedor. E sem vendas, 14 dias.

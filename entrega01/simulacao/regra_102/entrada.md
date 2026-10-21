@@ -1,0 +1,1 @@
+Regra padrão da Aliança Distribuidora, customizável, com campo e televendas, preferindo dia útil. Televendas: cliente inativo e inadimplente, 30 dias. Todo o resto, 14 dias. Campo: todos os clientes, 30 dias.

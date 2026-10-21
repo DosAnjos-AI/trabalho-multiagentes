@@ -1,0 +1,1 @@
+Pedido de um card do Basecamp para a Lubrilages, todos os vendedores ativados, sempre preferindo dia útil. Cliente sem compra há mais de 120 dias, 14 dias. Cliente sem compra há mais de 30 dias, 7 dias. E para os demais, a frequência vem do histórico, com no mínimo 5 e no máximo 30 dias.

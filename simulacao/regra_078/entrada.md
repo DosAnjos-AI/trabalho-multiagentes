@@ -1,0 +1,1 @@
+Regra da Comercial BH, todos os vendedores, carteira fixa, sempre preferindo dia útil. Cliente ativo e inadimplente, quinzenal, 14 dias. Cliente ativo, que sobra como adimplente, semanal, 7 dias. Cliente inativo e inadimplente, mensal, 30 dias. Cliente inativo adimplente, quinzenal, 14 dias. Cliente sem vendas, quinzenal, 14 dias.

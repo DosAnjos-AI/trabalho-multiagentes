@@ -1,0 +1,1 @@
+Regra do Armazém Santa Maria. Todos os vendedores ativados, carteira fixa de cada um, e em todos os casos a gente prefere dia útil e também sábado. Cliente ativo e adimplente, semanal. Cliente ativo e inadimplente, 14 dias. Cliente inativo adimplente, 14 dias. Cliente inativo e inadimplente, não agenda. E cliente sem venda, 14 dias.

@@ -1,0 +1,1 @@
+Pedido de um card do Basecamp, televendas ativado. Filial não agenda. Cliente suspenso, inapto ou baixado na Receita Federal não agenda. Ramos de atividade 84, 73, 69, 85 e 22, 7 dias. E todos os demais clientes, fora desses ramos, 30 dias.

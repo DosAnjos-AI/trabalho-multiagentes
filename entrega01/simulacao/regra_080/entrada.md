@@ -1,0 +1,1 @@
+Regra da Makro Services, todos os vendedores, carteira fixa, respeitando sempre a preferência de dia do vendedor. Cliente inativo cujo CNAE do ERP começa com 03, 47 ou 27, frequência mensal. Os demais inativos, quinzenal. Cliente ativo, mensal. Cliente sem vendas, mensal. A regra dos inativos quinzenais aparece repetida duas vezes, mas é a mesma coisa.

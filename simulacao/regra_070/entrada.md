@@ -1,0 +1,1 @@
+Regra padrão da Tripet, customizável, com televendas e campo. Televendas: inativo inadimplente não agenda; ativo, 14 dias; inativo adimplente, 30 dias; cliente sem venda, 30 dias, tudo preferindo dia útil. Campo: ativo, 14 dias; inativo, 30 dias, preferindo dia útil; e cliente sem venda não agenda.
