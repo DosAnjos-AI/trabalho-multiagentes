@@ -1,1 +1,1 @@
-Regras dinâmicas da MSJ, atualizadas em julho de 2024, a partir de um card do Basecamp, só para televendas ativado. Prospect, 7 dias. Cliente ativo adimplente, 7 dias. Cliente ativo inadimplente, 14 dias. Inativo adimplente, 7 dias. Inativo inadimplente, 14 dias.
+Regras dinâmicas da MSJ, atualizadas em julho de 2024, a partir de uma solicitação, só para televendas ativado. Prospect, 7 dias. Cliente ativo adimplente, 7 dias. Cliente ativo inadimplente, 14 dias. Inativo adimplente, 7 dias. Inativo inadimplente, 14 dias.

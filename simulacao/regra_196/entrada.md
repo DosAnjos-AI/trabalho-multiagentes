@@ -1,1 +1,1 @@
-Pedido de um card do Basecamp, televendas ativado. Inadimplente não agenda. Cidade de Fortaleza e compra nos últimos 60 dias não agenda. Prospect, 40 dias. Ativo adimplente, 15 dias. E inativo adimplente, 20 dias.
+Pedido de uma solicitação, televendas ativado. Inadimplente não agenda. Cidade de Fortaleza e compra nos últimos 60 dias não agenda. Prospect, 40 dias. Ativo adimplente, 15 dias. E inativo adimplente, 20 dias.

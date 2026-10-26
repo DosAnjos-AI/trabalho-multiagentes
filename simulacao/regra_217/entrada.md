@@ -1,1 +1,1 @@
-Pedido de um card do Basecamp, televendas ativado. Fazer relacionamento com o cliente, uma única compra com o vendedor, 7 dias. Manter a regularidade de compra, compra entre 7 e 30 dias, histórico com mínimo de 14 e máximo de 28 dias.
+Pedido de uma solicitação, televendas ativado. Fazer relacionamento com o cliente, uma única compra com o vendedor, 7 dias. Manter a regularidade de compra, compra entre 7 e 30 dias, histórico com mínimo de 14 e máximo de 28 dias.

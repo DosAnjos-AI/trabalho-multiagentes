@@ -1,1 +1,1 @@
-Pedido de um card do Basecamp, televendas ativado. Baixado na Receita não agenda, nem quem comprou nos últimos 25 dias com a empresa. Prospect com o vendedor, 21 dias. Pedido com a empresa entre 26 e 60 dias, 14 dias. Entre 61 e 90 dias, 7 dias. E inativo há mais de 90 dias, 21 dias.
+Pedido de uma solicitação, televendas ativado. Baixado na Receita não agenda, nem quem comprou nos últimos 25 dias com a empresa. Prospect com o vendedor, 21 dias. Pedido com a empresa entre 26 e 60 dias, 14 dias. Entre 61 e 90 dias, 7 dias. E inativo há mais de 90 dias, 21 dias.

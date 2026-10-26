@@ -1,1 +1,1 @@
-Ticket do ProofHub, televendas ativado. Baixado na Receita, inadimplente e cliente com data de rota na semana não agendam. Prospect, 14 dias. Ativo, compra nos últimos 60 dias, 7 dias. Risco de inatividade, até 90 dias, 7 dias. Inativos acima de 90 dias, 7 dias.
+Pedido de uma solicitação, televendas ativado. Baixado na Receita, inadimplente e cliente com data de rota na semana não agendam. Prospect, 14 dias. Ativo, compra nos últimos 60 dias, 7 dias. Risco de inatividade, até 90 dias, 7 dias. Inativos acima de 90 dias, 7 dias.

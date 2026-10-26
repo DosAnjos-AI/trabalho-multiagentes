@@ -1,1 +1,1 @@
-Pedido de um card do Basecamp para a Boa Praça, todos os vendedores ativados. Não agenda cliente inadimplente e não agenda cliente filial. Para o resto: cliente ativo, 7 dias. Os demais, inativos, 14 dias.
+Pedido de uma solicitação para a Boa Praça, todos os vendedores ativados. Não agenda cliente inadimplente e não agenda cliente filial. Para o resto: cliente ativo, 7 dias. Os demais, inativos, 14 dias.
