@@ -7,6 +7,10 @@ from pathlib import Path
 import config
 
 
+TAMANHO_MINIMO = 2
+PALAVRAS_VAZIAS = frozenset({"de", "da", "do", "em", "no", "na", "com", "por", "para", "ou", "as", "os", "um", "uma"})
+
+
 def normalizar_termo(termo: str) -> str:
     """Minúsculas, sem acento, espaços colapsados.
 
@@ -16,15 +20,29 @@ def normalizar_termo(termo: str) -> str:
     return re.sub(r"\s+", " ", sem_acento.lower()).strip()
 
 
-def montar(termos_por_id: dict[str, list[str]]) -> dict[str, list[str]]:
-    """termos_por_id: id -> termos originais do Dicionário."""
+def separar_celula(celula: str) -> set[str]:
+    """Chaves de uma célula 'Termo original': cada item inteiro e cada token dele.
+
+    O token isolado existe porque códigos como 'DH' aparecem dentro de itens compostos
+    ('tipo de cobrança DH'). Mínimo de 2 caracteres sempre, sem exceção, para que ruído
+    como 'b' (de 'curva A, B e C') não entre; palavras vazias não viram chave.
+    """
+    chaves = set()
+    for item in re.split(r"[,;]", celula):
+        t = normalizar_termo(item)
+        for chave in [t, *t.split()]:
+            if len(chave) >= TAMANHO_MINIMO and chave not in PALAVRAS_VAZIAS:
+                chaves.add(chave)
+    return chaves
+
+
+def montar(celulas_por_id: dict[str, list[str]]) -> dict[str, list[str]]:
+    """celulas_por_id: id -> células 'Termo original' do Dicionário, sem separar."""
     indice: dict[str, set[str]] = {}
-    for id_regra, termos in termos_por_id.items():
-        for t in termos:
-            chave = normalizar_termo(t)
-            if not chave:
-                raise ValueError(f"{id_regra}: termo vazio no Dicionário")
-            indice.setdefault(chave, set()).add(id_regra)
+    for id_regra, celulas in celulas_por_id.items():
+        for celula in celulas:
+            for chave in separar_celula(celula):
+                indice.setdefault(chave, set()).add(id_regra)
     return {k: sorted(v) for k, v in sorted(indice.items())}
 
 
