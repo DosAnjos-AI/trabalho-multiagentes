@@ -1,0 +1,1981 @@
+{
+ "acioly": [
+  "regra_177"
+ ],
+ "adimplente": [
+  "regra_008"
+ ],
+ "ahl": [
+  "regra_094"
+ ],
+ "alianca distribuidora": [
+  "regra_102"
+ ],
+ "alta frequencia de compra": [
+  "regra_202"
+ ],
+ "american farma": [
+  "regra_138"
+ ],
+ "armazem santa maria": [
+  "regra_051"
+ ],
+ "ases": [
+  "regra_190"
+ ],
+ "atacado": [
+  "regra_115"
+ ],
+ "ativado": [
+  "regra_198",
+  "regra_226"
+ ],
+ "baby": [
+  "regra_159"
+ ],
+ "baixada 1": [
+  "regra_128"
+ ],
+ "baixada 2": [
+  "regra_128"
+ ],
+ "baixada 3": [
+  "regra_128"
+ ],
+ "baixado na receita": [
+  "regra_032",
+  "regra_128",
+  "regra_158",
+  "regra_167",
+  "regra_168",
+  "regra_171",
+  "regra_173",
+  "regra_174",
+  "regra_178",
+  "regra_182",
+  "regra_185",
+  "regra_187",
+  "regra_188",
+  "regra_191",
+  "regra_192",
+  "regra_193",
+  "regra_194",
+  "regra_195",
+  "regra_197",
+  "regra_201",
+  "regra_203",
+  "regra_208",
+  "regra_219",
+  "regra_224",
+  "regra_231",
+  "regra_235",
+  "regra_236",
+  "regra_239",
+  "regra_241",
+  "regra_245",
+  "regra_246",
+  "regra_247",
+  "regra_248",
+  "regra_249"
+ ],
+ "baixado na receita federal": [
+  "regra_049",
+  "regra_121",
+  "regra_155"
+ ],
+ "bela forma": [
+  "regra_074"
+ ],
+ "binatti itapema": [
+  "regra_154"
+ ],
+ "bloqueado": [
+  "regra_076",
+  "regra_077",
+  "regra_114",
+  "regra_139",
+  "regra_168",
+  "regra_171",
+  "regra_199",
+  "regra_201",
+  "regra_208",
+  "regra_210"
+ ],
+ "boa praca": [
+  "regra_129"
+ ],
+ "boas-vindas": [
+  "regra_200"
+ ],
+ "br distribuidora": [
+  "regra_152"
+ ],
+ "brasgroup": [
+  "regra_159"
+ ],
+ "brida": [
+  "regra_083"
+ ],
+ "bruna, id 10bruna": [
+  "regra_164"
+ ],
+ "bsb vet": [
+  "regra_023"
+ ],
+ "camila, vendedor 0000002": [
+  "regra_135"
+ ],
+ "campo": [
+  "regra_001",
+  "regra_005",
+  "regra_010",
+  "regra_011",
+  "regra_014",
+  "regra_017",
+  "regra_021",
+  "regra_022",
+  "regra_023",
+  "regra_026",
+  "regra_030",
+  "regra_034",
+  "regra_039",
+  "regra_042",
+  "regra_048",
+  "regra_053",
+  "regra_058",
+  "regra_060",
+  "regra_061",
+  "regra_062",
+  "regra_063",
+  "regra_064",
+  "regra_068",
+  "regra_069",
+  "regra_070",
+  "regra_071",
+  "regra_084",
+  "regra_087",
+  "regra_091",
+  "regra_093",
+  "regra_094",
+  "regra_095",
+  "regra_099",
+  "regra_100",
+  "regra_102",
+  "regra_106",
+  "regra_109",
+  "regra_112",
+  "regra_116",
+  "regra_123",
+  "regra_124",
+  "regra_126",
+  "regra_127",
+  "regra_131",
+  "regra_133",
+  "regra_136",
+  "regra_165"
+ ],
+ "campo, externos": [
+  "regra_066"
+ ],
+ "carteira fixa": [
+  "regra_001",
+  "regra_002",
+  "regra_004",
+  "regra_005",
+  "regra_006",
+  "regra_007",
+  "regra_008",
+  "regra_009",
+  "regra_010",
+  "regra_011",
+  "regra_012",
+  "regra_013",
+  "regra_014",
+  "regra_015",
+  "regra_016",
+  "regra_017",
+  "regra_018",
+  "regra_019",
+  "regra_020",
+  "regra_021",
+  "regra_024",
+  "regra_025",
+  "regra_026",
+  "regra_027",
+  "regra_028",
+  "regra_029",
+  "regra_030",
+  "regra_031",
+  "regra_033",
+  "regra_034",
+  "regra_035",
+  "regra_036",
+  "regra_037",
+  "regra_038",
+  "regra_039",
+  "regra_040",
+  "regra_041",
+  "regra_042",
+  "regra_043",
+  "regra_044",
+  "regra_046",
+  "regra_047",
+  "regra_048",
+  "regra_050",
+  "regra_051",
+  "regra_052",
+  "regra_058",
+  "regra_063",
+  "regra_065",
+  "regra_069",
+  "regra_072",
+  "regra_073",
+  "regra_074",
+  "regra_075",
+  "regra_078",
+  "regra_080",
+  "regra_081",
+  "regra_082",
+  "regra_083",
+  "regra_084",
+  "regra_085",
+  "regra_086",
+  "regra_088",
+  "regra_090",
+  "regra_092",
+  "regra_095",
+  "regra_096",
+  "regra_097",
+  "regra_100",
+  "regra_103",
+  "regra_104",
+  "regra_105",
+  "regra_107",
+  "regra_109",
+  "regra_110",
+  "regra_111",
+  "regra_112",
+  "regra_113",
+  "regra_117",
+  "regra_118",
+  "regra_122",
+  "regra_125",
+  "regra_127",
+  "regra_151",
+  "regra_153",
+  "regra_166",
+  "regra_176",
+  "regra_177",
+  "regra_181",
+  "regra_234"
+ ],
+ "carteira irrestrita": [
+  "regra_135"
+ ],
+ "carteira livre": [
+  "regra_032",
+  "regra_135",
+  "regra_163",
+  "regra_175",
+  "regra_179",
+  "regra_205",
+  "regra_206",
+  "regra_216",
+  "regra_236",
+  "regra_245",
+  "regra_246"
+ ],
+ "carteira propria": [
+  "regra_120"
+ ],
+ "casa cardao": [
+  "regra_133"
+ ],
+ "cavalo marinho": [
+  "regra_125"
+ ],
+ "cescom": [
+  "regra_181"
+ ],
+ "chegatto": [
+  "regra_165"
+ ],
+ "choque de agendas": [
+  "regra_169"
+ ],
+ "cliente principal": [
+  "regra_203"
+ ],
+ "cnae": [
+  "regra_080",
+  "regra_131"
+ ],
+ "cnpj": [
+  "regra_130"
+ ],
+ "cobertura de rota": [
+  "regra_227",
+  "regra_235"
+ ],
+ "codigo de rota": [
+  "regra_213"
+ ],
+ "comercial bh": [
+  "regra_078"
+ ],
+ "compra global": [
+  "regra_238"
+ ],
+ "compre facil": [
+  "regra_105"
+ ],
+ "configuracao padrao": [
+  "regra_053"
+ ],
+ "consumo": [
+  "regra_241"
+ ],
+ "cpf": [
+  "regra_047",
+  "regra_130",
+  "regra_207"
+ ],
+ "curva a, b": [
+  "regra_155"
+ ],
+ "curva a, b e c": [
+  "regra_032",
+  "regra_135",
+  "regra_142",
+  "regra_143",
+  "regra_147",
+  "regra_154",
+  "regra_159",
+  "regra_164",
+  "regra_190",
+  "regra_222",
+  "regra_228"
+ ],
+ "curva abc": [
+  "regra_141",
+  "regra_161"
+ ],
+ "destra": [
+  "regra_056"
+ ],
+ "diferpan": [
+  "regra_108"
+ ],
+ "dispomed": [
+  "regra_142"
+ ],
+ "duferro": [
+  "regra_050"
+ ],
+ "e-commerce": [
+  "regra_182"
+ ],
+ "elizangela, vendedor 54": [
+  "regra_114"
+ ],
+ "elluc": [
+  "regra_099"
+ ],
+ "epi": [
+  "regra_032",
+  "regra_182"
+ ],
+ "erp": [
+  "regra_080"
+ ],
+ "ever limp": [
+  "regra_141"
+ ],
+ "evermax": [
+  "regra_065"
+ ],
+ "externo": [
+  "regra_128"
+ ],
+ "fallback": [
+  "regra_173",
+  "regra_184"
+ ],
+ "farm": [
+  "regra_139",
+  "regra_229"
+ ],
+ "fechamento de rota": [
+  "regra_160"
+ ],
+ "felipe": [
+  "regra_227",
+  "regra_235"
+ ],
+ "femac": [
+  "regra_126"
+ ],
+ "fenix distribuidora": [
+  "regra_137"
+ ],
+ "fidelizado": [
+  "regra_210"
+ ],
+ "filial": [
+  "regra_003",
+  "regra_116",
+  "regra_121",
+  "regra_129",
+  "regra_140",
+  "regra_143",
+  "regra_145",
+  "regra_155",
+  "regra_171",
+  "regra_172",
+  "regra_175",
+  "regra_180",
+  "regra_181",
+  "regra_187",
+  "regra_188",
+  "regra_193",
+  "regra_201",
+  "regra_203",
+  "regra_206",
+  "regra_208",
+  "regra_209",
+  "regra_210",
+  "regra_213",
+  "regra_232",
+  "regra_244"
+ ],
+ "follow-up": [
+  "regra_178"
+ ],
+ "food": [
+  "regra_146"
+ ],
+ "frequencia do historico": [
+  "regra_071",
+  "regra_121",
+  "regra_157",
+  "regra_162",
+  "regra_207"
+ ],
+ "frequencia historica": [
+  "regra_076",
+  "regra_108",
+  "regra_132",
+  "regra_139",
+  "regra_146",
+  "regra_158",
+  "regra_164",
+  "regra_165",
+  "regra_170",
+  "regra_171",
+  "regra_174",
+  "regra_183",
+  "regra_184",
+  "regra_189",
+  "regra_199",
+  "regra_201",
+  "regra_203",
+  "regra_208",
+  "regra_209",
+  "regra_214",
+  "regra_226",
+  "regra_230",
+  "regra_237",
+  "regra_242",
+  "regra_244"
+ ],
+ "fribel": [
+  "regra_090"
+ ],
+ "frigoforte": [
+  "regra_115"
+ ],
+ "generalista": [
+  "regra_223"
+ ],
+ "gerador de agenda": [
+  "regra_023",
+  "regra_060"
+ ],
+ "gesiane, id 16": [
+  "regra_061"
+ ],
+ "girardi": [
+  "regra_079"
+ ],
+ "girobem": [
+  "regra_220"
+ ],
+ "goias clean": [
+  "regra_149"
+ ],
+ "gomes": [
+  "regra_038"
+ ],
+ "govendas": [
+  "regra_001",
+  "regra_002",
+  "regra_003",
+  "regra_004",
+  "regra_005",
+  "regra_006",
+  "regra_009",
+  "regra_010",
+  "regra_012",
+  "regra_013",
+  "regra_014",
+  "regra_015",
+  "regra_016",
+  "regra_017",
+  "regra_018",
+  "regra_019",
+  "regra_021",
+  "regra_024",
+  "regra_025",
+  "regra_026",
+  "regra_027",
+  "regra_028",
+  "regra_030",
+  "regra_031",
+  "regra_033",
+  "regra_034",
+  "regra_035",
+  "regra_036",
+  "regra_039",
+  "regra_040",
+  "regra_041",
+  "regra_042",
+  "regra_043",
+  "regra_044",
+  "regra_047",
+  "regra_052",
+  "regra_060",
+  "regra_069",
+  "regra_072",
+  "regra_073",
+  "regra_083",
+  "regra_084",
+  "regra_088",
+  "regra_092",
+  "regra_095",
+  "regra_096",
+  "regra_097",
+  "regra_100",
+  "regra_103",
+  "regra_104",
+  "regra_109",
+  "regra_110",
+  "regra_111",
+  "regra_112",
+  "regra_117",
+  "regra_118",
+  "regra_123",
+  "regra_127",
+  "regra_159",
+  "regra_234",
+  "regra_247",
+  "regra_248",
+  "regra_249"
+ ],
+ "grupo auxiliar": [
+  "regra_128",
+  "regra_151",
+  "regra_165",
+  "regra_169"
+ ],
+ "higicop": [
+  "regra_107"
+ ],
+ "historico": [
+  "regra_217"
+ ],
+ "hospdrogas": [
+  "regra_147"
+ ],
+ "hospidrogas": [
+  "regra_059"
+ ],
+ "hunter": [
+  "regra_139"
+ ],
+ "idealpet": [
+  "regra_120"
+ ],
+ "inadimplente": [
+  "regra_008",
+  "regra_011",
+  "regra_023",
+  "regra_029",
+  "regra_038",
+  "regra_045",
+  "regra_046",
+  "regra_047",
+  "regra_048",
+  "regra_050",
+  "regra_051",
+  "regra_053",
+  "regra_054",
+  "regra_055",
+  "regra_056",
+  "regra_057",
+  "regra_058",
+  "regra_061",
+  "regra_062",
+  "regra_064",
+  "regra_066",
+  "regra_067",
+  "regra_068",
+  "regra_070",
+  "regra_075",
+  "regra_076",
+  "regra_077",
+  "regra_078",
+  "regra_081",
+  "regra_082",
+  "regra_085",
+  "regra_086",
+  "regra_087",
+  "regra_089",
+  "regra_091",
+  "regra_093",
+  "regra_094",
+  "regra_099",
+  "regra_101",
+  "regra_102",
+  "regra_105",
+  "regra_106",
+  "regra_108",
+  "regra_113",
+  "regra_114",
+  "regra_116",
+  "regra_119",
+  "regra_120",
+  "regra_122",
+  "regra_124",
+  "regra_125",
+  "regra_126",
+  "regra_129",
+  "regra_130",
+  "regra_131",
+  "regra_132",
+  "regra_133",
+  "regra_138",
+  "regra_140",
+  "regra_142",
+  "regra_144",
+  "regra_148",
+  "regra_153",
+  "regra_156",
+  "regra_162",
+  "regra_165",
+  "regra_166",
+  "regra_172",
+  "regra_175",
+  "regra_176",
+  "regra_177",
+  "regra_181",
+  "regra_196",
+  "regra_225",
+  "regra_233",
+  "regra_245"
+ ],
+ "isocom": [
+  "regra_164"
+ ],
+ "jamile, id 4": [
+  "regra_114"
+ ],
+ "jumori": [
+  "regra_148"
+ ],
+ "labtech": [
+  "regra_131"
+ ],
+ "lagos": [
+  "regra_128"
+ ],
+ "lead": [
+  "regra_155",
+  "regra_178",
+  "regra_206"
+ ],
+ "linavet": [
+  "regra_134"
+ ],
+ "lubrilages": [
+  "regra_157"
+ ],
+ "lucia, vendedor 5": [
+  "regra_142"
+ ],
+ "macropac": [
+  "regra_130"
+ ],
+ "magalhaes e massote": [
+  "regra_113"
+ ],
+ "magnavet": [
+  "regra_037"
+ ],
+ "makro services": [
+  "regra_080"
+ ],
+ "matcom": [
+  "regra_163"
+ ],
+ "matcon": [
+  "regra_032",
+  "regra_179",
+  "regra_216"
+ ],
+ "milenium": [
+  "regra_045"
+ ],
+ "motor diesel": [
+  "regra_169"
+ ],
+ "msj": [
+  "regra_089"
+ ],
+ "multisul": [
+  "regra_136"
+ ],
+ "nb distribuidora": [
+  "regra_055"
+ ],
+ "nb pi": [
+  "regra_008"
+ ],
+ "niteroi": [
+  "regra_128"
+ ],
+ "nordece": [
+  "regra_233"
+ ],
+ "nordil al": [
+  "regra_176"
+ ],
+ "nordil pb": [
+  "regra_166"
+ ],
+ "norte": [
+  "regra_128"
+ ],
+ "nutri distribuidora": [
+  "regra_007"
+ ],
+ "nutripet": [
+  "regra_067"
+ ],
+ "orcamento": [
+  "regra_155"
+ ],
+ "otima atacado": [
+  "regra_058"
+ ],
+ "paliativo": [
+  "regra_195"
+ ],
+ "palmed": [
+  "regra_071"
+ ],
+ "paola": [
+  "regra_235"
+ ],
+ "parametrizacao fixa": [
+  "regra_060",
+  "regra_123",
+  "regra_140"
+ ],
+ "perfil": [
+  "regra_188",
+  "regra_221"
+ ],
+ "perola": [
+  "regra_085"
+ ],
+ "pessoa juridica": [
+  "regra_145",
+  "regra_160",
+  "regra_243"
+ ],
+ "pet nobre": [
+  "regra_114"
+ ],
+ "petvet": [
+  "regra_147"
+ ],
+ "playpet": [
+  "regra_068"
+ ],
+ "portal": [
+  "regra_147"
+ ],
+ "pos-venda": [
+  "regra_191",
+  "regra_243"
+ ],
+ "positivacao": [
+  "regra_229",
+  "regra_240"
+ ],
+ "positivacao da carteira": [
+  "regra_204"
+ ],
+ "pre-inativo": [
+  "regra_032"
+ ],
+ "pre-qualificado": [
+  "regra_188",
+  "regra_221"
+ ],
+ "pre-venda": [
+  "regra_147"
+ ],
+ "propec": [
+  "regra_101"
+ ],
+ "prospeccao": [
+  "regra_056"
+ ],
+ "prospect": [
+  "regra_003",
+  "regra_032",
+  "regra_048",
+  "regra_049",
+  "regra_057",
+  "regra_059",
+  "regra_076",
+  "regra_077",
+  "regra_089",
+  "regra_108",
+  "regra_125",
+  "regra_132",
+  "regra_135",
+  "regra_137",
+  "regra_138",
+  "regra_141",
+  "regra_143",
+  "regra_144",
+  "regra_145",
+  "regra_149",
+  "regra_150",
+  "regra_152",
+  "regra_154",
+  "regra_155",
+  "regra_156",
+  "regra_158",
+  "regra_162",
+  "regra_164",
+  "regra_167",
+  "regra_170",
+  "regra_173",
+  "regra_174",
+  "regra_179",
+  "regra_183",
+  "regra_185",
+  "regra_190",
+  "regra_191",
+  "regra_192",
+  "regra_194",
+  "regra_195",
+  "regra_196",
+  "regra_197",
+  "regra_198",
+  "regra_199",
+  "regra_200",
+  "regra_205",
+  "regra_215",
+  "regra_216",
+  "regra_218",
+  "regra_219",
+  "regra_224",
+  "regra_225",
+  "regra_228",
+  "regra_230",
+  "regra_232",
+  "regra_244",
+  "regra_246",
+  "regra_247",
+  "regra_248",
+  "regra_249"
+ ],
+ "queda de faturamento": [
+  "regra_234"
+ ],
+ "ramo 1": [
+  "regra_123"
+ ],
+ "ramo 37": [
+  "regra_108"
+ ],
+ "ramo de atividade": [
+  "regra_059",
+  "regra_068",
+  "regra_079",
+  "regra_136",
+  "regra_142",
+  "regra_145",
+  "regra_146",
+  "regra_163",
+  "regra_174",
+  "regra_175",
+  "regra_179",
+  "regra_180",
+  "regra_182",
+  "regra_193",
+  "regra_206",
+  "regra_214",
+  "regra_216",
+  "regra_241",
+  "regra_246"
+ ],
+ "ramo distribuidor": [
+  "regra_170"
+ ],
+ "reativacao": [
+  "regra_220",
+  "regra_231"
+ ],
+ "reativado": [
+  "regra_121",
+  "regra_186"
+ ],
+ "recencia": [
+  "regra_209"
+ ],
+ "recife doces": [
+  "regra_081"
+ ],
+ "rede epi": [
+  "regra_082"
+ ],
+ "representante externo": [
+  "regra_003"
+ ],
+ "requalificacao": [
+  "regra_187"
+ ],
+ "resgate": [
+  "regra_150",
+  "regra_160",
+  "regra_186",
+  "regra_212",
+  "regra_215",
+  "regra_226",
+  "regra_237",
+  "regra_238"
+ ],
+ "revenda": [
+  "regra_241"
+ ],
+ "rio 1": [
+  "regra_128"
+ ],
+ "rio 2": [
+  "regra_128"
+ ],
+ "rio 3": [
+  "regra_128"
+ ],
+ "roda viva": [
+  "regra_124"
+ ],
+ "rota": [
+  "regra_003",
+  "regra_071",
+  "regra_076",
+  "regra_135",
+  "regra_140",
+  "regra_168",
+  "regra_173",
+  "regra_186",
+  "regra_197",
+  "regra_205",
+  "regra_212",
+  "regra_224",
+  "regra_236",
+  "regra_239",
+  "regra_245",
+  "regra_248"
+ ],
+ "rota dinamica": [
+  "regra_154"
+ ],
+ "rota fixa": [
+  "regra_154"
+ ],
+ "roteirizavel": [
+  "regra_168"
+ ],
+ "rotulo": [
+  "regra_164"
+ ],
+ "royal pet": [
+  "regra_062",
+  "regra_064"
+ ],
+ "ruptura": [
+  "regra_076",
+  "regra_114",
+  "regra_128",
+  "regra_132",
+  "regra_144",
+  "regra_146",
+  "regra_151",
+  "regra_158",
+  "regra_163",
+  "regra_171",
+  "regra_174",
+  "regra_190",
+  "regra_199",
+  "regra_201",
+  "regra_214",
+  "regra_230",
+  "regra_244"
+ ],
+ "ruptura de fornecedor": [
+  "regra_169"
+ ],
+ "ruptura global": [
+  "regra_126",
+  "regra_222"
+ ],
+ "sandra, id 945": [
+  "regra_045"
+ ],
+ "sem credito": [
+  "regra_131"
+ ],
+ "sem venda": [
+  "regra_002",
+  "regra_004",
+  "regra_006",
+  "regra_007",
+  "regra_009",
+  "regra_011",
+  "regra_012",
+  "regra_013",
+  "regra_015",
+  "regra_016",
+  "regra_018",
+  "regra_019",
+  "regra_022",
+  "regra_023",
+  "regra_024",
+  "regra_025",
+  "regra_027",
+  "regra_028",
+  "regra_031",
+  "regra_033",
+  "regra_035",
+  "regra_036",
+  "regra_038",
+  "regra_040",
+  "regra_041",
+  "regra_044",
+  "regra_045",
+  "regra_046",
+  "regra_048",
+  "regra_051",
+  "regra_052",
+  "regra_054",
+  "regra_055",
+  "regra_056",
+  "regra_058",
+  "regra_061",
+  "regra_063",
+  "regra_066",
+  "regra_067",
+  "regra_068",
+  "regra_070",
+  "regra_072",
+  "regra_073",
+  "regra_075",
+  "regra_083",
+  "regra_085",
+  "regra_087",
+  "regra_088",
+  "regra_090",
+  "regra_092",
+  "regra_094",
+  "regra_096",
+  "regra_097",
+  "regra_101",
+  "regra_103",
+  "regra_104",
+  "regra_106",
+  "regra_110",
+  "regra_111",
+  "regra_113",
+  "regra_116",
+  "regra_117",
+  "regra_118",
+  "regra_120",
+  "regra_153",
+  "regra_166",
+  "regra_176",
+  "regra_177",
+  "regra_233"
+ ],
+ "sem vendas": [
+  "regra_047",
+  "regra_050",
+  "regra_053",
+  "regra_062",
+  "regra_064",
+  "regra_074",
+  "regra_078",
+  "regra_080",
+  "regra_081",
+  "regra_082",
+  "regra_086",
+  "regra_091",
+  "regra_093",
+  "regra_099",
+  "regra_105",
+  "regra_107",
+  "regra_122",
+  "regra_124",
+  "regra_148",
+  "regra_181",
+  "regra_234"
+ ],
+ "semana de cobertura": [
+  "regra_193"
+ ],
+ "serrana": [
+  "regra_128"
+ ],
+ "sim lubrificantes": [
+  "regra_227"
+ ],
+ "sto": [
+  "regra_047"
+ ],
+ "sul fluminense 1": [
+  "regra_128"
+ ],
+ "sul fluminense 2": [
+  "regra_128"
+ ],
+ "sul frios": [
+  "regra_066"
+ ],
+ "supergiro": [
+  "regra_022"
+ ],
+ "supervisor 2731": [
+  "regra_071"
+ ],
+ "supervisor 2736": [
+  "regra_071"
+ ],
+ "supervisor 5178": [
+  "regra_023"
+ ],
+ "suspenso, inapto ou baixado na receita": [
+  "regra_180"
+ ],
+ "taiken": [
+  "regra_086"
+ ],
+ "televendas": [
+  "regra_001",
+  "regra_003",
+  "regra_005",
+  "regra_007",
+  "regra_010",
+  "regra_011",
+  "regra_014",
+  "regra_017",
+  "regra_021",
+  "regra_022",
+  "regra_023",
+  "regra_026",
+  "regra_030",
+  "regra_032",
+  "regra_034",
+  "regra_039",
+  "regra_042",
+  "regra_048",
+  "regra_049",
+  "regra_053",
+  "regra_055",
+  "regra_057",
+  "regra_058",
+  "regra_059",
+  "regra_060",
+  "regra_061",
+  "regra_062",
+  "regra_063",
+  "regra_064",
+  "regra_065",
+  "regra_067",
+  "regra_068",
+  "regra_069",
+  "regra_070",
+  "regra_071",
+  "regra_075",
+  "regra_076",
+  "regra_077",
+  "regra_079",
+  "regra_084",
+  "regra_087",
+  "regra_089",
+  "regra_091",
+  "regra_093",
+  "regra_094",
+  "regra_095",
+  "regra_099",
+  "regra_100",
+  "regra_101",
+  "regra_102",
+  "regra_106",
+  "regra_109",
+  "regra_112",
+  "regra_114",
+  "regra_116",
+  "regra_119",
+  "regra_120",
+  "regra_121",
+  "regra_122",
+  "regra_123",
+  "regra_124",
+  "regra_126",
+  "regra_127",
+  "regra_131",
+  "regra_132",
+  "regra_133",
+  "regra_135",
+  "regra_139",
+  "regra_140",
+  "regra_143",
+  "regra_146",
+  "regra_148",
+  "regra_149",
+  "regra_150",
+  "regra_152",
+  "regra_153",
+  "regra_154",
+  "regra_155",
+  "regra_158",
+  "regra_160",
+  "regra_163",
+  "regra_165",
+  "regra_166",
+  "regra_167",
+  "regra_168",
+  "regra_171",
+  "regra_172",
+  "regra_173",
+  "regra_174",
+  "regra_175",
+  "regra_176",
+  "regra_177",
+  "regra_178",
+  "regra_179",
+  "regra_180",
+  "regra_182",
+  "regra_183",
+  "regra_184",
+  "regra_185",
+  "regra_186",
+  "regra_187",
+  "regra_189",
+  "regra_190",
+  "regra_191",
+  "regra_192",
+  "regra_193",
+  "regra_194",
+  "regra_195",
+  "regra_196",
+  "regra_197",
+  "regra_198",
+  "regra_199",
+  "regra_200",
+  "regra_201",
+  "regra_202",
+  "regra_203",
+  "regra_204",
+  "regra_205",
+  "regra_206",
+  "regra_207",
+  "regra_208",
+  "regra_209",
+  "regra_210",
+  "regra_212",
+  "regra_213",
+  "regra_214",
+  "regra_215",
+  "regra_216",
+  "regra_217",
+  "regra_218",
+  "regra_219",
+  "regra_221",
+  "regra_224",
+  "regra_225",
+  "regra_226",
+  "regra_227",
+  "regra_228",
+  "regra_230",
+  "regra_232",
+  "regra_233",
+  "regra_235",
+  "regra_236",
+  "regra_237",
+  "regra_238",
+  "regra_239",
+  "regra_240",
+  "regra_241",
+  "regra_242",
+  "regra_243",
+  "regra_245",
+  "regra_246",
+  "regra_247",
+  "regra_248",
+  "regra_249"
+ ],
+ "televendas, internos": [
+  "regra_066"
+ ],
+ "teste ccn 11": [
+  "regra_098"
+ ],
+ "ticket medio": [
+  "regra_189"
+ ],
+ "time de ativacao": [
+  "regra_211",
+  "regra_223"
+ ],
+ "time externo": [
+  "regra_130"
+ ],
+ "time interno": [
+  "regra_130"
+ ],
+ "tipo de cobranca dh, bk": [
+  "regra_153",
+  "regra_166",
+  "regra_176",
+  "regra_177",
+  "regra_233"
+ ],
+ "tmk": [
+  "regra_128"
+ ],
+ "trenas": [
+  "regra_020"
+ ],
+ "trilha": [
+  "regra_029"
+ ],
+ "tripet": [
+  "regra_070"
+ ],
+ "tropical color": [
+  "regra_156"
+ ],
+ "ultrax": [
+  "regra_119"
+ ],
+ "vdo": [
+  "regra_246"
+ ],
+ "vendedor 1": [
+  "regra_200"
+ ],
+ "vendedor 10": [
+  "regra_184",
+  "regra_229"
+ ],
+ "vendedor 10185": [
+  "regra_139"
+ ],
+ "vendedor 11": [
+  "regra_067",
+  "regra_184"
+ ],
+ "vendedor 12": [
+  "regra_067",
+  "regra_229"
+ ],
+ "vendedor 13": [
+  "regra_101"
+ ],
+ "vendedor 132": [
+  "regra_169"
+ ],
+ "vendedor 135": [
+  "regra_206"
+ ],
+ "vendedor 145": [
+  "regra_169"
+ ],
+ "vendedor 15": [
+  "regra_136"
+ ],
+ "vendedor 16": [
+  "regra_114",
+  "regra_136",
+  "regra_229"
+ ],
+ "vendedor 164": [
+  "regra_071"
+ ],
+ "vendedor 17": [
+  "regra_101",
+  "regra_120"
+ ],
+ "vendedor 18": [
+  "regra_101",
+  "regra_120"
+ ],
+ "vendedor 1824": [
+  "regra_139"
+ ],
+ "vendedor 1865": [
+  "regra_160"
+ ],
+ "vendedor 196": [
+  "regra_126"
+ ],
+ "vendedor 2": [
+  "regra_067",
+  "regra_120"
+ ],
+ "vendedor 200": [
+  "regra_231"
+ ],
+ "vendedor 203": [
+  "regra_169"
+ ],
+ "vendedor 2095": [
+  "regra_159"
+ ],
+ "vendedor 21": [
+  "regra_067",
+  "regra_136"
+ ],
+ "vendedor 2134": [
+  "regra_160"
+ ],
+ "vendedor 2136": [
+  "regra_160"
+ ],
+ "vendedor 2150": [
+  "regra_159"
+ ],
+ "vendedor 2151": [
+  "regra_159"
+ ],
+ "vendedor 2152": [
+  "regra_159"
+ ],
+ "vendedor 2179": [
+  "regra_160"
+ ],
+ "vendedor 232": [
+  "regra_169"
+ ],
+ "vendedor 254": [
+  "regra_126"
+ ],
+ "vendedor 261": [
+  "regra_071"
+ ],
+ "vendedor 273": [
+  "regra_128"
+ ],
+ "vendedor 274": [
+  "regra_128"
+ ],
+ "vendedor 275": [
+  "regra_128"
+ ],
+ "vendedor 276": [
+  "regra_071",
+  "regra_128"
+ ],
+ "vendedor 277": [
+  "regra_128"
+ ],
+ "vendedor 278": [
+  "regra_128"
+ ],
+ "vendedor 279": [
+  "regra_128",
+  "regra_151"
+ ],
+ "vendedor 280": [
+  "regra_128"
+ ],
+ "vendedor 282": [
+  "regra_128"
+ ],
+ "vendedor 283": [
+  "regra_128",
+  "regra_151"
+ ],
+ "vendedor 284": [
+  "regra_128"
+ ],
+ "vendedor 286": [
+  "regra_128"
+ ],
+ "vendedor 29": [
+  "regra_184"
+ ],
+ "vendedor 291": [
+  "regra_151",
+  "regra_169"
+ ],
+ "vendedor 291 (tmk 1)": [
+  "regra_128"
+ ],
+ "vendedor 292 (tmk 2)": [
+  "regra_128"
+ ],
+ "vendedor 294 (tmk 3)": [
+  "regra_128"
+ ],
+ "vendedor 3": [
+  "regra_067",
+  "regra_120",
+  "regra_229"
+ ],
+ "vendedor 31": [
+  "regra_136",
+  "regra_184"
+ ],
+ "vendedor 313": [
+  "regra_126"
+ ],
+ "vendedor 314": [
+  "regra_169"
+ ],
+ "vendedor 33": [
+  "regra_136"
+ ],
+ "vendedor 341": [
+  "regra_169"
+ ],
+ "vendedor 3516": [
+  "regra_147"
+ ],
+ "vendedor 3519": [
+  "regra_147"
+ ],
+ "vendedor 353": [
+  "regra_183"
+ ],
+ "vendedor 3531": [
+  "regra_147"
+ ],
+ "vendedor 3556": [
+  "regra_147"
+ ],
+ "vendedor 3559": [
+  "regra_147"
+ ],
+ "vendedor 3568": [
+  "regra_147"
+ ],
+ "vendedor 3580": [
+  "regra_147"
+ ],
+ "vendedor 3594": [
+  "regra_147"
+ ],
+ "vendedor 3597": [
+  "regra_147"
+ ],
+ "vendedor 3621": [
+  "regra_147"
+ ],
+ "vendedor 3622": [
+  "regra_147"
+ ],
+ "vendedor 3623": [
+  "regra_147"
+ ],
+ "vendedor 375 (tmk 5)": [
+  "regra_128"
+ ],
+ "vendedor 382": [
+  "regra_231"
+ ],
+ "vendedor 385": [
+  "regra_071"
+ ],
+ "vendedor 39": [
+  "regra_114",
+  "regra_184"
+ ],
+ "vendedor 4": [
+  "regra_067",
+  "regra_229"
+ ],
+ "vendedor 40": [
+  "regra_114"
+ ],
+ "vendedor 435": [
+  "regra_071"
+ ],
+ "vendedor 438": [
+  "regra_071"
+ ],
+ "vendedor 45": [
+  "regra_114"
+ ],
+ "vendedor 4504": [
+  "regra_218"
+ ],
+ "vendedor 466": [
+  "regra_169"
+ ],
+ "vendedor 48": [
+  "regra_178"
+ ],
+ "vendedor 49": [
+  "regra_184"
+ ],
+ "vendedor 5": [
+  "regra_067",
+  "regra_120",
+  "regra_136"
+ ],
+ "vendedor 503": [
+  "regra_227",
+  "regra_235"
+ ],
+ "vendedor 506": [
+  "regra_223"
+ ],
+ "vendedor 507": [
+  "regra_223"
+ ],
+ "vendedor 510": [
+  "regra_115",
+  "regra_223"
+ ],
+ "vendedor 511": [
+  "regra_223"
+ ],
+ "vendedor 518": [
+  "regra_227",
+  "regra_235"
+ ],
+ "vendedor 519": [
+  "regra_183",
+  "regra_227",
+  "regra_235"
+ ],
+ "vendedor 520": [
+  "regra_183",
+  "regra_223"
+ ],
+ "vendedor 521": [
+  "regra_223",
+  "regra_227",
+  "regra_235"
+ ],
+ "vendedor 522": [
+  "regra_183"
+ ],
+ "vendedor 523": [
+  "regra_183"
+ ],
+ "vendedor 536": [
+  "regra_223"
+ ],
+ "vendedor 55": [
+  "regra_114"
+ ],
+ "vendedor 568": [
+  "regra_115",
+  "regra_220"
+ ],
+ "vendedor 596": [
+  "regra_115"
+ ],
+ "vendedor 6": [
+  "regra_067",
+  "regra_114"
+ ],
+ "vendedor 602": [
+  "regra_222"
+ ],
+ "vendedor 606": [
+  "regra_223"
+ ],
+ "vendedor 607": [
+  "regra_222"
+ ],
+ "vendedor 613": [
+  "regra_115"
+ ],
+ "vendedor 614": [
+  "regra_115"
+ ],
+ "vendedor 617": [
+  "regra_115"
+ ],
+ "vendedor 623": [
+  "regra_227",
+  "regra_235"
+ ],
+ "vendedor 624": [
+  "regra_227",
+  "regra_235"
+ ],
+ "vendedor 626": [
+  "regra_227",
+  "regra_235"
+ ],
+ "vendedor 63": [
+  "regra_071",
+  "regra_184"
+ ],
+ "vendedor 631": [
+  "regra_231"
+ ],
+ "vendedor 645": [
+  "regra_220"
+ ],
+ "vendedor 677": [
+  "regra_231"
+ ],
+ "vendedor 686": [
+  "regra_231"
+ ],
+ "vendedor 693": [
+  "regra_220"
+ ],
+ "vendedor 7027": [
+  "regra_123"
+ ],
+ "vendedor 706": [
+  "regra_231"
+ ],
+ "vendedor 708": [
+  "regra_231"
+ ],
+ "vendedor 712": [
+  "regra_220"
+ ],
+ "vendedor 729": [
+  "regra_220"
+ ],
+ "vendedor 73": [
+  "regra_126"
+ ],
+ "vendedor 731": [
+  "regra_231"
+ ],
+ "vendedor 736": [
+  "regra_231"
+ ],
+ "vendedor 737": [
+  "regra_231"
+ ],
+ "vendedor 738": [
+  "regra_220"
+ ],
+ "vendedor 744": [
+  "regra_220"
+ ],
+ "vendedor 755": [
+  "regra_231"
+ ],
+ "vendedor 763": [
+  "regra_231"
+ ],
+ "vendedor 789": [
+  "regra_231"
+ ],
+ "vendedor 8": [
+  "regra_184",
+  "regra_229"
+ ],
+ "vendedor 803": [
+  "regra_223"
+ ],
+ "vendedor 8406": [
+  "regra_222"
+ ],
+ "vendedor 8506": [
+  "regra_222"
+ ],
+ "vendedor 8507": [
+  "regra_222"
+ ],
+ "vendedor 8508": [
+  "regra_222"
+ ],
+ "vendedor 8509": [
+  "regra_222"
+ ],
+ "vendedor 8512": [
+  "regra_222"
+ ],
+ "vendedor 9": [
+  "regra_136",
+  "regra_229"
+ ],
+ "vendedor 900 (tmk 6)": [
+  "regra_128"
+ ],
+ "vendedor 901 (tmk 7)": [
+  "regra_128"
+ ],
+ "vendedor 904": [
+  "regra_223"
+ ],
+ "vendedor 906": [
+  "regra_223"
+ ],
+ "vendedor 907": [
+  "regra_223"
+ ],
+ "vendedor 925": [
+  "regra_223"
+ ],
+ "vendedor 927": [
+  "regra_223"
+ ],
+ "vendedor 945": [
+  "regra_211"
+ ],
+ "vendedor 954": [
+  "regra_223"
+ ],
+ "vendedor 956": [
+  "regra_223"
+ ],
+ "vendedor 958": [
+  "regra_223"
+ ],
+ "vendedor 964": [
+  "regra_223"
+ ],
+ "vendedor 965": [
+  "regra_211"
+ ],
+ "vendedor 967": [
+  "regra_223"
+ ],
+ "vendedor 970": [
+  "regra_223"
+ ],
+ "vendedor 971": [
+  "regra_223"
+ ],
+ "vendedor 973": [
+  "regra_223"
+ ],
+ "vendedor 974": [
+  "regra_223"
+ ],
+ "vendedor 99": [
+  "regra_220"
+ ],
+ "vendedor a": [
+  "regra_144"
+ ],
+ "vendedor de campo": [
+  "regra_008",
+  "regra_055"
+ ],
+ "vendedor de id 18": [
+  "regra_093"
+ ],
+ "vendedor de id 212": [
+  "regra_093"
+ ],
+ "vendedor de id 27": [
+  "regra_055"
+ ],
+ "vendedor de id 300": [
+  "regra_093"
+ ],
+ "vendedor de id 34": [
+  "regra_008",
+  "regra_055"
+ ],
+ "vendedor de id 35": [
+  "regra_008",
+  "regra_055"
+ ],
+ "vendedor de id 376": [
+  "regra_093"
+ ],
+ "vendedor de id 395": [
+  "regra_093"
+ ],
+ "vendedor de id 421": [
+  "regra_093"
+ ],
+ "vendedor de id 43": [
+  "regra_093"
+ ],
+ "vendedor de id 449": [
+  "regra_093"
+ ],
+ "vendedor de id 486": [
+  "regra_093"
+ ],
+ "vendedor de id 488": [
+  "regra_093"
+ ],
+ "vendedor de id 489": [
+  "regra_093"
+ ],
+ "vendedor de id 490": [
+  "regra_093"
+ ],
+ "vendedor de id 50": [
+  "regra_056"
+ ],
+ "vendedor de id 53": [
+  "regra_056"
+ ],
+ "vendedor de id 6": [
+  "regra_093"
+ ],
+ "vendedor de id 68": [
+  "regra_093"
+ ],
+ "vendedor f": [
+  "regra_144"
+ ],
+ "vendedor j": [
+  "regra_144"
+ ],
+ "vendedor l": [
+  "regra_144"
+ ],
+ "vendedor lc": [
+  "regra_144"
+ ],
+ "verteiler": [
+  "regra_063"
+ ],
+ "vetvida": [
+  "regra_011"
+ ],
+ "wanderson, vendedor 3": [
+  "regra_142"
+ ],
+ "yara, vendedor 10": [
+  "regra_142"
+ ],
+ "yasmim, id 12": [
+  "regra_120"
+ ]
+}
