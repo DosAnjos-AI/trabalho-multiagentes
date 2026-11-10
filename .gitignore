@@ -1,3 +1,7 @@
 .venv/
 __pycache__/
 indexacao/dados/chroma/
+.env
+retriever/saidas/
+SAIDA/
+indexacao/dados/chroma_backup_20261110/
