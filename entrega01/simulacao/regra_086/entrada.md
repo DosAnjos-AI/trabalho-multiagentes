@@ -1,1 +1,0 @@
-Regra padrão da Taiken, todos os vendedores, carteira fixa. Ativo adimplente, 10 dias. Ativo inadimplente, 14 dias. Inativo adimplente, 14 dias. Inativo inadimplente, 90 dias. Cliente sem vendas, 21 dias.

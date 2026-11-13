@@ -1,1 +1,0 @@
-Regra da Higicop, todos os vendedores, carteira fixa. Cliente inativo, quinzenal, respeitando a preferência de dia do vendedor. Cliente ativo, quinzenal, também respeitando a preferência do vendedor. Cliente sem vendas, quinzenal, sem preferência de dia definida.

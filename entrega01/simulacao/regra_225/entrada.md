@@ -1,1 +1,0 @@
-Ticket CS-90 do Atlassian, televendas ativado, preferindo dia útil e sábado em tudo. Prospect, 10 dias. Ativo adimplente, 21 dias. Ativo inadimplente, o restante dos ativos, 10 dias. Inativo adimplente, 14 dias. Inativo inadimplente, o restante, 21 dias.

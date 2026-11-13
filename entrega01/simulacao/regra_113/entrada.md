@@ -1,1 +1,0 @@
-Regra padrão da Magalhães e Massote, todos os vendedores, carteira fixa, preferindo dia útil. Cliente sem venda, 30 dias. Ativo adimplente, 30 dias. Ativo inadimplente, 60 dias. Inativo adimplente, 60 dias. Inativo inadimplente não agenda.
