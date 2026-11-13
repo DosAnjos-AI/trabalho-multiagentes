@@ -1,0 +1,482 @@
+version 1.0
+
+time "televendas":
+    vendedores todostelevendas ativados
+
+carteira "Sul, Sudeste e Centro-Oeste":
+    clientes carteirafixa("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+
+carteira "Norte e Nordeste":
+    clientes carteirafixa("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+
+parametros "Baixados na Receita Federal":
+    do time("televendas")
+    quando status na receita federal definido como baixada
+    nao agendar
+
+parametros "Prospects":
+    do time("televendas")
+    quando no ciclo de vida prospect com a empresa
+    frequencia de 14 dias
+
+parametros "Ativos Curva A (Sul, Sudeste e Centro-Oeste - Material de construcao, ferragista, agropecuaria e home center)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("material de construcao", "ferragista", "agropecuaria", "home center")
+        e recencia de positivacao global em 120 dias
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Ativos Curva B (Sul, Sudeste e Centro-Oeste - Material de construcao, ferragista, agropecuaria e home center)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("material de construcao", "ferragista", "agropecuaria", "home center")
+        e recencia de positivacao global em 120 dias
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 21 dias
+
+parametros "Ativos Curva C (Sul, Sudeste e Centro-Oeste - Material de construcao, ferragista, agropecuaria e home center)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("material de construcao", "ferragista", "agropecuaria", "home center")
+        e recencia de positivacao global em 120 dias
+    frequencia de 28 dias
+
+parametros "Pre-inativos Curva A (Sul, Sudeste e Centro-Oeste - Material de construcao, ferragista, agropecuaria e home center)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("material de construcao", "ferragista", "agropecuaria", "home center")
+        e recencia de positivacao global em 150 dias
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Pre-inativos Curva B (Sul, Sudeste e Centro-Oeste - Material de construcao, ferragista, agropecuaria e home center)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("material de construcao", "ferragista", "agropecuaria", "home center")
+        e recencia de positivacao global em 150 dias
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Pre-inativos Curva C (Sul, Sudeste e Centro-Oeste - Material de construcao, ferragista, agropecuaria e home center)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("material de construcao", "ferragista", "agropecuaria", "home center")
+        e recencia de positivacao do vendedor em 150 dias
+    frequencia de 14 dias
+
+parametros "Inativos Curva A (Sul, Sudeste e Centro-Oeste - Material de construcao, ferragista, agropecuaria e home center)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("material de construcao", "ferragista", "agropecuaria", "home center")
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Inativos Curva B (Sul, Sudeste e Centro-Oeste - Material de construcao, ferragista, agropecuaria e home center)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("material de construcao", "ferragista", "agropecuaria", "home center")
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Inativos Curva C (Sul, Sudeste e Centro-Oeste - Material de construcao, ferragista, agropecuaria e home center)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("material de construcao", "ferragista", "agropecuaria", "home center")
+    frequencia de 14 dias
+
+parametros "Ativos Curva A (Sul, Sudeste e Centro-Oeste - EPI e Licitacao)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("EPI", "licitacao")
+        e recencia de positivacao global em 120 dias
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Ativos Curva B (Sul, Sudeste e Centro-Oeste - EPI e Licitacao)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("EPI", "licitacao")
+        e recencia de positivacao global em 120 dias
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 21 dias
+
+parametros "Ativos Curva C (Sul, Sudeste e Centro-Oeste - EPI e Licitacao)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("EPI", "licitacao")
+        e recencia de positivacao global em 120 dias
+    frequencia de 28 dias
+
+parametros "Pre-inativos Curva A (Sul, Sudeste e Centro-Oeste - EPI e Licitacao)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("EPI", "licitacao")
+        e recencia de positivacao global em 150 dias
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Pre-inativos Curva B (Sul, Sudeste e Centro-Oeste - EPI e Licitacao)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("EPI", "licitacao")
+        e recencia de positivacao global em 150 dias
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Pre-inativos Curva C (Sul, Sudeste e Centro-Oeste - EPI e Licitacao)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("EPI", "licitacao")
+        e recencia de positivacao global em 150 dias
+    frequencia de 14 dias
+
+parametros "Inativos Curva A (Sul, Sudeste e Centro-Oeste - EPI e Licitacao)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("EPI", "licitacao")
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Inativos Curva B (Sul, Sudeste e Centro-Oeste - EPI e Licitacao)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("EPI", "licitacao")
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Inativos Curva C (Sul, Sudeste e Centro-Oeste - EPI e Licitacao)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("EPI", "licitacao")
+    frequencia de 14 dias
+
+parametros "Ativos Curva A (Sul, Sudeste e Centro-Oeste - Atacado e distribuidores)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("atacado", "distribuidores")
+        e recencia de positivacao global em 120 dias
+        e media faturada no ano com a empresa maior que R$ 50000
+    frequencia de 10 dias
+
+parametros "Ativos Curva B (Sul, Sudeste e Centro-Oeste - Atacado e distribuidores)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("atacado", "distribuidores")
+        e recencia de positivacao global em 120 dias
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Ativos Curva C (Sul, Sudeste e Centro-Oeste - Atacado e distribuidores)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("atacado", "distribuidores")
+        e recencia de positivacao global em 120 dias
+    frequencia de 21 dias
+
+parametros "Pre-inativos Curva A (Sul, Sudeste e Centro-Oeste - Atacado e distribuidores)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("atacado", "distribuidores")
+        e recencia de positivacao global em 150 dias
+        e media faturada no ano com a empresa maior que R$ 50000
+    frequencia de 7 dias
+
+parametros "Pre-inativos Curva B (Sul, Sudeste e Centro-Oeste - Atacado e distribuidores)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("atacado", "distribuidores")
+        e recencia de positivacao global em 150 dias
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 10 dias
+
+parametros "Pre-inativos Curva C (Sul, Sudeste e Centro-Oeste - Atacado e distribuidores)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("atacado", "distribuidores")
+        e recencia de positivacao global em 150 dias
+    frequencia de 14 dias
+
+parametros "Inativos Curva A (Sul, Sudeste e Centro-Oeste - Atacado e distribuidores)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("atacado", "distribuidores")
+        e media faturada no ano com a empresa maior que R$ 50000
+    frequencia de 10 dias
+
+parametros "Inativos Curva B (Sul, Sudeste e Centro-Oeste - Atacado e distribuidores)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("atacado", "distribuidores")
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 10 dias
+
+parametros "Inativos Curva C (Sul, Sudeste e Centro-Oeste - Atacado e distribuidores)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("atacado", "distribuidores")
+    frequencia de 21 dias
+
+parametros "Ativos Curva A (Sul, Sudeste e Centro-Oeste - Corporativo e consumidor final)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("corporativo", "consumidor final")
+        e recencia de positivacao global em 120 dias
+        e media faturada no ano com a empresa maior que R$ 15000
+    frequencia de 28 dias
+
+parametros "Ativos Curva B (Sul, Sudeste e Centro-Oeste - Corporativo e consumidor final)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("corporativo", "consumidor final")
+        e recencia de positivacao global em 120 dias
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 28 dias
+
+parametros "Ativos Curva C (Sul, Sudeste e Centro-Oeste - Corporativo e consumidor final)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("corporativo", "consumidor final")
+        e recencia de positivacao global em 120 dias
+    frequencia de 28 dias
+
+parametros "Pre-inativos Curva A (Sul, Sudeste e Centro-Oeste - Corporativo e consumidor final)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("corporativo", "consumidor final")
+        e recencia de positivacao global em 150 dias
+        e media faturada no ano com a empresa maior que R$ 15000
+    frequencia de 14 dias
+
+parametros "Pre-inativos Curva B (Sul, Sudeste e Centro-Oeste - Corporativo e consumidor final)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("corporativo", "consumidor final")
+        e recencia de positivacao global em 150 dias
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Pre-inativos Curva C (Sul, Sudeste e Centro-Oeste - Corporativo e consumidor final)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("corporativo", "consumidor final")
+        e recencia de positivacao global em 150 dias
+    frequencia de 14 dias
+
+parametros "Inativos Curva A (Sul, Sudeste e Centro-Oeste - Corporativo e consumidor final)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("corporativo", "consumidor final")
+        e media faturada no ano com a empresa maior que R$ 15000
+    frequencia de 28 dias
+
+parametros "Inativos Curva B (Sul, Sudeste e Centro-Oeste - Corporativo e consumidor final)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("corporativo", "consumidor final")
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 28 dias
+
+parametros "Inativos Curva C (Sul, Sudeste e Centro-Oeste - Corporativo e consumidor final)":
+    da carteira("Sul, Sudeste e Centro-Oeste")
+    quando ramo de atividade igual("corporativo", "consumidor final")
+    # descricao: para os inativos C nao ha intervalo de atendimento definido
+
+parametros "Ativos Curva A (Norte e Nordeste - Material de construcao, ferragista, agropecuaria e home center)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("material de construcao", "ferragista", "agropecuaria", "home center")
+        e recencia de positivacao global em 150 dias
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Ativos Curva B (Norte e Nordeste - Material de construcao, ferragista, agropecuaria e home center)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("material de construcao", "ferragista", "agropecuaria", "home center")
+        e recencia de positivacao global em 150 dias
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 21 dias
+
+parametros "Ativos Curva C (Norte e Nordeste - Material de construcao, ferragista, agropecuaria e home center)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("material de construcao", "ferragista", "agropecuaria", "home center")
+        e recencia de positivacao global em 150 dias
+    frequencia de 28 dias
+
+parametros "Pre-inativos Curva A (Norte e Nordeste - Material de construcao, ferragista, agropecuaria e home center)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("material de construcao", "ferragista", "agropecuaria", "home center")
+        e recencia de positivacao global em 180 dias
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Pre-inativos Curva B (Norte e Nordeste - Material de construcao, ferragista, agropecuaria e home center)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("material de construcao", "ferragista", "agropecuaria", "home center")
+        e recencia de positivacao global em 180 dias
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Pre-inativos Curva C (Norte e Nordeste - Material de construcao, ferragista, agropecuaria e home center)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("material de construcao", "ferragista", "agropecuaria", "home center")
+        e recencia de positivacao global em 180 dias
+    frequencia de 14 dias
+
+parametros "Inativos Curva A (Norte e Nordeste - Material de construcao, ferragista, agropecuaria e home center)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("material de construcao", "ferragista", "agropecuaria", "home center")
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Inativos Curva B (Norte e Nordeste - Material de construcao, ferragista, agropecuaria e home center)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("material de construcao", "ferragista", "agropecuaria", "home center")
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Inativos Curva C (Norte e Nordeste - Material de construcao, ferragista, agropecuaria e home center)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("material de construcao", "ferragista", "agropecuaria", "home center")
+    frequencia de 14 dias
+
+parametros "Ativos Curva A (Norte e Nordeste - EPI e Licitacao)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("EPI", "licitacao")
+        e recencia de positivacao global em 150 dias
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Ativos Curva B (Norte e Nordeste - EPI e Licitacao)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("EPI", "licitacao")
+        e recencia de positivacao global em 150 dias
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 21 dias
+
+parametros "Ativos Curva C (Norte e Nordeste - EPI e Licitacao)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("EPI", "licitacao")
+        e recencia de positivacao global em 150 dias
+    frequencia de 28 dias
+
+parametros "Pre-inativos Curva A (Norte e Nordeste - EPI e Licitacao)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("EPI", "licitacao")
+        e recencia de positivacao global em 180 dias
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Pre-inativos Curva B (Norte e Nordeste - EPI e Licitacao)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("EPI", "licitacao")
+        e recencia de positivacao global em 180 dias
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Pre-inativos Curva C (Norte e Nordeste - EPI e Licitacao)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("EPI", "licitacao")
+        e recencia de positivacao global em 180 dias
+    frequencia de 14 dias
+
+parametros "Inativos Curva A (Norte e Nordeste - EPI e Licitacao)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("EPI", "licitacao")
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Inativos Curva B (Norte e Nordeste - EPI e Licitacao)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("EPI", "licitacao")
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Inativos Curva C (Norte e Nordeste - EPI e Licitacao)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("EPI", "licitacao")
+    frequencia de 14 dias
+
+parametros "Ativos Curva A (Norte e Nordeste - Atacado e distribuidores)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("atacado", "distribuidores")
+        e recencia de positivacao global em 150 dias
+        e media faturada no ano com a empresa maior que R$ 50000
+    frequencia de 10 dias
+
+parametros "Ativos Curva B (Norte e Nordeste - Atacado e distribuidores)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("atacado", "distribuidores")
+        e recencia de positivacao global em 150 dias
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Ativos Curva C (Norte e Nordeste - Atacado e distribuidores)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("atacado", "distribuidores")
+        e recencia de positivacao global em 150 dias
+    frequencia de 21 dias
+
+parametros "Pre-inativos Curva A (Norte e Nordeste - Atacado e distribuidores)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("atacado", "distribuidores")
+        e recencia de positivacao global em 180 dias
+        e media faturada no ano com a empresa maior que R$ 50000
+    frequencia de 7 dias
+
+parametros "Pre-inativos Curva B (Norte e Nordeste - Atacado e distribuidores)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("atacado", "distribuidores")
+        e recencia de positivacao global em 180 dias
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 10 dias
+
+parametros "Pre-inativos Curva C (Norte e Nordeste - Atacado e distribuidores)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("atacado", "distribuidores")
+        e recencia de positivacao global em 180 dias
+    frequencia de 14 dias
+
+parametros "Inativos Curva A (Norte e Nordeste - Atacado e distribuidores)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("atacado", "distribuidores")
+        e media faturada no ano com a empresa maior que R$ 50000
+    frequencia de 10 dias
+
+parametros "Inativos Curva B (Norte e Nordeste - Atacado e distribuidores)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("atacado", "distribuidores")
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 10 dias
+
+parametros "Inativos Curva C (Norte e Nordeste - Atacado e distribuidores)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("atacado", "distribuidores")
+    frequencia de 21 dias
+
+parametros "Ativos Curva A (Norte e Nordeste - Corporativo e consumidor final)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("corporativo", "consumidor final")
+        e recencia de positivacao global em 150 dias
+        e media faturada no ano com a empresa maior que R$ 15000
+    frequencia de 28 dias
+
+parametros "Ativos Curva B (Norte e Nordeste - Corporativo e consumidor final)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("corporativo", "consumidor final")
+        e recencia de positivacao global em 150 dias
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 28 dias
+
+parametros "Ativos Curva C (Norte e Nordeste - Corporativo e consumidor final)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("corporativo", "consumidor final")
+        e recencia de positivacao global em 150 dias
+    frequencia de 28 dias
+
+parametros "Pre-inativos Curva A (Norte e Nordeste - Corporativo e consumidor final)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("corporativo", "consumidor final")
+        e recencia de positivacao global em 180 dias
+        e media faturada no ano com a empresa maior que R$ 15000
+    frequencia de 14 dias
+
+parametros "Pre-inativos Curva B (Norte e Nordeste - Corporativo e consumidor final)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("corporativo", "consumidor final")
+        e recencia de positivacao global em 180 dias
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Pre-inativos Curva C (Norte e Nordeste - Corporativo e consumidor final)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("corporativo", "consumidor final")
+        e recencia de positivacao global em 180 dias
+    frequencia de 14 dias
+
+parametros "Inativos Curva A (Norte e Nordeste - Corporativo e consumidor final)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("corporativo", "consumidor final")
+        e media faturada no ano com a empresa maior que R$ 15000
+    frequencia de 28 dias
+
+parametros "Inativos Curva B (Norte e Nordeste - Corporativo e consumidor final)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("corporativo", "consumidor final")
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 28 dias
+
+parametros "Inativos Curva C (Norte e Nordeste - Corporativo e consumidor final)":
+    da carteira("Norte e Nordeste")
+    quando ramo de atividade igual("corporativo", "consumidor final")
+    # descricao: para os inativos C nao ha intervalo de atendimento definido
+
+parametros "Clientes que nao se enquadraram nas situacoes de atendimento":
+    do time("televendas")
+    nao agendar

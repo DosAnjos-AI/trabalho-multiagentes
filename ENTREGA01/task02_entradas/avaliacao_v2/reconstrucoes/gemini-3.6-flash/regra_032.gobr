@@ -1,0 +1,510 @@
+version 1.0
+
+time "televendas":
+    vendedores todostelevendas ativados
+
+carteira "sul sudeste centro-oeste":
+    clientes carteirafixa("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+
+carteira "norte nordeste":
+    clientes carteirafixa("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+
+parametros "baixados na receita":
+    do time("televendas")
+    quando status na receita federal definido como baixada
+    nao agendar
+
+parametros "prospects sul sudeste centro-oeste":
+    da carteira("sul sudeste centro-oeste")
+    quando prospects da empresa
+    frequencia de 14 dias
+
+parametros "prospects norte nordeste":
+    da carteira("norte nordeste")
+    quando prospects da empresa
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste matcon 120 25000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e recencia de positivacao global em 120 dias
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste matcon 120 10000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e recencia de positivacao global em 120 dias
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 21 dias
+
+parametros "sul sudeste centro-oeste matcon 120 demais":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e recencia de positivacao global em 120 dias
+    frequencia de 28 dias
+
+parametros "sul sudeste centro-oeste matcon 150 25000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e recencia de positivacao global em 150 dias
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste matcon 150 10000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e recencia de positivacao global em 150 dias
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste matcon 150 demais":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e recencia de positivacao do vendedor em 150 dias
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste matcon inativos 25000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e inativos
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste matcon inativos 10000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e inativos
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste matcon inativos demais":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e inativos
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste epi 120 25000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("EPI", "LICITACAO")
+    e recencia de positivacao global em 120 dias
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste epi 120 10000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("EPI", "LICITACAO")
+    e recencia de positivacao global em 120 dias
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 21 dias
+
+parametros "sul sudeste centro-oeste epi 120 demais":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("EPI", "LICITACAO")
+    e recencia de positivacao global em 120 dias
+    frequencia de 28 dias
+
+parametros "sul sudeste centro-oeste epi 150 25000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("EPI", "LICITACAO")
+    e recencia de positivacao global em 150 dias
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste epi 150 10000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("EPI", "LICITACAO")
+    e recencia de positivacao global em 150 dias
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste epi 150 demais":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("EPI", "LICITACAO")
+    e recencia de positivacao global em 150 dias
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste epi inativos 25000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("EPI", "LICITACAO")
+    e inativos
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste epi inativos 10000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("EPI", "LICITACAO")
+    e inativos
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste epi inativos demais":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("EPI", "LICITACAO")
+    e inativos
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste atacado 120 50000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("ATACADO")
+    e recencia de positivacao global em 120 dias
+    e media faturada no ano com a empresa maior que R$ 50000
+    frequencia de 10 dias
+
+parametros "sul sudeste centro-oeste atacado 120 25000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("ATACADO")
+    e recencia de positivacao global em 120 dias
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste atacado 120 demais":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("ATACADO")
+    e recencia de positivacao global em 120 dias
+    frequencia de 21 dias
+
+parametros "sul sudeste centro-oeste atacado 150 50000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("ATACADO")
+    e recencia de positivacao global em 150 dias
+    e media faturada no ano com a empresa maior que R$ 50000
+    frequencia de 7 dias
+
+parametros "sul sudeste centro-oeste atacado 150 25000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("ATACADO")
+    e recencia de positivacao global em 150 dias
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 10 dias
+
+parametros "sul sudeste centro-oeste atacado 150 demais":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("ATACADO")
+    e recencia de positivacao global em 150 dias
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste atacado inativos 50000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("ATACADO")
+    e inativos
+    e media faturada no ano com a empresa maior que R$ 50000
+    frequencia de 10 dias
+
+parametros "sul sudeste centro-oeste atacado inativos 25000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("ATACADO")
+    e inativos
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 10 dias
+
+parametros "sul sudeste centro-oeste atacado inativos demais":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("ATACADO")
+    e inativos
+    frequencia de 21 dias
+
+parametros "sul sudeste centro-oeste cons final 120 15000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("CONS. FINAL")
+    e recencia de positivacao global em 120 dias
+    e media faturada no ano com a empresa maior que R$ 15000
+    frequencia de 28 dias
+
+parametros "sul sudeste centro-oeste cons final 120 10000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("CONS. FINAL")
+    e recencia de positivacao global em 120 dias
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 28 dias
+
+parametros "sul sudeste centro-oeste cons final 120 demais":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("CONS. FINAL")
+    e recencia de positivacao global em 120 dias
+    frequencia de 28 dias
+
+parametros "sul sudeste centro-oeste cons final 150 15000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("CONS. FINAL")
+    e recencia de positivacao global em 150 dias
+    e media faturada no ano com a empresa maior que R$ 15000
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste cons final 150 10000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("CONS. FINAL")
+    e recencia de positivacao global em 150 dias
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste cons final 150 demais":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("CONS. FINAL")
+    e recencia de positivacao global em 150 dias
+    frequencia de 14 dias
+
+parametros "sul sudeste centro-oeste cons final inativos 15000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("CONS. FINAL")
+    e inativos
+    e media faturada no ano com a empresa maior que R$ 15000
+    frequencia de 28 dias
+
+parametros "sul sudeste centro-oeste cons final inativos 10000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("CONS. FINAL")
+    e inativos
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 28 dias
+
+parametros "sul sudeste centro-oeste cons final inativos demais":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("CONS. FINAL")
+    e inativos
+    frequencia de 28 dias
+
+parametros "norte nordeste matcon 150 25000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e recencia de positivacao global em 150 dias
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "norte nordeste matcon 150 10000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e recencia de positivacao global em 150 dias
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 21 dias
+
+parametros "norte nordeste matcon 150 demais":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e recencia de positivacao global em 150 dias
+    frequencia de 28 dias
+
+parametros "norte nordeste matcon 180 25000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e recencia de positivacao global em 180 dias
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "norte nordeste matcon 180 10000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e recencia de positivacao global em 180 dias
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "norte nordeste matcon 180 demais":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e recencia de positivacao global em 180 dias
+    frequencia de 14 dias
+
+parametros "norte nordeste matcon inativos 25000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e inativos
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "norte nordeste matcon inativos 10000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e inativos
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "norte nordeste matcon inativos demais":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e inativos
+    frequencia de 14 dias
+
+parametros "norte nordeste epi 150 25000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("EPI", "LICITACAO")
+    e recencia de positivacao global em 150 dias
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "norte nordeste epi 150 10000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("EPI", "LICITACAO")
+    e recencia de positivacao global em 150 dias
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 21 dias
+
+parametros "norte nordeste epi 150 demais":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("EPI", "LICITACAO")
+    e recencia de positivacao global em 150 dias
+    frequencia de 28 dias
+
+parametros "norte nordeste epi 180 25000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("EPI", "LICITACAO")
+    e recencia de positivacao global em 180 dias
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "norte nordeste epi 180 10000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("EPI", "LICITACAO")
+    e recencia de positivacao global em 180 dias
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "norte nordeste epi 180 demais":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("EPI", "LICITACAO")
+    e recencia de positivacao global em 180 dias
+    frequencia de 14 dias
+
+parametros "norte nordeste epi inativos 25000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("EPI", "LICITACAO")
+    e inativos
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "norte nordeste epi inativos 10000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("EPI", "LICITACAO")
+    e inativos
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "norte nordeste epi inativos demais":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("EPI", "LICITACAO")
+    e inativos
+    frequencia de 14 dias
+
+parametros "norte nordeste atacado 150 50000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("ATACADO")
+    e recencia de positivacao global em 150 dias
+    e media faturada no ano com a empresa maior que R$ 50000
+    frequencia de 10 dias
+
+parametros "norte nordeste atacado 150 25000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("ATACADO")
+    e recencia de positivacao global em 150 dias
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "norte nordeste atacado 150 demais":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("ATACADO")
+    e recencia de positivacao global em 150 dias
+    frequencia de 21 dias
+
+parametros "norte nordeste atacado 180 50000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("ATACADO")
+    e recencia de positivacao global em 180 dias
+    e media faturada no ano com a empresa maior que R$ 50000
+    frequencia de 7 dias
+
+parametros "norte nordeste atacado 180 25000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("ATACADO")
+    e recencia de positivacao global em 180 dias
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 10 dias
+
+parametros "norte nordeste atacado 180 demais":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("ATACADO")
+    e recencia de positivacao global em 180 dias
+    frequencia de 14 dias
+
+parametros "norte nordeste atacado inativos 50000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("ATACADO")
+    e inativos
+    e media faturada no ano com a empresa maior que R$ 50000
+    frequencia de 10 dias
+
+parametros "norte nordeste atacado inativos 25000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("ATACADO")
+    e inativos
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 10 dias
+
+parametros "norte nordeste atacado inativos demais":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("ATACADO")
+    e inativos
+    frequencia de 21 dias
+
+parametros "norte nordeste cons final 150 15000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("CONS. FINAL")
+    e recencia de positivacao global em 150 dias
+    e media faturada no ano com a empresa maior que R$ 15000
+    frequencia de 28 dias
+
+parametros "norte nordeste cons final 150 10000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("CONS. FINAL")
+    e recencia de positivacao global em 150 dias
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 28 dias
+
+parametros "norte nordeste cons final 150 demais":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("CONS. FINAL")
+    e recencia de positivacao global em 150 dias
+    frequencia de 28 dias
+
+parametros "norte nordeste cons final 180 15000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("CONS. FINAL")
+    e recencia de positivacao global em 180 dias
+    e media faturada no ano com a empresa maior que R$ 15000
+    frequencia de 14 dias
+
+parametros "norte nordeste cons final 180 10000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("CONS. FINAL")
+    e recencia de positivacao global em 180 dias
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "norte nordeste cons final 180 demais":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("CONS. FINAL")
+    e recencia de positivacao global em 180 dias
+    frequencia de 14 dias
+
+parametros "norte nordeste cons final inativos 15000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("CONS. FINAL")
+    e inativos
+    e media faturada no ano com a empresa maior que R$ 15000
+    frequencia de 28 dias
+
+parametros "norte nordeste cons final inativos 10000":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("CONS. FINAL")
+    e inativos
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 28 dias
+
+parametros "norte nordeste cons final inativos demais":
+    da carteira("norte nordeste")
+    quando ramo de atividade igual("CONS. FINAL")
+    e inativos
+
+parametros "restante":
+    do time("televendas")
+    nao agendar

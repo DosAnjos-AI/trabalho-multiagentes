@@ -1,0 +1,11 @@
+version 1.0
+
+time "todos os vendedores":
+    vendedores todos
+
+carteira "carteira fixa":
+    clientes carteirafixa("todos os vendedores")
+
+parametros "intervalo padrao de uma semana":
+    da carteira("carteira fixa")
+    frequencia de 7 dias

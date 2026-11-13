@@ -1,0 +1,11 @@
+version 1.0
+
+time "toda a empresa":
+    vendedores todos
+
+carteira "clientes fixos":
+    clientes carteirafixa("toda a empresa")
+
+parametros "frequencia de 7 dias":
+    da carteira("clientes fixos")
+    frequencia de 7 dias

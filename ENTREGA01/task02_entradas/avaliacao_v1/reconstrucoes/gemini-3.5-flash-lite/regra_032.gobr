@@ -1,0 +1,618 @@
+version 1.0
+
+time "televendas":
+    vendedores todostelevendas
+
+parametros "Nao agendar baixados na Receita Federal":
+    do time("televendas")
+    quando status na receita federal definido como baixada
+    nao agendar
+
+parametros "Prospects":
+    do time("televendas")
+    quando no ciclo de vida prospect com a empresa
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - Material de Construcao - Ativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Material de Construcao", "Ferragista", "Agropecuaria", "Home Center")
+        e recencia de positivacao em 120 dias
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - Material de Construcao - Ativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Material de Construcao", "Ferragista", "Agropecuaria", "Home Center")
+        e recencia de positivacao em 120 dias
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 21 dias
+
+parametros "Sul Sudeste Centro-Oeste - Material de Construcao - Ativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Material de Construcao", "Ferragista", "Agropecuaria", "Home Center")
+        e recencia de positivacao em 120 dias
+        e curva C com a empresa
+    frequencia de 28 dias
+
+parametros "Sul Sudeste Centro-Oeste - Material de Construcao - Pre-inativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Material de Construcao", "Ferragista", "Agropecuaria", "Home Center")
+        e recencia de positivacao em 150 dias
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - Material de Construcao - Pre-inativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Material de Construcao", "Ferragista", "Agropecuaria", "Home Center")
+        e recencia de positivacao em 150 dias
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - Material de Construcao - Pre-inativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Material de Construcao", "Ferragista", "Agropecuaria", "Home Center")
+        e recencia de positivacao em 150 dias
+        e curva C com a empresa
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - Material de Construcao - Inativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Material de Construcao", "Ferragista", "Agropecuaria", "Home Center")
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - Material de Construcao - Inativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Material de Construcao", "Ferragista", "Agropecuaria", "Home Center")
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - Material de Construcao - Inativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Material de Construcao", "Ferragista", "Agropecuaria", "Home Center")
+        e curva C com a empresa
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - EPI e Licitacao - Ativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("EPI", "Licitacao")
+        e recencia de positivacao em 120 dias
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - EPI e Licitacao - Ativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("EPI", "Licitacao")
+        e recencia de positivacao em 120 dias
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 21 dias
+
+parametros "Sul Sudeste Centro-Oeste - EPI e Licitacao - Ativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("EPI", "Licitacao")
+        e recencia de positivacao em 120 dias
+        e curva C com a empresa
+    frequencia de 28 dias
+
+parametros "Sul Sudeste Centro-Oeste - EPI e Licitacao - Pre-inativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("EPI", "Licitacao")
+        e recencia de positivacao em 150 dias
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - EPI e Licitacao - Pre-inativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("EPI", "Licitacao")
+        e recencia de positivacao em 150 dias
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - EPI e Licitacao - Pre-inativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("EPI", "Licitacao")
+        e recencia de positivacao em 150 dias
+        e curva C com a empresa
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - EPI e Licitacao - Inativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("EPI", "Licitacao")
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - EPI e Licitacao - Inativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("EPI", "Licitacao")
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - EPI e Licitacao - Inativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("EPI", "Licitacao")
+        e curva C com a empresa
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - Atacado e Distribuidores - Ativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Atacado", "Distribuidores")
+        e recencia de positivacao em 120 dias
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 50000
+    frequencia de 10 dias
+
+parametros "Sul Sudeste Centro-Oeste - Atacado e Distribuidores - Ativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Atacado", "Distribuidores")
+        e recencia de positivacao em 120 dias
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - Atacado e Distribuidores - Ativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Atacado", "Distribuidores")
+        e recencia de positivacao em 120 dias
+        e curva C com a empresa
+    frequencia de 21 dias
+
+parametros "Sul Sudeste Centro-Oeste - Atacado e Distribuidores - Pre-inativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Atacado", "Distribuidores")
+        e recencia de positivacao em 150 dias
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 50000
+    frequencia de 7 dias
+
+parametros "Sul Sudeste Centro-Oeste - Atacado e Distribuidores - Pre-inativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Atacado", "Distribuidores")
+        e recencia de positivacao em 150 dias
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 10 dias
+
+parametros "Sul Sudeste Centro-Oeste - Atacado e Distribuidores - Pre-inativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Atacado", "Distribuidores")
+        e recencia de positivacao em 150 dias
+        e curva C com a empresa
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - Atacado e Distribuidores - Inativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Atacado", "Distribuidores")
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 50000
+    frequencia de 10 dias
+
+parametros "Sul Sudeste Centro-Oeste - Atacado e Distribuidores - Inativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Atacado", "Distribuidores")
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 10 dias
+
+parametros "Sul Sudeste Centro-Oeste - Atacado e Distribuidores - Inativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Atacado", "Distribuidores")
+        e curva C com a empresa
+    frequencia de 21 dias
+
+parametros "Sul Sudeste Centro-Oeste - Corporativo e Consumidor Final - Ativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Corporativo", "Consumidor Final")
+        e recencia de positivacao em 120 dias
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 15000
+    frequencia de 28 dias
+
+parametros "Sul Sudeste Centro-Oeste - Corporativo e Consumidor Final - Ativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Corporativo", "Consumidor Final")
+        e recencia de positivacao em 120 dias
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 28 dias
+
+parametros "Sul Sudeste Centro-Oeste - Corporativo e Consumidor Final - Ativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Corporativo", "Consumidor Final")
+        e recencia de positivacao em 120 dias
+        e curva C com a empresa
+    frequencia de 28 dias
+
+parametros "Sul Sudeste Centro-Oeste - Corporativo e Consumidor Final - Pre-inativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Corporativo", "Consumidor Final")
+        e recencia de positivacao em 150 dias
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 15000
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - Corporativo e Consumidor Final - Pre-inativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Corporativo", "Consumidor Final")
+        e recencia de positivacao em 150 dias
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - Corporativo e Consumidor Final - Pre-inativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Corporativo", "Consumidor Final")
+        e recencia de positivacao em 150 dias
+        e curva C com a empresa
+    frequencia de 14 dias
+
+parametros "Sul Sudeste Centro-Oeste - Corporativo e Consumidor Final - Inativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Corporativo", "Consumidor Final")
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 15000
+    frequencia de 28 dias
+
+parametros "Sul Sudeste Centro-Oeste - Corporativo e Consumidor Final - Inativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Corporativo", "Consumidor Final")
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 28 dias
+
+parametros "Sul Sudeste Centro-Oeste - Corporativo e Consumidor Final - Inativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+        e ramo de atividade igual("Corporativo", "Consumidor Final")
+        e curva C com a empresa
+    frequencia de 28 dias
+
+parametros "Norte Nordeste - Material de Construcao - Ativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Material de Construcao", "Ferragista", "Agropecuaria", "Home Center")
+        e recencia de positivacao em 150 dias
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - Material de Construcao - Ativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Material de Construcao", "Ferragista", "Agropecuaria", "Home Center")
+        e recencia de positivacao em 150 dias
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 21 dias
+
+parametros "Norte Nordeste - Material de Construcao - Ativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Material de Construcao", "Ferragista", "Agropecuaria", "Home Center")
+        e recencia de positivacao em 150 dias
+        e curva C com a empresa
+    frequencia de 28 dias
+
+parametros "Norte Nordeste - Material de Construcao - Pre-inativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Material de Construcao", "Ferragista", "Agropecuaria", "Home Center")
+        e recencia de positivacao em 180 dias
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - Material de Construcao - Pre-inativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Material de Construcao", "Ferragista", "Agropecuaria", "Home Center")
+        e recencia de positivacao em 180 dias
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - Material de Construcao - Pre-inativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Material de Construcao", "Ferragista", "Agropecuaria", "Home Center")
+        e recencia de positivacao em 180 dias
+        e curva C com a empresa
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - Material de Construcao - Inativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Material de Construcao", "Ferragista", "Agropecuaria", "Home Center")
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - Material de Construcao - Inativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Material de Construcao", "Ferragista", "Agropecuaria", "Home Center")
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - Material de Construcao - Inativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Material de Construcao", "Ferragista", "Agropecuaria", "Home Center")
+        e curva C com a empresa
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - EPI e Licitacao - Ativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("EPI", "Licitacao")
+        e recencia de positivacao em 150 dias
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - EPI e Licitacao - Ativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("EPI", "Licitacao")
+        e recencia de positivacao em 150 dias
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 21 dias
+
+parametros "Norte Nordeste - EPI e Licitacao - Ativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("EPI", "Licitacao")
+        e recencia de positivacao em 150 dias
+        e curva C com a empresa
+    frequencia de 28 dias
+
+parametros "Norte Nordeste - EPI e Licitacao - Pre-inativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("EPI", "Licitacao")
+        e recencia de positivacao em 180 dias
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - EPI e Licitacao - Pre-inativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("EPI", "Licitacao")
+        e recencia de positivacao em 180 dias
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - EPI e Licitacao - Pre-inativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("EPI", "Licitacao")
+        e recencia de positivacao em 180 dias
+        e curva C com a empresa
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - EPI e Licitacao - Inativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("EPI", "Licitacao")
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - EPI e Licitacao - Inativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("EPI", "Licitacao")
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - EPI e Licitacao - Inativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("EPI", "Licitacao")
+        e curva C com a empresa
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - Atacado e Distribuidores - Ativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Atacado", "Distribuidores")
+        e recencia de positivacao em 150 dias
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 50000
+    frequencia de 10 dias
+
+parametros "Norte Nordeste - Atacado e Distribuidores - Ativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Atacado", "Distribuidores")
+        e recencia de positivacao em 150 dias
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - Atacado e Distribuidores - Ativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Atacado", "Distribuidores")
+        e recencia de positivacao em 150 dias
+        e curva C com a empresa
+    frequencia de 21 dias
+
+parametros "Norte Nordeste - Atacado e Distribuidores - Pre-inativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Atacado", "Distribuidores")
+        e recencia de positivacao em 180 dias
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 50000
+    frequencia de 7 dias
+
+parametros "Norte Nordeste - Atacado e Distribuidores - Pre-inativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Atacado", "Distribuidores")
+        e recencia de positivacao em 180 dias
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 10 dias
+
+parametros "Norte Nordeste - Atacado e Distribuidores - Pre-inativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Atacado", "Distribuidores")
+        e recencia de positivacao em 180 dias
+        e curva C com a empresa
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - Atacado e Distribuidores - Inativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Atacado", "Distribuidores")
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 50000
+    frequencia de 10 dias
+
+parametros "Norte Nordeste - Atacado e Distribuidores - Inativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Atacado", "Distribuidores")
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 10 dias
+
+parametros "Norte Nordeste - Atacado e Distribuidores - Inativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Atacado", "Distribuidores")
+        e curva C com a empresa
+    frequencia de 21 dias
+
+parametros "Norte Nordeste - Corporativo e Consumidor Final - Ativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Corporativo", "Consumidor Final")
+        e recencia de positivacao em 150 dias
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 15000
+    frequencia de 28 dias
+
+parametros "Norte Nordeste - Corporativo e Consumidor Final - Ativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Corporativo", "Consumidor Final")
+        e recencia de positivacao em 150 dias
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 28 dias
+
+parametros "Norte Nordeste - Corporativo e Consumidor Final - Ativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Corporativo", "Consumidor Final")
+        e recencia de positivacao em 150 dias
+        e curva C com a empresa
+    frequencia de 28 dias
+
+parametros "Norte Nordeste - Corporativo e Consumidor Final - Pre-inativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Corporativo", "Consumidor Final")
+        e recencia de positivacao em 180 dias
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 15000
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - Corporativo e Consumidor Final - Pre-inativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Corporativo", "Consumidor Final")
+        e recencia de positivacao em 180 dias
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - Corporativo e Consumidor Final - Pre-inativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Corporativo", "Consumidor Final")
+        e recencia de positivacao em 180 dias
+        e curva C com a empresa
+    frequencia de 14 dias
+
+parametros "Norte Nordeste - Corporativo e Consumidor Final - Inativos - Curva A":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Corporativo", "Consumidor Final")
+        e curva A com a empresa
+        e media faturada no ano com a empresa maior que R$ 15000
+    frequencia de 28 dias
+
+parametros "Norte Nordeste - Corporativo e Consumidor Final - Inativos - Curva B":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Corporativo", "Consumidor Final")
+        e curva B com a empresa
+        e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 28 dias
+
+parametros "Norte Nordeste - Corporativo e Consumidor Final - Inativos - Curva C":
+    do time("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+        e ramo de atividade igual("Corporativo", "Consumidor Final")
+        e curva C com a empresa
+    frequencia de 28 dias
+
+parametros "Clientes que nao se enquadraram nas demais regras":
+    do time("televendas")
+    nao agendar

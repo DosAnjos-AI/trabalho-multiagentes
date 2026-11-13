@@ -1,0 +1,34 @@
+version 1.0
+
+time "televendas":
+    vendedores todostelevendas
+
+parametros "prospects do vendedor":
+    do time("televendas")
+    quando prospects do vendedor
+    frequencia de 28 dias
+
+parametros "uma compra com o vendedor":
+    do time("televendas")
+    quando unica compra com o vendedor
+    frequencia de 21 dias
+
+parametros "positivados em 90 dias curva C":
+    do time("televendas")
+    quando recencia de positivacao em 90 dias
+    e curva C com a empresa
+    frequencia de 7 dias
+
+parametros "positivados em 90 dias curvas A e B":
+    do time("televendas")
+    quando recencia de positivacao em 90 dias
+    frequencia de 14 dias
+
+parametros "caminhando para inatividade":
+    do time("televendas")
+    quando recencia de positivacao entre 91 dias e 180 dias
+    frequencia de 28 dias
+
+parametros "inativos":
+    do time("televendas")
+    frequencia de 45 dias

@@ -1,0 +1,34 @@
+version 1.0
+
+time "televendas":
+    vendedores todostelevendas
+
+parametros "Ative este novo cliente!":
+    do time("televendas")
+    quando no ciclo de vida prospect com o vendedor
+    frequencia de 28 dias
+
+parametros "Cliente ativado!":
+    do time("televendas")
+    quando no ciclo de vida ativado com o vendedor
+    frequencia de 21 dias
+
+parametros "Compra com regularidade! (Curva C!)":
+    do time("televendas")
+    quando curva C com a empresa
+        e recencia de positivacao em 90 dias
+    frequencia de 7 dias
+
+parametros "Compra com regularidade! (Curva A e B)":
+    do time("televendas")
+    quando recencia de positivacao em 90 dias
+    frequencia de 14 dias
+
+parametros "Cliente caminhando para inatividade!":
+    do time("televendas")
+    quando recencia de positivacao em 180 dias
+    frequencia de 28 dias
+
+parametros "Resgatar cliente inativo!":
+    do time("televendas")
+    frequencia de 45 dias

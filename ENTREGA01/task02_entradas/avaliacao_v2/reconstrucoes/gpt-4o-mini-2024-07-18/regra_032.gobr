@@ -1,0 +1,51 @@
+version 1.0
+
+time "televendas":
+    vendedores todostelevendas ativados
+
+carteira "sul sudeste centro-oeste":
+    clientes carteirafixa("televendas")
+    quando uf do estado igual("PR", "SC", "RS", "SP", "RJ", "MG", "ES", "GO", "MT", "MS", "DF")
+
+carteira "norte nordeste":
+    clientes carteirafixa("televendas")
+    quando uf do estado igual("AC", "AP", "AM", "PA", "RO", "RR", "TO", "AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE")
+
+parametros "baixados na receita":
+    do time("televendas")
+    quando status na receita federal definido como baixada
+    nao agendar
+
+parametros "prospects sul sudeste centro-oeste":
+    da carteira("sul sudeste centro-oeste")
+    quando no ciclo de vida prospect com a empresa
+    frequencia de 14 dias
+
+parametros "prospects norte nordeste":
+    da carteira("norte nordeste")
+    quando no ciclo de vida prospect com a empresa
+    frequencia de 14 dias
+
+parametros "matcon ativos curva A":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e recencia de positivacao em 120 dias
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "matcon ativos curva B":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e recencia de positivacao em 120 dias
+    e media faturada no ano com a empresa maior que R$ 10000
+    frequencia de 21 dias
+
+parametros "matcon inativos acima de 25000":
+    da carteira("sul sudeste centro-oeste")
+    quando ramo de atividade igual("MATCON", "FERRAGISTA", "AGROPECUARIA", "HOME CENTER")
+    e media faturada no ano com a empresa maior que R$ 25000
+    frequencia de 14 dias
+
+parametros "restante":
+    do time("televendas")
+    nao agendar

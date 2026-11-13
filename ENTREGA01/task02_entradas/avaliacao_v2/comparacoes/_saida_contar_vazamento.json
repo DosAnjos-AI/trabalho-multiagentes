@@ -1,0 +1,425 @@
+{
+ "gpt-6-luna|020": {
+  "custo": 0.000367,
+  "tokens_saida": 278,
+  "palavras": 26,
+  "sintaxe": {},
+  "nomes": {
+   "empresa toda": 1
+  },
+  "n_sintaxe": 0,
+  "n_nomes": 1
+ },
+ "gpt-6-luna|228": {
+  "custo": 0.001013,
+  "tokens_saida": 1524,
+  "palavras": 143,
+  "sintaxe": {},
+  "nomes": {},
+  "n_sintaxe": 0,
+  "n_nomes": 0
+ },
+ "gpt-6-luna|032": {
+  "custo": 0.002577,
+  "tokens_saida": 3445,
+  "palavras": 1178,
+  "sintaxe": {},
+  "nomes": {},
+  "n_sintaxe": 0,
+  "n_nomes": 0
+ },
+ "gpt-6.1-terra|020": {
+  "custo": 0.002377,
+  "tokens_saida": 19,
+  "palavras": 12,
+  "sintaxe": {},
+  "nomes": {},
+  "n_sintaxe": 0,
+  "n_nomes": 0
+ },
+ "gpt-6.1-terra|228": {
+  "custo": 0.003933,
+  "tokens_saida": 285,
+  "palavras": 100,
+  "sintaxe": {},
+  "nomes": {},
+  "n_sintaxe": 0,
+  "n_nomes": 0
+ },
+ "gpt-6.1-terra|032": {
+  "custo": 0.013392,
+  "tokens_saida": 970,
+  "palavras": 443,
+  "sintaxe": {},
+  "nomes": {},
+  "n_sintaxe": 0,
+  "n_nomes": 0
+ },
+ "gpt-6-astra|020": {
+  "custo": 0.02437,
+  "tokens_saida": 31,
+  "palavras": 23,
+  "sintaxe": {},
+  "nomes": {},
+  "n_sintaxe": 0,
+  "n_nomes": 0
+ },
+ "gpt-6-astra|228": {
+  "custo": 0.03963,
+  "tokens_saida": 291,
+  "palavras": 155,
+  "sintaxe": {},
+  "nomes": {},
+  "n_sintaxe": 0,
+  "n_nomes": 0
+ },
+ "gpt-6-astra|032": {
+  "custo": 0.16362,
+  "tokens_saida": 1564,
+  "palavras": 1010,
+  "sintaxe": {},
+  "nomes": {},
+  "n_sintaxe": 0,
+  "n_nomes": 0
+ },
+ "gpt-4.1-mini-2025-04-14|020": {
+  "custo": 0.001075,
+  "tokens_saida": 101,
+  "palavras": 83,
+  "sintaxe": {
+   "carteira fixa": 1
+  },
+  "nomes": {
+   "empresa toda": 1
+  },
+  "n_sintaxe": 1,
+  "n_nomes": 1
+ },
+ "gpt-4.1-mini-2025-04-14|228": {
+  "custo": 0.001536,
+  "tokens_saida": 333,
+  "palavras": 258,
+  "sintaxe": {
+   "carteira fixa": 1
+  },
+  "nomes": {},
+  "n_sintaxe": 1,
+  "n_nomes": 0
+ },
+ "gpt-4.1-mini-2025-04-14|032": {
+  "custo": 0.006382,
+  "tokens_saida": 1853,
+  "palavras": 1267,
+  "sintaxe": {
+   "ciclo de vida": 1,
+   "definido como": 1,
+   "prospects? com (?:o vendedor|a empresa)": 1,
+   "carteiras? livres?": 1,
+   "ativados": 1,
+   "nao agendar": 1
+  },
+  "nomes": {
+   "corporativo/ ?consumidor": 3,
+   "pre-inativo": 15
+  },
+  "n_sintaxe": 6,
+  "n_nomes": 18
+ },
+ "gpt-4o-mini-2024-07-18|020": {
+  "custo": 0.000402,
+  "tokens_saida": 100,
+  "palavras": 84,
+  "sintaxe": {
+   "carteira fixa": 1
+  },
+  "nomes": {},
+  "n_sintaxe": 1,
+  "n_nomes": 0
+ },
+ "gpt-4o-mini-2024-07-18|228": {
+  "custo": 0.00057,
+  "tokens_saida": 323,
+  "palavras": 252,
+  "sintaxe": {
+   "recencia de positivac": 2,
+   "ciclo de vida": 1,
+   "ativados": 1
+  },
+  "nomes": {},
+  "n_sintaxe": 4,
+  "n_nomes": 0
+ },
+ "gpt-4o-mini-2024-07-18|032": {
+  "custo": 0.001587,
+  "tokens_saida": 509,
+  "palavras": 343,
+  "sintaxe": {
+   "ciclo de vida": 1,
+   "carteira fixa": 1,
+   "nao agendar": 1
+  },
+  "nomes": {},
+  "n_sintaxe": 3,
+  "n_nomes": 0
+ },
+ "gpt-5-mini-2025-08-07|020": {
+  "custo": 0.004495,
+  "tokens_saida": 1962,
+  "palavras": 80,
+  "sintaxe": {},
+  "nomes": {
+   "empresa toda": 3
+  },
+  "n_sintaxe": 0,
+  "n_nomes": 3
+ },
+ "gpt-5-mini-2025-08-07|228": {
+  "custo": 0.007961,
+  "tokens_saida": 3667,
+  "palavras": 209,
+  "sintaxe": {
+   "curva [abc] com a empresa": 2
+  },
+  "nomes": {
+   "resgatar cliente inativo": 1
+  },
+  "n_sintaxe": 2,
+  "n_nomes": 1
+ },
+ "gpt-5-mini-2025-08-07|032": {
+  "custo": 0.01423,
+  "tokens_saida": 6047,
+  "palavras": 1665,
+  "sintaxe": {
+   "ciclo de vida": 1,
+   "media faturada": 6,
+   "prospects? com (?:o vendedor|a empresa)": 1,
+   "ativados": 2,
+   "\\bdays\\b": 97
+  },
+  "nomes": {
+   "sul_sudeste_centrooeste": 2,
+   "norte_nordeste": 3,
+   "corporativo/ ?consumidor": 2,
+   "atacado/ ?distribuidores": 1,
+   "pre-inativo": 24
+  },
+  "n_sintaxe": 107,
+  "n_nomes": 32
+ },
+ "gpt-5.4-mini-2026-03-17|020": {
+  "custo": 0.001896,
+  "tokens_saida": 41,
+  "palavras": 32,
+  "sintaxe": {},
+  "nomes": {},
+  "n_sintaxe": 0,
+  "n_nomes": 0
+ },
+ "gpt-5.4-mini-2026-03-17|228": {
+  "custo": 0.003064,
+  "tokens_saida": 263,
+  "palavras": 187,
+  "sintaxe": {
+   "recencia de positivac": 3,
+   "ciclo de vida": 1,
+   "curva [abc] com a empresa": 1,
+   "prospects? com (?:o vendedor|a empresa)": 1,
+   "ativados": 1
+  },
+  "nomes": {
+   "ative este novo cliente": 1,
+   "cliente ativado": 1,
+   "compra com regularidade": 2,
+   "resgatar cliente inativo": 1,
+   "caminhando para inatividade": 1
+  },
+  "n_sintaxe": 7,
+  "n_nomes": 6
+ },
+ "gpt-5.4-mini-2026-03-17|032": {
+  "custo": 0.012333,
+  "tokens_saida": 1317,
+  "palavras": 890,
+  "sintaxe": {
+   "(?<!recencia de )positivac": 9,
+   "definido como": 1,
+   "ativados": 1
+  },
+  "nomes": {
+   "sul_sudeste_centrooeste": 2,
+   "norte_nordeste": 2,
+   "pre-inativo": 9
+  },
+  "n_sintaxe": 11,
+  "n_nomes": 13
+ },
+ "gemini-3.1-flash-lite|020": {
+  "custo": 0.00067,
+  "tokens_saida": 52,
+  "palavras": 42,
+  "sintaxe": {
+   "carteira fixa": 1
+  },
+  "nomes": {},
+  "n_sintaxe": 1,
+  "n_nomes": 0
+ },
+ "gemini-3.1-flash-lite|228": {
+  "custo": 0.001009,
+  "tokens_saida": 233,
+  "palavras": 173,
+  "sintaxe": {},
+  "nomes": {},
+  "n_sintaxe": 0,
+  "n_nomes": 0
+ },
+ "gemini-3.1-flash-lite|032": {
+  "custo": 0.003531,
+  "tokens_saida": 791,
+  "palavras": 474,
+  "sintaxe": {
+   "recencia de positivac": 1,
+   "(?<!recencia de )positivac": 1,
+   "ciclo de vida": 1,
+   "definido como": 1,
+   "media faturada": 1,
+   "prospects? com (?:o vendedor|a empresa)": 1,
+   "global": 1
+  },
+  "nomes": {
+   "sul_sudeste_centrooeste": 1,
+   "norte_nordeste": 1,
+   "pre-inativo": 5
+  },
+  "n_sintaxe": 7,
+  "n_nomes": 7
+ },
+ "gemini-3.5-flash-lite|020": {
+  "custo": 0.000788,
+  "tokens_saida": 31,
+  "palavras": 25,
+  "sintaxe": {},
+  "nomes": {},
+  "n_sintaxe": 0,
+  "n_nomes": 0
+ },
+ "gemini-3.5-flash-lite|228": {
+  "custo": 0.001283,
+  "tokens_saida": 197,
+  "palavras": 148,
+  "sintaxe": {
+   "ativados": 1
+  },
+  "nomes": {},
+  "n_sintaxe": 1,
+  "n_nomes": 0
+ },
+ "gemini-3.5-flash-lite|032": {
+  "custo": 0.006896,
+  "tokens_saida": 1633,
+  "palavras": 976,
+  "sintaxe": {
+   "definido como": 1,
+   "media faturada": 1
+  },
+  "nomes": {
+   "pre-inativo": 13
+  },
+  "n_sintaxe": 2,
+  "n_nomes": 13
+ },
+ "gemini-3.6-flash|020": {
+  "custo": 0.004709,
+  "tokens_saida": 782,
+  "palavras": 51,
+  "sintaxe": {
+   "carteira fixa": 1
+  },
+  "nomes": {
+   "empresa toda": 1
+  },
+  "n_sintaxe": 1,
+  "n_nomes": 1
+ },
+ "gemini-3.6-flash|228": {
+  "custo": 0.012275,
+  "tokens_saida": 2746,
+  "palavras": 157,
+  "sintaxe": {
+   "ciclo de vida": 1
+  },
+  "nomes": {},
+  "n_sintaxe": 1,
+  "n_nomes": 0
+ },
+ "gemini-3.6-flash|032": {
+  "custo": 0.054608,
+  "tokens_saida": 12686,
+  "palavras": 1035,
+  "sintaxe": {
+   "media faturada": 3
+  },
+  "nomes": {},
+  "n_sintaxe": 3,
+  "n_nomes": 0
+ },
+ "gemini-3.8-flash|020": {
+  "custo": 0.002947,
+  "tokens_saida": 312,
+  "palavras": 31,
+  "sintaxe": {},
+  "nomes": {},
+  "n_sintaxe": 0,
+  "n_nomes": 0
+ },
+ "gemini-3.8-flash|228": {
+  "custo": 0.009571,
+  "tokens_saida": 2025,
+  "palavras": 142,
+  "sintaxe": {},
+  "nomes": {},
+  "n_sintaxe": 0,
+  "n_nomes": 0
+ },
+ "gemini-3.8-flash|032": {
+  "custo": 0.035419,
+  "tokens_saida": 7569,
+  "palavras": 1382,
+  "sintaxe": {
+   "ciclo de vida": 1,
+   "media faturada": 3,
+   "prospects? com (?:o vendedor|a empresa)": 1
+  },
+  "nomes": {},
+  "n_sintaxe": 5,
+  "n_nomes": 0
+ },
+ "gemini-4-carbon|020": {
+  "custo": 0.018416,
+  "tokens_saida": 1368,
+  "palavras": 32,
+  "sintaxe": {},
+  "nomes": {},
+  "n_sintaxe": 0,
+  "n_nomes": 0
+ },
+ "gemini-4-carbon|228": {
+  "custo": 0.044542,
+  "tokens_saida": 3928,
+  "palavras": 173,
+  "sintaxe": {},
+  "nomes": {},
+  "n_sintaxe": 0,
+  "n_nomes": 0
+ },
+ "gemini-4-carbon|032": {
+  "custo": 0.101644,
+  "tokens_saida": 8354,
+  "palavras": 1193,
+  "sintaxe": {},
+  "nomes": {},
+  "n_sintaxe": 0,
+  "n_nomes": 0
+ }
+}
