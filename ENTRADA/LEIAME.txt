@@ -1,1 +1,0 @@
-Coloque aqui um único arquivo com o pedido (.txt, .md, .png, .jpg, .jpeg ou .webp) e rode: .venv/bin/python retriever/rodar.py
