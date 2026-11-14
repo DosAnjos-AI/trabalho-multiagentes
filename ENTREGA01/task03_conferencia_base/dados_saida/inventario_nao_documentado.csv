@@ -1,0 +1,35 @@
+construcao,quantidade_arquivos,ocorrencias,arquivos
+filtro: sem venda,45,61,regra_007.gobr;regra_008.gobr;regra_011.gobr;regra_022.gobr;regra_048.gobr;regra_050.gobr;regra_051.gobr;regra_054.gobr;regra_055.gobr;regra_058.gobr;regra_061.gobr;regra_062.gobr;regra_063.gobr;regra_066.gobr;regra_067.gobr;regra_068.gobr;regra_070.gobr;regra_072.gobr;regra_075.gobr;regra_083.gobr;regra_086.gobr;regra_087.gobr;regra_090.gobr;regra_094.gobr;regra_101.gobr;regra_106.gobr;regra_113.gobr;regra_116.gobr;regra_120.gobr;regra_125.gobr;regra_126.gobr;regra_147.gobr;regra_148.gobr;regra_153.gobr;regra_164.gobr;regra_166.gobr;regra_176.gobr;regra_177.gobr;regra_203.gobr;regra_207.gobr;regra_212.gobr;regra_220.gobr;regra_233.gobr;regra_237.gobr;regra_243.gobr
+filtro: sem vendas,21,28,regra_023.gobr;regra_047.gobr;regra_048.gobr;regra_053.gobr;regra_056.gobr;regra_074.gobr;regra_078.gobr;regra_080.gobr;regra_081.gobr;regra_082.gobr;regra_091.gobr;regra_093.gobr;regra_099.gobr;regra_105.gobr;regra_107.gobr;regra_119.gobr;regra_122.gobr;regra_124.gobr;regra_130.gobr;regra_181.gobr;regra_234.gobr
+frequencia: frequencia do historico ou no minimo de <N> dias e no maximo de <N> dias,20,24,regra_076.gobr;regra_121.gobr;regra_139.gobr;regra_157.gobr;regra_162.gobr;regra_163.gobr;regra_167.gobr;regra_171.gobr;regra_174.gobr;regra_179.gobr;regra_183.gobr;regra_184.gobr;regra_188.gobr;regra_189.gobr;regra_198.gobr;regra_217.gobr;regra_232.gobr;regra_237.gobr;regra_244.gobr;regra_245.gobr
+"fonte: do time(""<texto>"", ...)",12,47,regra_116.gobr;regra_128.gobr;regra_131.gobr;regra_139.gobr;regra_144.gobr;regra_147.gobr;regra_160.gobr;regra_169.gobr;regra_184.gobr;regra_206.gobr;regra_231.gobr;regra_235.gobr
+filtro: sem venda do vendedor,9,17,regra_140.gobr;regra_145.gobr;regra_146.gobr;regra_160.gobr;regra_163.gobr;regra_188.gobr;regra_189.gobr;regra_202.gobr;regra_221.gobr
+filtro: e o cliente filial,8,8,regra_116.gobr;regra_145.gobr;regra_175.gobr;regra_180.gobr;regra_201.gobr;regra_206.gobr;regra_208.gobr;regra_210.gobr
+preferencia: do vendedor,6,22,regra_053.gobr;regra_056.gobr;regra_074.gobr;regra_080.gobr;regra_107.gobr;regra_181.gobr
+frequencia: frequencia do historico ou no maximo de <N> dias,6,8,regra_058.gobr;regra_139.gobr;regra_190.gobr;regra_202.gobr;regra_218.gobr;regra_226.gobr
+"fonte: da carteira(""<texto>"", ...)",5,12,regra_032.gobr;regra_071.gobr;regra_140.gobr;regra_179.gobr;regra_236.gobr
+filtro: é o cliente filial,4,4,regra_129.gobr;regra_172.gobr;regra_209.gobr;regra_244.gobr
+"sem choque: sem choque no time(""<texto>"")",3,8,regra_063.gobr;regra_116.gobr;regra_124.gobr
+filtro: frequencia historica de <N> dias,3,7,regra_146.gobr;regra_184.gobr;regra_226.gobr
+filtro: inatividade global maior que <N> dias,3,3,regra_126.gobr;regra_220.gobr;regra_231.gobr
+frequencia: frequencia do historico mais <N> dias ou no minimo de <N> dias e no maximo de <N> dias,3,3,regra_191.gobr;regra_243.gobr;regra_245.gobr
+filtro: tem visita da empresa na semana anterior,2,4,regra_186.gobr;regra_212.gobr
+filtro: sem venda da empresa,2,2,regra_186.gobr;regra_226.gobr
+filtro: tem venda em <N> dias,2,2,regra_151.gobr;regra_204.gobr
+frequencia: frequencia do historico mais <N> dias ou no maximo de <N> dias,2,2,regra_200.gobr;regra_207.gobr
+"filtro: cnae é igual(""<texto>"", ...)",1,9,regra_131.gobr
+frequencia: frequencia do historico ou no maximo semanal(),1,6,regra_071.gobr
+"fonte: da segmentacao(""<texto>"") e da carteira(""<texto>"")",1,5,regra_169.gobr
+"sem choque: sem choque na rota com time(""<texto>"")",1,5,regra_071.gobr
+filtro: tem venda no mes,1,3,regra_190.gobr
+"clientes: clientes ruptura(""<texto>"" para ""<texto>"") de positivacao(entre <N> dias e <N> dias)",1,1,regra_151.gobr
+filtro: cadastrado ha <N> dias,1,1,regra_171.gobr
+"filtro: cnae do erp inicia com(""<texto>"", ...)",1,1,regra_080.gobr
+filtro: data da rota hoje,1,1,regra_076.gobr
+filtro: fora da recencia de venda do vendedor em <N> dias,1,1,regra_198.gobr
+"filtro: id do cliente principal é diferente(""<texto>"")",1,1,regra_203.gobr
+filtro: prospect,1,1,regra_162.gobr
+filtro: recencia de positivacao global no ano passado,1,1,regra_212.gobr
+filtro: tem venda da empresa no ano passado,1,1,regra_189.gobr
+filtro: tem venda no ano passado,1,1,regra_186.gobr
+frequencia: frequencia do historico menos <N> dias ou no minimo de <N> dias e no maximo de <N> dias,1,1,regra_245.gobr
