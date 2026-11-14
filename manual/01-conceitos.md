@@ -127,4 +127,7 @@ Conferido nas seções de filtros (6), parâmetros (7), alertas (8) e tags (9).
 - Retirar cliente de uma carteira diretamente; a saída só acontece pela ordem das carteiras (p.16). Tirar da agenda é possível (retirada_agenda, p.40).
 - Passar por cima do ajuste manual feito pelo usuário (p.38).
 - Misturar, num mesmo conjunto de regras, ajustes de atendimento e alertas (p.47).
-- Teto ou piso sobre intervalo calculado pelo histórico: o manual só documenta limites para intervalo fixo (p.44).
+
+## Não documentado no manual
+Aqui o manual é silencioso; não é afirmação de que a construção não existe.
+- Teto ou piso sobre intervalo calculado pelo histórico: o manual documenta os modificadores `no máximo` e `no mínimo` só para frequência fixa por período (p.44).

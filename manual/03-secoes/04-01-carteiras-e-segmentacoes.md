@@ -98,11 +98,9 @@ carteira livre "campo com carteira fixa":
       clientes segmentados("carteiras adimplentes da superv maria")
 
 carteira "vendedor 1020":
-      clientes ruptura da segmentacao("carteiras adimplentes da superv maria" para "v
+      clientes ruptura da segmentacao("carteiras adimplentes da superv maria" para "vendedor avulso")
                       de visita(1 mes)
 ```
-[CORTE NO MANUAL] A linha `clientes ruptura da segmentacao(...)` está cortada na margem da p.14 após `para "v`; o restante não é legível e não foi completado.
-
 Em carteira só uma segmentação como fonte; em segmentação, várias.
 
 ## Restrições

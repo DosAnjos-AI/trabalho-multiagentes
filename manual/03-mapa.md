@@ -6,7 +6,7 @@ Cada tipo do vocabulário aponta para os arquivos a recuperar. Um tipo pode ter 
 | Tipo | Arquivos de 03-secoes/ |
 |---|---|
 | tempo_sem_comprar | 06-01-atividade-inatividade, 06-02-recencia-visita-positivacao, 06-10-ruptura, 06-11-outros-filtros, 06-12-opcoes-de-tempo, 06-08-frequencia-e-parametros |
-| tempo_sem_visita | 06-02-recencia-visita-positivacao, 06-01-atividade-inatividade, 06-11-outros-filtros, 06-12-opcoes-de-tempo, 04-02-selecao-clientes-ruptura |
+| tempo_sem_visita | 06-02-recencia-visita-positivacao, 06-01-atividade-inatividade, 06-10-ruptura, 06-11-outros-filtros, 06-12-opcoes-de-tempo, 04-02-selecao-clientes-ruptura |
 | estagio_relacionamento | 06-01-atividade-inatividade, 06-07-curva-abc-ciclo-de-vida |
 | carteira | 04-01-carteiras-e-segmentacoes, 04-02-selecao-clientes-ruptura, 03-01-times, 06-10-ruptura |
 | situacao_financeira | 06-03-financeiros |
@@ -33,4 +33,5 @@ Cada tipo do vocabulário aponta para os arquivos a recuperar. Um tipo pode ter 
 ## Arquivos de uso transversal (recuperar por estrutura do pedido, não por tipo)
 - 07-01-parametros-estrutura-e-exemplos: todo pedido de parâmetros de atendimento (estrutura e restrições).
 - 08-01-alertas-estrutura-e-gatilhos, 08-02-alertas-entrega-e-variaveis: pedido de alerta.
+- 01-01-visao-geral-e-execucao, 02-01-exemplos-e-estrutura-geral: visão geral, tipos de execução, exemplos de regras de negócio e esqueleto do arquivo; referência, não atendem a critério nem parâmetro.
 - 09-01-tags, 10-gramatica: referência; não atendem a nenhum critério de seleção nem parâmetro de atendimento.

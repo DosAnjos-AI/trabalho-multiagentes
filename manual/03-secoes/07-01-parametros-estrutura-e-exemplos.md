@@ -78,3 +78,9 @@ Remove as parametrizações dinâmicas aplicadas pelo GoBR aos clientes da carte
 - Sem repetição: cliente parametrizado por regra anterior não é reprocessado; a ordem importa.
 - Nomes de blocos de parâmetros distintos.
 - Parametrizar times ou carteiras inteiras, não vendedores individuais.
+
+## Ordem entre regras de parâmetros
+- As regras `parametros` valem na ordem em que aparecem no arquivo. O cliente parametrizado por uma regra anterior não é reprocessado pelas seguintes (p.46).
+- Consequência: quando um cliente cabe em duas ou mais situações, vale a que vem primeiro. Um pedido que descreve as situações em sequência ("primeiro", "depois", "vale a primeira") vira regras escritas nessa mesma ordem.
+- Consequência do fluxo (o passo `quando` é opcional) e da regra acima, sem exemplo no manual: uma regra sem `quando`, escrita por último, pega os clientes da fonte que nenhuma regra anterior parametrizou ("todo o resto").
+- Isto vale para regras `parametros`. A ordem entre blocos `carteira` é outro assunto: ver `04-01-carteiras-e-segmentacoes.md`, "Cenário 3". Em alertas a ordem não importa (`02-invariantes.md`).

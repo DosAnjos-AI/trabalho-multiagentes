@@ -1,6 +1,6 @@
 # Filtros de agenda (manual 6.4, p.25-26)
 
-Verificam se o cliente já está, ou não, em agendas.
+Verificam se o cliente já está, ou não, presente em agendas passadas.
 
 | Filtro | Descrição |
 |---|---|

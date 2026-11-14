@@ -4,8 +4,8 @@
 |---|---|
 | `positivado de hoje` | positivado hoje (tempo ou tempo fixo) |
 | `atendimento remoto em 5 dias` | teve atendimento remoto nos últimos 5 dias |
-| `sem perfil com o vendedor` | não marcado para não agendar para o vendedor, nem excluído, nem baixado na Receita Federal |
-| `sem perfil com a empresa` | não marcado para não agendar para qualquer vendedor, nem excluído, nem baixado na Receita |
+| `sem perfil com o vendedor` | o cliente não está marcado para não agendar para o vendedor ou foi excluído ou consta como baixado na receita federal (texto do PDF; a leitura lógica do "ou" não é declarada) |
+| `sem perfil com a empresa` | o cliente não está marcado para não agendar para qualquer vendedor ou foi excluído ou consta como baixado na receita federal (texto do PDF; a leitura lógica do "ou" não é declarada) |
 | `total de compras com o vendedor maior que <N>` | pelo menos N compras com o vendedor |
 | `total de compras com a empresa menor que <N> ou indefinido` | no máximo N compras com a empresa, ou valor não calculado |
 | `compras no mês com o vendedor maior que <N>` | pelo menos N compras com o vendedor no período |
