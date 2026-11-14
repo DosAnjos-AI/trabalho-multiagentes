@@ -22,7 +22,7 @@ negocio feita por uma pessoa.
 
 | Pasta ou arquivo | O que e |
 |---|---|
-| `readme.md` | Documentacao da raiz (hoje descreve a `task02_entradas`) |
+| `ENTREGA01/task02_entradas/readme.md` | Documentacao da `task02_entradas` (a raiz nao tem readme) |
 | `govendas-rules.pdf` | Manual original da linguagem GOBR |
 | `manual/` | Manual parseado em markdown |
 | `exemplos/` | Pares reais do fornecedor (`.gobr` e `.pdf`) |
