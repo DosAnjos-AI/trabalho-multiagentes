@@ -7,7 +7,7 @@ CAMINHO_ENV = BASE.parents[1] / ".env"
 # Nome da variavel de ambiente com a chave de cada fornecedor
 VARIAVEL_CHAVE = {"openai": "CHAVE_OPENAI", "gemini": "CHAVE_GEMINI"}
 # Pasta com os .gobr de entrada (copia dos deduplicados da task01)
-CAMINHO_REGRAS = BASE / "regras_originais"
+CAMINHO_REGRAS = BASE.parents[1] / "dados" / "processados" / "regras_gobr"
 # Pasta de saida; nunca apagada, cada execucao cria subpastas novas
 CAMINHO_SAIDA = BASE / "regras_explicadas"
 # Arquivo de prompt usado nesta execucao
