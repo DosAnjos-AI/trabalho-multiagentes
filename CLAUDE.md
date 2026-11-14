@@ -60,6 +60,7 @@ negocio feita por uma pessoa.
 | Escrita de CSV | `encoding="utf-8"` e `newline=""` | Evita linha vazia entre registros no Windows |
 | Comentarios | Em portugues, explicando por que assim, nao o que o codigo faz | Comentario que repete o codigo nao protege contra a limpeza futura |
 | Emojis | Nenhum em codigo. Permitidos so em documentacao | - |
+| Hash | Todo hash gravado em arquivo ou metadado e SHA-256, e o nome do campo nao leva o algoritmo (ex.: `hash_prompt`). Arquivos antigos podem manter `sha256` no nome | Nome estavel nao muda se o algoritmo mudar |
 | Interpretador | `.venv/bin/python -B`, nunca o Python do sistema | O Ubuntu recusa instalacao no Python do sistema; `-B` evita `__pycache__` |
 
 ## 6. Scripts
