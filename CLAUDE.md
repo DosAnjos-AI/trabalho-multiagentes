@@ -22,7 +22,7 @@ negocio feita por uma pessoa.
 
 | Pasta ou arquivo | O que e |
 |---|---|
-| `ENTREGA01/task02_entradas/readme.md` | Documentacao da `task02_entradas` (a raiz nao tem readme) |
+| `ENTREGA01/task02_entradas/readme.md` | Documentacao da `task02_entradas` |
 | `govendas-rules.pdf` | Manual original da linguagem GOBR |
 | `manual/` | Manual parseado em markdown |
 | `exemplos/` | Pares reais do fornecedor (`.gobr` e `.pdf`) |
@@ -42,6 +42,8 @@ negocio feita por uma pessoa.
 - Cada tarefa tem `config.py` (parametros), um `script_*.py` e um `readme.md` com entrada,
   saida, configuracao, uso e avisos.
 - Dados de uso geral vao para `dados/`; codigo reutilizavel entre tarefas vai para `src/`.
+- Saida oficial vai para `dados/processados/`; saida de teste e de avaliacao fica dentro
+  da pasta da tarefa.
 - `ENTREGA01/` esta entregue. Nao se edita nem se roda nada dentro dela sem pedido do
   Mestre. Rodar `ENTREGA01/task01_dedup/script_dedup.py` apaga a pasta de saida dele.
 - `ENTREGA02/` esta prevista para padronizacao, embedding e banco vetorial. So e criada
@@ -75,6 +77,8 @@ negocio feita por uma pessoa.
 ## 8. Saida paga e saida refazivel
 
 - Saida de processamento local e apagada antes de reescrever.
+- O script so apaga pasta que ele mesmo criou e que contem apenas saida dele; caso
+  contrario, aborta.
 - Saida de API paga nunca e apagada. Cada execucao cria pasta propria com carimbo de data
   e hora, modelo e versao de prompt no nome.
 - Lote pago longo grava cada arquivo logo apos a chamada e aceita chave de retomada.
