@@ -1,29 +1,29 @@
 ---
 regra_id: 032
 arquivo_regra: regra_032.gobr
-hash_regra_sha256: 599e19af41a7c2972337a19e241d6dfa32c699957f0c6c348af47062e138cd44
+hash_regra_sha256: 6b0557f409f750508f8787e409d6a85b77b0726d8f8abafaded3a15c34fa752f
 arquivo_prompt: prompt_v2.md
 hash_prompt_sha256: d7c1517e7309120a292faa10f14a10a8a33e6456183253cbf924817242d80d73
 modelo: gpt-6.1-terra
 fornecedor: openai
 temperatura: 1.0 (padrao imposto pelo modelo)
-tokens_entrada: 8542
-tokens_saida: 897
-custo_usd: 0.013027
-tempo_segundos: 11.17
-timestamp: 2026-11-13T19:50:43-03:00
+tokens_entrada: 8550
+tokens_saida: 1075
+custo_usd: 0.013925
+tempo_segundos: 14.32
+timestamp: 2026-11-14T20:56:12-03:00
 ---
 
-Os vendedores de televendas habilitados atendem os clientes fixos de cada um. Separamos esses clientes em dois grupos: um com os de PR, SC, RS, SP, RJ, MG, ES, GO, MT, MS e DF, e outro com os de AC, AP, AM, PA, RO, RR, TO, AL, BA, CE, MA, PB, PE, PI, RN e SE. Pela divisão por estado, o mesmo cliente não aparece nos dois grupos.
+Trabalhamos com os vendedores de televendas habilitados no sistema, cada um com seus clientes fixos. Dividimos esses clientes em dois grupos: um para PR, SC, RS, SP, RJ, MG, ES, GO, MT, MS e DF; outro para AC, AP, AM, PA, RO, RR, TO, AL, BA, CE, MA, PB, PE, PI, RN e SE. Pela UF, o cliente não fica nos dois grupos ao mesmo tempo.
 
-Primeiro, não agendamos nenhum cliente da equipe que esteja com situação baixada na Receita Federal. Depois, nos dois grupos regionais, atendemos a cada 14 dias os prospects que nunca compraram com a empresa. Nas demais situações, seguimos a ordem abaixo: quem se encaixar em mais de uma recebe o atendimento da primeira situação em que entrar.
+Primeiro, não agendamos os clientes da equipe que estejam com situação baixada na Receita Federal. Depois, nos dois grupos de estados, atendemos a cada 14 dias os clientes que nunca compraram com a empresa. Para os demais, seguimos as situações abaixo na ordem apresentada: se o cliente se encaixar em mais de uma, vale o primeiro atendimento previsto para ele.
 
-Para as situações por ramo, consideramos as compras com qualquer vendedor da empresa e o faturamento médio anual com a empresa. No primeiro grupo de estados, olhamos primeiro quem comprou nos últimos 120 dias e depois quem comprou nos últimos 150 dias. No segundo grupo, os períodos são, respectivamente, 150 e 180 dias. Em cada período, verificamos primeiro o faturamento acima do limite maior, depois acima do limite menor e, por fim, sem exigir limite de faturamento. Depois desses períodos, fazemos a mesma sequência de faturamento sem exigir compra recente.
+Em cada ramo, olhamos primeiro quem comprou com qualquer vendedor da empresa nos últimos 120 dias no primeiro grupo de estados ou nos últimos 150 dias no segundo. Depois, olhamos quem comprou com qualquer vendedor nos últimos 150 dias no primeiro grupo ou nos últimos 180 dias no segundo. Por fim, olhamos os clientes do ramo sem exigir prazo de compra. Em cada uma dessas etapas, verificamos primeiro o maior limite de faturamento, depois o menor e, por último, atendemos os demais sem exigir faturamento mínimo. O faturamento considerado é a média por ano com a empresa.
 
-Para MATCON, FERRAGISTA, AGROPECUARIA e HOME CENTER, assim como para EPI e LICITACAO, os limites são R$ 25000 e R$ 10000. No primeiro período de compra de cada região, atendemos a cada 14 dias acima de R$ 25000, a cada 21 dias acima de R$ 10000 e a cada 28 dias sem limite de faturamento. No segundo período, as três situações são atendidas a cada 14 dias. A exceção é que, no primeiro grupo de estados, para MATCON, FERRAGISTA, AGROPECUARIA e HOME CENTER, a situação do segundo período sem limite de faturamento considera a compra nos últimos 150 dias somente com o próprio vendedor do cliente. Sem exigir compra recente, as três situações desses ramos são atendidas a cada 14 dias.
+Para MATCON, FERRAGISTA, AGROPECUARIA e HOME CENTER, assim como para EPI e LICITACAO, na primeira etapa atendemos a cada 14 dias quem tem média acima de R$ 25000, a cada 21 dias quem tem média acima de R$ 10000 e a cada 28 dias os demais, sem exigir faturamento mínimo. Na segunda etapa, essas mesmas três situações são atendidas a cada 14 dias. Nessa segunda etapa há uma diferença para MATCON, FERRAGISTA, AGROPECUARIA e HOME CENTER no primeiro grupo de estados: para os que entram sem exigência de faturamento mínimo, a compra nos últimos 150 dias é contada somente com o próprio vendedor do cliente. Para EPI e LICITACAO nesse grupo, e para todos esses ramos no segundo grupo de estados, ela é contada com qualquer vendedor da empresa. Na etapa sem prazo de compra, atendemos a cada 14 dias primeiro quem tem média acima de R$ 25000, depois quem tem média acima de R$ 10000 e, por fim, os demais, sem exigir faturamento mínimo.
 
-Para ATACADO, os limites são R$ 50000 e R$ 25000. No primeiro período de compra, atendemos a cada 10 dias acima de R$ 50000, a cada 14 dias acima de R$ 25000 e a cada 21 dias sem limite de faturamento. No segundo período, os respectivos intervalos são 7, 10 e 14 dias. Sem exigir compra recente, atendemos a cada 10 dias acima de R$ 50000, a cada 10 dias acima de R$ 25000 e a cada 21 dias sem limite de faturamento.
+Para ATACADO, na primeira etapa atendemos a cada 10 dias quem tem média acima de R$ 50000, a cada 14 dias quem tem média acima de R$ 25000 e a cada 21 dias os demais, sem exigir faturamento mínimo. Na segunda etapa, os mesmos limites e a situação sem mínimo recebem atendimento, respectivamente, a cada 7, 10 e 14 dias. Sem exigir prazo de compra, atendemos a cada 10 dias quem tem média acima de R$ 50000, a cada 10 dias quem tem média acima de R$ 25000 e a cada 21 dias os demais, sem exigir faturamento mínimo.
 
-Para CONS. FINAL, os limites são R$ 15000 e R$ 10000. No primeiro período de compra, as três situações são atendidas a cada 28 dias; no segundo período, a cada 14 dias. Sem exigir compra recente, atendemos a cada 28 dias tanto acima de R$ 15000 quanto acima de R$ 10000. No primeiro grupo de estados, também atendemos a cada 28 dias sem exigir limite de faturamento. No segundo grupo, para essa última situação sem limite de faturamento, ainda não definimos de quanto em quanto tempo atender.
+Para CONS. FINAL, na primeira etapa atendemos a cada 28 dias quem tem média acima de R$ 15000, também a cada 28 dias quem tem média acima de R$ 10000 e a cada 28 dias os demais, sem exigir faturamento mínimo. Na segunda etapa, essas três situações são atendidas a cada 14 dias. Sem exigir prazo de compra, atendemos a cada 28 dias primeiro quem tem média acima de R$ 15000, depois quem tem média acima de R$ 10000 e, por fim, os demais, sem exigir faturamento mínimo.
 
-Por fim, os demais clientes da equipe que não se enquadrarem nas situações anteriores não são agendados.
+Os demais clientes da equipe que não se enquadrarem nessas situações não são agendados.
