@@ -65,9 +65,10 @@ Sem `--ids`, o lote pega todo id com `entrada_NNN.md` e sem `normalizado_NNN.md`
 
 ## Pendentes
 
-7 ids ficam sem `normalizado_NNN.md`: **032, 080, 083, 135, 140, 221, 228**. Motivo: as explicacoes
-(`entrada_NNN.md`) estao desatualizadas em relacao ao `.gobr`. A regeneracao e rodada propria, porque o script da
-task02 hoje nao filtra por id. Nao normalize esses ids antes disso.
+7 ids ficam sem `normalizado_NNN.md`: **032, 080, 083, 135, 140, 221, 228**. Motivo: as explicacoes antigas estavam
+desatualizadas em relacao ao `.gobr` corrigido. Em 2026-11-14 as 7 explicacoes foram regeneradas (task02, `--ids`) e
+estao em `regras_entradas/`; as antigas estao em `dados/processados/regras_entradas_legado/`. **Falta apenas normalizar**
+os 7 ids; nenhum ficou pendente por falha de regeneracao.
 
 ## Como regenerar uma explicacao e normaliza-la depois
 
