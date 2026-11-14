@@ -1,7 +1,7 @@
 # Registro de correcoes da base .gobr
 
-Base original (somente leitura): `ENTREGA01/task02_entradas/regras_originais/`.
-Base corrigida: `ENTREGA01/task04_correcao_base/dados_saida/base_corrigida/`.
+Base original (somente leitura): `dados/originais/regras_gobr/` (mesmos nomes; os 193 arquivos deduplicados sao identicos byte a byte aos de la).
+Base corrigida: `dados/processados/regras_gobr/`.
 Linha = numero na base original (na insercao, a linha que o texto novo ocupa).
 
 | Tipo | Correcoes |

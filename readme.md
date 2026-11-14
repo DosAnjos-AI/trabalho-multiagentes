@@ -13,25 +13,25 @@ Cada chamada custa dinheiro real.
 | Item | Escolha |
 |---|---|
 | Modelo | `gpt-6.1-terra` |
-| Prompt | `prompt_v2.md` |
-| Segunda opção | `gpt-6-luna` com o mesmo `prompt_v2.md`, só se o `gpt-6.1-terra` falhar de forma que impeça a execução |
+| Prompt | `ENTREGA01/task02_entradas/prompt_v2.md` |
+| Segunda opção | `gpt-6-luna` com o mesmo `ENTREGA01/task02_entradas/prompt_v2.md`, só se o `gpt-6.1-terra` falhar de forma que impeça a execução |
 
 O Mestre escolheu o `gpt-6.1-terra` porque o modelo escreveu o texto mais natural dos 12 testados, sem nenhum vazamento de sintaxe ou de nomes do arquivo.
 O modelo reconstruiu 80 de 88 blocos inteiros corretos, a 6 blocos do primeiro colocado, por cerca de US$ 0,02 pelas três regras de teste.
 
 O lote oficial das 193 fichas está em `dados/processados/regras_entradas/`.
-As outras pastas de `regras_explicadas/` são das rodadas de validação.
+As outras pastas de `ENTREGA01/task02_entradas/regras_explicadas/` são das rodadas de validação.
 
 ## Como a avaliação foi feita
 
 1. Três regras serviram de teste: a menor (`regra_020`, 3 blocos), a mediana (`regra_228`, 7 blocos) e a maior (`regra_032`, 78 blocos). As três somam 88 blocos.
-2. Cada um dos 12 modelos gerou uma ficha para cada regra de teste com o `prompt_v2.md`.
+2. Cada um dos 12 modelos gerou uma ficha para cada regra de teste com o `ENTREGA01/task02_entradas/prompt_v2.md`.
 3. Um reconstrutor leu cada ficha sozinha e escreveu de volta um `.gobr`. O reconstrutor não olhou o arquivo original. Essa é a reconstrução às cegas.
 4. O reconstrutor gravou o hash das 36 reconstruções antes de abrir qualquer original. O hash prova que nenhuma reconstrução mudou depois da comparação.
 5. Um script comparou cada reconstrução com o original, bloco a bloco.
 6. O avaliador também ordenou as fichas pela naturalidade do texto, sem olhar os números.
 
-Os detalhes estão em `avaliacao_v2/RESULTADO_V2.md`. A rodada anterior, com o `prompt_v1`, está em `avaliacao_v1/`.
+Os detalhes estão em `ENTREGA01/task02_entradas/avaliacao_v2/RESULTADO_V2.md`. A rodada anterior, com o `prompt_v1`, está em `ENTREGA01/task02_entradas/avaliacao_v1/`.
 
 ## Tabela de decisão
 
@@ -91,7 +91,7 @@ Nesta tabela, "regra" quer dizer um bloco do arquivo `.gobr`. O rodapé abaixo d
 3. **Dois erros do avaliador afetaram números específicos.**
    - O avaliador leu "os inativos desses ramos" como um filtro de inativos. Essa leitura tirou 24 blocos do `gemini-3.6-flash` e 24 do `gpt-5-mini` na `regra_032`. Com a outra leitura, os dois teriam 84 e 80.
    - O avaliador separou em dois o bloco de prospects da `regra_032`, que no original é um bloco só. Esse erro criou 1 bloco inventado em 11 modelos e impediu que qualquer modelo acertasse esse bloco por inteiro. O erro vale igual para todos e não muda a ordem.
-   - Os dois erros estão registrados em `avaliacao_v2/RESULTADO_V2.md`, seção "Escolhas do reconstrutor que mudam o número".
+   - Os dois erros estão registrados em `ENTREGA01/task02_entradas/avaliacao_v2/RESULTADO_V2.md`, seção "Escolhas do reconstrutor que mudam o número".
 
 ## Como rodar
 
@@ -110,10 +110,10 @@ O script nunca imprime nem grava as chaves.
 
 ### Entrada e saída
 
-- Entrada: `dados/processados/regras_gobr/`, com os 193 `.gobr` deduplicados da task01, e o prompt de `CAMINHO_PROMPT`.
-- Saída: `regras_explicadas/{timestamp}_{modelo}_{versao_prompt}/regra_{id}/`.
+- Entrada: `dados/processados/regras_gobr/`, com os 193 `.gobr` deduplicados na task01 e corrigidos na task04, e o prompt de `CAMINHO_PROMPT`.
+- Saída: `dados/processados/regras_entradas/{timestamp}_{modelo}_{versao_prompt}/regra_{id}/`.
 - Cada pasta de regra tem a ficha `entrada_{id}.md` e a cópia byte a byte `regra_{id}.gobr`.
-- `prompt_legados/` guarda os prompts antigos, para comparação.
+- `ENTREGA01/task02_entradas/prompt_legados/` guarda os prompts antigos, para comparação.
 
 ### O que o script faz
 
@@ -145,7 +145,7 @@ O script nunca imprime nem grava as chaves.
 
 ### Retomar depois de uma queda
 
-1. Copie o caminho da pasta criada, por exemplo `regras_explicadas/20261113-192952_gpt-6.1-terra_v2`.
+1. Copie o caminho da pasta criada, no formato `dados/processados/regras_entradas/{timestamp}_{modelo}_{versao_prompt}`.
 2. Preencha `PASTA_RETOMADA` com esse caminho no `config.py`.
 3. Rode o script de novo. O script pula as regras prontas e completa o resto.
 4. Esvazie `PASTA_RETOMADA` depois. Assim a próxima execução não escreve na pasta antiga.

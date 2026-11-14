@@ -4,8 +4,8 @@ Remove duplicados e quase-duplicados de regras `.gobr`.
 
 ## Entrada e saida
 
-- Entrada: `dados_originais/`, arquivos `.gobr` (copiados de `simulacao/` e, se diferentes, de `exemplos/`).
-- Saida: `dados_deduplicados/`, arquivos `.gobr` mantidos com o nome original (sem reenumerar) e `000_relatorio_dedup.csv`.
+- Entrada: `dados/originais/regras_gobr/` (na raiz do projeto), arquivos `.gobr` (copiados de `simulacao/` e, se diferentes, de `exemplos/`).
+- Saida: arquivos `.gobr` mantidos com o nome original (sem reenumerar), hoje em `dados/processados/regras_gobr/` (na raiz do projeto, ja corrigidos na task04), e `dados_deduplicados/000_relatorio_dedup.csv`.
 
 ## Tecnologias
 
@@ -16,10 +16,10 @@ Remove duplicados e quase-duplicados de regras `.gobr`.
 ## Estrutura
 
 - `config.py`: parametros da execucao.
-- `script.py`: normaliza, compara, agrupa e escreve a saida.
+- `script_dedup.py`: normaliza, compara, agrupa e escreve a saida.
 - `readme.md`: este arquivo.
-- `dados_originais/`: entrada, somente `.gobr`.
-- `dados_deduplicados/`: saida, reescrita a cada execucao.
+- `dados/originais/regras_gobr/` (na raiz do projeto): entrada, somente `.gobr`.
+- `dados_deduplicados/`: saida, reescrita a cada execucao; hoje guarda so o `000_relatorio_dedup.csv`.
 
 ## Configuracao (`config.py`)
 
@@ -39,7 +39,7 @@ Criterio de quem fica: mais caracteres no texto bruto; empate, menor numero de r
 
 ## Uso
 
-    python script.py
+    python script_dedup.py
 
 ## Aviso
 
