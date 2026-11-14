@@ -106,3 +106,14 @@ verificável dispara exatamente aquele item.
   itens, não de um caso especial.
 - **Palavra-chave de cláusula desconhecida** no início de linha é tratada como continuação
   da cláusula anterior.
+
+## Próximos passos definidos pelo Mestre
+
+Registro, sem implementação. Serve para a etapa final não começar do zero.
+
+1. O conferidor vai corrigir o que conseguir corrigir sozinho, e vai registrar o que
+   identifica mas não consegue corrigir. O registro vai sair num formato que um modelo de
+   linguagem consiga ler depois.
+2. O conferidor vai devolver as próprias anotações, seja o documento corrigido, seja a lista
+   dos erros mapeados. O modelo de linguagem vai usar esse retorno, junto com o prompt e os
+   outros insumos, para reescrever o arquivo `.gobr`.
