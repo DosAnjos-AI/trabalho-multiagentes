@@ -101,6 +101,22 @@ def escolher_regras() -> list[tuple[Path, int]]:
     return [todas[i] for i in indices]
 
 
+def ler_ids_cli() -> list[str]:
+    """Le `--ids 135 140 ...` da linha de comando; sem a opcao devolve lista vazia (comportamento antigo)."""
+    if "--ids" not in sys.argv:
+        return []
+    ids = sys.argv[sys.argv.index("--ids") + 1:]
+    if not ids or not all(re.fullmatch(r"\d{3}", i) for i in ids) or len(set(ids)) != len(ids):
+        raise ValueError(
+            f"--ids recebido: {ids!r}. Aceita um ou mais ids distintos de 3 digitos (ex.: --ids 032 135). "
+            "Informe na linha de comando."
+        )
+    faltando = [i for i in ids if not (config.CAMINHO_REGRAS / f"regra_{i}.gobr").exists()]
+    if faltando:
+        raise ValueError(f"--ids sem .gobr em {config.CAMINHO_REGRAS}: {faltando}. Aceitos: ids existentes na pasta.")
+    return ids
+
+
 def custo(modelo: str, tok_in: int, tok_out: int) -> float:
     """Custo em dolares a partir dos tokens informados pela API."""
     m = config.MODELOS[modelo]
@@ -172,7 +188,9 @@ def main() -> int:
     validar_config()
     prompt_texto = config.CAMINHO_PROMPT.read_text(encoding="utf-8")
     hash_prompt = sha256_bytes(config.CAMINHO_PROMPT)
-    regras = escolher_regras()
+    ids = ler_ids_cli()
+    # com --ids, a selecao por tamanho (QUANTIDADE_REGRAS) e ignorada: roda exatamente a lista, na ordem dada
+    regras = ([(config.CAMINHO_REGRAS / f"regra_{i}.gobr", 0) for i in ids] if ids else escolher_regras())
     carimbo = datetime.now().strftime("%Y%m%d-%H%M%S")
     # retomada: escreve na pasta indicada e pula regra que ja tem ficha gravada la
     retomada = Path(config.PASTA_RETOMADA) if config.PASTA_RETOMADA else None

@@ -143,6 +143,29 @@ O script nunca imprime nem grava as chaves.
 | `QUANTIDADE_REGRAS` | Quantas regras rodam | 193 roda todas. Um número menor escolhe regras espalhadas por tamanho. 3 escolhe a menor, a mediana e a maior |
 | `PASTA_RETOMADA` | Pasta de saída já existente, para retomar | Vazia: o script cria pasta nova. Preenchida: o script escreve nessa pasta e pula toda regra que já tem `entrada_{id}.md`. Exige um único modelo em `MODELOS_ATIVOS` |
 
+### Regenerar so alguns ids
+
+Para refazer a ficha de regras especificas, passe `--ids` (ids de 3 digitos, distintos, com `.gobr` em `CAMINHO_REGRAS`).
+Com `--ids`, `QUANTIDADE_REGRAS` e ignorada e o script roda exatamente a lista. Sem `--ids`, o comportamento nao muda.
+Comando usado em 2026-11-14 (ids 135, 140, 228, 032, 221, 080, 083; `TETO_GASTO_USD` elevado a 0.70 so durante a rodada e restaurado a 3.00):
+
+    cd ENTREGA01/task02_entradas
+    ../../.venv/bin/python -B -u script_entradas.py --ids 135 140 228 032 221 080 083
+
+O script nao tem modo de estimativa: confira a projecao de custo antes (`projetar_custo`) e ajuste o teto ao necessario.
+
+### Como uma ficha regenerada vira a ficha oficial
+
+O script grava em `dados/processados/regras_entradas/{timestamp}_{modelo}_{versao_prompt}/regra_{id}/entrada_{id}.md`.
+O normalizador le so `dados/processados/regras_entradas/entrada_*.md` (glob sem recursao), entao a pasta de geracao
+nao e lida. O fluxo manual, sem apagar nada (saida paga nunca se apaga):
+
+1. Mova a `entrada_{id}.md` antiga para `dados/processados/regras_entradas_legado/`, conferindo o SHA-256 antes e depois.
+2. Copie (nao mova) a nova `entrada_{id}.md` da pasta de geracao para `dados/processados/regras_entradas/entrada_{id}.md`,
+   conferindo o SHA-256.
+3. Confira que `hash_regra_sha256` do cabecalho e igual ao SHA-256 do `.gobr` atual em `dados/processados/regras_gobr/`.
+   Fichas com hash diferente estao desatualizadas.
+
 ### Retomar depois de uma queda
 
 1. Copie o caminho da pasta criada, no formato `dados/processados/regras_entradas/{timestamp}_{modelo}_{versao_prompt}`.
