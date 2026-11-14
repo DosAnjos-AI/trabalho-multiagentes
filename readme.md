@@ -19,7 +19,7 @@ Cada chamada custa dinheiro real.
 O Mestre escolheu o `gpt-6.1-terra` porque o modelo escreveu o texto mais natural dos 12 testados, sem nenhum vazamento de sintaxe ou de nomes do arquivo.
 O modelo reconstruiu 80 de 88 blocos inteiros corretos, a 6 blocos do primeiro colocado, por cerca de US$ 0,02 pelas três regras de teste.
 
-O lote oficial das 193 fichas está em `regras_explicadas/20261113-192952_gpt-6.1-terra_v2/`.
+O lote oficial das 193 fichas está em `dados/processados/regras_entradas/`.
 As outras pastas de `regras_explicadas/` são das rodadas de validação.
 
 ## Como a avaliação foi feita
@@ -110,7 +110,7 @@ O script nunca imprime nem grava as chaves.
 
 ### Entrada e saída
 
-- Entrada: `regras_originais/`, com os 193 `.gobr` deduplicados da task01, e o prompt de `CAMINHO_PROMPT`.
+- Entrada: `dados/processados/regras_gobr/`, com os 193 `.gobr` deduplicados da task01, e o prompt de `CAMINHO_PROMPT`.
 - Saída: `regras_explicadas/{timestamp}_{modelo}_{versao_prompt}/regra_{id}/`.
 - Cada pasta de regra tem a ficha `entrada_{id}.md` e a cópia byte a byte `regra_{id}.gobr`.
 - `prompt_legados/` guarda os prompts antigos, para comparação.
