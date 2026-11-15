@@ -2,7 +2,7 @@
 
 Normaliza uma explicacao (texto de negocio): limpa o texto sem mudar o conteudo e lista as chaves do
 `manual/` que a regra exige. A mesma funcao `normalizar` serve ao corpus (193 explicacoes sinteticas)
-e a mensagem de um usuario; so muda quem chama. Estado: 186 de 193 normalizados com a versao ativa (v3).
+e a mensagem de um usuario; so muda quem chama. Estado: 193 de 193 normalizados com a versao ativa (v3).
 
 ## Versao ativa
 
@@ -62,13 +62,6 @@ Sem `--ids`, o lote pega todo id com `entrada_NNN.md` e sem `normalizado_NNN.md`
   sem repeticao, `sem_chave:` com descricao, resposta nao cortada.
 - Projecao de custo antes de cada chamada; para antes de estourar o teto.
 - Fim do lote: sucessos, pulados e rejeitados; codigo de saida diferente de zero se houve rejeitado.
-
-## Pendentes
-
-7 ids ficam sem `normalizado_NNN.md`: **032, 080, 083, 135, 140, 221, 228**. Motivo: as explicacoes antigas estavam
-desatualizadas em relacao ao `.gobr` corrigido. Em 2026-11-14 as 7 explicacoes foram regeneradas (task02, `--ids`) e
-estao em `regras_entradas/`; as antigas estao em `dados/processados/regras_entradas_legado/`. **Falta apenas normalizar**
-os 7 ids; nenhum ficou pendente por falha de regeneracao.
 
 ## Como regenerar uma explicacao e normaliza-la depois
 
