@@ -101,14 +101,13 @@ def construir_contexto(cfg: ModuleType) -> Contexto:
 
     # Filtro como parametro de consulta: a lista de aceitos vem do config, nao do SQL.
     consulta = (f"SELECT exemplo_id, explicacao_normalizada, regras_extraidas, sem_chave, gobr, embedding "
-                f"FROM `{base}.{cfg.TABELA_EXEMPLOS}` WHERE origem = @origem AND status_revisao = @status "
+                f"FROM `{base}.{cfg.TABELA_EXEMPLOS}` WHERE status_revisao = @status "
                 f"ORDER BY exemplo_id")
-    params = [bigquery.ScalarQueryParameter("origem", "STRING", cfg.ORIGEM_BUSCA),
-              bigquery.ScalarQueryParameter("status", "STRING", cfg.STATUS_BUSCA)]
+    params = [bigquery.ScalarQueryParameter("status", "STRING", cfg.STATUS_BUSCA)]
     config_job = bigquery.QueryJobConfig(query_parameters=params)
     ex = [dict(r) for r in bq.query(consulta, job_config=config_job).result()]
     if not ex:
-        raise ErroContexto(f"{base}.{cfg.TABELA_EXEMPLOS}: nenhuma linha com origem={cfg.ORIGEM_BUSCA!r} e "
+        raise ErroContexto(f"{base}.{cfg.TABELA_EXEMPLOS}: nenhuma linha com "
                            f"status_revisao={cfg.STATUS_BUSCA!r}. Filtro configurado em {ARQ_CONFIG}.")
     ruins = [r["exemplo_id"] for r in ex if len(r["embedding"]) != cfg.DIMENSOES]
     if ruins:

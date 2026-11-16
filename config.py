@@ -1,4 +1,4 @@
-"""Configuracao do projeto. Uma secao por no do agente; hoje so existe a da normalizacao.
+"""Configuracao do projeto. Uma secao por no do agente (50, 60 e 80).
 
 Nao ha credencial aqui: a chave da OpenAI vem do ambiente (variavel nomeada em VARIAVEL_CHAVE).
 A validacao roda na importacao: parametro ausente ou fora da lista aceita impede o modulo de carregar,
@@ -68,8 +68,7 @@ VARIAVEL_CHAVE = "CHAVE_OPENAI"
 # NO 60 - RECUPERACAO
 # ============================================================================
 TABELA_EXEMPLOS = "exemplos"
-# Filtro da busca: so entra exemplo com esta origem e este status de revisao.
-ORIGEM_BUSCA = "sintetico"
+# Filtro da busca: so entra exemplo com este status de revisao (a origem nao filtra: exemplo de usuario aprovado entra).
 STATUS_BUSCA = "aprovado"
 # Quantos exemplos cada ramo traz. Independentes: a uniao tem ate N1_DENSO + N2_JACCARD (menos se os ramos coincidirem).
 N1_DENSO = 2
@@ -86,6 +85,17 @@ LOCALIZACAO_EMBEDDING = "us"
 PREFIXO_EMBEDDING = "task: sentence similarity | query: "
 # Teto de gasto do embedding por execucao, em dolares. Valor desta rodada, definido pelo Mestre.
 TETO_GASTO_NO60_USD = 0.10
+
+# ============================================================================
+# NO 80 - GERACAO DO .gobr
+# ============================================================================
+# Lista fechada dos modelos que o no 80 aceita; precos e limites vem de MODELOS (secao do no 50).
+MODELOS_NO80 = ("gpt-6.1-terra", "gpt-6.1-sol")
+MODELO_NO80 = "gpt-6.1-terra"
+# Valor da coluna `tipo` da tabela de prompts; o no exige exatamente uma linha ativa deste tipo.
+TIPO_PROMPT_NO80 = "geracao_gobr"
+# Teto de gasto por execucao do no, em dolares. Valor desta rodada, definido pelo Mestre.
+TETO_GASTO_NO80_USD = 0.50
 
 # ============================================================================
 # VALIDACAO (roda na importacao)
@@ -165,9 +175,8 @@ _validar()
 
 def _validar_no60() -> None:
     """Validacao do no 60; roda na importacao, depois da validacao do no 50."""
-    for nome in ("TABELA_EXEMPLOS", "ORIGEM_BUSCA", "STATUS_BUSCA", "LOCALIZACAO_EMBEDDING", "PREFIXO_EMBEDDING"):
+    for nome in ("TABELA_EXEMPLOS", "STATUS_BUSCA", "LOCALIZACAO_EMBEDDING", "PREFIXO_EMBEDDING"):
         _texto(nome)
-    _em("ORIGEM_BUSCA", ("sintetico",))
     _em("STATUS_BUSCA", ("aprovado",))
     _numero_positivo("N1_DENSO", (int,))
     _numero_positivo("N2_JACCARD", (int,))
@@ -184,3 +193,17 @@ def _validar_no60() -> None:
 
 
 _validar_no60()
+
+
+def _validar_no80() -> None:
+    """Validacao do no 80; roda na importacao, depois da validacao do no 60."""
+    _texto("TIPO_PROMPT_NO80")
+    _numero_positivo("TETO_GASTO_NO80_USD")
+    aceitos = _valor("MODELOS_NO80")
+    if not set(aceitos) <= set(_valor("MODELOS")):
+        raise ErroConfig(f"MODELOS_NO80 recebido: {list(aceitos)!r}. Cada modelo precisa existir em MODELOS: "
+                         f"{list(MODELOS)}. Configure em {ARQ_CONFIG}.")
+    _em("MODELO_NO80", aceitos)
+
+
+_validar_no80()
