@@ -24,13 +24,17 @@ Os vendedores habilitados do televendas cuidam dos seus clientes seguindo esta o
 Para os demais, se a última compra com o próprio vendedor foi nos últimos 30 dias, usamos a frequência do histórico de atendimento, respeitando o mínimo de 7 e o máximo de 21 dias. Se a última compra com esse vendedor foi entre 31 e 90 dias atrás, atendemos a cada 28 dias; se foi entre 91 e 120 dias atrás, a cada 45 dias. Por fim, os que não tiveram venda da empresa nos últimos 120 dias são atendidos a cada 60 dias. Quem se encaixar em mais de uma situação recebe o tratamento da primeira que se aplicar.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: mínimo e máximo da frequência do histórico
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md"
+  ],
+  "sem_chave": [
+    "mínimo e máximo da frequência do histórico"
+  ]
+}

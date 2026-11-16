@@ -22,10 +22,15 @@ timestamp: 2026-11-14T16:25:47-03:00
 Para os clientes dos vendedores habilitados do televendas, não agendamos os inadimplentes. Entre os demais, atendemos semanalmente quem está ativo para o próprio vendedor. Depois, atendemos a cada 14 dias quem está inativo para esse vendedor e, por último, também a cada 14 dias, os clientes sem vendas. Se um cliente se encaixar em mais de uma dessas situações, vale a primeira.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/06-03-financeiros.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-sem_chave: clientes sem vendas
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md"
+  ],
+  "sem_chave": [
+    "clientes sem vendas"
+  ]
+}

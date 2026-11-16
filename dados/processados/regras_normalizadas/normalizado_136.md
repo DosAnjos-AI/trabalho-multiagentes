@@ -26,11 +26,15 @@ No interior, trabalham os vendedores de códigos 5, 9, 15, 16, 21, 31 e 33. Na c
 Respeitando primeiro a proibição para o ramo 19, atendemos os clientes ativos para o próprio vendedor a cada 7 dias na capital e a cada 14 dias no interior. Os demais clientes dessas duas equipes não são agendados.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-05-localizacao-classificacao.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/06-06-classificacao-por-id.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-05-localizacao-classificacao.md"
+  ],
+  "sem_chave": []
+}

@@ -24,11 +24,17 @@ Todos os vendedores da empresa cuidam dos seus respectivos clientes fixos. Para 
 Os clientes ativos para o vendedor e adimplentes também são atendidos a cada 30 dias. Os ativos para o vendedor e inadimplentes, assim como os inativos para o vendedor e adimplentes, são atendidos a cada 60 dias. Para esses atendimentos, damos preferência aos dias úteis. Os clientes inativos para o vendedor e inadimplentes não devem ser agendados.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-sem_chave: clientes sem venda
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-03-financeiros.md
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md"
+  ],
+  "sem_chave": [
+    "clientes sem venda"
+  ]
+}

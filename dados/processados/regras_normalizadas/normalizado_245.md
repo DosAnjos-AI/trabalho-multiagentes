@@ -40,15 +40,19 @@ Na rota de segunda, preferimos atender na sexta. Ela inclui CAMPO LIMPO PAULISTA
 Para todo o resto dos clientes da equipe, se já receberam visita do próprio vendedor na semana, usamos o intervalo do histórico, com mínimo de 7 e máximo de 14 dias. Para os demais, usamos o intervalo do histórico menos 1 dia, com mínimo de 1 e máximo de 7 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-03-financeiros.md
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: limites mínimo e máximo da frequência histórica
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-02-preferencia-dia-semana.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/07-02-preferencia-dia-semana.md"
+  ],
+  "sem_chave": [
+    "limites mínimo e máximo da frequência histórica"
+  ]
+}

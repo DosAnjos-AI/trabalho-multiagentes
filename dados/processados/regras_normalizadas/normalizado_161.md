@@ -24,9 +24,14 @@ Todos os vendedores habilitados no sistema atendem seus clientes ativos com o pr
 Todos os demais clientes são atendidos a cada 7 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-07-curva-abc-ciclo-de-vida.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-07-curva-abc-ciclo-de-vida.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md"
+  ],
+  "sem_chave": []
+}

@@ -24,12 +24,17 @@ Os vendedores do televendas atendem seus próprios clientes fixos. Primeiro, nã
 Para os demais, seguimos esta ordem: clientes ativos para o próprio vendedor são atendidos a cada 7 dias; clientes inativos para o próprio vendedor, a cada 14 dias; e clientes sem venda, também a cada 14 dias. Se um cliente se encaixar em mais de uma dessas situações, vale a primeira.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/06-03-financeiros.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-sem_chave: clientes sem venda
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-06-classificacao-por-id.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md"
+  ],
+  "sem_chave": [
+    "clientes sem venda"
+  ]
+}

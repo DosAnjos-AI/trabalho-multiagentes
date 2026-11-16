@@ -22,10 +22,14 @@ timestamp: 2026-11-14T19:54:29-03:00
 No atendimento de campo, trabalhamos com os vendedores 283 e 279; no televendas, com o vendedor 291. Para os clientes que passam do campo para o televendas por ruptura e cuja última compra foi entre 7 e 60 dias atrás, não agendamos, na última semana, aqueles que são clientes fixos dos vendedores de campo e compraram nos últimos 60 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/05-01-filtros-temporais-calendario.md#Semana do mês
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Com restrição temporal
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/05-01-filtros-temporais-calendario.md"
+  ],
+  "sem_chave": []
+}

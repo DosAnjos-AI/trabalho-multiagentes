@@ -24,10 +24,15 @@ Todos os vendedores de televendas atendem seus clientes a cada 14 dias, com pref
 Para todos os vendedores de campo, consideramos os clientes fixos de cada vendedor. Primeiro, os clientes sem venda não devem ser agendados. Os demais são atendidos a cada 14 dias, com preferência pelos dias úteis.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-sem_chave: clientes sem venda
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md"
+  ],
+  "sem_chave": [
+    "clientes sem venda"
+  ]
+}

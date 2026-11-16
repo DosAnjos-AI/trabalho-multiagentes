@@ -22,8 +22,13 @@ timestamp: 2026-11-14T19:52:55-03:00
 Todos os vendedores habilitados no sistema atendem seus clientes. Primeiro, os clientes que nunca compraram com a empresa devem ser atendidos a cada 14 dias. Entre os demais, os que estão ativos para o próprio vendedor são atendidos a cada 21 dias. Todo o resto é atendido a cada 14 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md"
+  ],
+  "sem_chave": []
+}

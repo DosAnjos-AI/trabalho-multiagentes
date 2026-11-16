@@ -30,12 +30,17 @@ Para CACADOR, CANDIDO DE ABREU, CANOINHAS, IMBAU, LAPA, ORTIGUEIRA, PORTO AMAZON
 Para CARAMBEI, CASTRO, CURITIBA, GUARAPUAVA, IMBITUVA, IPIRANGA, IRATI, IVAI, PALMEIRA, PITANGA, PRUDENTOPOLIS, REBOUCAS, RIO AZUL, TEIXEIRA SOARES, TURVO, ADRINOPOLIS, AGUDOS DO SUL, ALMIRANTE TAMANDARE, ARAUCARIA, BALSA NOVA, BOCAIUVA DO SUL, CAMPINA GRANDE DO SUL, CAMPO DO TENENTE, CAMPO LARGO, CAMPO MAGRO, CERRO AZUL, COLOMBO, CONTENDA, DOUTOR ULYSSES, FAZENDA RIO GRANDE, ITAPERUCU, LAPA, MANDIRITUBA, PIEN, PINHAIS, PIRAQUARA, QUATRO BARRAS, RIO BRANCO DO SUL, RIO NEGRO, SAO JOSE DOS PINHAIS, QUITANDINHA, TIJUCAS DO SUL e TUNAS DO PARANA, a preferência é sexta.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/07-02-preferencia-dia-semana.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/07-02-preferencia-dia-semana.md"
+  ],
+  "sem_chave": []
+}

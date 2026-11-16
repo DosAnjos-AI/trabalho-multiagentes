@@ -24,11 +24,16 @@ Os vendedores de televendas habilitados atendem os clientes seguindo esta priori
 Para quem comprou com o próprio vendedor nos últimos 30 dias, usamos o intervalo de atendimento baseado no histórico, com mínimo de 7 e máximo de 30 dias. Depois disso, os clientes ativos na empresa são atendidos a cada 14 dias, e todos os demais, a cada 21 dias. Quem se encaixar em mais de uma situação segue a primeira que se aplicar.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: limites mínimo e máximo da frequência histórica
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md"
+  ],
+  "sem_chave": [
+    "limites mínimo e máximo da frequência histórica"
+  ]
+}

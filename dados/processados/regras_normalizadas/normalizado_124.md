@@ -24,11 +24,17 @@ Todos os vendedores de campo atendem seus clientes a cada 30 dias.
 Todos os vendedores de televendas atendem a cada 25 dias os clientes ativos para o próprio vendedor, os inativos para ele que estão em dia, os inativos para ele que estão inadimplentes e os clientes sem vendas. Nesses atendimentos, damos preferência aos dias úteis e evitamos que coincidam com os da equipe de campo.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-03-financeiros.md
-sem_chave: clientes sem vendas
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/07-04-conflito-pivot-rota.md#Evitar choque entre televendas e campo
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/07-04-conflito-pivot-rota.md"
+  ],
+  "sem_chave": [
+    "clientes sem vendas"
+  ]
+}

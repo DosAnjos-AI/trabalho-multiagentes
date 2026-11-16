@@ -22,6 +22,11 @@ timestamp: 2026-11-14T19:46:21-03:00
 Todos os vendedores atendem seus clientes fixos a cada 14 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-03-frequencia.md#Fixa por período
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-03-frequencia.md"
+  ],
+  "sem_chave": []
+}

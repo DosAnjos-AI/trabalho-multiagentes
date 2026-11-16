@@ -24,11 +24,16 @@ Todos os vendedores habilitados no sistema atendem com preferência por dias út
 Para todos os outros clientes, usamos o intervalo do histórico de atendimento, respeitando o mínimo de 5 dias e o máximo de 30 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: limites mínimo e máximo da frequência histórica
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/07-03-frequencia.md"
+  ],
+  "sem_chave": [
+    "limites mínimo e máximo da frequência histórica"
+  ]
+}

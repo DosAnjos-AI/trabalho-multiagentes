@@ -24,11 +24,17 @@ Todos os vendedores da empresa cuidam dos seus clientes fixos, respeitando a pre
 Primeiro, atendemos mensalmente os clientes inativos para o vendedor cujo CNAE no cadastro começa com 03, 47 ou 27. Os demais clientes inativos para o vendedor são atendidos a cada 15 dias. Depois, os clientes ativos para o vendedor são atendidos mensalmente. Também prevemos novamente atendimento a cada 15 dias para os clientes inativos para o vendedor. Por fim, os clientes sem vendas são atendidos mensalmente.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-sem_chave: preferência de atendimento de cada vendedor
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-05-localizacao-classificacao.md
-sem_chave: clientes sem vendas
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-05-localizacao-classificacao.md"
+  ],
+  "sem_chave": [
+    "preferência de atendimento de cada vendedor",
+    "clientes sem vendas"
+  ]
+}

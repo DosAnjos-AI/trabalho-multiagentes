@@ -26,12 +26,17 @@ No televendas, atendemos os clientes inadimplentes a cada 14 dias. Para os demai
 No campo, atendemos os clientes adimplentes a cada 7 dias. Os inadimplentes que estão ativos com seu próprio vendedor são atendidos a cada 14 dias; os inadimplentes que estão inativos com seu próprio vendedor, a cada 60 dias. Depois dessas situações, os clientes sem venda são atendidos a cada 14 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-03-financeiros.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: limite máximo da frequência do histórico
-03-secoes/06-01-atividade-inatividade.md
-sem_chave: clientes sem venda
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md"
+  ],
+  "sem_chave": [
+    "limite máximo da frequência do histórico",
+    "clientes sem venda"
+  ]
+}

@@ -26,11 +26,17 @@ Para os clientes do campo da capital e do televendas, atendemos semanalmente os 
 No campo do interior, atendemos os clientes ativos para seu vendedor a cada 14 dias, os inativos para seu vendedor a cada 30 dias e os clientes sem vendas a cada 30 dias. Em todas essas situações, preferimos atender nos dias úteis. Se um cliente se encaixar em mais de uma situação, seguimos a ordem apresentada para a equipe dele.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-03-financeiros.md
-sem_chave: clientes sem vendas
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md"
+  ],
+  "sem_chave": [
+    "clientes sem vendas"
+  ]
+}

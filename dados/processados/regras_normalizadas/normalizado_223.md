@@ -26,11 +26,15 @@ Na equipe generalista, com os vendedores 511, 803, 510, 906, 507, 506, 606, 925,
 Na equipe de construtora, formada pelos vendedores 956, 954, 958, 971 e 520, todos os clientes são atendidos a cada 14 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-01-atividade-inatividade.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md"
+  ],
+  "sem_chave": []
+}

@@ -26,14 +26,18 @@ Entre os demais, atendemos a cada 3 dias os clientes reativados com a empresa e 
 Para quem ainda não se enquadrou nas situações anteriores, atendemos a cada 14 dias se comprou com o próprio vendedor nos últimos 60 dias; a cada 21 dias se comprou nos últimos 90 dias; e a cada 14 dias se comprou nos últimos 120 dias. Os demais clientes são atendidos a cada 7 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-07-curva-abc-ciclo-de-vida.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: limites mínimo e máximo da frequência histórica
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-07-curva-abc-ciclo-de-vida.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md"
+  ],
+  "sem_chave": [
+    "limites mínimo e máximo da frequência histórica"
+  ]
+}

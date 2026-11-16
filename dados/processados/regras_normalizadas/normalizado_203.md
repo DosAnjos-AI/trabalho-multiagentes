@@ -24,15 +24,20 @@ Para os vendedores de televendas habilitados no sistema, não agendamos clientes
 Entre os demais, damos prioridade aos clientes que fizeram uma única compra com a empresa, atendendo-os a cada 28 dias. Depois, conforme o intervalo histórico médio entre pedidos, atendemos a cada 6 dias quem tem intervalo de 0 a 7 dias; a cada 9 dias, de 8 a 14 dias; a cada 16 dias, de 15 a 21 dias; a cada 23 dias, de 22 a 28 dias; a cada 29 dias, de 29 a 38 dias; e a cada 35 dias, de 39 a 60 dias. Todo o restante é atendido a cada 55 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/06-03-financeiros.md
-sem_chave: clientes sem venda
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-08-frequencia-e-parametros.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/06-06-classificacao-por-id.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-08-frequencia-e-parametros.md"
+  ],
+  "sem_chave": [
+    "clientes sem venda"
+  ]
+}

@@ -26,11 +26,17 @@ No televendas, os clientes ativos para o próprio vendedor e adimplentes são at
 No campo, os clientes ativos para o próprio vendedor são atendidos a cada 7 dias, e os inativos para o vendedor que estejam adimplentes, a cada 30 dias. Não agendamos os inativos para o vendedor que estejam inadimplentes, nem os clientes sem vendas.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-03-financeiros.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-sem_chave: clientes sem vendas
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md"
+  ],
+  "sem_chave": [
+    "clientes sem vendas"
+  ]
+}

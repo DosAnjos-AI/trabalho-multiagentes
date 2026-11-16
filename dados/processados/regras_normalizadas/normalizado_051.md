@@ -24,11 +24,17 @@ Na Armazém Santa Maria, os vendedores habilitados no sistema atendem seus próp
 Para todos os atendimentos agendados, damos preferência aos dias úteis e ao sábado.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-03-financeiros.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-sem_chave: clientes sem venda
-03-secoes/07-02-preferencia-dia-semana.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/07-02-preferencia-dia-semana.md"
+  ],
+  "sem_chave": [
+    "clientes sem venda"
+  ]
+}

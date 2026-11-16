@@ -24,14 +24,18 @@ Os vendedores de televendas habilitados no sistema cuidam dos seus clientes. Pri
 Entre os que sobrarem, atendemos a cada 7 dias os clientes que ainda não compraram com seu vendedor. Também atendemos a cada 7 dias os que têm intervalo histórico de compras entre 0 e 30 dias e compraram com o próprio vendedor nos últimos 30 dias. Os que estão fora do prazo de compra de 31 a 90 dias com o próprio vendedor são atendidos a cada 17 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-03-financeiros.md
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-08-frequencia-e-parametros.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-08-frequencia-e-parametros.md"
+  ],
+  "sem_chave": []
+}

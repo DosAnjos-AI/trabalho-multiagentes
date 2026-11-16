@@ -30,14 +30,19 @@ Para os clientes dos vendedores de televendas em geral, os ativos para o própri
 Para todos os clientes da equipe de campo, o atendimento é semanal.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/04-01-carteiras-e-segmentacoes.md#Exclusiva x livre
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-03-financeiros.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: limite máximo da frequência do histórico
-03-secoes/07-04-conflito-pivot-rota.md#Evitar choque entre televendas e campo
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/04-01-carteiras-e-segmentacoes.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/07-04-conflito-pivot-rota.md"
+  ],
+  "sem_chave": [
+    "limite máximo da frequência do histórico"
+  ]
+}

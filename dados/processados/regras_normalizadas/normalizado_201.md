@@ -28,15 +28,19 @@ Para os demais, considerando as compras com o próprio vendedor, quem comprou no
 Quando um cliente se encaixa em mais de uma dessas situações, vale a primeira. Todos os demais não são agendados.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/06-03-financeiros.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/06-11-outros-filtros.md
-03-secoes/06-08-frequencia-e-parametros.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/06-11-outros-filtros.md",
+    "03-secoes/06-08-frequencia-e-parametros.md"
+  ],
+  "sem_chave": []
+}

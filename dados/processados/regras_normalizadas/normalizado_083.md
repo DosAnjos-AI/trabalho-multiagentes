@@ -22,8 +22,14 @@ timestamp: 2026-11-14T21:02:48-03:00
 Todos os vendedores atendem seus próprios clientes fixos. Os clientes considerados inativos para o vendedor são atendidos no intervalo que a empresa estabelece para inativos; os considerados ativos para o vendedor seguem o intervalo que a empresa estabelece para ativos. Para os clientes sem venda, usamos o intervalo de atendimento estabelecido pela empresa para inativos.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: clientes sem venda
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md"
+  ],
+  "sem_chave": [
+    "clientes sem venda"
+  ]
+}

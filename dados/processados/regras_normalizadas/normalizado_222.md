@@ -24,11 +24,16 @@ Os vendedores 8506, 8507, 8508, 8509 e 8512 atendem a cada 14 dias os clientes e
 Para os vendedores 602, 607 e 8406, consideramos primeiro os clientes que compraram com o próprio vendedor nos últimos 90 dias: os de curva A, considerando a empresa toda, são atendidos a cada 14 dias; os de curva B, a cada 21 dias; e os de curva C, a cada 28 dias. Os demais que compraram com o próprio vendedor nos últimos 90 dias são atendidos a cada 21 dias. Todo o resto também é atendido a cada 21 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-03-financeiros.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-07-curva-abc-ciclo-de-vida.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/06-06-classificacao-por-id.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-07-curva-abc-ciclo-de-vida.md"
+  ],
+  "sem_chave": []
+}

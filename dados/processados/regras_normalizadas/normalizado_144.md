@@ -28,11 +28,16 @@ Em seguida, quem comprou com seu próprio vendedor entre 31 e 60 dias atrás é 
 Para os vendedores F, L, A e J, os clientes que compraram com seu próprio vendedor nos últimos 30 dias são atendidos a cada 21 dias. Para LC e A, esses clientes são atendidos a cada 28 dias. Como A participa dos dois conjuntos, para ele prevalece o atendimento a cada 21 dias nessa situação.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-03-financeiros.md
-03-secoes/06-11-outros-filtros.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/06-02-recencia-visita-positivacao.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/06-11-outros-filtros.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md"
+  ],
+  "sem_chave": []
+}

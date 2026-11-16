@@ -26,12 +26,17 @@ Para os clientes do televendas, seguimos esta ordem: os adimplentes são atendid
 Na capital, também seguimos a ordem: clientes sem venda são atendidos a cada 30 dias, depois os inadimplentes a cada 30 dias e todos os demais a cada 14 dias. No interior, todos os clientes são atendidos a cada 30 dias.
 
 ## regras_extraidas
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/03-01-times.md
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-03-financeiros.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-sem_chave: sem venda isolado
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
+{
+  "regras_extraidas": [
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/03-01-times.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md"
+  ],
+  "sem_chave": [
+    "sem venda isolado"
+  ]
+}

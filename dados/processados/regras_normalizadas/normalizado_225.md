@@ -24,9 +24,14 @@ Para os vendedores de televendas habilitados no sistema, seguimos esta ordem de 
 Entre os que sobrarem, os que estão em dia com os pagamentos são atendidos a cada 14 dias, e todo o resto, a cada 21 dias. Se o cliente se encaixar em mais de uma dessas situações, vale a primeira. Em todos os casos, damos preferência ao atendimento nos dias úteis e no sábado.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-03-financeiros.md
-03-secoes/07-02-preferencia-dia-semana.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-02-preferencia-dia-semana.md"
+  ],
+  "sem_chave": []
+}

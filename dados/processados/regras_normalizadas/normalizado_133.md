@@ -26,10 +26,14 @@ Para os clientes do televendas, primeiro não agendamos os inadimplentes. Entre 
 Para os clientes fixos da equipe de campo, atendemos os que estão ativos para o vendedor responsável em intervalos fixos de 7 dias. Todos os demais são atendidos em intervalos fixos de 15 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-03-financeiros.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md"
+  ],
+  "sem_chave": []
+}

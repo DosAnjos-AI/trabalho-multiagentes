@@ -26,12 +26,16 @@ Primeiro, atendemos a cada 15 dias os clientes ativos para o próprio vendedor, 
 Entre os que sobrarem, não agendamos os clientes ativos para o próprio vendedor do ramo DISTRIBUIDOR. Em seguida, atendemos a cada 15 dias os clientes ativos para o próprio vendedor que não compraram com ele nos últimos 30 dias. Os demais clientes ativos para o próprio vendedor não são agendados. Todo o resto é atendido uma vez por mês.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/06-08-frequencia-e-parametros.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-06-classificacao-por-id.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/06-08-frequencia-e-parametros.md"
+  ],
+  "sem_chave": []
+}

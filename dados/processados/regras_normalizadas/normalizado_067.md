@@ -28,12 +28,18 @@ Para os clientes fixos da capital, atendemos a cada 20 dias os ativos para seu v
 No interior, atendemos a cada 21 dias os clientes ativos para seu vendedor e também os inativos para seu vendedor que estão adimplentes. Os inativos para seu vendedor que estão inadimplentes são atendidos a cada 42 dias. Reforçamos que, para os clientes fixos da capital inativos para seu vendedor e inadimplentes, não se agenda atendimento. No interior, os clientes sem venda são atendidos a cada 14 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-sem_chave: clientes sem venda
-03-secoes/06-03-financeiros.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md"
+  ],
+  "sem_chave": [
+    "clientes sem venda"
+  ]
+}

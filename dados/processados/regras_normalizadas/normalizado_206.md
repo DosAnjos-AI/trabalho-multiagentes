@@ -26,15 +26,19 @@ Antes de definir a frequência, não agendamos filiais nem clientes inadimplente
 Para os clientes dos dois grupos e também para os clientes do vendedor 135, depois dessas exclusões, atendemos a cada 7 dias quem tem ramo de atividade com código 1, 2, 4 ou 12; a cada 15 dias quem tem código 3; e a cada 28 dias os demais.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/04-01-carteiras-e-segmentacoes.md#Exclusiva x livre
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/06-03-financeiros.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-06-classificacao-por-id.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/04-01-carteiras-e-segmentacoes.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-06-classificacao-por-id.md"
+  ],
+  "sem_chave": []
+}

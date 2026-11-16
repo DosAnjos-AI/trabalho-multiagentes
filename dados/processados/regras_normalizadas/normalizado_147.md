@@ -28,13 +28,19 @@ Para os clientes da equipe dos vendedores 3516, 3556, 3531 e 3519, atendemos a c
 Já a equipe dos vendedores 3621, 3622 e 3623 atende todos os seus clientes a cada 7 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-11-outros-filtros.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/06-01-atividade-inatividade.md
-sem_chave: clientes sem venda
-03-secoes/06-07-curva-abc-ciclo-de-vida.md
-03-secoes/04-02-selecao-clientes-ruptura.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-11-outros-filtros.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-07-curva-abc-ciclo-de-vida.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md"
+  ],
+  "sem_chave": [
+    "clientes sem venda"
+  ]
+}

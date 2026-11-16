@@ -30,12 +30,16 @@ Para os clientes do Wanderson, considerando a curva na empresa toda, atendemos o
 Para os demais vendedores habilitados, primeiro não agendamos os clientes inadimplentes. Entre os que sobrarem, atendemos os dos ramos 001 e 002 a cada 14 dias, os do ramo 003 a cada 7 dias e os do ramo 004 a cada 21 dias. Não agendamos os dos ramos 005, 006 e 100. Depois disso, os clientes ativos para o próprio vendedor são atendidos a cada 7 dias, e todos os demais, a cada 15 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-07-curva-abc-ciclo-de-vida.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-03-financeiros.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/06-01-atividade-inatividade.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-07-curva-abc-ciclo-de-vida.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/06-06-classificacao-por-id.md",
+    "03-secoes/06-01-atividade-inatividade.md"
+  ],
+  "sem_chave": []
+}

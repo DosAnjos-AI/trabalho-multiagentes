@@ -26,14 +26,18 @@ Antes de definir a frequência, não agendamos clientes que sejam filiais, que e
 Entre os que sobrarem, atendemos a cada 14 dias os clientes do primeiro grupo que compraram com qualquer vendedor da empresa nos últimos 60 dias. Para os do segundo grupo que também compraram com qualquer vendedor da empresa nesse período, o atendimento é a cada 21 dias. Todos os demais clientes são atendidos a cada 7 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/04-01-carteiras-e-segmentacoes.md#Exclusiva x livre
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/06-11-outros-filtros.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Fixa por período
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-06-classificacao-por-id.md",
+    "03-secoes/04-01-carteiras-e-segmentacoes.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/06-11-outros-filtros.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/07-03-frequencia.md"
+  ],
+  "sem_chave": []
+}

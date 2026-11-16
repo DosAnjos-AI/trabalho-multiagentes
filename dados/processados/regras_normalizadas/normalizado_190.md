@@ -28,14 +28,19 @@ Para quem tem curva A considerando a empresa toda e teve venda no mês, seguimos
 Entre os clientes que sobrarem, quem teve venda no mês é atendido conforme o histórico, limitado a 30 dias. Todo o resto é atendido a cada 21 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-11-outros-filtros.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/06-03-financeiros.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-07-curva-abc-ciclo-de-vida.md
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: limite da frequência do histórico
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-11-outros-filtros.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-07-curva-abc-ciclo-de-vida.md"
+  ],
+  "sem_chave": [
+    "limite da frequência do histórico"
+  ]
+}

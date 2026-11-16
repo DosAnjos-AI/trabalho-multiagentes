@@ -28,10 +28,15 @@ Dos demais, quem comprou com qualquer vendedor da empresa nos últimos 90 dias e
 Quem comprou com qualquer vendedor da empresa entre 91 e 180 dias atrás é atendido a cada 28 dias. Todo o resto é atendido a cada 45 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/06-07-curva-abc-ciclo-de-vida.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/06-07-curva-abc-ciclo-de-vida.md"
+  ],
+  "sem_chave": []
+}

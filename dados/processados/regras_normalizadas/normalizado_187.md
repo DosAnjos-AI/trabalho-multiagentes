@@ -24,13 +24,17 @@ Os vendedores de televendas habilitados no sistema cuidam desses atendimentos. P
 Entre os demais, seguimos esta ordem: quem nunca comprou com a empresa é atendido a cada 14 dias; quem comprou com seu próprio vendedor nos últimos 90 dias, a cada 7 dias; quem comprou com esse vendedor nos últimos 120 dias, também a cada 7 dias; quem comprou com ele nos últimos 180 dias, a cada 14 dias; e quem comprou com ele nos últimos 360 dias, a cada 21 dias. Todo o resto é atendido a cada 28 dias. Quando o cliente se encaixa em mais de uma dessas situações, vale a primeira.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/06-03-financeiros.md
-03-secoes/06-11-outros-filtros.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/06-11-outros-filtros.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md"
+  ],
+  "sem_chave": []
+}

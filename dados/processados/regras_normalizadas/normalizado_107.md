@@ -22,9 +22,15 @@ timestamp: 2026-11-14T19:50:47-03:00
 Na Higicop, consideramos todos os vendedores e os clientes fixos de cada um. Os clientes ativos ou inativos em relação ao próprio vendedor são atendidos a cada 15 dias, levando em conta a preferência do vendedor. Os clientes sem vendas também são atendidos a cada 15 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-sem_chave: preferência do vendedor
-sem_chave: clientes sem vendas
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md"
+  ],
+  "sem_chave": [
+    "preferência do vendedor",
+    "clientes sem vendas"
+  ]
+}

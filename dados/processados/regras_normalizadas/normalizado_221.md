@@ -26,11 +26,16 @@ Quem ainda não comprou com o próprio vendedor deve ser atendido a cada 21 dias
 Para os demais, quem comprou com o próprio vendedor nos últimos 30 dias, mas não nos últimos 21 dias, deve ser atendido a cada 14 dias. Quem está entre 31 e 60 dias sem comprar com ele também deve ser atendido a cada 14 dias; entre 61 e 90 dias, a cada 7 dias; e entre 91 e 360 dias, a cada 28 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md"
+  ],
+  "sem_chave": []
+}

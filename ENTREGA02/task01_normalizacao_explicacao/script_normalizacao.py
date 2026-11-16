@@ -8,6 +8,7 @@ so muda quem chama. Uso:
 import argparse
 import difflib
 import hashlib
+import json
 import os
 import re
 import sys
@@ -83,10 +84,12 @@ def validar_config(cfg: ModuleType = config) -> None:
         raise ErroConfig(f"SECOES_OBRIGATORIAS recebido: {cfg.SECOES_OBRIGATORIAS!r}. Aceito: "
                          f"('## explicacao_normalizada', '## regras_extraidas'). Configure em {ARQ_CONFIG}.")
     # Existencia dos arquivos so depois dos valores: so checa se existem, nao le o conteudo.
+    if not Path(_obter(cfg, "CAMINHO_MANUAL")).is_dir():
+        raise ErroConfig(f"CAMINHO_MANUAL recebido: {cfg.CAMINHO_MANUAL!s}. Aceita pasta existente. Configure em {ARQ_CONFIG}.")
     for nome in ("CAMINHO_PROMPT", "CAMINHO_AUXILIAR"):
         if not Path(_obter(cfg, nome)).is_file():
             raise ErroConfig(f"{nome} recebido: {getattr(cfg, nome)!s}. Aceita arquivo existente. Configure em {ARQ_CONFIG}.")
-    for nome in ("CAMINHO_ENTRADA", "CAMINHO_SAIDA", "CAMINHO_REJEITADOS"):
+    for nome in ("CAMINHO_ENTRADA", "CAMINHO_SAIDA", "CAMINHO_REJEITADOS", "CAMPO_REGRAS", "CAMPO_SEM_CHAVE"):
         _obter(cfg, nome)
 
 
@@ -170,6 +173,46 @@ def validar_resposta(resposta: str, chaves: list[str], caminho_auxiliar: Path, c
             erros.append(f"chave repetida: {linha!r}")
         vistas.add(linha)
     return erros
+
+
+def converter_regras(linhas: list[str], cfg: ModuleType = config) -> dict:
+    """Linhas validadas (uma chave por linha) -> {regras_extraidas: [arquivos], sem_chave: [textos]}.
+
+    Corta o `#Titulo` porque o destino quer so o nome do arquivo do manual; deduplica porque varias secoes
+    do mesmo arquivo viram uma entrada. Sem LLM: o validador ja garantiu chave exata. Confere o arquivo no disco
+    porque o auxiliar pode ter ficado para tras do manual.
+    """
+    regras: list[str] = []
+    sem_chave: list[str] = []
+    for linha in linhas:
+        linha = linha.strip()
+        if not linha:
+            continue
+        if linha.startswith(cfg.PREFIXO_SEM_CHAVE):
+            texto = linha[len(cfg.PREFIXO_SEM_CHAVE):].strip()
+            if texto not in sem_chave:
+                sem_chave.append(texto)
+            continue
+        arquivo = linha.partition("#")[0].strip()
+        if not (Path(cfg.CAMINHO_MANUAL) / arquivo).is_file():
+            raise ErroEntrada(f"regra {linha!r}: arquivo {arquivo!r} nao existe em {cfg.CAMINHO_MANUAL}.")
+        if arquivo not in regras:
+            regras.append(arquivo)
+    return {cfg.CAMPO_REGRAS: regras, cfg.CAMPO_SEM_CHAVE: sem_chave}
+
+
+def substituir_secao_regras(texto: str, cfg: ModuleType = config) -> str:
+    """Troca o corpo de `## regras_extraidas` (linhas) pelo JSON. Idempotente: se ja e JSON, devolve igual."""
+    cab = cfg.SECOES_OBRIGATORIAS[1]
+    linhas = texto.rstrip("\n").split("\n")
+    indices = [i for i, linha in enumerate(linhas) if linha.rstrip() == cab]
+    if len(indices) != 1:
+        raise ErroEntrada(f"cabecalho {cab!r} aparece {len(indices)} vez(es); esperado exatamente 1.")
+    corpo = linhas[indices[0] + 1:]
+    if "".join(corpo).strip().startswith("{"):
+        return texto
+    obj = converter_regras(corpo, cfg)
+    return "\n".join(linhas[:indices[0] + 1]) + "\n" + json.dumps(obj, ensure_ascii=False, indent=2) + "\n"
 
 
 def custo(cfg: ModuleType, tok_in: float, tok_out: float) -> float:
@@ -271,8 +314,13 @@ def normalizar(texto: str, tipo_entrada: str, id_saida: str, *, origem: str, id_
         "custo_usd": f"{c:.6f}", "tempo_segundos": f"{tempo:.2f}",
         "timestamp": datetime.now().astimezone().isoformat(timespec="seconds"),
     }, cfg)
+    try:
+        corpo = substituir_secao_regras(resposta.strip(), cfg)
+    except ErroEntrada as e:
+        resultado["erros"].append(str(e))
+        return resultado
     resultado["ok"] = True
-    resultado["markdown"] = meta + resposta.strip() + "\n"
+    resultado["markdown"] = meta + corpo
     return resultado
 
 
@@ -421,6 +469,36 @@ def estimar(cfg: ModuleType = config, ids: list[str] | None = None) -> int:
     return 1 if erros else 0
 
 
+def converter_existentes(cfg: ModuleType = config, ids: list[str] | None = None, simular: bool = False) -> int:
+    """Reescreve a secao regras_extraidas dos normalizado_*.md ja gerados (sem LLM, sem custo).
+
+    Mexe so na secao; metadados e explicacao ficam byte a byte. Arquivo ja em JSON e pulado. Sem `simular`,
+    a copia original fica no git (saida paga nao se perde); com `simular` nada e gravado.
+    """
+    convertidos = pulados = erros = 0
+    for caminho in sorted(Path(cfg.CAMINHO_SAIDA).glob("normalizado_*.md")):
+        id_ = caminho.stem.removeprefix("normalizado_")
+        if ids is not None and id_ not in ids:
+            continue
+        antigo = caminho.read_bytes().decode("utf-8")
+        try:
+            novo = substituir_secao_regras(antigo, cfg)
+        except ErroEntrada as e:
+            erros += 1
+            print(f"ERRO {id_}: {e}")
+            continue
+        if novo == antigo:
+            pulados += 1
+            continue
+        convertidos += 1
+        if simular:
+            print(f"--- {id_} (simulado)\n{novo.split(cfg.SECOES_OBRIGATORIAS[1], 1)[1].strip()}")
+        else:
+            caminho.write_text(novo, encoding="utf-8", newline="\n")
+    print(f"convertidos={convertidos} pulados={pulados} erros={erros} simulado={simular}")
+    return 1 if erros else 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(add_help=False, description="Normalizador de explicacoes (corpus sintetico).")
     ap.add_argument("--ajuda", "-h", action="help", help="mostra esta ajuda")
@@ -429,9 +507,15 @@ def main() -> int:
     grupo.add_argument("--estimar", action="store_true", help="estima tokens e custo das explicacoes; NAO chama o modelo")
     grupo.add_argument("--executar", action="store_true",
                        help="roda o lote real (chamada paga; exige TETO_GASTO_USD preenchido no config)")
+    grupo.add_argument("--converter-existentes", action="store_true",
+                       help="reescreve regras_extraidas dos normalizados ja gravados no formato JSON; sem chamada paga")
+    ap.add_argument("--simular", action="store_true", help="com --converter-existentes: mostra, sem gravar")
     args = ap.parse_args()
     try:
         ids = [i.strip() for i in args.ids.split(",") if i.strip()] if args.ids else None
+        if args.converter_existentes:
+            validar_config(config)
+            return converter_existentes(config, ids, args.simular)
         return estimar(config, ids) if args.estimar else executar_lote(chamar_openai, config, ids)
     except (ErroConfig, ErroEntrada) as e:
         print(f"FALHA: {e}")

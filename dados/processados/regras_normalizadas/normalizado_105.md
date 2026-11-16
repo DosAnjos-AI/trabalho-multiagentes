@@ -24,11 +24,17 @@ Todos os vendedores da empresa cuidam dos seus clientes fixos. Para os clientes 
 Os clientes sem vendas são atendidos a cada 14 dias. Em todos os atendimentos agendados, a preferência é por dias úteis.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-03-financeiros.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-sem_chave: clientes sem vendas
-03-secoes/07-02-preferencia-dia-semana.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/07-02-preferencia-dia-semana.md"
+  ],
+  "sem_chave": [
+    "clientes sem vendas"
+  ]
+}

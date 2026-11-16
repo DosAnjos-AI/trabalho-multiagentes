@@ -28,10 +28,15 @@ Com frequência histórica de 61 a 90 dias, atendemos a cada 15 dias quem compro
 Com frequência histórica de 91 a 180 dias, atendemos a cada 21 dias quem comprou pela última vez entre 44 e 120 dias atrás; quem comprou entre 120 e 180 dias atrás é atendido a cada 15 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-08-frequencia-e-parametros.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-03-frequencia.md#Fixa por período
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-08-frequencia-e-parametros.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/07-03-frequencia.md"
+  ],
+  "sem_chave": []
+}

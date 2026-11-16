@@ -28,12 +28,16 @@ Depois, atendemos a cada 14 dias os clientes que nunca compraram com a empresa e
 Também atendemos a cada 14 dias quem comprou com qualquer vendedor da empresa nos últimos 14 dias e cuja última compra com qualquer vendedor da empresa não tenha ocorrido entre 15 e 90 dias atrás. Quem não comprou com nenhum vendedor da empresa nos últimos 90 dias também é atendido a cada 14 dias. Todo o resto é atendido a cada 21 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/06-11-outros-filtros.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/06-11-outros-filtros.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md"
+  ],
+  "sem_chave": []
+}

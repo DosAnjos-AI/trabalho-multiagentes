@@ -22,7 +22,12 @@ timestamp: 2026-11-14T16:25:16-03:00
 Todos os vendedores atendem seus clientes fixos a cada 30 dias, de preferência em dias úteis.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-02-preferencia-dia-semana.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/07-02-preferencia-dia-semana.md"
+  ],
+  "sem_chave": []
+}

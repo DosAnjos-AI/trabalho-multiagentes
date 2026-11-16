@@ -22,10 +22,15 @@ timestamp: 2026-11-14T19:48:00-03:00
 Os vendedores do televendas atendem os clientes fixos de cada um, com preferência por dias úteis. Primeiro, atendemos a cada 14 dias os clientes que compraram com seu vendedor nos últimos 30 dias. Depois, os que estão há mais de 30 dias sem comprar com seu vendedor são atendidos a cada 28 dias. Todos os demais também são atendidos a cada 28 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md"
+  ],
+  "sem_chave": []
+}

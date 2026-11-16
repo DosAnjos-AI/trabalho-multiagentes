@@ -26,14 +26,18 @@ Para os clientes dos ramos 3, 6, 15 e 16, primeiro não agendamos quem comprou c
 Para os clientes dos outros ramos, atendemos a cada 7 dias quem ainda não comprou com seu próprio vendedor. Quem fez uma única compra com seu vendedor e não comprou com nenhum vendedor da empresa nos últimos 30 dias é atendido a cada 14 dias. Para quem fez a última compra com qualquer vendedor da empresa entre 7 e 30 dias atrás, seguimos o histórico, com intervalo mínimo de 7 e máximo de 30 dias. Quem fez a última compra com seu próprio vendedor entre 31 e 60 dias atrás é atendido a cada 14 dias; se foi entre 61 e 90 dias atrás, a cada 7 dias. Todos os demais são atendidos a cada 7 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: limites mínimo e máximo na frequência histórica
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-06-classificacao-por-id.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md"
+  ],
+  "sem_chave": [
+    "limites mínimo e máximo na frequência histórica"
+  ]
+}

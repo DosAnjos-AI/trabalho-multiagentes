@@ -28,14 +28,18 @@ Em seguida, para os clientes cuja última compra com qualquer vendedor da empres
 Depois disso, atendemos a cada 28 dias quem não teve a última compra com qualquer vendedor da empresa entre 46 e 60 dias atrás e, em seguida, a cada 21 dias quem não teve essa última compra entre 61 e 90 dias atrás. Todo o resto é atendido a cada 14 dias. Quando um cliente se encaixa em mais de uma dessas situações, vale a primeira que aparecer nessa ordem.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/06-03-financeiros.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-11-outros-filtros.md
-03-secoes/06-07-curva-abc-ciclo-de-vida.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-11-outros-filtros.md",
+    "03-secoes/06-07-curva-abc-ciclo-de-vida.md"
+  ],
+  "sem_chave": []
+}

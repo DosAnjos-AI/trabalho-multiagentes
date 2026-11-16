@@ -26,16 +26,19 @@ Para todos esses vendedores de televendas, primeiro não agendamos clientes com 
 Em seguida, para os clientes desses vendedores de televendas que ainda não tenham recebido um tratamento, atendemos a cada 7 dias quem nunca comprou com a empresa, depois quem comprou com qualquer vendedor da empresa nos últimos 60 dias e depois quem comprou com qualquer vendedor da empresa nos últimos 90 dias. Também atendemos a cada 7 dias os demais que não pertençam a nenhum dos seis grupos de clientes dos externos. Os clientes que sobrarem depois disso não são agendados.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/04-01-carteiras-e-segmentacoes.md#Exclusiva x livre
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/05-01-filtros-temporais-calendario.md#Dia do mês
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Com restrição temporal
-03-secoes/06-09-segmentacao-contido.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/04-01-carteiras-e-segmentacoes.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/05-01-filtros-temporais-calendario.md",
+    "03-secoes/06-09-segmentacao-contido.md"
+  ],
+  "sem_chave": []
+}

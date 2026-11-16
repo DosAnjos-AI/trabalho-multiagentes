@@ -24,11 +24,16 @@ Os vendedores habilitados do televendas atendem seus clientes. Primeiro, quem fe
 Entre os demais, para quem fez a última compra com seu vendedor entre 7 e 30 dias atrás, seguimos a frequência do histórico do cliente, com intervalo mínimo de 14 dias e máximo de 28 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: limites mínimo e máximo da frequência histórica
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md"
+  ],
+  "sem_chave": [
+    "limites mínimo e máximo da frequência histórica"
+  ]
+}

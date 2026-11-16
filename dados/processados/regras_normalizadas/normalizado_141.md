@@ -24,8 +24,13 @@ Para todos os vendedores habilitados no sistema, consideramos a curva do cliente
 Clientes de curva B ativos para o vendedor são atendidos a cada 21 dias; os demais de curva B, a cada 14 dias. Clientes de curva C ativos para o vendedor são atendidos a cada 30 dias; os demais de curva C, a cada 21 dias. Todos os outros clientes são atendidos a cada 21 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/06-07-curva-abc-ciclo-de-vida.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Fixa por período
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/06-07-curva-abc-ciclo-de-vida.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/07-03-frequencia.md"
+  ],
+  "sem_chave": []
+}

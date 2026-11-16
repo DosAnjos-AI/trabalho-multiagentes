@@ -26,13 +26,18 @@ Para os demais, considerando se o cliente está ativo ou inativo para o vendedor
 Os clientes sem vendas que não se enquadrarem nas situações anteriores são atendidos a cada 14 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-03-financeiros.md
-sem_chave: preferência do vendedor no atendimento
-sem_chave: clientes sem vendas
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-03-financeiros.md"
+  ],
+  "sem_chave": [
+    "preferência do vendedor no atendimento",
+    "clientes sem vendas"
+  ]
+}

@@ -26,12 +26,17 @@ No televendas, primeiro não agendamos pessoas físicas, inclusive as que não t
 Para os vendedores de campo, atendemos os clientes ativos para o próprio vendedor em intervalos fixos de 7 dias. Todos os demais são atendidos em intervalos fixos de 15 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-sem_chave: clientes sem compras
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-03-financeiros.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-03-financeiros.md"
+  ],
+  "sem_chave": [
+    "clientes sem compras"
+  ]
+}

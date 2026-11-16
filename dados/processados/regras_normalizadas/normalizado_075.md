@@ -22,11 +22,16 @@ timestamp: 2026-11-14T19:48:54-03:00
 Os vendedores do televendas atendem os clientes fixos de cada um. Primeiro, não agendamos os clientes inadimplentes. Para os adimplentes que estão ativos com seu vendedor, o atendimento é a cada 7 dias; para os adimplentes que estão inativos com seu vendedor, é a cada 14 dias. Depois dessas situações, atendemos os clientes sem venda a cada 14 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-03-financeiros.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-sem_chave: clientes sem venda
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md"
+  ],
+  "sem_chave": [
+    "clientes sem venda"
+  ]
+}

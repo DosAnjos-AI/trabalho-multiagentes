@@ -24,9 +24,14 @@ Todos os vendedores atendem seus próprios clientes fixos, inclusive os vendedor
 Os clientes ativos para o vendedor são atendidos a cada 7 dias. Os inativos para o vendedor que estão em dia com os pagamentos são atendidos a cada 15 dias; se estiverem inadimplentes, não são agendados. Os clientes que ainda não compraram são atendidos a cada 20 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-03-financeiros.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md"
+  ],
+  "sem_chave": []
+}

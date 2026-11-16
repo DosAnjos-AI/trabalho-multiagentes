@@ -22,9 +22,15 @@ timestamp: 2026-11-14T19:49:56-03:00
 Todos os vendedores atendem seus próprios clientes fixos. Para os clientes ativos com o vendedor responsável, o atendimento é semanal. Para os inativos com esse vendedor e para os clientes sem venda, o atendimento é a cada 14 dias. Em todos esses casos, a preferência é atender de segunda a sábado.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-sem_chave: clientes sem venda
-03-secoes/07-02-preferencia-dia-semana.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/07-02-preferencia-dia-semana.md"
+  ],
+  "sem_chave": [
+    "clientes sem venda"
+  ]
+}

@@ -24,7 +24,12 @@ Para todos os vendedores de televendas, atendemos a cada 7 dias os clientes ativ
 Para todos os vendedores de campo, também atendemos a cada 7 dias os clientes ativos em relação ao próprio vendedor e, a cada 15 dias, os demais. No campo, esses intervalos são fixos.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md"
+  ],
+  "sem_chave": []
+}

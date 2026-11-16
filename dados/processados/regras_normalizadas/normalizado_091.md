@@ -26,9 +26,15 @@ No televendas, atendemos a cada 14 dias os clientes ativos para o vendedor respo
 No campo, os clientes ativos para o vendedor responsável são atendidos a cada 7 dias se estiverem em dia e a cada 14 dias se estiverem inadimplentes. Para os inativos em relação ao vendedor, o atendimento é a cada 30 dias se estiverem em dia e a cada 60 dias se estiverem inadimplentes. Os clientes sem vendas são atendidos a cada 14 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-sem_chave: clientes sem vendas
-03-secoes/06-03-financeiros.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-03-financeiros.md"
+  ],
+  "sem_chave": [
+    "clientes sem vendas"
+  ]
+}

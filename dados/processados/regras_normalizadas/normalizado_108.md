@@ -28,13 +28,17 @@ Para quem tem frequência histórica de compra menor que 11 dias, o atendimento 
 Os clientes inativos em relação ao próprio vendedor são atendidos a cada 21 dias. Os que não compraram com esse vendedor nos últimos 90 dias são atendidos a cada 7 dias. Para todos os demais, o atendimento também é a cada 7 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-03-financeiros.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/06-08-frequencia-e-parametros.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-06-classificacao-por-id.md",
+    "03-secoes/06-08-frequencia-e-parametros.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md"
+  ],
+  "sem_chave": []
+}

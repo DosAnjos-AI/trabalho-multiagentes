@@ -24,12 +24,16 @@ Os vendedores de televendas habilitados atendem seus clientes conforme a seguint
 Entre os que sobrarem, atendemos a cada 14 dias quem tem frequência histórica de compra menor que 11 dias. Em seguida, atendemos a cada 10 dias quem comprou com o próprio vendedor pela última vez entre 11 e 59 dias atrás, e a cada 7 dias quem comprou com ele pela última vez entre 60 e 89 dias atrás. Todos os demais são atendidos a cada 10 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-03-financeiros.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-08-frequencia-e-parametros.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-08-frequencia-e-parametros.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md"
+  ],
+  "sem_chave": []
+}

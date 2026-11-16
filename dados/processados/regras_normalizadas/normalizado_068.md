@@ -26,13 +26,18 @@ No campo, não agendamos clientes do ramo de atividade 17 nem pessoas físicas. 
 No televendas, primeiro não agendamos os clientes inadimplentes. Depois, atendemos a cada 14 dias os clientes ativos para o próprio vendedor e adimplentes, e a cada 30 dias os inativos para o próprio vendedor e adimplentes. Os clientes sem venda são atendidos a cada 14 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-03-financeiros.md
-sem_chave: clientes sem venda
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-06-classificacao-por-id.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-03-financeiros.md"
+  ],
+  "sem_chave": [
+    "clientes sem venda"
+  ]
+}

@@ -26,12 +26,16 @@ Entre os que restarem, atendemos a cada 28 dias os que nunca compraram com a emp
 Depois, entre os que ainda não receberam atendimento, os clientes ativos cuja última compra com qualquer vendedor da empresa esteja fora do intervalo entre 45 e 60 dias atrás são atendidos a cada 14 dias. Os demais clientes ativos são atendidos a cada 7 dias e, por fim, todo o resto também é atendido a cada 7 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-07-curva-abc-ciclo-de-vida.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-07-curva-abc-ciclo-de-vida.md"
+  ],
+  "sem_chave": []
+}

@@ -24,11 +24,15 @@ Os vendedores de televendas habilitados atendem seus clientes seguindo esta orde
 Em seguida, atendemos a cada 14 dias quem comprou com o próprio vendedor nos últimos 30 dias; depois, quem comprou com ele nos últimos 60 dias; e, em seguida, quem comprou com ele nos últimos 90 dias. Quem já se encaixou em uma dessas situações não passa para as seguintes. Todos os demais clientes também são atendidos a cada 14 dias. Para todos os atendimentos agendados, damos preferência aos dias úteis e ao sábado.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-02-preferencia-dia-semana.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-02-preferencia-dia-semana.md"
+  ],
+  "sem_chave": []
+}

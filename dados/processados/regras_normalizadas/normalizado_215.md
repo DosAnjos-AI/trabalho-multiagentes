@@ -24,8 +24,13 @@ Os vendedores do televendas devem atender a cada 7 dias os clientes que ainda n�
 A mesma frequência vale para quem comprou com o próprio vendedor nos últimos 30 dias, para quem comprou com ele entre 31 e 60 dias atrás, entre 60 e 90 dias atrás ou não comprou com ele nos últimos 90 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md"
+  ],
+  "sem_chave": []
+}

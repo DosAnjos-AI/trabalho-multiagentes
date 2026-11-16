@@ -22,10 +22,15 @@ timestamp: 2026-11-14T19:47:07-03:00
 Todos os vendedores atendem seus próprios clientes fixos. Primeiro, atendemos a cada 14 dias os clientes sem venda. Entre os demais, os que estão em dia são atendidos a cada 30 dias. Para os inadimplentes que restarem, não agendamos atendimento.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Fixa por período
-sem_chave: clientes sem venda
-03-secoes/06-03-financeiros.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-03-financeiros.md"
+  ],
+  "sem_chave": [
+    "clientes sem venda"
+  ]
+}

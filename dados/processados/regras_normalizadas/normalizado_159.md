@@ -26,9 +26,14 @@ Para os vendedores 2150 e 2151, atendemos a cada 45 dias os clientes cujo fatura
 Essas condições têm prioridade para os vendedores indicados. Para os demais vendedores, os clientes ativos com o próprio vendedor são atendidos a cada 7 dias, e todo o resto a cada 15 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-03-financeiros.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md"
+  ],
+  "sem_chave": []
+}

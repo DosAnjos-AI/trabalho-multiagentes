@@ -22,9 +22,15 @@ timestamp: 2026-11-14T19:48:48-03:00
 Na Bela Forma, todos os vendedores atendem seus próprios clientes fixos. Para os clientes inativos em relação ao vendedor responsável, o atendimento é a cada 45 dias; para os ativos em relação a esse vendedor, a cada 21 dias. Os clientes sem vendas são atendidos a cada 45 dias. Em todos os casos, levamos em conta a preferência do vendedor.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-sem_chave: clientes sem vendas
-sem_chave: preferência do vendedor
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md"
+  ],
+  "sem_chave": [
+    "clientes sem vendas",
+    "preferência do vendedor"
+  ]
+}

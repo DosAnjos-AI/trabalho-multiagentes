@@ -26,12 +26,16 @@ Para o televendas, primeiro não agendamos clientes com situação baixada na Re
 Para o vendedor 48, primeiro não agendamos os clientes cadastrados há 7 dias. Depois, nessa ordem, atendemos os cadastrados há 60 dias a cada 30 dias; os cadastrados há 30 dias, a cada 20 dias; e os cadastrados há 15 dias ou há 8 dias, a cada 15 dias. Se um cliente se encaixar em mais de uma dessas situações, vale a primeira.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-11-outros-filtros.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-11-outros-filtros.md"
+  ],
+  "sem_chave": []
+}

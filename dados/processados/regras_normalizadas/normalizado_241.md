@@ -24,9 +24,13 @@ Os vendedores de televendas habilitados no sistema atendem os clientes conforme 
 Entre os demais, atendemos a cada 7 dias os clientes dos ramos 106, 139, 109, 143, 141, 142, 144, 147 e 108; a cada 14 dias, os dos ramos 140, 146, 148, 111, 100, 110, 112, 145, 107 e 113; e a cada 28 dias, os dos ramos 138 e 114. Todos os demais clientes não são agendados.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Fixa por período
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/06-06-classificacao-por-id.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/07-03-frequencia.md"
+  ],
+  "sem_chave": []
+}

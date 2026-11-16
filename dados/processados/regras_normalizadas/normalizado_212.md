@@ -30,12 +30,17 @@ Clientes que ainda não têm vendas são atendidos a cada 14 dias. Também atend
 Quem fez a última compra com qualquer vendedor da empresa entre 61 e 90 dias atrás é atendido a cada 7 dias. O mesmo vale para quem fez a última compra entre 91 e 180 dias atrás. Todos os demais clientes são atendidos a cada 7 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-11-outros-filtros.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/07-03-frequencia.md#Fixa por período
-sem_chave: clientes que ainda não têm vendas
-03-secoes/06-01-atividade-inatividade.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-11-outros-filtros.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md"
+  ],
+  "sem_chave": [
+    "clientes que ainda não têm vendas"
+  ]
+}

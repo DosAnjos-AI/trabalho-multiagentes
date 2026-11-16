@@ -28,11 +28,16 @@ Também atendemos semanalmente, com preferência por segunda, terça ou sexta em
 Para os clientes que não entraram nas rotas, atendemos a cada 30 dias quem nunca comprou com a empresa. Em seguida, atendemos a cada 14 dias os clientes ativos para seu vendedor que sejam curva A considerando a empresa toda, e a cada 21 dias os ativos para seu vendedor que sejam curva B considerando a empresa toda. Os demais clientes ativos para seu vendedor são atendidos a cada 28 dias. Todo o resto é atendido a cada 30 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-04-conflito-pivot-rota.md#Roteirização e fixação
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-07-curva-abc-ciclo-de-vida.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/07-04-conflito-pivot-rota.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-07-curva-abc-ciclo-de-vida.md"
+  ],
+  "sem_chave": []
+}

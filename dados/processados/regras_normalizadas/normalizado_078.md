@@ -22,11 +22,17 @@ timestamp: 2026-11-14T19:49:16-03:00
 Todos os vendedores atendem seus próprios clientes fixos, com preferência por dias úteis. Seguimos esta ordem: os clientes ativos para o vendedor e inadimplentes são atendidos a cada 14 dias; os demais ativos para o vendedor, a cada 7 dias. Os clientes inativos para o vendedor e inadimplentes são atendidos a cada 30 dias; os demais inativos para o vendedor, a cada 14 dias. Por fim, os clientes sem vendas são atendidos a cada 14 dias. Se um cliente se encaixar em mais de uma dessas situações, vale a primeira que se aplicar.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-03-financeiros.md
-03-secoes/07-03-frequencia.md#Fixa por período
-sem_chave: clientes sem vendas
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-03-frequencia.md"
+  ],
+  "sem_chave": [
+    "clientes sem vendas"
+  ]
+}

@@ -24,12 +24,17 @@ Todos os vendedores habilitados no sistema atendem seus próprios clientes fixos
 Primeiro, não agendamos pessoas físicas. Depois, atendemos a cada 7 dias os clientes ativos para o vendedor e adimplentes. Os ativos para o vendedor e inadimplentes são atendidos a cada 14 dias, assim como os inativos para o vendedor e adimplentes. Não agendamos os inativos para o vendedor que estejam inadimplentes. Por fim, atendemos a cada 14 dias os clientes sem vendas que não tenham sido enquadrados nas situações anteriores.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-03-financeiros.md
-sem_chave: clientes sem vendas
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-03-financeiros.md"
+  ],
+  "sem_chave": [
+    "clientes sem vendas"
+  ]
+}

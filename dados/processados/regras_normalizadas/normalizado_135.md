@@ -42,13 +42,18 @@ Para os clientes do 0000002 em SAO JOSE DO RIO PRETO, o atendimento é a cada 30
 Para os outros vendedores habilitados do televendas, atendemos primeiro quem nunca comprou com a empresa, a cada 14 dias. Depois, conforme a compra com o próprio vendedor, atendemos quem comprou nos últimos 7 dias a cada 21 dias; nos últimos 30 dias, a cada 30 dias; nos últimos 60 dias, a cada 45 dias; nos últimos 90 dias, a cada 70 dias; e nos últimos 180 dias, a cada 15 dias. Quem se encaixar em mais de uma dessas situações fica com o primeiro tratamento, e todo o resto é atendido a cada 21 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/06-07-curva-abc-ciclo-de-vida.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/06-07-curva-abc-ciclo-de-vida.md"
+  ],
+  "sem_chave": []
+}

@@ -24,12 +24,17 @@ Os vendedores 50 e 53 cuidam dos seus próprios clientes fixos. Para os clientes
 Todos os outros vendedores cuidam também dos seus respectivos clientes fixos. Para eles, seguimos esta ordem: clientes ativos para o próprio vendedor e adimplentes são atendidos a cada 14 dias; clientes inativos para o próprio vendedor e adimplentes, a cada 30 dias; clientes ativos para o próprio vendedor e inadimplentes, a cada 30 dias; e clientes inativos para o próprio vendedor e inadimplentes não são agendados. Depois dessas situações, os clientes sem vendas são atendidos a cada 30 dias. Nos atendimentos, respeitamos a preferência do vendedor.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-sem_chave: clientes sem vendas
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-03-financeiros.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-03-financeiros.md"
+  ],
+  "sem_chave": [
+    "clientes sem vendas"
+  ]
+}

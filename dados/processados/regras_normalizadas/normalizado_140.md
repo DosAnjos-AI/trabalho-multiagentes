@@ -30,16 +30,20 @@ Nas rotas 8, 9, 10 e 11, o atendimento é em dias variáveis, de segunda a sexta
 Os demais clientes da equipe, inclusive os que não têm rota associada, também são atendidos semanalmente, desde que não estejam nas situações de não agendamento.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/06-03-financeiros.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/07-04-conflito-pivot-rota.md#Roteirização e fixação
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-06-classificacao-por-id.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/07-04-conflito-pivot-rota.md"
+  ],
+  "sem_chave": []
+}

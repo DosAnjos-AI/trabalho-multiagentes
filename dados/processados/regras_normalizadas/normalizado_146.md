@@ -26,13 +26,17 @@ Quem ainda não comprou com seu vendedor é atendido a cada 30 dias. Também ate
 Para os demais, quem tem frequência histórica de compra menor que 21 dias é atendido a cada 21 dias. Quem comprou com seu vendedor entre 30 e 45 dias atrás também é atendido a cada 21 dias. Quem não comprou com seu vendedor nos últimos 46 dias é atendido a cada 45 dias. Se o cliente se encaixar em mais de uma dessas situações, vale a primeira na ordem apresentada.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-03-financeiros.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/06-08-frequencia-e-parametros.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-06-classificacao-por-id.md",
+    "03-secoes/06-08-frequencia-e-parametros.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md"
+  ],
+  "sem_chave": []
+}

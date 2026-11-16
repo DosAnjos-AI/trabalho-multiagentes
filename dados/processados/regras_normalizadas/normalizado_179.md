@@ -30,14 +30,19 @@ Em seguida, nos grupos matcon e de outros ramos, quem comprou com o próprio ven
 Nas situações seguintes, consideramos as compras com qualquer vendedor da empresa. Para quem comprou entre 30 e 60 dias atrás, o atendimento é a cada 7 dias no grupo matcon e a cada 14 dias nos outros dois. Para quem comprou entre 60 e 89 dias atrás, é a cada 7 dias no matcon, 14 dias no construtora e 21 dias no grupo de outros ramos. Para quem comprou entre 90 e 179 dias atrás, é a cada 7 dias no matcon, 21 dias no construtora e 14 dias no grupo de outros ramos. Por fim, quem não comprou com nenhum vendedor da empresa nos últimos 180 dias é atendido a cada 14 dias nos grupos matcon e de outros ramos, e a cada 28 dias no construtora.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/04-01-carteiras-e-segmentacoes.md#Exclusiva x livre
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: mínimo e máximo na frequência do histórico
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-06-classificacao-por-id.md",
+    "03-secoes/04-01-carteiras-e-segmentacoes.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md"
+  ],
+  "sem_chave": [
+    "mínimo e máximo na frequência do histórico"
+  ]
+}

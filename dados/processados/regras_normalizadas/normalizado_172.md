@@ -22,10 +22,14 @@ timestamp: 2026-11-14T19:57:03-03:00
 Para os vendedores de televendas, não agendamos clientes inadimplentes nem clientes que sejam filial. Entre os demais, atendemos a cada 7 dias os clientes ativos para o próprio vendedor e, a cada 14 dias, todos os outros.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/06-03-financeiros.md
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md"
+  ],
+  "sem_chave": []
+}

@@ -24,13 +24,17 @@ Os vendedores de televendas habilitados atendem seus clientes seguindo esta orde
 Para quem já comprou com seu vendedor, olhamos o tempo desde a última compra com ele. Se comprou nos últimos 14 dias, usamos o intervalo do histórico de compras acrescido de 7 dias, com limite de 14 dias. Se a última compra foi entre 14 e 30 dias atrás, atendemos a cada 14 dias; entre 30 e 45 dias, a cada 21 dias; entre 45 e 90 dias, a cada 14 dias. Quem está há mais de 90 dias sem comprar com seu vendedor é atendido a cada 28 dias. Quando o cliente se encaixar em mais de uma dessas situações, vale a primeira nessa ordem.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: limite sobre frequência do histórico
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md"
+  ],
+  "sem_chave": [
+    "limite sobre frequência do histórico"
+  ]
+}

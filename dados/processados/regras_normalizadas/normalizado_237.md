@@ -26,13 +26,18 @@ Clientes que ainda não compraram com seu vendedor são atendidos a cada 14 dias
 Quem comprou com seu vendedor entre 30 e 60 dias atrás é atendido a cada 14 dias. Depois, atendemos a cada 14 dias quem não comprou com seu vendedor nos últimos 60 dias e tem intervalo histórico entre compras maior que 30 dias. Os demais que não compraram com seu vendedor nos últimos 60 dias também são atendidos a cada 14 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/06-08-frequencia-e-parametros.md
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: mínimo e máximo para frequência do histórico
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/06-08-frequencia-e-parametros.md"
+  ],
+  "sem_chave": [
+    "mínimo e máximo para frequência do histórico"
+  ]
+}

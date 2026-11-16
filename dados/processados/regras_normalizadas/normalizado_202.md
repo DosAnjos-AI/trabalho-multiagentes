@@ -24,12 +24,17 @@ Os vendedores habilitados do televendas atendem seus clientes seguindo esta orde
 Para quem fez uma única compra com seu vendedor e está há mais de 7 dias sem comprar com ele, o atendimento é a cada 7 dias. Quem comprou com seu vendedor nos últimos 30 dias é atendido conforme o histórico de compras, com intervalo máximo de 30 dias. Por fim, quem está sem comprar com seu vendedor entre 31 e 60 dias é atendido a cada 7 dias. Quando um cliente se encaixa em mais de uma dessas situações, vale a primeira em que ele se enquadrar.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: limite máximo para frequência do histórico
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md"
+  ],
+  "sem_chave": [
+    "limite máximo para frequência do histórico"
+  ]
+}

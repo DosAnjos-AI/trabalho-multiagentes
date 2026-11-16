@@ -10,7 +10,7 @@ e a mensagem de um usuario; so muda quem chama. Estado: 193 de 193 normalizados 
 |---|---|---|
 | Prompt | `prompt_normalizador_v3.md` | `ac77cd72a5f36d9ade3bf4509c1e6369ec40895d012818891fcd26be2541c68a` |
 | Auxiliar do manual | `regras_para_normalizador_v2.md` | `5f555d020aadb380bbf4eb4b32e43d7a824bf33f1f5c8f416c323fe059bc5971` |
-| Script | `script_normalizacao.py` | `8a1d0d2c189a0ac425e33f91bce0abd4995fe1566aac9f9370316c3df41dc65e` |
+| Script | `script_normalizacao.py` | `11a7324e300f51851a9b2e6cf3eb9572a60b292f9b211c4931b241a8c2ef9082` |
 | Modelo | `gpt-6.1-terra` (temperatura padrao 1, nao enviada) | - |
 
 Esses hashes sao gravados em cada `normalizado_NNN.md` (`hash_prompt`, `hash_auxiliar_manual`, `hash_normalizador`).
@@ -32,6 +32,11 @@ Esses hashes sao gravados em cada `normalizado_NNN.md` (`hash_prompt`, `hash_aux
   ao modelo; arquivo sem esse bloco, ou com `---` a mais, e rejeitado com mensagem.
 - Saida: `dados/processados/regras_normalizadas/normalizado_NNN.md`, com 17 campos de metadados escritos pelo
   script e as secoes `## explicacao_normalizada` e `## regras_extraidas`.
+- Formato de `## regras_extraidas`: o modelo devolve uma chave por linha; o script valida (chave exata do auxiliar)
+  e grava um objeto JSON `{"regras_extraidas": [arquivos do manual, sem #Titulo, sem repeticao], "sem_chave": [textos]}`.
+  Conversao sem LLM (`converter_regras`). Os 193 normalizados existentes foram convertidos com
+  `script_normalizacao.py --converter-existentes` (`--simular` mostra sem gravar; idempotente). Os `hash_normalizador`
+  gravados neles sao do script anterior a conversao.
 - Resposta invalida: nao grava o `normalizado_*.md`; a resposta crua vai para `rejeitados/` (nesta pasta, criada so se houver rejeicao).
 
 ## Uso (da raiz do projeto)

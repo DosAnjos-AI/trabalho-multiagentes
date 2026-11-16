@@ -28,11 +28,16 @@ Para os clientes do televendas de DF, atendemos os adimplentes a cada 7 dias. De
 No atendimento externo de DF, trabalhamos com todos os vendedores de campo. Os clientes ativos para seu vendedor são atendidos em intervalos fixos de 7 dias; todos os demais, em intervalos fixos de 15 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-sem_chave: clientes sem vendas
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-03-financeiros.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/06-01-atividade-inatividade.md"
+  ],
+  "sem_chave": [
+    "clientes sem vendas"
+  ]
+}

@@ -24,10 +24,14 @@ Nossa equipe é formada pelos vendedores de códigos 3, 4, 8, 9, 10, 12 e 16. Pa
 Depois, considerando a última compra com o próprio vendedor, atendemos a cada 14 dias quem não teve essa compra entre 31 e 60 dias atrás. Dos que ainda sobrarem, atendemos a cada 21 dias quem não teve a última compra com esse vendedor entre 61 e 90 dias atrás. Todo o resto é atendido a cada 28 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md"
+  ],
+  "sem_chave": []
+}

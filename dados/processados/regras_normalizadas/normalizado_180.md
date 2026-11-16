@@ -24,10 +24,14 @@ Os vendedores de televendas habilitados atendem os clientes da equipe. Não agen
 Entre os demais, atendemos a cada 7 dias os clientes dos ramos de atividade 84, 73, 69, 85 e 22. Todos os outros são atendidos a cada 30 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-06-classificacao-por-id.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-06-classificacao-por-id.md"
+  ],
+  "sem_chave": []
+}

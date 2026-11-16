@@ -22,8 +22,13 @@ timestamp: 2026-11-14T20:04:51-03:00
 Os vendedores de televendas habilitados atendem a cada 14 dias os clientes que compraram com qualquer vendedor da empresa nos últimos 59 dias. Em seguida, atendem também a cada 14 dias os demais que compraram com qualquer vendedor da empresa nos últimos 89 dias. Todos os outros clientes também são atendidos a cada 14 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md"
+  ],
+  "sem_chave": []
+}

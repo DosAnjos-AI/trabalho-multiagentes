@@ -24,9 +24,15 @@ Os vendedores 35 e 34 cuidam dos seus clientes fixos no interior. Na capital, os
 Na capital, atendemos a cada 14 dias os clientes em dia e também os que estão sem venda. Os inadimplentes são atendidos a cada 30 dias. No interior, todos os clientes são atendidos a cada 30 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-03-financeiros.md
-sem_chave: clientes sem venda
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-03-financeiros.md"
+  ],
+  "sem_chave": [
+    "clientes sem venda"
+  ]
+}

@@ -17,6 +17,9 @@ CAMINHO_REJEITADOS = BASE / "rejeitados"
 CAMINHO_PROMPT = BASE / "prompt_normalizador_v3.md"
 CAMINHO_AUXILIAR = BASE / "regras_para_normalizador_v2.md"
 
+# Manual parseado: cada nome de arquivo citado em regras_extraidas precisa existir aqui.
+CAMINHO_MANUAL = RAIZ / "manual"
+
 # Arquivo com as chaves de API (na raiz, ignorado pelo git). So e lido na execucao paga; nunca em --estimar.
 CAMINHO_ENV = RAIZ / ".env"
 # Nome da variavel de ambiente com a chave de cada fornecedor (copiado da tarefa 02).
@@ -221,3 +224,8 @@ CAMPOS_METADADOS = (
     "id_auxiliar_manual", "hash_auxiliar_manual", "versao_normalizador", "hash_normalizador",
     "modelo", "temperatura", "tokens_entrada", "tokens_saida", "custo_usd", "tempo_segundos", "timestamp",
 )
+
+# Formato final da secao `## regras_extraidas`: objeto JSON com dois vetores, montado pelo script (o modelo
+# continua devolvendo uma chave por linha). Pensado para outro script carregar no BigQuery.
+CAMPO_REGRAS = "regras_extraidas"  # nomes de arquivo do manual, sem `#Titulo`, sem repeticao
+CAMPO_SEM_CHAVE = "sem_chave"      # descricoes livres das regras sem arquivo correspondente no manual

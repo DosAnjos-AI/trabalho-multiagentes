@@ -26,12 +26,17 @@ Os clientes que nunca compraram com a empresa são atendidos a cada 21 dias. Os 
 Depois, atendemos a cada 14 dias os clientes que compraram com o próprio vendedor nos últimos 30 dias. Quem comprou com qualquer vendedor da empresa entre 31 e 60 dias atrás é atendido a cada 7 dias, assim como quem comprou entre 61 e 90 dias atrás. Todos os demais clientes são atendidos a cada 21 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: limite máximo para frequência do histórico
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md"
+  ],
+  "sem_chave": [
+    "limite máximo para frequência do histórico"
+  ]
+}

@@ -26,12 +26,17 @@ Quem nunca comprou com a empresa deve ser atendido a cada 7 dias. Quem comprou c
 Quem comprou com o próprio vendedor entre 20 e 30 dias atrás deve ser atendido no intervalo indicado pelo histórico, limitado a no máximo 60 dias. Quem está há mais de 120 dias sem comprar com qualquer vendedor da empresa deve ser atendido a cada 14 dias. Quem está há mais de 180 dias sem comprar com qualquer vendedor da empresa deve ser atendido a cada 28 dias, respeitando a prioridade das situações anteriores.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/06-08-frequencia-e-parametros.md
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: limite máximo da frequência do histórico
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/06-08-frequencia-e-parametros.md"
+  ],
+  "sem_chave": [
+    "limite máximo da frequência do histórico"
+  ]
+}

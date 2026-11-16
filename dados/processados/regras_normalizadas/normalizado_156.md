@@ -22,10 +22,14 @@ timestamp: 2026-11-14T19:55:08-03:00
 Todos os vendedores habilitados no sistema atendem seus clientes seguindo esta ordem: primeiro, não agendamos os clientes inadimplentes. Entre os demais, atendemos a cada 14 dias quem ainda não comprou com seu vendedor e, a cada 10 dias, quem fez uma única compra com ele. Depois, atendemos a cada 7 dias os clientes ativos para seu vendedor. Todos os demais são atendidos a cada 14 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-03-financeiros.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md"
+  ],
+  "sem_chave": []
+}

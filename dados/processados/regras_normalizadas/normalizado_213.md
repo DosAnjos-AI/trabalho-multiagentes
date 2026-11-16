@@ -28,13 +28,17 @@ Em cada um desses grupos, os clientes ativos para o próprio vendedor são atend
 Para os clientes das rotas 10 e 11, o atendimento é semanal, sem dia específico.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-04-conflito-pivot-rota.md#Roteirização e fixação
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-06-classificacao-por-id.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/07-04-conflito-pivot-rota.md"
+  ],
+  "sem_chave": []
+}

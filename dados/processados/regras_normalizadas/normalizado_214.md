@@ -26,15 +26,19 @@ Quem fez uma única compra com seu próprio vendedor é atendido a cada 14 dias.
 Para os clientes ativos com seu vendedor e com intervalo histórico de compras menor que 14 dias, o atendimento é a cada 10 dias. Para quem comprou com seu vendedor entre 21 e 59 dias atrás, é a cada 30 dias no ramo 29 e a cada 14 dias nos demais ramos. Para quem comprou com seu vendedor entre 60 e 89 dias atrás, é a cada 14 dias, tanto no ramo 29 quanto nos demais. Por fim, para quem não comprou com seu vendedor nos últimos 90 dias, o atendimento é a cada 10 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/06-03-financeiros.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/06-08-frequencia-e-parametros.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/06-06-classificacao-por-id.md",
+    "03-secoes/06-08-frequencia-e-parametros.md"
+  ],
+  "sem_chave": []
+}

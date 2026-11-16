@@ -24,10 +24,16 @@ Todos os vendedores de campo e de televendas atendem seus respectivos clientes f
 No televendas, também evitamos marcar o atendimento no mesmo dia que o da equipe de campo.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-01-atividade-inatividade.md
-sem_chave: clientes sem venda
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/07-04-conflito-pivot-rota.md#Evitar choque entre televendas e campo
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/07-04-conflito-pivot-rota.md"
+  ],
+  "sem_chave": [
+    "clientes sem venda"
+  ]
+}

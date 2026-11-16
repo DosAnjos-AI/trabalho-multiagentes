@@ -26,12 +26,17 @@ No televendas, os clientes ativos para o vendedor e em dia são atendidos a cada
 Para os vendedores de campo, seguimos a frequência que a empresa estabelece para clientes inativos quando o cliente está inativo para seu vendedor ou não tem vendas. Para os clientes ativos para seu vendedor, seguimos a frequência que a empresa estabelece para clientes ativos. Nesses atendimentos, também consideramos a preferência do vendedor.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-03-financeiros.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-sem_chave: clientes sem vendas
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: preferência do vendedor
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md"
+  ],
+  "sem_chave": [
+    "clientes sem vendas",
+    "preferência do vendedor"
+  ]
+}

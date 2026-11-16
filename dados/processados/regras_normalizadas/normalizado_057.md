@@ -22,8 +22,13 @@ timestamp: 2026-11-14T16:25:21-03:00
 Os vendedores de televendas habilitados atendem primeiro os clientes que nunca compraram com a empresa, a cada 30 dias. Entre os demais, os clientes ativos para o próprio vendedor são atendidos a cada 25 dias, estejam em dia ou inadimplentes. Todos os outros clientes são atendidos a cada 30 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-03-financeiros.md
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-03-financeiros.md"
+  ],
+  "sem_chave": []
+}

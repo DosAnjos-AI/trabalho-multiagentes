@@ -26,15 +26,20 @@ Para quem não comprou com nenhum vendedor da empresa neste ano e tem ticket mé
 Quem ainda não comprou com o próprio vendedor é atendido a cada 7 dias, assim como quem fez uma única compra com esse vendedor. Para clientes com intervalo histórico de compra entre 0 e 14 dias, seguimos esse histórico, atendendo no mínimo a cada 4 dias e no máximo a cada 6 dias. Por fim, quem está entre 25 e 30 dias além do período habitual de compra com o próprio vendedor é atendido a cada 7 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/06-03-financeiros.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/07-04-conflito-pivot-rota.md#Roteirização e fixação
-03-secoes/07-02-preferencia-dia-semana.md
-03-secoes/06-08-frequencia-e-parametros.md
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: limites mínimo e máximo na frequência histórica
-sem_chave: faixa de atraso além do período habitual
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/07-04-conflito-pivot-rota.md",
+    "03-secoes/07-02-preferencia-dia-semana.md",
+    "03-secoes/06-08-frequencia-e-parametros.md"
+  ],
+  "sem_chave": [
+    "limites mínimo e máximo na frequência histórica",
+    "faixa de atraso além do período habitual"
+  ]
+}

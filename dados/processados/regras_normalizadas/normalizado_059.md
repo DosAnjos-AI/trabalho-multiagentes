@@ -28,9 +28,13 @@ Entre os que ainda não receberam um tratamento, para os clientes ativos em rela
 Para os demais, sem exigir que sejam inativos, atendemos a cada 30 dias os dos ramos 3, 4, 6, 8, 15 ou 18; a cada 20 dias os do ramo 17; a cada 15 dias os do ramo 10; e a cada 10 dias os dos ramos 11 ou 19. Todo o resto é atendido a cada 5 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-06-classificacao-por-id.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md"
+  ],
+  "sem_chave": []
+}

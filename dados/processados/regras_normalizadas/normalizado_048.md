@@ -26,10 +26,16 @@ No televendas, atendemos a cada 14 dias os clientes ativos para seu vendedor e e
 No campo, atendemos a cada 7 dias os clientes ativos para seu vendedor e em dia com os pagamentos; a cada 14 dias os ativos para seu vendedor e inadimplentes; a cada 14 dias os inativos para seu vendedor e em dia; e a cada 30 dias os inativos para seu vendedor e inadimplentes. Depois, atendemos a cada 14 dias os clientes sem vendas e também todos os demais.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-03-financeiros.md
-sem_chave: clientes sem vendas
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-03-financeiros.md"
+  ],
+  "sem_chave": [
+    "clientes sem vendas"
+  ]
+}

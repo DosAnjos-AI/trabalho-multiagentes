@@ -28,9 +28,15 @@ Na capital, atendemos a cada 7 dias os clientes ativos para o próprio vendedor.
 No interior, atendemos a cada 14 dias os clientes ativos para o próprio vendedor. Os inativos para esse vendedor que estão em dia são atendidos a cada 30 dias, e os inadimplentes não são agendados. Os clientes sem venda são atendidos a cada 30 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-sem_chave: clientes sem venda
-03-secoes/06-03-financeiros.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md"
+  ],
+  "sem_chave": [
+    "clientes sem venda"
+  ]
+}

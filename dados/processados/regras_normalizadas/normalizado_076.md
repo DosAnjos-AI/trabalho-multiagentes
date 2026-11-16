@@ -26,16 +26,20 @@ Entre os demais, atendemos diariamente quem tem data de rota hoje. Depois, atend
 Para quem comprou com qualquer vendedor da empresa nos últimos 30 dias e tem frequência histórica de compra menor que 30 dias, seguimos o intervalo histórico, respeitando o mínimo de 5 dias e o máximo de 30 dias. Quem comprou com qualquer vendedor da empresa entre 31 e 90 dias atrás é atendido a cada 15 dias. Todo o resto não é agendado.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-03-financeiros.md
-03-secoes/06-05-localizacao-classificacao.md
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/06-02-recencia-visita-positivacao.md
-03-secoes/06-12-opcoes-de-tempo.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-11-outros-filtros.md
-03-secoes/06-08-frequencia-e-parametros.md
-03-secoes/07-03-frequencia.md#Dinâmica (baseada em dados existentes)
-sem_chave: mínimo e máximo da frequência histórica
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-03-financeiros.md",
+    "03-secoes/06-05-localizacao-classificacao.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/06-02-recencia-visita-positivacao.md",
+    "03-secoes/06-12-opcoes-de-tempo.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-11-outros-filtros.md",
+    "03-secoes/06-08-frequencia-e-parametros.md"
+  ],
+  "sem_chave": [
+    "mínimo e máximo da frequência histórica"
+  ]
+}

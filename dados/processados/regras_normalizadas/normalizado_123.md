@@ -26,10 +26,14 @@ Para o vendedor 7027, os clientes do ramo de atividade 1 que estejam ativos com 
 Para todos os vendedores de campo, os clientes ativos com o próprio vendedor são atendidos a cada 7 dias, e os demais a cada 15 dias. No campo, esses intervalos de atendimento são fixos.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-03-frequencia.md#Fixa por período
-03-secoes/06-01-atividade-inatividade.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-03-frequencia.md",
+    "03-secoes/06-01-atividade-inatividade.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-06-classificacao-por-id.md"
+  ],
+  "sem_chave": []
+}

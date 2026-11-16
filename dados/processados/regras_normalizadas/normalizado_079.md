@@ -22,8 +22,12 @@ timestamp: 2026-11-14T19:49:21-03:00
 No televendas, trabalhamos com todos os vendedores habilitados. Primeiro, não agendamos clientes cujo ramo de atividade seja diferente de 12, 13, 14, 15, 16, 17, 18 e 19. Depois, atendemos os clientes do ramo 12 a cada 7 dias. Os demais são atendidos a cada 14 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Ordem entre regras de parâmetros
-03-secoes/07-01-parametros-estrutura-e-exemplos.md#Remoção de agendamento (exclusivo)
-03-secoes/06-06-classificacao-por-id.md
-03-secoes/07-03-frequencia.md#Fixa por período
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/07-01-parametros-estrutura-e-exemplos.md",
+    "03-secoes/06-06-classificacao-por-id.md",
+    "03-secoes/07-03-frequencia.md"
+  ],
+  "sem_chave": []
+}

@@ -22,6 +22,11 @@ timestamp: 2026-11-14T19:51:13-03:00
 Os vendedores 510, 617 e 596 atendem seus clientes a cada 7 dias. Já os vendedores 613, 614 e 568 atendem seus clientes a cada 2 dias.
 
 ## regras_extraidas
-03-secoes/03-01-times.md
-03-secoes/04-02-selecao-clientes-ruptura.md
-03-secoes/07-03-frequencia.md#Fixa por período
+{
+  "regras_extraidas": [
+    "03-secoes/03-01-times.md",
+    "03-secoes/04-02-selecao-clientes-ruptura.md",
+    "03-secoes/07-03-frequencia.md"
+  ],
+  "sem_chave": []
+}
