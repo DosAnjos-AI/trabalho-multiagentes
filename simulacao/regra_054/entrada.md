@@ -1,1 +1,0 @@
-Regra padrão da empresa, customizável, para todos os vendedores. Cliente sem venda, 14 dias. Cliente adimplente, 30 dias. E cliente inadimplente não agenda. Lembrando que a ordem importa: primeiro tira quem não tem venda, depois pega os adimplentes.

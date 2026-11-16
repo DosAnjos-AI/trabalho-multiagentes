@@ -1,1 +1,0 @@
-Pedido de uma solicitação, televendas ativado. Baixado na Receita não agenda. Prospect, 7 dias. Ativo, com último pedido em até 60 dias, 14 dias. Risco de inatividade, pedido entre 60 e 90 dias, 7 dias. Inativo, com último pedido há mais de 90 dias, 28 dias.

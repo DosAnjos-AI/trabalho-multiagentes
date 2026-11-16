@@ -1,1 +1,0 @@
-Pedido de uma solicitação, televendas ativado. Mantenha o relacionamento, compra global nos últimos 59 dias, 14 dias. Se não mantiver a regularidade o cliente ficará inativo, compra até 89 dias, 14 dias. Resgate do inativo, 14 dias.
