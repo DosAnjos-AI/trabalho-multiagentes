@@ -20,34 +20,32 @@ negocio feita por uma pessoa.
 
 ## 3. Mapa do repositorio
 
-| Pasta ou arquivo | O que e |
-|---|---|
-| `ENTREGA01/task02_entradas/readme.md` | Documentacao da `task02_entradas` |
-| `govendas-rules.pdf` | Manual original da linguagem GOBR |
-| `manual/` | Manual parseado em markdown |
-| `exemplos/` | Pares reais do fornecedor (`.gobr` e `.pdf`) |
-| `simulacao/` | Corpus sintetico de origem, uma pasta por regra |
-| `dados/originais/regras_gobr/` | Base bruta, referencia intocada |
-| `dados/processados/regras_gobr/` | Base deduplicada e corrigida, com `CORRECOES.md` |
-| `dados/processados/regras_entradas/` | Fichas em linguagem natural das regras |
-| `src/conferidor_gobr/` | Codigo permanente reutilizavel: conferidor deterministico de `.gobr` |
-| `ENTREGA01/` | Entregas parciais ja concluidas |
-| `.env` | Chaves de API, ignorado pelo git |
-| `.venv/` | Ambiente virtual do projeto |
+```
+trabalho/
+  .env                      chaves de API, fora do git
+  .venv/                    ambiente virtual do projeto
+  .gitignore
+  CLAUDE.md                 este arquivo
+  govendas-rules.pdf        manual original do fornecedor
+  src/
+    script50_normalizacao/  normalizacao da entrada; mesmo codigo usado no corpus
+    script90_conferidor/    conferidor deterministico de arquivos .gobr
+```
 
-## 4. Padrao de pastas das entregas
+Os dados do projeto deixaram de viver em disco e passaram a viver no BigQuery, no dataset
+`govendas_gobr` do projeto `multiagentes-514823`, nas tabelas `exemplos`, `prompts` e `manual`.
 
-- Cada entrega parcial e uma pasta `ENTREGAnn/` na raiz, com uma subpasta por tarefa no
-  formato `taskNN_nome/`.
-- Cada tarefa tem `config.py` (parametros), um `script_*.py` e um `readme.md` com entrada,
-  saida, configuracao, uso e avisos.
-- Dados de uso geral vao para `dados/`; codigo reutilizavel entre tarefas vai para `src/`.
-- Saida oficial vai para `dados/processados/`; saida de teste e de avaliacao fica dentro
-  da pasta da tarefa.
-- `ENTREGA01/` esta entregue. Nao se edita nem se roda nada dentro dela sem pedido do
-  Mestre. Rodar `ENTREGA01/task01_dedup/script_dedup.py` apaga a pasta de saida dele.
-- `ENTREGA02/` esta prevista para padronizacao, embedding e banco vetorial. So e criada
-  quando o Mestre abrir a discussao.
+## 4. Padrao de pastas
+
+1. **`config.py` na raiz do projeto.** E o unico arquivo de configuracao. Tem secoes internas,
+   uma por no do agente. Configuracao nao e codigo: a raiz e o que se edita, `src/` e o que se
+   importa.
+2. **Cada passo do workflow vive em `src/scriptNN_{nome}/`**, com o script principal chamado
+   `scriptNN_{nome}.py`, mais a documentacao e os arquivos que so aquele passo usa.
+3. **A numeracao vai de 10 em 10** e segue a ordem do passo no workflow, para que a sequencia
+   seja legivel sem executar nada. O intervalo entre dois numeros existe para acomodar um passo
+   novo sem renomear os seguintes.
+4. **A documentacao de cada passo mora na pasta do passo**, nao na raiz.
 
 ## 5. Padroes de codigo
 
