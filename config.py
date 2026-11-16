@@ -65,6 +65,29 @@ VERSAO_NORMALIZADOR = "v4"
 VARIAVEL_CHAVE = "CHAVE_OPENAI"
 
 # ============================================================================
+# NO 60 - RECUPERACAO
+# ============================================================================
+TABELA_EXEMPLOS = "exemplos"
+# Filtro da busca: so entra exemplo com esta origem e este status de revisao.
+ORIGEM_BUSCA = "sintetico"
+STATUS_BUSCA = "aprovado"
+# Quantos exemplos cada ramo traz. Independentes: a uniao tem ate N1_DENSO + N2_JACCARD (menos se os ramos coincidirem).
+N1_DENSO = 2
+N2_JACCARD = 2
+# Lista fechada de modelos de embedding. O preco e HIPOTESE de referencia (US$ por 1M de tokens), nao conferido na
+# pagina oficial; o custo real usa os tokens que a API devolve.
+MODELOS_EMBEDDING = {
+    "gemini-embedding-2": {"dimensoes": 3072, "usd_por_milhao": 0.20},
+}
+MODELO_EMBEDDING = "gemini-embedding-2"
+DIMENSOES = 3072
+LOCALIZACAO_EMBEDDING = "us"
+# Mesmo prefixo dos documentos em `exemplos` (formato B do teste de prefixo); mudar aqui exige recalcular os documentos.
+PREFIXO_EMBEDDING = "task: sentence similarity | query: "
+# Teto de gasto do embedding por execucao, em dolares. Valor desta rodada, definido pelo Mestre.
+TETO_GASTO_NO60_USD = 0.10
+
+# ============================================================================
 # VALIDACAO (roda na importacao)
 # ============================================================================
 ARQ_CONFIG = "config.py"
@@ -138,3 +161,26 @@ def _validar() -> None:
 
 
 _validar()
+
+
+def _validar_no60() -> None:
+    """Validacao do no 60; roda na importacao, depois da validacao do no 50."""
+    for nome in ("TABELA_EXEMPLOS", "ORIGEM_BUSCA", "STATUS_BUSCA", "LOCALIZACAO_EMBEDDING", "PREFIXO_EMBEDDING"):
+        _texto(nome)
+    _em("ORIGEM_BUSCA", ("sintetico",))
+    _em("STATUS_BUSCA", ("aprovado",))
+    _numero_positivo("N1_DENSO", (int,))
+    _numero_positivo("N2_JACCARD", (int,))
+    _numero_positivo("TETO_GASTO_NO60_USD")
+    modelos = _valor("MODELOS_EMBEDDING")
+    modelo = _em("MODELO_EMBEDDING", modelos)
+    info = modelos[modelo]
+    for nome in ("dimensoes", "usd_por_milhao"):
+        if nome not in info:
+            raise ErroConfig(f"MODELOS_EMBEDDING[{modelo!r}] recebido sem o campo {nome!r}. Configure em {ARQ_CONFIG}.")
+    if _valor("DIMENSOES") != info["dimensoes"]:
+        raise ErroConfig(f"DIMENSOES recebido: {DIMENSOES!r}. Aceito para {modelo}: {info['dimensoes']}. "
+                         f"Configure em {ARQ_CONFIG}.")
+
+
+_validar_no60()
