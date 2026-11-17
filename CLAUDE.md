@@ -27,8 +27,11 @@ trabalho/
   .gitignore
   CLAUDE.md                 este arquivo
   govendas-rules.pdf        manual original do fornecedor
+  config.py                 configuracao, uma secao por no (50, 60 e 80)
   src/
     script50_normalizacao/  normalizacao da entrada; mesmo codigo usado no corpus
+    script60_recuperacao/   exemplos (denso + Jaccard) e recorte do manual
+    script80_geracao/       escreve o .gobr (modelo padrao gpt-6-luna; prompt no BigQuery)
     script90_conferidor/    conferidor deterministico de arquivos .gobr
 ```
 
@@ -97,3 +100,24 @@ Os dados do projeto deixaram de viver em disco e passaram a viver no BigQuery, n
 - Prova executada, nunca deduzida.
 - Numero sem o comando que o produziu nao entra em relatorio.
 - Lacuna e declarada, nao omitida.
+
+## 11. Decisoes e evidencias
+
+Resultados completos dos testes: pasta local `resultados_teste_v3/`, ao lado do repositorio, nao versionada.
+
+| Tema | Decisao | Evidencia |
+|---|---|---|
+| Modelo do no 80 | `gpt-6-luna` e o padrao | 10 regras reservadas com o prompt v2c: 0 altas, 1 media, cerca de US$ 0,0022 por regra |
+| Alternativas testadas | terra, lite, 3.8-flash e carbon ficaram de fora | terra: 7 a 8 vezes mais caro; lite: 2 altas; 3.8-flash: mais caro e equivalente; carbon: cortou a regra 135 e custou 3,8 vezes mais |
+| Prompt | v2c ativo no BigQuery (tipo `geracao_gobr`) | v3 empatou e e 5,6% menor, mas fica inativo; v1 inativa (licenca para omitir trecho) |
+| Recuperacao | `N1_DENSO` = 2 e `N2_JACCARD` = 2 mantidos | A uniao denso + Jaccard entregou 138 de 139 secoes exigidas, no melhor caso: a consulta usou as regras do proprio corpus; em producao virao do normalizador |
+
+## 12. Dividas
+
+- `cli.py` do conferidor quebrado apos a renomeacao da pasta (importa o modulo inexistente `conferidor_gobr`).
+- O conferidor nao detecta omissao de condicao; a contagem automatica de blocos engana quando a descricao agrupa itens.
+- Lacuna do manual sobre o limite da frequencia do historico (29 de 193 exemplos usam a construcao); caso 190.
+- Decisao pendente do Mestre: `sem venda ou prospects` (manual 06-01) contra `sem venda` (corpus).
+- O gabarito de algumas regras usa escopo de grupo onde a descricao diz "do vendedor".
+- Cobertura real do manual em producao ainda nao medida (precisa do normalizador na cadeia).
+- Nao existe rotina de edicao de prompts e manual no BigQuery.

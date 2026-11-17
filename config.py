@@ -1,4 +1,4 @@
-"""Configuracao do projeto. Uma secao por no do agente (50, 60 e 80).
+"""Configuracao do projeto. Uma secao por no do agente que usa configuracao (50, 60 e 80); o no 90 (conferidor) nao tem.
 
 Nao ha credencial aqui: a chave da OpenAI vem do ambiente (variavel nomeada em VARIAVEL_CHAVE).
 A validacao roda na importacao: parametro ausente ou fora da lista aceita impede o modulo de carregar,
