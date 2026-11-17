@@ -90,8 +90,10 @@ TETO_GASTO_NO60_USD = 0.10
 # NO 80 - GERACAO DO .gobr
 # ============================================================================
 # Lista fechada dos modelos que o no 80 aceita; precos e limites vem de MODELOS (secao do no 50).
-MODELOS_NO80 = ("gpt-6.1-terra", "gpt-6.1-sol")
-MODELO_NO80 = "gpt-6.1-terra"
+# Padrao: gpt-6-luna (US$ 0,10 entrada e US$ 0,50 saida por 1M; preco relido em developers.openai.com/api/docs/pricing em 2026-11-16).
+# O terra continua valido como alternativa. Todos os modelos da geracao 6 so aceitam a temperatura padrao.
+MODELOS_NO80 = ("gpt-6-luna", "gpt-6.1-terra", "gpt-6.1-sol")
+MODELO_NO80 = "gpt-6-luna"
 # Valor da coluna `tipo` da tabela de prompts; o no exige exatamente uma linha ativa deste tipo.
 TIPO_PROMPT_NO80 = "geracao_gobr"
 # Teto de gasto por execucao do no, em dolares. Valor desta rodada, definido pelo Mestre.
