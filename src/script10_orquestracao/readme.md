@@ -8,6 +8,8 @@ vive aqui: para mudar uma ligacao, edite `orquestracao.py`.
   com memoria em processo.
 - Primeira geracao: `normalizacao -> recuperacao -> geracao`. Com `pedido_mudanca` preenchido:
   `normalizacao_pedido -> recuperacao -> geracao_reexecucao`.
+- Campo `sem_chave` do estado: itens que a descricao pede e a linguagem GOBR nao expressa, devolvidos pelo no 50.
+  O `agente.py` os imprime como aviso na conversa, depois do arquivo gerado; o aviso nunca entra no `.gobr`.
 - Nada e escrito em disco nem no BigQuery.
 
 ## Ponto de entrada

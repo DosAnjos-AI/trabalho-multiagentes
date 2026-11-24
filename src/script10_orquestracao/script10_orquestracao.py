@@ -49,7 +49,7 @@ def _normalizar(texto: str, estado: dict, modulo: ModuleType, ctx) -> dict:
     if not r.ok:
         raise ErroNo(f"no 50 falhou: {r.erros}; resposta: {r.resposta_crua[:300]!r}")
     return {"descricao_normalizada": r.texto_normalizado, "regras_consulta": r.regras_extraidas["regras_extraidas"],
-            "custo_turno": float(r.metadados["custo_usd"])}
+            "sem_chave": r.regras_extraidas["sem_chave"], "custo_turno": float(r.metadados["custo_usd"])}
 
 
 def normalizar_descricao(estado: dict, modulo: ModuleType, ctx) -> dict:

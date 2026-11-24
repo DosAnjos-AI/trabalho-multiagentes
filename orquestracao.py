@@ -18,6 +18,7 @@ ESTADO = {
     "pedido_mudanca": ("texto_ou_nada", "pedido de mudanca do turno; vazio na primeira geracao"),
     "descricao_normalizada": ("texto", "descricao atual, ja normalizada; na reexecucao incorpora o pedido"),
     "regras_consulta": ("lista", "caminhos do manual que a descricao exige (saida do no 50)"),
+    "sem_chave": ("lista", "itens que a descricao pede e a linguagem GOBR nao expressa (saida do no 50); o aviso sai na conversa"),
     "recuperacao": ("objeto", "exemplos, recorte do manual e apoio devolvidos pelo no 60"),
     "gobr_atual": ("texto_ou_nada", ".gobr vigente; a reexecucao parte dele"),
     "custo_turno": ("numero", "gasto do turno em dolares, somado nos tres nos"),

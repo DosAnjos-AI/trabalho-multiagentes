@@ -12,6 +12,12 @@ negocio feita por uma pessoa.
 - Commit e envio ao remoto (`git push`) so com autorizacao explicita do Mestre na rodada.
 - Arquivo entra em commit pelo caminho exato. Nunca `git add -A`, `git add .` ou
   `git commit -a`. Nunca `--no-verify`: hook que falha e reportado, nao contornado.
+- Toda sessao de implementacao termina em commit, ou o relatorio diz por que nao terminou.
+- git add arquivo por arquivo. git add . e git add -A sao proibidos.
+- Commit por assunto, nao por arquivo.
+- Mensagem sem emoji, sem segredo e sem URL de tarefa.
+- Antes de qualquer git add: provar que o arquivo de ambiente esta ignorado e nao rastreado.
+- Enviar ao remoto e degrau separado, com autorizacao propria do Mestre.
 
 ## 2. Pastas de trabalho
 
@@ -34,7 +40,7 @@ trabalho/
     script50_normalizacao/  normalizacao da entrada; mesmo codigo usado no corpus
     script60_recuperacao/   exemplos (denso + Jaccard) e recorte do manual
     script80_geracao/       escreve o .gobr (modelo padrao gpt-6-luna; prompt no BigQuery)
-    script10_orquestracao/  constroi o grafo LangGraph a partir de orquestracao.py e traz os nos adaptados
+    script10_orquestracao/  constroi o grafo LangGraph a partir de orquestracao.py e traz os nos adaptados; o campo `sem_chave` do estado leva ao usuario o que a linguagem nao expressa
 ```
 
 Os dados do projeto deixaram de viver em disco e passaram a viver no BigQuery, no dataset

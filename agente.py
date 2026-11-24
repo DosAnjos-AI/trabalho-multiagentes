@@ -34,7 +34,12 @@ def main() -> None:
         estado = grafo.invoke(entrada, cfg)
         primeiro = False
         total += estado["custo_turno"]
-        print(f"\n{estado['gobr_atual']}\n\n[custo do turno US$ {estado['custo_turno']:.6f}; total US$ {total:.6f}]\n")
+        print(f"\n{estado['gobr_atual']}")
+        # O aviso sai na conversa, nunca dentro do arquivo: o prompt de geracao proibe texto alheio a regra.
+        if estado["sem_chave"]:
+            itens = "\n".join(f"  - {item}" for item in estado["sem_chave"])
+            print(f"\nAviso: a linguagem GOBR nao expressa os itens abaixo, e o arquivo acima nao os contem:\n{itens}")
+        print(f"\n[custo do turno US$ {estado['custo_turno']:.6f}; total US$ {total:.6f}]\n")
 
 
 if __name__ == "__main__":
