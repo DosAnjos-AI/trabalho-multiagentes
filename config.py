@@ -1,9 +1,15 @@
-"""Configuracao do projeto. Uma secao por no do agente que usa configuracao (50, 60 e 80); o no 90 (conferidor) nao tem.
+"""Configuracao do projeto. Uma secao por no do agente que usa configuracao (50, 60 e 80).
 
-Nao ha credencial aqui: a chave da OpenAI vem do ambiente (variavel nomeada em VARIAVEL_CHAVE).
+O fluxo do grafo nao fica aqui: e declarado em orquestracao.py.
+
+Nao ha credencial aqui: a chave da OpenAI vem do ambiente (variavel nomeada em VARIAVEL_CHAVE), que o fim deste
+arquivo preenche a partir do arquivo ARQ_ENV.
 A validacao roda na importacao: parametro ausente ou fora da lista aceita impede o modulo de carregar,
 antes de qualquer leitura no BigQuery ou chamada paga.
 """
+
+import os
+from pathlib import Path
 
 # ============================================================================
 # PROJETO (endereco dos dados; sem valor padrao no codigo do no)
@@ -21,17 +27,16 @@ TABELA_MANUAL = "manual"
 # Envelhece: reconferir antes de uso em escala. "temperatura_aceita": faixa que a API aceita; os modelos
 # da geracao 6 recusam qualquer valor diferente de 1 (erro da API: "Only the default (1) value is supported").
 MODELOS = {
-    "gpt-6-luna": {"fornecedor": "openai", "entrada_por_milhao": 0.10, "saida_por_milhao": 0.50,
+    "gpt-6-luna": {"entrada_por_milhao": 0.10, "saida_por_milhao": 0.50,
                    "temperatura_aceita": (1.0, 1.0)},
-    "gpt-6.1-terra": {"fornecedor": "openai", "entrada_por_milhao": 1.00, "saida_por_milhao": 5.00,
+    "gpt-6.1-terra": {"entrada_por_milhao": 1.00, "saida_por_milhao": 5.00,
                       "temperatura_aceita": (1.0, 1.0)},
-    "gpt-6.1-sol": {"fornecedor": "openai", "entrada_por_milhao": 2.00, "saida_por_milhao": 10.00,
+    "gpt-6.1-sol": {"entrada_por_milhao": 2.00, "saida_por_milhao": 10.00,
                     "temperatura_aceita": (1.0, 1.0)},
-    "gpt-6-astra": {"fornecedor": "openai", "entrada_por_milhao": 10.00, "saida_por_milhao": 50.00,
+    "gpt-6-astra": {"entrada_por_milhao": 10.00, "saida_por_milhao": 50.00,
                     "temperatura_aceita": (1.0, 1.0)},
 }
 MODELO = "gpt-6.1-terra"
-FORNECEDOR = "openai"
 # O no nao envia o parametro (o modelo so aceita 1); o valor entra apenas nos metadados.
 TEMPERATURA = 1.0
 
@@ -96,13 +101,20 @@ MODELOS_NO80 = ("gpt-6-luna", "gpt-6.1-terra", "gpt-6.1-sol")
 MODELO_NO80 = "gpt-6-luna"
 # Valor da coluna `tipo` da tabela de prompts; o no exige exatamente uma linha ativa deste tipo.
 TIPO_PROMPT_NO80 = "geracao_gobr"
+# Adendo de reexecucao: linha ativa da tabela de prompts com este `tipo`, lida pelo mesmo mecanismo do prompt principal.
+TIPO_ADENDO_NO80 = "adendo_reexecucao_gobr"
 # Teto de gasto por execucao do no, em dolares. Valor desta rodada, definido pelo Mestre.
 TETO_GASTO_NO80_USD = 0.50
 
 # ============================================================================
+# AMBIENTE
+# ============================================================================
+# Arquivo com as chaves de API (ignorado pelo git), na mesma pasta deste arquivo. Variaveis esperadas: VARIAVEL_CHAVE.
+ARQ_ENV = ".env"
+
+# ============================================================================
 # VALIDACAO (roda na importacao)
 # ============================================================================
-ARQ_CONFIG = "config.py"
 _AUSENTE = object()
 
 
@@ -113,28 +125,28 @@ class ErroConfig(ValueError):
 def _valor(nome: str):
     valor = globals().get(nome, _AUSENTE)
     if valor is _AUSENTE:
-        raise ErroConfig(f"{nome} recebido: ausente. Defina em {ARQ_CONFIG}.")
+        raise ErroConfig(f"{nome} recebido: ausente. Defina em config.py.")
     return valor
 
 
 def _em(nome: str, aceitos) -> object:
     valor = _valor(nome)
     if valor not in aceitos:
-        raise ErroConfig(f"{nome} recebido: {valor!r}. Aceitos: {list(aceitos)}. Configure em {ARQ_CONFIG}.")
+        raise ErroConfig(f"{nome} recebido: {valor!r}. Aceitos: {list(aceitos)}. Configure em config.py.")
     return valor
 
 
 def _texto(nome: str) -> str:
     valor = _valor(nome)
     if not isinstance(valor, str) or not valor.strip():
-        raise ErroConfig(f"{nome} recebido: {valor!r}. Aceita texto nao vazio. Configure em {ARQ_CONFIG}.")
+        raise ErroConfig(f"{nome} recebido: {valor!r}. Aceita texto nao vazio. Configure em config.py.")
     return valor
 
 
 def _numero_positivo(nome: str, tipos=(int, float)) -> None:
     valor = _valor(nome)
     if isinstance(valor, bool) or not isinstance(valor, tipos) or valor <= 0:
-        raise ErroConfig(f"{nome} recebido: {valor!r}. Aceita numero > 0. Configure em {ARQ_CONFIG}.")
+        raise ErroConfig(f"{nome} recebido: {valor!r}. Aceita numero > 0. Configure em config.py.")
 
 
 def _validar() -> None:
@@ -144,32 +156,28 @@ def _validar() -> None:
     modelos = _valor("MODELOS")
     modelo = _em("MODELO", modelos)
     info = modelos[modelo]
-    for nome in ("fornecedor", "entrada_por_milhao", "saida_por_milhao", "temperatura_aceita"):
+    for nome in ("entrada_por_milhao", "saida_por_milhao", "temperatura_aceita"):
         if nome not in info:
-            raise ErroConfig(f"MODELOS[{modelo!r}] recebido sem o campo {nome!r}. Configure em {ARQ_CONFIG}.")
-    _em("FORNECEDOR", ("openai",))
-    if _valor("FORNECEDOR") != info["fornecedor"]:
-        raise ErroConfig(f"FORNECEDOR recebido: {FORNECEDOR!r}, mas {modelo} e do fornecedor "
-                         f"{info['fornecedor']!r}. Configure em {ARQ_CONFIG}.")
+            raise ErroConfig(f"MODELOS[{modelo!r}] recebido sem o campo {nome!r}. Configure em config.py.")
     faixa = info["temperatura_aceita"]
     if not (faixa[0] <= _valor("TEMPERATURA") <= faixa[1]):
         raise ErroConfig(f"TEMPERATURA recebido: {TEMPERATURA!r}. Aceito para {modelo}: {faixa}. "
-                         f"Configure em {ARQ_CONFIG}.")
+                         f"Configure em config.py.")
     if tuple(_valor("TIPOS_ENTRADA")) != ("texto", "imagem", "audio", "documento", "misto"):
         raise ErroConfig(f"TIPOS_ENTRADA recebido: {TIPOS_ENTRADA!r}. Aceito: lista fechada texto, imagem, audio, "
-                         f"documento, misto. Configure em {ARQ_CONFIG}.")
+                         f"documento, misto. Configure em config.py.")
     if set(_valor("ORIGENS")) != {"sintetico", "usuario"}:
-        raise ErroConfig(f"ORIGENS recebido: {ORIGENS!r}. Aceito: ('sintetico', 'usuario'). Configure em {ARQ_CONFIG}.")
+        raise ErroConfig(f"ORIGENS recebido: {ORIGENS!r}. Aceito: ('sintetico', 'usuario'). Configure em config.py.")
     _numero_positivo("MAX_TOKENS_SAIDA", (int,))
     _numero_positivo("TETO_GASTO_USD")
     _numero_positivo("CARACTERES_POR_TOKEN_PESSIMISTA")
     if tuple(_valor("SECOES_OBRIGATORIAS")) != ("## explicacao_normalizada", "## regras_extraidas"):
         raise ErroConfig(f"SECOES_OBRIGATORIAS recebido: {SECOES_OBRIGATORIAS!r}. Aceito: "
-                         f"('## explicacao_normalizada', '## regras_extraidas'). Configure em {ARQ_CONFIG}.")
+                         f"('## explicacao_normalizada', '## regras_extraidas'). Configure em config.py.")
     campos = _valor("CAMPOS_METADADOS")
     if len(campos) != 17 or len(set(campos)) != 17:
         raise ErroConfig(f"CAMPOS_METADADOS recebido: {campos!r}. Aceita 17 campos distintos. "
-                         f"Configure em {ARQ_CONFIG}.")
+                         f"Configure em config.py.")
 
 
 _validar()
@@ -188,10 +196,10 @@ def _validar_no60() -> None:
     info = modelos[modelo]
     for nome in ("dimensoes", "usd_por_milhao"):
         if nome not in info:
-            raise ErroConfig(f"MODELOS_EMBEDDING[{modelo!r}] recebido sem o campo {nome!r}. Configure em {ARQ_CONFIG}.")
+            raise ErroConfig(f"MODELOS_EMBEDDING[{modelo!r}] recebido sem o campo {nome!r}. Configure em config.py.")
     if _valor("DIMENSOES") != info["dimensoes"]:
         raise ErroConfig(f"DIMENSOES recebido: {DIMENSOES!r}. Aceito para {modelo}: {info['dimensoes']}. "
-                         f"Configure em {ARQ_CONFIG}.")
+                         f"Configure em config.py.")
 
 
 _validar_no60()
@@ -200,12 +208,34 @@ _validar_no60()
 def _validar_no80() -> None:
     """Validacao do no 80; roda na importacao, depois da validacao do no 60."""
     _texto("TIPO_PROMPT_NO80")
+    _texto("TIPO_ADENDO_NO80")
     _numero_positivo("TETO_GASTO_NO80_USD")
     aceitos = _valor("MODELOS_NO80")
     if not set(aceitos) <= set(_valor("MODELOS")):
         raise ErroConfig(f"MODELOS_NO80 recebido: {list(aceitos)!r}. Cada modelo precisa existir em MODELOS: "
-                         f"{list(MODELOS)}. Configure em {ARQ_CONFIG}.")
+                         f"{list(MODELOS)}. Configure em config.py.")
     _em("MODELO_NO80", aceitos)
 
 
 _validar_no80()
+
+
+def _carregar_env() -> None:
+    """Copia o arquivo ARQ_ENV (CHAVE=valor por linha) para o ambiente do processo, so com a biblioteca padrao.
+
+    Roda na importacao, antes de qualquer chamada paga. Nao imprime valor: o erro cita so o nome da variavel.
+    """
+    caminho = Path(__file__).with_name(ARQ_ENV)
+    if not caminho.is_file():
+        raise ErroConfig(f"Arquivo {ARQ_ENV} inexistente em {caminho.parent}. Crie-o com a variavel {VARIAVEL_CHAVE}.")
+    for linha in caminho.read_text(encoding="utf-8").splitlines():
+        linha = linha.strip()
+        if not linha or linha.startswith("#") or "=" not in linha:
+            continue
+        nome, valor = linha.removeprefix("export ").split("=", 1)
+        os.environ.setdefault(nome.strip(), valor.strip().strip("\"'"))
+    if not os.environ.get(VARIAVEL_CHAVE, "").strip():
+        raise ErroConfig(f"Variavel {VARIAVEL_CHAVE} ausente ou vazia em {ARQ_ENV}. Defina-a em {caminho}.")
+
+
+_carregar_env()

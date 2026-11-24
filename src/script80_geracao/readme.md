@@ -1,12 +1,16 @@
 # script80_geracao
 
 No do agente que escreve o `.gobr` a partir da descricao normalizada, dos exemplos e do recorte do manual.
-Nao confere, nao corrige e nao escreve em disco nem no BigQuery: devolve um objeto; conferir e o no 90.
+Nao confere, nao corrige e nao escreve em disco nem no BigQuery: devolve um objeto.
 
 ## O que recebe
 
 `gerar_gobr(descricao, exemplos, secoes_manual, apoio, ctx)`: os tres ultimos vem da `Recuperacao` do no 60.
 `ctx` e o `Contexto`, criado uma vez por `construir_contexto(config)`.
+
+Reexecucao: `gerar_gobr(..., ctx, gobr_anterior=..., pedido=...)` (os dois juntos). O prompt do banco ganha o adendo
+da linha ativa da tabela `prompts` com `tipo` `adendo_reexecucao_gobr` (`TIPO_ADENDO_NO80`), a mensagem leva o `.gobr`
+anterior e o pedido, e `id_prompt`/`hash_prompt` dos metadados passam a descrever o conjunto enviado.
 
 ## O que devolve
 

@@ -22,21 +22,23 @@ negocio feita por uma pessoa.
 
 ```
 trabalho/
-  .env                      chaves de API, fora do git
+  .env                      chaves de API, fora do git; carregado pelo config.py na importacao (so biblioteca padrao)
   .venv/                    ambiente virtual do projeto
   .gitignore
   CLAUDE.md                 este arquivo
   govendas-rules.pdf        manual original do fornecedor
   config.py                 configuracao, uma secao por no (50, 60 e 80)
+  agente.py                 ponto de entrada: conversa de varios turnos no terminal (`.venv/bin/python -B agente.py`)
+  orquestracao.py           mapa declarativo do grafo (estado, agentes, tools, nos, arestas); fonte unica do fluxo
   src/
     script50_normalizacao/  normalizacao da entrada; mesmo codigo usado no corpus
     script60_recuperacao/   exemplos (denso + Jaccard) e recorte do manual
     script80_geracao/       escreve o .gobr (modelo padrao gpt-6-luna; prompt no BigQuery)
-    script90_conferidor/    conferidor deterministico de arquivos .gobr
+    script10_orquestracao/  constroi o grafo LangGraph a partir de orquestracao.py e traz os nos adaptados
 ```
 
 Os dados do projeto deixaram de viver em disco e passaram a viver no BigQuery, no dataset
-`govendas_gobr` do projeto `multiagentes-514823`, nas tabelas `exemplos`, `prompts` e `manual`.
+`govendas_gobr` do projeto `multiagentes-514823`, nas tabelas `exemplos`, `prompts` e `manual`. O adendo de reexecucao do no 80 e a linha ativa de `prompts` com `tipo` `adendo_reexecucao_gobr`.
 
 ## 4. Padrao de pastas
 
@@ -91,7 +93,7 @@ Os dados do projeto deixaram de viver em disco e passaram a viver no BigQuery, n
 
 - Ler e permitido; imprimir nao. Nenhum valor de segredo em terminal, arquivo ou relatorio.
 - Chave nunca em arquivo rastreado, nunca em configuracao, nunca em codigo.
-- Credencial vem do mecanismo do ambiente (`.env` ignorado pelo git).
+- Credencial vem do ambiente; o `config.py` o preenche a partir do `.env` (ignorado pelo git) e falha se faltar arquivo ou variavel.
 - Para conferir prefixo, mostrar no maximo os 4 primeiros caracteres.
 - Segredo em claro em arquivo rastreado: parar, nao comitar, reportar caminho e tipo.
 
@@ -114,8 +116,7 @@ Resultados completos dos testes: pasta local `resultados_teste_v3/`, ao lado do 
 
 ## 12. Dividas
 
-- `cli.py` do conferidor quebrado apos a renomeacao da pasta (importa o modulo inexistente `conferidor_gobr`).
-- O conferidor nao detecta omissao de condicao; a contagem automatica de blocos engana quando a descricao agrupa itens.
+- `langgraph` instalado no `.venv` sem arquivo de dependencias no repositorio.
 - Lacuna do manual sobre o limite da frequencia do historico (29 de 193 exemplos usam a construcao); caso 190.
 - Decisao pendente do Mestre: `sem venda ou prospects` (manual 06-01) contra `sem venda` (corpus).
 - O gabarito de algumas regras usa escopo de grupo onde a descricao diz "do vendedor".
