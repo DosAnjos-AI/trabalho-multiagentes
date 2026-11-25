@@ -37,6 +37,9 @@ descricao, sem corte de espaco, igual ao no 90. Mudar prefixo ou modelo invalida
 
 ## De onde vem o conteudo
 
-Tabelas `manual` (secoes e tres arquivos de apoio) e `exemplos` (descricao, regras, gobr e vetor gravado), lidas
-uma vez em `construir_contexto`. A credencial do embedding vem do `google.auth.default`. Caminho citado em
-`regras_extraidas` que nao existe no manual interrompe o no.
+Tabela `exemplos` (descricao, regras, gobr e vetor gravado) e os tres arquivos de apoio da tabela `manual`, lidos
+uma vez em `construir_contexto`. As secoes do manual sao lidas sob demanda: em cada turno o no pede ao BigQuery so as
+secoes do recorte que ainda nao leu (uma consulta no maximo, nenhuma se todas ja estao em memoria) e guarda o resultado
+em memoria do processo; nada vai a disco. A escolha do recorte nao mudou, so o momento da leitura. A credencial do
+embedding vem do `google.auth.default`. Secao citada que nao existe no manual interrompe o no, com o nome dela; a
+conferencia agora acontece depois do embedding da consulta (custo desprezivel), numa leitura so.

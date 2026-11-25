@@ -1,9 +1,10 @@
 """No de recuperacao: dada uma consulta normalizada, devolve os exemplos .gobr mais proximos e o recorte do manual.
 
 So le o BigQuery; nao grava nada nem em disco nem na nuvem. A saida e um objeto devolvido pela funcao.
-Na partida (`construir_contexto`) carrega uma vez: o manual inteiro (para nao consultar o banco a cada turno), os
-tres arquivos de apoio separados, os exemplos filtrados com seus vetores e a credencial do embedding.
-O manual inteiro fica em memoria, mas NUNCA e devolvido: sai so o recorte (ver `recuperar`).
+Na partida (`construir_contexto`) carrega uma vez: os tres arquivos de apoio (fixos, entregues em todo turno), os
+exemplos filtrados com seus vetores e a credencial do embedding. As secoes do manual NAO sao lidas na partida: cada
+turno le so as que o recorte pede, e as ja lidas ficam em memoria do processo (ver `_carregar_secoes`).
+O manual inteiro nunca e devolvido: sai so o recorte (ver `recuperar`).
 Nenhuma funcao deste modulo le configuracao global: o config entra so em `construir_contexto`, como parametro.
 
 Uso:
@@ -44,7 +45,9 @@ class ErroTeto(RuntimeError):
 class Contexto:
     """Lido uma vez na partida. Imutavel, salvo o acumulador de gasto, que e da execucao."""
     credenciais: object
-    secoes: dict          # caminho -> texto, so tipo 'secao'
+    bq: object            # cliente do BigQuery, para ler secao do manual sob demanda
+    tabela_manual: str
+    secoes: dict          # caminho -> texto das secoes ja lidas; comeca vazio e cresce por turno (memoria do processo)
     apoio: dict           # caminho -> texto, os tres arquivos de apoio
     ids: tuple            # exemplo_id, na ordem das linhas de `matriz`
     exemplos: dict        # exemplo_id -> {explicacao_normalizada, regras_extraidas, sem_chave, gobr}
@@ -88,16 +91,17 @@ def construir_contexto(cfg: ModuleType) -> Contexto:
 
     bq = bigquery.Client(project=cfg.PROJETO_GCP)
     base = f"{cfg.PROJETO_GCP}.{cfg.DATASET}"
-    linhas = [dict(r) for r in bq.query(f"SELECT caminho, tipo, texto FROM `{base}.{cfg.TABELA_MANUAL}`").result()]
-    secoes = {r["caminho"]: r["texto"] for r in linhas if r["tipo"] == TIPO_SECAO}
+    tabela_manual = f"{base}.{cfg.TABELA_MANUAL}"
+    # So o apoio na partida: as secoes (a maior parte do manual) sao lidas sob demanda.
+    consulta_apoio = f"SELECT caminho, tipo, texto FROM `{tabela_manual}` WHERE tipo IN UNNEST(@tipos)"
+    job_apoio = bigquery.QueryJobConfig(query_parameters=[bigquery.ArrayQueryParameter("tipos", "STRING", list(TIPOS_APOIO))])
+    linhas = [dict(r) for r in bq.query(consulta_apoio, job_config=job_apoio).result()]
     apoio = {r["caminho"]: r["texto"] for r in linhas if r["tipo"] in TIPOS_APOIO}
     faltam = [t for t in TIPOS_APOIO if t not in {r["tipo"] for r in linhas}]
     if faltam or len(apoio) != len(TIPOS_APOIO):
         raise ErroContexto(f"{base}.{cfg.TABELA_MANUAL}: arquivos de apoio de tipo {faltam or 'duplicado'} "
                            f"ausentes ou fora de um por tipo (esperados: {list(TIPOS_APOIO)}). "
                            f"Tabela configurada em {ARQ_CONFIG} (TABELA_MANUAL).")
-    if not secoes:
-        raise ErroContexto(f"{base}.{cfg.TABELA_MANUAL}: nenhuma linha com tipo={TIPO_SECAO!r}.")
 
     # Filtro como parametro de consulta: a lista de aceitos vem do config, nao do SQL.
     consulta = (f"SELECT exemplo_id, explicacao_normalizada, regras_extraidas, sem_chave, gobr, embedding "
@@ -124,7 +128,7 @@ def construir_contexto(cfg: ModuleType) -> Contexto:
                                              modelo=cfg.MODELO_EMBEDDING)
     info = cfg.MODELOS_EMBEDDING[cfg.MODELO_EMBEDDING]
     return Contexto(
-        credenciais=credenciais, secoes=secoes, apoio=apoio, ids=tuple(r["exemplo_id"] for r in ex),
+        credenciais=credenciais, bq=bq, tabela_manual=tabela_manual, secoes={}, apoio=apoio, ids=tuple(r["exemplo_id"] for r in ex),
         exemplos=exemplos, matriz=matriz, n1_denso=cfg.N1_DENSO, n2_jaccard=cfg.N2_JACCARD,
         modelo_embedding=cfg.MODELO_EMBEDDING, dimensoes=cfg.DIMENSOES, endpoint=endpoint, projeto=cfg.PROJETO_GCP,
         prefixo=cfg.PREFIXO_EMBEDDING, usd_por_milhao=info["usd_por_milhao"],
@@ -132,13 +136,26 @@ def construir_contexto(cfg: ModuleType) -> Contexto:
     )
 
 
-def _conferir_caminhos(regras: list, secoes: dict, origem: str) -> None:
-    """Falha alto: caminho citado que o manual nao tem como secao. Roda antes da chamada paga."""
-    for caminho in regras:
-        if caminho not in secoes:
-            raise ErroManual(f"{origem}: caminho {caminho!r} nao existe como secao no manual carregado do BigQuery. "
-                             f"Confira regras_extraidas da consulta, ou a tabela configurada em "
-                             f"{ARQ_CONFIG} (TABELA_MANUAL).")
+def _carregar_secoes(ctx: Contexto, caminhos: list, origem: str) -> None:
+    """Le do manual so as secoes pedidas que ainda nao estao em memoria; falha alto nomeando a que nao existe.
+
+    Uma consulta por turno no maximo, e nenhuma quando tudo ja foi lido antes. Nunca segue com secao ausente.
+    """
+    from google.cloud import bigquery
+
+    faltam = [c for c in dict.fromkeys(caminhos) if c not in ctx.secoes]
+    if not faltam:
+        return
+    consulta = f"SELECT caminho, texto FROM `{ctx.tabela_manual}` WHERE tipo = @tipo AND caminho IN UNNEST(@caminhos)"
+    job = bigquery.QueryJobConfig(query_parameters=[bigquery.ScalarQueryParameter("tipo", "STRING", TIPO_SECAO),
+                                                    bigquery.ArrayQueryParameter("caminhos", "STRING", faltam)])
+    lidas = {r["caminho"]: r["texto"] for r in ctx.bq.query(consulta, job_config=job).result()}
+    ausentes = [c for c in faltam if c not in lidas]
+    if ausentes:
+        raise ErroManual(f"{origem}: secao {ausentes!r} nao existe no manual do BigQuery ({ctx.tabela_manual}). "
+                         f"Confira regras_extraidas da consulta, ou a tabela configurada em "
+                         f"{ARQ_CONFIG} (TABELA_MANUAL).")
+    ctx.secoes.update(lidas)
 
 
 def embutir_consulta(ctx: Contexto, texto: str) -> tuple[np.ndarray, int, float]:
@@ -184,7 +201,6 @@ def recuperar(texto: str, regras_consulta: list, ctx: Contexto, *, excluir_ids: 
     if not texto or not texto.strip():
         raise ErroConfig("texto da consulta vazio.")
     regras = list(dict.fromkeys(regras_consulta))
-    _conferir_caminhos(regras, ctx.secoes, "regras_extraidas da consulta")
 
     tokens, custo_emb = 0, 0.0
     if vetor_consulta is None:
@@ -226,9 +242,10 @@ def recuperar(texto: str, regras_consulta: list, ctx: Contexto, *, excluir_ids: 
     caminhos = list(regras)
     for eid in entrada:
         for c in ctx.exemplos[eid]["regras_extraidas"]:
-            _conferir_caminhos([c], ctx.secoes, f"regras_extraidas do exemplo {eid}")
             if c not in caminhos:
                 caminhos.append(c)
+    # Uma leitura so, para a consulta e os exemplos juntos; a ordem de `caminhos` (e do recorte) nao muda.
+    _carregar_secoes(ctx, caminhos, "regras_extraidas da consulta e dos exemplos escolhidos")
     recorte = {c: ctx.secoes[c] for c in caminhos}
 
     return Recuperacao(

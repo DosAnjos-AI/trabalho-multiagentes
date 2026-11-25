@@ -23,6 +23,6 @@ com acesso ao projeto `multiagentes-514823`.
 .venv/bin/python -B -m streamlit run app.py
 ```
 
-Tema claro e paleta em `.streamlit/config.toml`. Abre em http://localhost:8501. A primeira pagina leva cerca de 45 s (leitura do BigQuery); depois fica em cache enquanto
-o processo viver. Entrada por texto ou arquivo (`.png`, `.pdf`, `.wav`); o progresso de cada no aparece durante o turno.
+Tema claro e paleta em `.streamlit/config.toml`. Abre em http://localhost:8501. A primeira pagina leva cerca de 45 s (leitura do BigQuery, quase toda dos exemplos com vetor); depois fica em cache enquanto
+o processo viver. Entrada por texto, por arquivo (`.png`, `.pdf`, `.wav`) ou por um arquivo mais texto na mesma mensagem (nunca dois arquivos); o progresso de cada no aparece durante o turno. A barra lateral traz o teto de custo da sessao (editavel, so para a sessao do navegador; vale a partir da proxima chamada de no) e o rodape mostra os valores em dolar e em real aproximado (`CAMBIO_BRL_POR_USD`). O icone da aba e `icone.png`: o logo sobre quadrado verde, gerado com Pillow a partir de `logo.png`.
 Textos, etapas e cores ficam em `config.py`.

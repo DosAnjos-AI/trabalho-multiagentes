@@ -259,31 +259,46 @@ def classificar_entrada(tipo_entrada: str, turno: str, conteudo: str, ctx: Conte
     Para `texto`, `conteudo` e o que a pessoa disse. Para `imagem`, `documento` e `audio`, e o caminho do arquivo: o tipo
     vem do chamador (o no nao adivinha). Imagem e documento sao convertidos pelo modelo; audio, pelo reconhecimento
     de fala, antes do modelo.
+    Para `misto` (um arquivo mais texto digitado), `conteudo` e o caminho do arquivo na primeira linha e o texto digitado
+    no resto; o tipo do arquivo sai da extensao. O modelo recebe primeiro o conteudo do arquivo e depois o texto digitado.
     """
     if tipo_entrada not in TIPOS:
         raise ErroConfig(f"tipo_entrada recebido: {tipo_entrada!r}. Aceitos: {list(TIPOS)}.")
     if tipo_entrada not in ctx.tipos_implementados:
         raise ErroConfig(f"tipo_entrada recebido: {tipo_entrada!r}. Implementados: {list(ctx.tipos_implementados)}. "
-                         f"O tipo nao e implementado porque o agente.py entrega um arquivo por turno, sem como "
-                         f"compor mais de um tipo; implementa-lo depende de decisao do Mestre "
-                         f"(lista em {ARQ_CONFIG}, TIPOS_ENTRADA_IMPLEMENTADOS).")
+                         f"Lista em {ARQ_CONFIG}, TIPOS_ENTRADA_IMPLEMENTADOS.")
     if turno not in TURNOS:
         raise ErroConfig(f"turno recebido: {turno!r}. Aceitos: {list(TURNOS)}.")
     if not conteudo or not conteudo.strip():
         raise ErroEntrada("conteudo da entrada vazio.")
+    arquivo, digitado, tipo_arquivo = conteudo, "", tipo_entrada
+    if tipo_entrada == "misto":
+        arquivo, _, digitado = conteudo.partition("\n")
+        digitado = digitado.strip()
+        tipo_arquivo = ctx.extensoes.get(Path(arquivo.strip()).suffix.lower(), (None, None))[0]
+        if not arquivo.strip() or not digitado or tipo_arquivo is None:
+            raise ErroEntrada(f"tipo 'misto' pede o caminho de um arquivo na primeira linha e o texto digitado nas "
+                              f"seguintes; recebido arquivo {arquivo.strip()!r} (extensoes aceitas: "
+                              f"{list(ctx.extensoes)}) e {len(digitado)} caracteres de texto. Extensoes em {ARQ_CONFIG}.")
     # Audio e convertido antes do modelo: ele recebe o texto transcrito, como se fosse texto digitado.
     custo_fala = 0.0
-    if tipo_entrada == "audio":
-        conteudo, custo_fala = transcrever_audio(conteudo, ctx)
-    midia = tipo_entrada not in ("texto", "audio")
+    if tipo_arquivo == "audio":
+        arquivo, custo_fala = transcrever_audio(arquivo, ctx)
+    midia = tipo_arquivo not in ("texto", "audio")
     # Em midia, o texto da mensagem so avisa que o anexo e a entrada; o conteudo real vai no bloco anexado.
-    usuario = montar_mensagem_usuario(tipo_entrada, turno, "(midia anexada a esta mensagem)" if midia else conteudo)
+    if midia:
+        corpo = "(arquivo anexado a esta mensagem, seguido do texto digitado)" if digitado else "(midia anexada a esta mensagem)"
+    else:
+        corpo = f"{arquivo}\n\n{digitado}" if digitado else arquivo   # primeiro o arquivo (transcrito), depois o digitado
+    usuario = montar_mensagem_usuario(tipo_entrada, turno, corpo)
     mensagem = usuario
     if midia:
-        mensagem = [{"type": "text", "text": usuario}, montar_parte_midia(tipo_entrada, conteudo, ctx)]
+        mensagem = [{"type": "text", "text": usuario}, montar_parte_midia(tipo_arquivo, arquivo, ctx)]
+        if digitado:
+            mensagem.append({"type": "text", "text": f"Texto digitado junto do arquivo:\n{digitado}"})
     # Projecao pessimista antes da chamada paga: entrada no pior caso, saida no limite maximo.
-    tokens_midia = ctx.tokens_projecao_midia[tipo_entrada] if midia else 0
-    projecao = custo((len(ctx.prompt) + len(usuario)) / ctx.caracteres_por_token + tokens_midia,
+    tokens_midia = ctx.tokens_projecao_midia[tipo_arquivo] if midia else 0
+    projecao = custo((len(ctx.prompt) + len(usuario) + (len(digitado) if midia else 0)) / ctx.caracteres_por_token + tokens_midia,
                      ctx.max_tokens_saida, ctx.preco_entrada, ctx.preco_saida)
     if projecao > ctx.teto_gasto_usd:
         raise ErroTeto(f"projecao de custo {projecao:.4f} USD acima do teto {ctx.teto_gasto_usd} USD. "

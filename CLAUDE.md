@@ -38,6 +38,7 @@ trabalho/
   app.py                    interface de chat no navegador (Streamlit): mesma conversa do agente.py, com progresso no a no
   requirements.txt          dependencias diretas com versao fixada (as que o codigo importa, mais streamlit)
   logo.png                  logo do goVendas (desenho branco, fundo transparente); usado so no cabecalho verde de app.py
+  icone.png                 icone da aba do navegador: logo.png sobre quadrado verde da PALETA (gerado com Pillow; logo.png nao muda)
   .streamlit/config.toml    tema claro do Streamlit com a paleta do goVendas
   readme.md                 como rodar pelo terminal e pelo navegador
   orquestracao.py           mapa declarativo do grafo (estado, agentes, tools, nos, arestas); fonte unica do fluxo
@@ -62,6 +63,16 @@ avisa o inicio de cada no (o `Medidor` so mede o fim). Texto fixo (perguntas, fo
 progresso, paleta) mora no `config.py` e e lido pelo terminal e pela interface. Cada sessao do navegador tem o proprio
 `Medidor` e o proprio `thread_id` (`web-<8 hex>`); o contexto dos nos (BigQuery, cerca de 45 s) e lido uma vez por processo.
 Dependencias: `requirements.txt` (`.venv/bin/python -B -m pip install -r requirements.txt`).
+
+Ajustes da etapa 6B (2026-11-25): (1) balao do agente em `verde_claro` com texto `escuro` e borda `verde`; todas as cores
+vem de `PALETA`. (2) Manual sob demanda no no 60: so os tres arquivos de apoio sao lidos na partida; as secoes do recorte
+sao lidas por turno, uma consulta no maximo, e ficam em memoria do processo. Medido: a primeira carga NAO caiu (42,6 s
+antes, 44,0 s depois), porque o manual custava cerca de 1,3 s e os exemplos com vetor, cerca de 24 s de 45; esses
+seguem lidos na partida por decisao desta rodada. (3) Tipo `misto` no no 30 e na interface: um arquivo mais texto
+digitado; dois arquivos sao recusados com mensagem (`MENSAGEM_VARIOS_ARQUIVOS`), sem derrubar a sessao. O `agente.py`
+nao monta `misto`. (4) Teto editavel na barra lateral do `app.py`, valor inicial `TETO_SESSAO_USD`, aplicado ao `Medidor`
+da sessao a partir da proxima chamada de no; reais por `CAMBIO_BRL_POR_USD` (estimativa, sem servico externo).
+(5) `ARQ_ICONE` e `TITULO_ABA` no `config.py`.
 
 Estado do grafo, campos da entrada: `entrada_bruta` (so registro), `tipo_entrada`, `status_entrada` (`aprovado`, `incompleto`, `fora_de_escopo`) e `faltantes` (`quem_atende`, `desfecho`, `conflito`). O no 30 devolve o texto em `descricao_usuario` (primeiro turno) ou `pedido_mudanca` (mudanca), e o no 50 le esses campos e `tipo_entrada`. Entrada reprovada encerra o turno; o `agente.py` pergunta o que falta, soma a resposta e chama de novo.
 
@@ -161,6 +172,8 @@ nao levantou erro). Provas legitimas A a F passaram. Doze ataques com uma redaca
 - O gabarito de algumas regras usa escopo de grupo onde a descricao diz "do vendedor".
 - Cobertura real do manual em producao ainda nao medida (precisa do normalizador na cadeia).
 - Nao existe rotina de edicao de prompts e manual no BigQuery.
+- Primeira carga de cerca de 45 s: 24 s sao os exemplos com vetor (leitura unica na partida); carregar sob demanda exige decisao do Mestre.
+- `CAMBIO_BRL_POR_USD` e estimativa (5,50); o Mestre confirma o valor.
 - Ataque 8 (campo extra) passa pelos nos 50 e 80, cujos prompts nao foram alterados; decisao do Mestre.
 - Injecao testada com uma redacao por ataque; variar redacao, audio e repeticao antes de afirmar robustez.
 

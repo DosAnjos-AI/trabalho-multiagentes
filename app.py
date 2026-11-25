@@ -50,7 +50,7 @@ class MedidorComProgresso(Medidor):
 # ESTADO DA SESSAO DO NAVEGADOR
 # ============================================================================
 
-@st.cache_resource(show_spinner="Carregando prompts e manual do BigQuery...")
+@st.cache_resource(show_spinner="Carregando prompts e exemplos do BigQuery...")
 def contextos_compartilhados() -> dict:
     """Leitura unica no BigQuery para todas as sessoes do processo; o contexto de cada no e so leitura."""
     return construir_contextos(config, orquestracao)
@@ -115,7 +115,11 @@ def invocar_com_progresso(entrada: dict) -> dict:
 
 
 def turno_de_entrada(texto: str, arquivo) -> None:
-    """Mesma logica do agente.py: entrada, pergunta do que falta, fora de escopo ou regra gerada."""
+    """Mesma logica do agente.py: entrada, pergunta do que falta, fora de escopo ou regra gerada.
+
+    Um arquivo mais texto digitado na mesma mensagem vira o tipo `misto`: o no 30 recebe o caminho na primeira linha e o
+    texto digitado nas seguintes.
+    """
     S = st.session_state
     tipo, caminho = "texto", None
     with tempfile.TemporaryDirectory() as pasta:   # pasta temporaria do sistema, nunca dentro do repositorio
@@ -125,15 +129,19 @@ def turno_de_entrada(texto: str, arquivo) -> None:
                 dizer("agente", config.MENSAGEM_EXTENSAO.format(extensao=repr(extensao),
                                                                 aceitas=list(config.EXTENSOES_ENTRADA)))
                 return
-            tipo = config.EXTENSOES_ENTRADA[extensao][0]
+            tipo = config.EXTENSOES_ENTRADA[extensao][0]   # tipo do arquivo, que manda no limite de tamanho
             if arquivo.size > config.LIMITE_BYTES_ENTRADA[tipo]:
                 dizer("agente", config.MENSAGEM_ARQUIVO_GRANDE.format(tamanho=arquivo.size,
                                                                       limite=config.LIMITE_BYTES_ENTRADA[tipo]))
                 return
             caminho = Path(pasta) / f"entrada{extensao}"
             caminho.write_bytes(arquivo.getvalue())
-            texto = str(caminho)
             fala = f"Arquivo enviado: {arquivo.name}"
+            if texto:
+                tipo, fala = "misto", f"{fala}\n{texto}"
+                texto = f"{caminho}\n{texto}"
+            else:
+                texto = str(caminho)
         else:
             fala = texto
         dizer("usuario", fala)
@@ -204,11 +212,12 @@ html, body, [class*="css"], .stApp {{ font-family: "Helvetica Neue", Arial, "Lib
 .faixa span {{ color: {p['branco']}; font-size: 1.25rem; font-weight: 700; }}
 .faixa b {{ color: {p['amarelo']}; }}
 [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) {{
-    background: {p['verde']}; color: {p['branco']}; border-radius: 1.2rem; padding-right: 1.5rem; }}
+    background: {p['verde_claro']}; color: {p['escuro']}; border: 1px solid {p['verde']}; border-radius: 1.2rem;
+    padding-right: 1.5rem; }}
 [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) p,
-[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) li {{ color: {p['branco']}; }}
+[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) li {{ color: {p['escuro']}; }}
 [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {{
-    background: #F2F5F3; color: {p['escuro']}; border-radius: 1.2rem; }}
+    background: {p['cinza_claro']}; color: {p['escuro']}; border-radius: 1.2rem; }}
 [data-testid="stChatMessage"] [data-testid="stExpander"], [data-testid="stChatMessage"] details {{
     background: {p['branco']}; color: {p['escuro']}; border-radius: 0.8rem; }}
 [data-testid="stChatMessage"] details p, [data-testid="stChatMessage"] details li,
@@ -239,13 +248,31 @@ def desenhar_historico() -> None:
                 st.markdown(m["texto"])
 
 
+def aplicar_teto() -> None:
+    """Campo do teto na barra lateral. Vale so para esta sessao do navegador e nao altera o config.py.
+
+    Forma escolhida: o valor digitado e entregue ao medidor ja existente e vale a partir da proxima chamada de no (a
+    conversa nao reinicia). Se a pessoa sobe o teto depois de a sessao encerrar por ele, a entrada reabre.
+    """
+    S = st.session_state
+    with st.sidebar:
+        valor = st.number_input(config.ROTULO_TETO, min_value=config.TETO_MINIMO_USD, value=float(config.TETO_SESSAO_USD),
+                                step=config.TETO_PASSO_USD, format="%.3f")
+        st.caption(config.AJUDA_TETO.format(reais=f"{valor * config.CAMBIO_BRL_POR_USD:.2f}",
+                                            cambio=config.CAMBIO_BRL_POR_USD))
+    S.medidor.teto = valor
+    if S.encerrada and S.medidor.acumulado < valor:
+        S.encerrada = False
+
+
 def main() -> None:
-    st.set_page_config(page_title=config.NOME_AGENTE, layout="centered")
+    st.set_page_config(page_title=config.TITULO_ABA, page_icon=str(RAIZ / config.ARQ_ICONE), layout="centered")
     st.markdown(estilo(), unsafe_allow_html=True)
     iniciar_sessao()
     S = st.session_state
+    aplicar_teto()
 
-    entrada = st.chat_input(config.CAMPO_ENTRADA, accept_file=True,
+    entrada = st.chat_input(config.CAMPO_ENTRADA, accept_file="multiple",
                             disabled=S.aguardando or S.encerrada)
     desenhar_historico()
 
@@ -253,8 +280,10 @@ def main() -> None:
         if entrada is not None:
             texto = (entrada.text or "").strip()
             arquivos = list(entrada.files or [])
-            if arquivos and (texto or S.pendente):
-                dizer("agente", config.MENSAGEM_ARQUIVO_NA_PERGUNTA if S.pendente else config.MENSAGEM_TEXTO_E_ARQUIVO)
+            if len(arquivos) > 1:
+                dizer("agente", config.MENSAGEM_VARIOS_ARQUIVOS)   # recusa a mensagem inteira; a sessao continua
+            elif arquivos and S.pendente:
+                dizer("agente", config.MENSAGEM_ARQUIVO_NA_PERGUNTA)
             elif arquivos or texto:
                 turno_de_entrada(texto, arquivos[0] if arquivos else None)
             st.rerun()
@@ -280,8 +309,11 @@ def main() -> None:
         S.encerrada = True
         dizer("agente", config.MENSAGEM_ENTRADA_ENCERRADA)
         st.rerun()
-    st.markdown(f'<div class="rodape">Custo do turno: US$ {S.custo_turno:.6f} | acumulado: US$ {m.acumulado:.6f} '
-                f'| teto: US$ {m.teto:g}</div>', unsafe_allow_html=True)
+    brl = config.CAMBIO_BRL_POR_USD
+    st.markdown('<div class="rodape">' + config.RODAPE_CUSTO.format(
+        turno=f"{S.custo_turno:.6f}", turno_brl=f"{S.custo_turno * brl:.4f}",
+        acumulado=f"{m.acumulado:.6f}", acumulado_brl=f"{m.acumulado * brl:.4f}",
+        teto=f"{m.teto:g}", teto_brl=f"{m.teto * brl:.2f}") + '</div>', unsafe_allow_html=True)
 
 
 main()

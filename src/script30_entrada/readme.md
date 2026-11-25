@@ -9,12 +9,13 @@ dos tokens. Nao escreve em disco nem no BigQuery.
 `classificar_entrada(tipo_entrada, turno, conteudo, ctx)`
 
 - `tipo_entrada`: `texto`, `audio`, `imagem`, `documento` ou `misto`. O chamador informa o tipo; o no nao adivinha.
-  Implementados (`TIPOS_ENTRADA_IMPLEMENTADOS`): `texto`, `imagem`, `documento` e `audio`. `misto` levanta erro: o
-  `agente.py` entrega um arquivo por turno, entao nao ha como compor mais de um tipo; depende de decisao do Mestre.
+  Implementados (`TIPOS_ENTRADA_IMPLEMENTADOS`): `texto`, `imagem`, `documento`, `audio` e `misto`.
 - `turno`: `primeiro` ou `mudanca`.
 - `conteudo`: para `texto`, o que a pessoa disse (quando ela completa um pedido, o chamador soma o pedido original e o
   complemento). Para `imagem` e `documento`, o caminho do arquivo; o modelo le o arquivo e o no devolve o texto.
   Para `audio`, o caminho do `.wav`; o reconhecimento de fala transcreve e o modelo recebe so o texto.
+  Para `misto` (um arquivo mais texto digitado, nunca mais de um arquivo), o caminho do arquivo na primeira linha e o
+  texto digitado nas linhas seguintes; o tipo do arquivo sai da extensao e valem o limite e a lista dele.
 
 ## Midia aceita
 
@@ -23,12 +24,22 @@ dos tokens. Nao escreve em disco nem no BigQuery.
 | imagem | `.png` | 5 000 000 bytes | aceitou; `image_url` com data URL base64 |
 | documento | `.pdf` | 10 000 000 bytes | aceitou; bloco `file` com `file_data` base64 |
 | audio | `.wav` | 5 000 000 bytes e 55 s | modelo do no recusa audio (`Content blocks are expected to be either text or image_url type`); por isso a conversao e do reconhecimento de fala |
-| misto | (nenhuma) | - | nao implementado: o `agente.py` entrega um arquivo por turno |
+| misto | a do arquivo | a do arquivo | um arquivo mais texto digitado; devolve `misto`. Prova de 2026-11-25 com png, pdf e wav |
 
 Extensoes, limites e a projecao de tokens de midia estao em `config.py` (`EXTENSOES_ENTRADA`, `LIMITE_BYTES_ENTRADA`,
 `TOKENS_PROJECAO_MIDIA`). Arquivo inexistente, extensao diferente do tipo ou acima do limite levanta `ErroEntrada` com o
 valor recebido e o limite. Jpeg, gif, webp e `.txt` nao foram provados e ficam fora da lista.
 - `ctx`: o `Contexto`, criado uma vez por `construir_contexto(config)`.
+
+## Misto: ordem do conteudo
+
+O conteudo entregue ao modelo vai sempre na ordem: primeiro o conteudo do arquivo, depois o texto digitado.
+
+- Imagem ou documento: mesma chamada, tres blocos na ordem: texto de cabecalho (tipo `misto`, turno), bloco do arquivo
+  (`image_url` ou `file`) e bloco de texto com o texto digitado.
+- Audio: a fala e transcrita primeiro; a transcricao e o texto digitado seguem juntos, em texto, nessa ordem.
+- A interface do navegador monta o tipo `misto` (arquivo mais texto na mesma mensagem) e recusa dois ou mais arquivos
+  antes de chegar aqui. O `agente.py` nao monta `misto`: continua com um arquivo por linha.
 
 ## Audio: caminho de conversao
 

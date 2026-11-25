@@ -81,10 +81,10 @@ TIPO_PROMPT_NO30 = "entrada_minimos"
 # do que MAX_TOKENS_SAIDA permitiria; ajustar se documentos reais passarem disso.
 LIMITE_CARACTERES_TEXTO_NO30 = 20000
 # Tipos que o no converte hoje. Fora desta lista, mas dentro de TIPOS_ENTRADA, o no levanta erro.
-# Misto ficou de fora: o agente.py entrega um arquivo por turno, entao nao ha como compor dois tipos.
+# Misto = um arquivo mais texto digitado na mesma mensagem (a interface do navegador monta; nunca mais de um arquivo).
 # Audio entra por servico de reconhecimento de fala (secao abaixo): o modelo do no recusa bloco de audio
 # (prova de 2026-11-24), entao ele so recebe o texto ja transcrito.
-TIPOS_ENTRADA_IMPLEMENTADOS = ("texto", "imagem", "documento", "audio")
+TIPOS_ENTRADA_IMPLEMENTADOS = ("texto", "imagem", "documento", "audio", "misto")
 # Extensao do arquivo -> (tipo de entrada, tipo MIME). So entra formato que a prova mostrou que o conversor aceita.
 # Audio: so .wav, o unico formato provado e o unico cuja duracao o no confere com a biblioteca padrao.
 EXTENSOES_ENTRADA = {
@@ -173,7 +173,8 @@ TETO_GASTO_NO90_USD = 0.10
 # ============================================================================
 # MIDDLEWARE (script20) - CONTADOR DE CUSTO E TETO DA SESSAO
 # ============================================================================
-# Teto acumulado da sessao (um processo do agente.py), em dolares: modelo de linguagem, embedding e reconhecimento de
+# Teto acumulado da sessao (um processo do agente.py; na interface do navegador e o valor inicial do campo da barra
+# lateral, que a pessoa pode mudar so para a propria sessao), em dolares: modelo de linguagem, embedding e reconhecimento de
 # fala. BigQuery nao conta (a conta ja tem limite automatico). Conta: 5 x US$ 0,0147 (media medida por turno) x
 # 8 turnos previstos = US$ 0,588, arredondado para cima: US$ 0,60. E rede de protecao contra laco descontrolado:
 # ao atingir o teto, a proxima chamada de no e bloqueada.
@@ -215,7 +216,7 @@ ETAPAS_PROGRESSO = {
 ETAPA_PRONTO = "Pronto"
 BOTAO_APROVAR = "Aprovar a regra"
 BOTAO_MUDANCA = "Pedir mudança"
-CAMPO_ENTRADA = "Descreva a regra ou envie um arquivo (.png, .pdf, .wav)"
+CAMPO_ENTRADA = "Descreva a regra ou envie um arquivo (.png, .pdf, .wav), com ou sem texto"
 MENSAGEM_BOAS_VINDAS = ("Olá. Descreva a regra de atendimento que você quer, por texto ou por arquivo "
                         "(imagem .png, documento .pdf ou áudio .wav). Eu escrevo a regra na linguagem GOBR.")
 # {extensao}, {aceitas}
@@ -223,13 +224,31 @@ MENSAGEM_EXTENSAO = "Extensão {extensao} não aceita. Aceitas: {aceitas}. Envie
 # {tamanho}, {limite}: bytes
 MENSAGEM_ARQUIVO_GRANDE = "Arquivo com {tamanho} bytes, acima do limite de {limite} bytes para este tipo. Envie um menor."
 MENSAGEM_ARQUIVO_INVALIDO = "Não foi possível usar o arquivo: {erro}"
-MENSAGEM_TEXTO_E_ARQUIVO = "Envie o texto ou o arquivo, um por vez."
+MENSAGEM_VARIOS_ARQUIVOS = "Envie só um arquivo por mensagem. Nenhum dos arquivos foi usado; envie de novo com um só."
 MENSAGEM_ARQUIVO_NA_PERGUNTA = "Responda a pergunta acima em texto; o arquivo foi descartado."
 MENSAGEM_ENTRADA_ENCERRADA = "Sessão encerrada: o teto de custo foi atingido."
 # {tipo}, {texto}
 MENSAGEM_TRANSCRICAO = "Texto transcrito de {tipo}:\n\n{texto}"
 # Cores da marca, lidas da pagina do goVendas. HIPOTESE: estimativa a partir de captura de tela, nao do estilo do site.
-PALETA = {"verde": "#00E08A", "amarelo": "#FFD200", "branco": "#FFFFFF", "escuro": "#15241C"}
+# verde: cabecalho, botoes e borda do balao do agente (texto branco so em texto curto e grande); escuro: todo texto
+# corrido; verde_claro: fundo do balao do agente (contraste com `escuro`); cinza_claro: fundo do balao da pessoa.
+PALETA = {"verde": "#00E08A", "amarelo": "#FFD200", "branco": "#FFFFFF", "escuro": "#15241C",
+          "verde_claro": "#E3F8EE", "cinza_claro": "#F2F5F3"}
+# Aba do navegador: titulo e icone (logo branco composto sobre quadrado verde da PALETA; arquivo na raiz do projeto).
+TITULO_ABA = "Agente de regras GOBR | goVendas"
+ARQ_ICONE = "icone.png"
+# Cambio so para mostrar o valor aproximado em reais; nao e consultado em servico externo. Valor desta rodada, estimativa
+# a confirmar pelo Mestre (R$ por US$ 1); envelhece.
+CAMBIO_BRL_POR_USD = 5.50
+# Barra lateral. {cambio}: CAMBIO_BRL_POR_USD. O teto escolhido vale para a sessao do navegador (nao altera este arquivo).
+ROTULO_TETO = "Teto de custo da sessão (US$)"
+AJUDA_TETO = ("Valor aplicado a partir da próxima chamada de nó da sessão. Aproximadamente R$ {reais} "
+              "(câmbio fixo de R$ {cambio} por US$ 1).")
+TETO_MINIMO_USD = 0.001
+TETO_PASSO_USD = 0.01
+# {turno}, {acumulado}, {teto}: dolares; {turno_brl}, {acumulado_brl}, {teto_brl}: reais, aproximados pelo cambio fixo.
+RODAPE_CUSTO = ("Custo do turno: US$ {turno} (aprox. R$ {turno_brl}) | acumulado: US$ {acumulado} "
+                "(aprox. R$ {acumulado_brl}) | teto: US$ {teto} (aprox. R$ {teto_brl})")
 
 # ============================================================================
 # AMBIENTE
@@ -364,7 +383,7 @@ def _validar_no30() -> None:
     if "texto" not in implementados or fora:
         raise ErroConfig(f"TIPOS_ENTRADA_IMPLEMENTADOS recebido: {list(implementados)!r}. Aceitos: 'texto' mais "
                          f"subconjunto de {list(TIPOS_ENTRADA)}. Configure em config.py.")
-    midia = [t for t in implementados if t != "texto"]
+    midia = [t for t in implementados if t not in ("texto", "misto")]   # misto usa o limite do tipo do arquivo
     extensoes = _valor("EXTENSOES_ENTRADA")
     for ext, par in extensoes.items():
         if not ext.startswith(".") or ext != ext.lower() or len(par) != 2 or par[0] not in midia:
@@ -405,17 +424,20 @@ def _validar_interface() -> None:
     """Validacao do texto da conversa e da interface; roda na importacao, depois da validacao do no 90."""
     for nome in ("MENSAGEM_FORA_DE_ESCOPO", "MENSAGEM_SERVICO_RECUSOU", "PERGUNTA_MUDANCA", "MENSAGEM_RESSALVA", "MENSAGEM_GRAVADA", "NOME_AGENTE",
                  "ARQ_LOGO", "ETAPA_PRONTO", "BOTAO_APROVAR", "BOTAO_MUDANCA", "CAMPO_ENTRADA", "MENSAGEM_BOAS_VINDAS",
-                 "MENSAGEM_EXTENSAO", "MENSAGEM_ARQUIVO_GRANDE", "MENSAGEM_ARQUIVO_INVALIDO", "MENSAGEM_TEXTO_E_ARQUIVO",
+                 "MENSAGEM_EXTENSAO", "MENSAGEM_ARQUIVO_GRANDE", "MENSAGEM_ARQUIVO_INVALIDO", "MENSAGEM_VARIOS_ARQUIVOS",
+                 "TITULO_ABA", "ARQ_ICONE", "ROTULO_TETO", "AJUDA_TETO", "RODAPE_CUSTO",
                  "MENSAGEM_ARQUIVO_NA_PERGUNTA", "MENSAGEM_ENTRADA_ENCERRADA", "MENSAGEM_TRANSCRICAO"):
         _texto(nome)
     for nome, chaves in (("PERGUNTAS_FALTANTES", ("quem_atende", "desfecho", "conflito")),
                          ("ETAPAS_PROGRESSO", ("entrada", "normalizacao", "normalizacao_pedido", "recuperacao",
                                                "geracao", "geracao_reexecucao", "persistencia")),
-                         ("PALETA", ("verde", "amarelo", "branco", "escuro"))):
+                         ("PALETA", ("verde", "amarelo", "branco", "escuro", "verde_claro", "cinza_claro"))):
         tabela = _valor(nome)
         if set(tabela) != set(chaves) or any(not isinstance(v, str) or not v.strip() for v in tabela.values()):
             raise ErroConfig(f"{nome} recebido: {tabela!r}. Aceita uma chave por item de {list(chaves)}, com texto "
                              f"nao vazio. Configure em config.py.")
+    for nome in ("CAMBIO_BRL_POR_USD", "TETO_MINIMO_USD", "TETO_PASSO_USD"):
+        _numero_positivo(nome)
 
 
 _validar_interface()
