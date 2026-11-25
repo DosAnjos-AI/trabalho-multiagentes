@@ -1,14 +1,14 @@
 """Construtor do grafo do agente GOBR (LangGraph) e os nos adaptados ao grafo.
 
 O mapa (estado, agentes, tools, nos, arestas) mora em orquestracao.py, na raiz; aqui nao ha mapa proprio. O construtor
-le aquele arquivo, resolve cada modulo por nome e liga as funcoes dos nos 50, 60 e 80. Cada no devolve so os campos do
+le aquele arquivo, resolve cada modulo por nome e liga as funcoes dos nos 30, 50, 60 e 80. Cada no devolve so os campos do
 estado que muda. Nada e escrito em disco nem no BigQuery.
 
 Uso (a raiz do projeto e `src/` precisam estar no sys.path):
     grafo = construir_grafo(config, orquestracao)
     cfg = {"configurable": {"thread_id": "conversa1"}}
-    grafo.invoke({"id_sessao": "conversa1", "descricao_usuario": "..."}, cfg)         # primeira geracao
-    grafo.invoke({"pedido_mudanca": "..."}, cfg)                                      # reexecucao, mesmo estado
+    grafo.invoke({"id_sessao": "conversa1", "entrada_bruta": "...", "tipo_entrada": "texto"}, cfg)  # primeira geracao
+    grafo.invoke({"entrada_bruta": "...", "tipo_entrada": "texto", "pedido_mudanca": "..."}, cfg)  # reexecucao
 """
 import importlib
 import operator
@@ -44,12 +44,26 @@ def _turno(estado: dict) -> int:
     return len(estado.get("historico", [])) + 1
 
 
+def classificar_entrada_turno(estado: dict, modulo: ModuleType, ctx) -> dict:
+    """No 30: o turno e de mudanca quando o agente ja pos o pedido no estado. O texto devolvido vai para o campo
+    que o no 50 le (descricao_usuario ou pedido_mudanca); `entrada_bruta` fica so como registro."""
+    turno = "mudanca" if estado.get("pedido_mudanca") else "primeiro"
+    r = modulo.classificar_entrada(estado["tipo_entrada"], turno, estado["entrada_bruta"], ctx)
+    campo = "pedido_mudanca" if turno == "mudanca" else "descricao_usuario"
+    # custo_turno comeca aqui: o gasto do turno anterior ja foi contado no total do agente.py.
+    return {"tipo_entrada": r.tipo, campo: r.texto, "status_entrada": r.status, "faltantes": r.faltantes,
+            "custo_turno": r.custo_usd}
+
+
 def _normalizar(texto: str, estado: dict, modulo: ModuleType, ctx) -> dict:
-    r = modulo.normalizar_turno(texto, "usuario", "texto", f"{estado['id_sessao']}-turno{_turno(estado)}", ctx)
+    # tipo_entrada vem do no 30, nunca fixo aqui; o texto chega sem transformacao.
+    r = modulo.normalizar_turno(texto, "usuario", estado["tipo_entrada"],
+                                f"{estado['id_sessao']}-turno{_turno(estado)}", ctx)
     if not r.ok:
         raise ErroNo(f"no 50 falhou: {r.erros}; resposta: {r.resposta_crua[:300]!r}")
     return {"descricao_normalizada": r.texto_normalizado, "regras_consulta": r.regras_extraidas["regras_extraidas"],
-            "sem_chave": r.regras_extraidas["sem_chave"], "custo_turno": float(r.metadados["custo_usd"])}
+            "sem_chave": r.regras_extraidas["sem_chave"],
+            "custo_turno": estado["custo_turno"] + float(r.metadados["custo_usd"])}
 
 
 def normalizar_descricao(estado: dict, modulo: ModuleType, ctx) -> dict:
@@ -119,7 +133,18 @@ def _validar(orq: ModuleType) -> None:
         _aceitar("ARESTAS_CONDICIONAIS campo", c["campo"], orq.ESTADO)
         _aceitar("ARESTAS_CONDICIONAIS vazio", c["vazio"], destinos)
         _aceitar("ARESTAS_CONDICIONAIS preenchido", c["preenchido"], destinos)
+        if "exceto" in c:
+            _aceitar("ARESTAS_CONDICIONAIS exceto campo", c["exceto"]["campo"], orq.ESTADO)
+            for valor, destino in c["exceto"]["valores"].items():
+                _aceitar(f"ARESTAS_CONDICIONAIS exceto valor {valor!r}", destino, destinos)
     _aceitar("MEMORIA", orq.MEMORIA, MEMORIAS)
+
+
+def _rotulo(estado: dict, campo: str, exceto: dict) -> str:
+    """Rotulo da aresta: o valor de `exceto` quando casa, senao vazio ou preenchido conforme o campo."""
+    if estado.get(exceto["campo"]) in exceto["valores"]:
+        return estado[exceto["campo"]]
+    return "preenchido" if estado.get(campo) else "vazio"
 
 
 def construir_contextos(cfg: ModuleType, orq: ModuleType) -> dict:
@@ -145,13 +170,15 @@ def construir_grafo(cfg: ModuleType, orq: ModuleType, contextos: dict | None = N
     for origem, destino in orq.ARESTAS:
         grafo.add_edge(EXTREMOS.get(origem, origem), EXTREMOS.get(destino, destino))
     for c in orq.ARESTAS_CONDICIONAIS:
+        exceto = c.get("exceto", {"campo": None, "valores": {}})
+        destinos = {"vazio": c["vazio"], "preenchido": c["preenchido"], **exceto["valores"]}
         grafo.add_conditional_edges(
             EXTREMOS.get(c["origem"], c["origem"]),
-            lambda e, _campo=c["campo"]: "preenchido" if e.get(_campo) else "vazio",
-            {"vazio": EXTREMOS.get(c["vazio"], c["vazio"]), "preenchido": EXTREMOS.get(c["preenchido"], c["preenchido"])})
+            lambda e, _campo=c["campo"], _ex=exceto: _rotulo(e, _campo, _ex),
+            {rotulo: EXTREMOS.get(d, d) for rotulo, d in destinos.items()})
     return grafo.compile(checkpointer=MEMORIAS[orq.MEMORIA]())
 
 
 # Resolvido depois das funcoes: o nome em orquestracao.py ("executa") escolhe a funcao aqui.
-FUNCOES_NOS = {f.__name__: f for f in (normalizar_descricao, normalizar_descricao_com_pedido, recuperar_exemplos,
+FUNCOES_NOS = {f.__name__: f for f in (classificar_entrada_turno, normalizar_descricao, normalizar_descricao_com_pedido, recuperar_exemplos,
                                        gerar_primeira, gerar_reexecucao)}

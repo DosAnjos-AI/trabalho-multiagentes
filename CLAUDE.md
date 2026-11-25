@@ -33,18 +33,21 @@ trabalho/
   .gitignore
   CLAUDE.md                 este arquivo
   govendas-rules.pdf        manual original do fornecedor
-  config.py                 configuracao, uma secao por no (50, 60 e 80)
+  config.py                 configuracao, uma secao por no (30, 50, 60 e 80)
   agente.py                 ponto de entrada: conversa de varios turnos no terminal (`.venv/bin/python -B agente.py`)
   orquestracao.py           mapa declarativo do grafo (estado, agentes, tools, nos, arestas); fonte unica do fluxo
   src/
+    script30_entrada/       converte a entrada em texto e confere os minimos (so texto por ora); prompt `entrada_minimos` no BigQuery
     script50_normalizacao/  normalizacao da entrada; mesmo codigo usado no corpus
     script60_recuperacao/   exemplos (denso + Jaccard) e recorte do manual
     script80_geracao/       escreve o .gobr (modelo padrao gpt-6-luna; prompt no BigQuery)
-    script10_orquestracao/  constroi o grafo LangGraph a partir de orquestracao.py e traz os nos adaptados; o campo `sem_chave` do estado leva ao usuario o que a linguagem nao expressa
+    script10_orquestracao/  constroi o grafo LangGraph a partir de orquestracao.py e traz os nos adaptados; o campo `sem_chave` do estado leva ao usuario o que o manual nao cobriu
 ```
 
 Os dados do projeto deixaram de viver em disco e passaram a viver no BigQuery, no dataset
-`govendas_gobr` do projeto `multiagentes-514823`, nas tabelas `exemplos`, `prompts` e `manual`. O adendo de reexecucao do no 80 e a linha ativa de `prompts` com `tipo` `adendo_reexecucao_gobr`.
+`govendas_gobr` do projeto `multiagentes-514823`, nas tabelas `exemplos`, `prompts` e `manual`. O adendo de reexecucao do no 80 e a linha ativa de `prompts` com `tipo` `adendo_reexecucao_gobr`. O prompt do no 30 e a linha ativa de `prompts` com `tipo` `entrada_minimos` (v1, `prompt_entrada_minimos_v1.md`).
+
+Estado do grafo, campos da entrada: `entrada_bruta` (so registro), `tipo_entrada`, `status_entrada` (`aprovado`, `incompleto`, `fora_de_escopo`) e `faltantes` (`quem_atende`, `desfecho`, `conflito`). O no 30 devolve o texto em `descricao_usuario` (primeiro turno) ou `pedido_mudanca` (mudanca), e o no 50 le esses campos e `tipo_entrada`. Entrada reprovada encerra o turno; o `agente.py` pergunta o que falta, soma a resposta e chama de novo.
 
 ## 4. Padrao de pastas
 

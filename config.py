@@ -1,4 +1,4 @@
-"""Configuracao do projeto. Uma secao por no do agente que usa configuracao (50, 60 e 80).
+"""Configuracao do projeto. Uma secao por no do agente que usa configuracao (30, 50, 60 e 80).
 
 O fluxo do grafo nao fica aqui: e declarado em orquestracao.py.
 
@@ -68,6 +68,14 @@ CAMPOS_METADADOS = (
 CARACTERES_POR_TOKEN_PESSIMISTA = 3.0
 VERSAO_NORMALIZADOR = "v4"
 VARIAVEL_CHAVE = "CHAVE_OPENAI"
+
+# ============================================================================
+# NO 30 - ENTRADA (converte a entrada em texto e confere os minimos)
+# ============================================================================
+# Mesmo modelo do no 50; limite de saida, teto por chamada e preco vem das chaves da secao do no 50.
+MODELO_NO30 = MODELO
+# Valor da coluna `tipo` da tabela de prompts; o no exige exatamente uma linha ativa deste tipo.
+TIPO_PROMPT_NO30 = "entrada_minimos"
 
 # ============================================================================
 # NO 60 - RECUPERACAO
@@ -218,6 +226,15 @@ def _validar_no80() -> None:
 
 
 _validar_no80()
+
+
+def _validar_no30() -> None:
+    """Validacao do no 30; roda na importacao, depois da validacao do no 80."""
+    _texto("TIPO_PROMPT_NO30")
+    _em("MODELO_NO30", _valor("MODELOS"))
+
+
+_validar_no30()
 
 
 def _carregar_env() -> None:
