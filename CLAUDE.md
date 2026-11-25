@@ -192,3 +192,16 @@ nao levantou erro). Provas legitimas A a F passaram. Doze ataques com uma redaca
   fica vazio e e nomeado no relatorio, com o motivo. Nunca preencher com valor
   plausivel, porque falso positivo em metadado contamina analise futura sem
   deixar rastro.
+
+## 14. Publicacao (etapa 7, 2026-11-25)
+
+Interface publicada no Cloud Run, servico `govendas-app`, regiao `us-central1`, acesso publico sem autenticacao (decisao do
+Mestre: a protecao contra abuso e o limite de gasto da OpenAI, no painel do Mestre). URL: `https://govendas-app-512089245701.us-central1.run.app`.
+Imagem pelo `Dockerfile` (python:3.12-slim, usuario `app`, porta de `$PORT`); `.dockerignore` deixa fora `.env`, `.venv`, `.git`,
+`*.pptx`, `*.pdf`, `CLAUDE.md` e `agente.py`. Config do servico: 0 a 1 instancia, afinidade de sessao, 1 vCPU, 1 GiB, timeout 300 s.
+Segredo: Secret Manager, `chave-openai`, entregue como variavel `CHAVE_OPENAI`; o `config.py` aceita a chave do ambiente quando o
+`.env` nao existe. Conta de servico `govendas-app@multiagentes-514823.iam.gserviceaccount.com`: `bigquery.jobUser` e `aiplatform.user`
+(projeto), `secretmanager.secretAccessor` (so no segredo `chave-openai`), READER e WRITER no dataset `govendas_gobr`. A fala
+(Speech-to-Text v2) funcionou sem papel adicional. Recursos criados: segredo, conta, repositorio Artifact Registry `govendas`
+(sem uso: o deploy `--source` usa o repositorio automatico `cloud-run-source-deploy`) e o bucket `run-sources-multiagentes-514823-us-central1`
+(criado pelo `gcloud run deploy --source`; pendencia de decisao do Mestre).

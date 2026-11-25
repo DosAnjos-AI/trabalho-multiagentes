@@ -449,9 +449,13 @@ def _carregar_env() -> None:
     Roda na importacao, antes de qualquer chamada paga. Nao imprime valor: o erro cita so o nome da variavel.
     """
     caminho = Path(__file__).with_name(ARQ_ENV)
-    if not caminho.is_file():
-        raise ErroConfig(f"Arquivo {ARQ_ENV} inexistente em {caminho.parent}. Crie-o com a variavel {VARIAVEL_CHAVE}.")
-    for linha in caminho.read_text(encoding="utf-8").splitlines():
+    # Na nuvem o arquivo nao existe (fica fora da imagem) e a chave chega por variavel de ambiente do servico;
+    # so falha por arquivo ausente quando a variavel tambem esta ausente.
+    if not caminho.is_file() and not os.environ.get(VARIAVEL_CHAVE, "").strip():
+        raise ErroConfig(f"Arquivo {ARQ_ENV} inexistente em {caminho.parent} e variavel {VARIAVEL_CHAVE} ausente "
+                         f"no ambiente. Crie o arquivo com a variavel ou defina-a no ambiente.")
+    linhas = caminho.read_text(encoding="utf-8").splitlines() if caminho.is_file() else []
+    for linha in linhas:
         linha = linha.strip()
         if not linha or linha.startswith("#") or "=" not in linha:
             continue

@@ -5,3 +5,12 @@ primaryColor = "#00E08A"
 backgroundColor = "#FFFFFF"
 secondaryBackgroundColor = "#F2F5F3"
 textColor = "#15241C"
+
+# Contêiner: sem teclado (nada de pergunta de e-mail), sem estatistica de uso, escuta aberta.
+# A porta nao fica aqui: vem da variavel PORT do Cloud Run, passada no comando de partida do Dockerfile.
+[server]
+headless = true
+address = "0.0.0.0"
+
+[browser]
+gatherUsageStats = false

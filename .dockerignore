@@ -1,0 +1,15 @@
+# Fora da imagem: segredo, ambiente virtual, controle de versao, rascunhos e apresentacao.
+.env
+.venv/
+.git/
+.gitignore
+__pycache__/
+**/__pycache__/
+PROMPT_*.md
+SAIDA/
+*.pptx
+*.pdf
+CLAUDE.md
+agente.py
+Dockerfile
+.dockerignore
