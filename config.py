@@ -1,4 +1,4 @@
-"""Configuracao do projeto. Uma secao por no do agente que usa configuracao (30, 50, 60 e 80).
+"""Configuracao do projeto. Uma secao por no do agente que usa configuracao (30, 50, 60, 80 e 90).
 
 O fluxo do grafo nao fica aqui: e declarado em orquestracao.py.
 
@@ -113,6 +113,17 @@ TIPO_PROMPT_NO80 = "geracao_gobr"
 TIPO_ADENDO_NO80 = "adendo_reexecucao_gobr"
 # Teto de gasto por execucao do no, em dolares. Valor desta rodada, definido pelo Mestre.
 TETO_GASTO_NO80_USD = 0.50
+
+# ============================================================================
+# NO 90 - PERSISTENCIA DA REGRA APROVADA
+# ============================================================================
+# Tabela onde a regra aprovada e gravada: a mesma lida pela recuperacao. A linha entra com este status e so vira
+# exemplo de recuperacao (STATUS_BUSCA) depois da revisao do Mestre.
+TABELA_GRAVACAO = TABELA_EXEMPLOS
+ORIGEM_GRAVACAO = "usuario"
+STATUS_GRAVACAO = "pendente"
+# Embedding da gravacao: mesmo modelo, dimensao e prefixo do no 60. Teto por execucao, valor desta rodada.
+TETO_GASTO_NO90_USD = 0.10
 
 # ============================================================================
 # AMBIENTE
@@ -235,6 +246,17 @@ def _validar_no30() -> None:
 
 
 _validar_no30()
+
+
+def _validar_no90() -> None:
+    """Validacao do no 90; roda na importacao, depois da validacao do no 30."""
+    _texto("TABELA_GRAVACAO")
+    _em("ORIGEM_GRAVACAO", _valor("ORIGENS"))
+    _em("STATUS_GRAVACAO", ("pendente",))  # gravar direto como aprovado pularia a revisao do Mestre
+    _numero_positivo("TETO_GASTO_NO90_USD")
+
+
+_validar_no90()
 
 
 def _carregar_env() -> None:

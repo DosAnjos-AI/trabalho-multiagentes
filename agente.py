@@ -1,7 +1,9 @@
 """Ponto de entrada: conversa de varios turnos pelo terminal, no mesmo estado do grafo.
 
-Uso: .venv/bin/python -B agente.py
-Primeira linha: descricao da regra. Linhas seguintes: pedidos de mudanca. Linha vazia (ou Ctrl+D) encerra.
+Uso: .venv/bin/python -B agente.py [id_da_conversa]
+Primeira linha: descricao da regra. Depois de cada regra gerada o programa pergunta se a pessoa aprova: sim grava a
+regra no BigQuery (status pendente de revisao); nao pede o que mudar, e a linha seguinte e um pedido de mudanca.
+Linha vazia (ou Ctrl+D) encerra.
 Se a entrada nao traz o minimo, o programa pergunta o que falta e soma a resposta ao que a pessoa ja disse.
 A chave da API vem do arquivo .env, carregado pelo config.py na importacao.
 """
@@ -15,8 +17,9 @@ import config
 import orquestracao
 from script10_orquestracao.script10_orquestracao import construir_grafo
 
-# Fixo: uma conversa por execucao; a memoria do grafo e do processo.
-THREAD_ID = "conversa1"
+# Uma conversa por execucao; a memoria do grafo e do processo. O id e o primeiro argumento (padrao: conversa1) e
+# entra no exemplo_id da regra gravada.
+THREAD_ID = sys.argv[1] if len(sys.argv) > 1 else "conversa1"
 
 # O no 30 so devolve tokens; o texto que a pessoa le e daqui.
 PERGUNTAS = {
@@ -26,6 +29,19 @@ PERGUNTAS = {
 }
 MENSAGEM_FORA_DE_ESCOPO = ("Eu escrevo regras de atendimento comercial na linguagem GOBR do goVendas. "
                            "Descreva a regra que voce quer, por exemplo quem atende e o que deve acontecer.")
+
+
+def perguntar_aprovacao() -> bool | None:
+    """True se a pessoa aprova; False se recusa; None se a entrada acabou (Ctrl+D)."""
+    while True:
+        try:
+            resposta = input("Aprovar a regra? (sim/nao)> ").strip().lower()
+        except EOFError:
+            return None
+        if resposta in ("s", "sim"):
+            return True
+        if resposta in ("n", "nao", "não"):
+            return False
 
 
 def main() -> None:
@@ -65,6 +81,16 @@ def main() -> None:
             itens = "\n".join(f"  - {item}" for item in estado["sem_chave"])
             print("\nRessalva: os itens abaixo nao foram encontrados no manual e podem nao estar cobertos "
                   f"pela regra gerada acima:\n{itens}")
+        print(f"\n[custo do turno US$ {estado['custo_turno']:.6f}; total US$ {total:.6f}]\n")
+        aprovada = perguntar_aprovacao()
+        if aprovada is None:
+            break
+        if not aprovada:
+            print("\nO que voce quer mudar na regra?")
+            continue
+        estado = grafo.invoke({"aprovacao": "aprovado"}, cfg)
+        total += estado["custo_turno"]
+        print(f"\nRegra gravada como {estado['exemplo_gravado']} (status {config.STATUS_GRAVACAO}, aguarda revisao).")
         print(f"\n[custo do turno US$ {estado['custo_turno']:.6f}; total US$ {total:.6f}]\n")
 
 

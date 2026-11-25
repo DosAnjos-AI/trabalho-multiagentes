@@ -11,9 +11,7 @@ Uso:
 """
 import hashlib
 import os
-import time
 from dataclasses import dataclass
-from datetime import datetime
 from types import ModuleType
 
 ARQ_CONFIG = "config.py"
@@ -57,14 +55,12 @@ class Contexto:
 
 @dataclass
 class Entrada:
-    """Saida do no: os quatro campos do prompt, mais custo e metadados. `resposta_crua` vai sempre."""
+    """Saida do no: os quatro campos do prompt e o custo da chamada."""
     tipo: str
     texto: str
     status: str
     faltantes: list[str]
     custo_usd: float
-    metadados: dict
-    resposta_crua: str
 
 
 def _sha256(texto: str) -> str:
@@ -168,21 +164,14 @@ def classificar_entrada(tipo_entrada: str, turno: str, conteudo: str, ctx: Conte
     if projecao > ctx.teto_gasto_usd:
         raise ErroTeto(f"projecao de custo {projecao:.4f} USD acima do teto {ctx.teto_gasto_usd} USD. "
                        f"Configure TETO_GASTO_USD ou MAX_TOKENS_SAIDA em {ARQ_CONFIG}.")
-    momento = datetime.now().astimezone().isoformat(timespec="seconds")
-    inicio = time.monotonic()
     r = ctx.cliente.chat.completions.create(
         model=ctx.modelo,
         messages=[{"role": "system", "content": ctx.prompt}, {"role": "user", "content": usuario}],
         max_completion_tokens=ctx.max_tokens_saida,
     )
-    tempo = time.monotonic() - inicio
     resposta = r.choices[0].message.content or ""
     gasto = custo(r.usage.prompt_tokens, r.usage.completion_tokens, ctx.preco_entrada, ctx.preco_saida)
     if r.choices[0].finish_reason == "length":
         raise ErroEntrada(f"resposta cortada no limite de {ctx.max_tokens_saida} tokens de saida.")
     tipo, texto, status, faltantes = interpretar_resposta(resposta, tipo_entrada)
-    metadados = {"modelo": ctx.modelo, "id_prompt": ctx.id_prompt, "hash_prompt": ctx.hash_prompt, "turno": turno,
-                 "tokens_entrada": r.usage.prompt_tokens, "tokens_saida": r.usage.completion_tokens,
-                 "custo_usd": f"{gasto:.6f}", "tempo_segundos": f"{tempo:.2f}", "timestamp": momento}
-    return Entrada(tipo=tipo, texto=texto, status=status, faltantes=faltantes, custo_usd=gasto,
-                   metadados=metadados, resposta_crua=resposta)
+    return Entrada(tipo=tipo, texto=texto, status=status, faltantes=faltantes, custo_usd=gasto)

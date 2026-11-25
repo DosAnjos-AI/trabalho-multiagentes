@@ -7,9 +7,10 @@ Fluxo:
     primeira geracao:  START -> entrada -> normalizacao -> recuperacao -> geracao -> END
     reexecucao:        START -> entrada -> normalizacao_pedido -> recuperacao -> geracao_reexecucao -> END
     entrada reprovada: START -> entrada -> END (incompleto ou fora_de_escopo; o agente.py volta a pessoa ao chat)
-A escolha acontece em duas arestas condicionais (saida da entrada e saida da recuperacao). Pelo campo `pedido_mudanca`
-do estado: vazio e primeira geracao, preenchido e reexecucao. A entrada ainda olha `status_entrada` antes: reprovado
-encerra o turno.
+    aprovacao:         START -> persistencia -> END (a pessoa aprovou a regra; o turno nao passa pela entrada)
+A escolha acontece em tres arestas condicionais (saida do START, da entrada e da recuperacao). No START, `aprovacao`
+vazia segue o fluxo normal e preenchida vai a persistencia. Pelo campo `pedido_mudanca` do estado: vazio e primeira
+geracao, preenchido e reexecucao. A entrada ainda olha `status_entrada` antes: reprovado encerra o turno.
 """
 
 # Campo do estado -> (tipo, para que serve). Tipos aceitos: texto, texto_ou_nada, lista, lista_acumulada, numero, objeto.
@@ -29,6 +30,10 @@ ESTADO = {
     "gobr_atual": ("texto_ou_nada", ".gobr vigente; a reexecucao parte dele"),
     "custo_turno": ("numero", "gasto do turno em dolares, somado nos tres nos"),
     "historico": ("lista_acumulada", "um registro por turno: numero, tipo, entrada, .gobr e custo"),
+    "metadados_normalizado": ("objeto", "metadados da ultima chamada do no 50; a persistencia os grava junto da regra"),
+    "metadados_geracao": ("objeto", "metadados da ultima chamada do no 80; a persistencia os grava junto da regra"),
+    "aprovacao": ("texto_ou_nada", "vazio | aprovado; o agente.py preenche quando a pessoa aprova a regra, a persistencia esvazia"),
+    "exemplo_gravado": ("texto_ou_nada", "exemplo_id da linha gravada na aprovacao; o agente.py o mostra na confirmacao"),
 }
 
 # Agentes: nos que chamam modelo de linguagem. `modulo` e pasta.script em src/ que traz construir_contexto(config).
@@ -41,6 +46,7 @@ AGENTES = {
 # Tools: nos que consultam dados sem modelo de linguagem de geracao.
 TOOLS = {
     "recuperador": {"modulo": "script60_recuperacao.script60_recuperacao", "papel": "exemplos por busca densa e Jaccard, mais o recorte do manual"},
+    "persistidor": {"modulo": "script90_persistencia.script90_persistencia", "papel": "grava a regra aprovada em `exemplos`, com status pendente"},
 }
 
 # No -> `executa` (funcao de src/script10_orquestracao) e `usa` (chave de AGENTES ou TOOLS).
@@ -51,20 +57,22 @@ NOS = {
     "recuperacao": {"executa": "recuperar_exemplos", "usa": "recuperador"},
     "geracao": {"executa": "gerar_primeira", "usa": "gerador"},
     "geracao_reexecucao": {"executa": "gerar_reexecucao", "usa": "gerador"},
+    "persistencia": {"executa": "persistir_regra", "usa": "persistidor"},
 }
 
 # Arestas fixas (origem, destino). "START" e "END" sao os extremos do grafo.
 ARESTAS = [
-    ("START", "entrada"),
     ("normalizacao", "recuperacao"),
     ("normalizacao_pedido", "recuperacao"),
     ("geracao", "END"),
     ("geracao_reexecucao", "END"),
+    ("persistencia", "END"),
 ]
 
 # Arestas condicionais: olham o campo do estado; vazio segue para `vazio`, preenchido para `preenchido`.
 # `exceto` (opcional) e conferido antes: se o campo dele tiver um dos valores listados, vai para o destino do valor.
 ARESTAS_CONDICIONAIS = [
+    {"origem": "START", "campo": "aprovacao", "vazio": "entrada", "preenchido": "persistencia"},
     {"origem": "entrada", "campo": "pedido_mudanca", "vazio": "normalizacao", "preenchido": "normalizacao_pedido",
      "exceto": {"campo": "status_entrada", "valores": {"incompleto": "END", "fora_de_escopo": "END"}}},
     {"origem": "recuperacao", "campo": "pedido_mudanca", "vazio": "geracao", "preenchido": "geracao_reexecucao"},

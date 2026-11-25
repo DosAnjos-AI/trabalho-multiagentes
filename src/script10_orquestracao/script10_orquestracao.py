@@ -1,8 +1,8 @@
 """Construtor do grafo do agente GOBR (LangGraph) e os nos adaptados ao grafo.
 
 O mapa (estado, agentes, tools, nos, arestas) mora em orquestracao.py, na raiz; aqui nao ha mapa proprio. O construtor
-le aquele arquivo, resolve cada modulo por nome e liga as funcoes dos nos 30, 50, 60 e 80. Cada no devolve so os campos do
-estado que muda. Nada e escrito em disco nem no BigQuery.
+le aquele arquivo, resolve cada modulo por nome e liga as funcoes dos nos 30, 50, 60, 80 e 90. Cada no devolve so os campos
+do estado que muda. Em disco nada e escrito; no BigQuery so o no 90 escreve, uma linha por aprovacao.
 
 Uso (a raiz do projeto e `src/` precisam estar no sys.path):
     grafo = construir_grafo(config, orquestracao)
@@ -62,7 +62,7 @@ def _normalizar(texto: str, estado: dict, modulo: ModuleType, ctx) -> dict:
     if not r.ok:
         raise ErroNo(f"no 50 falhou: {r.erros}; resposta: {r.resposta_crua[:300]!r}")
     return {"descricao_normalizada": r.texto_normalizado, "regras_consulta": r.regras_extraidas["regras_extraidas"],
-            "sem_chave": r.regras_extraidas["sem_chave"],
+            "sem_chave": r.regras_extraidas["sem_chave"], "metadados_normalizado": r.metadados,
             "custo_turno": estado["custo_turno"] + float(r.metadados["custo_usd"])}
 
 
@@ -93,7 +93,7 @@ def _gerar(estado: dict, modulo: ModuleType, ctx, tipo: str, **reexecucao) -> di
         raise ErroNo(f"no 80 falhou: {r.erros}")
     custo = estado["custo_turno"] + float(r.metadados["custo_usd"])
     entrada = estado["pedido_mudanca"] if reexecucao else estado["descricao_usuario"]
-    return {"gobr_atual": r.texto_gobr, "custo_turno": custo,
+    return {"gobr_atual": r.texto_gobr, "custo_turno": custo, "metadados_geracao": r.metadados,
             "historico": [{"turno": _turno(estado), "tipo": tipo, "entrada": entrada, "gobr": r.texto_gobr,
                            "custo_usd": custo}]}
 
@@ -105,6 +105,23 @@ def gerar_primeira(estado: dict, modulo: ModuleType, ctx) -> dict:
 def gerar_reexecucao(estado: dict, modulo: ModuleType, ctx) -> dict:
     return _gerar(estado, modulo, ctx, "reexecucao", gobr_anterior=estado["gobr_atual"],
                   pedido=estado["pedido_mudanca"])
+
+
+def persistir_regra(estado: dict, modulo: ModuleType, ctx) -> dict:
+    """No 90: grava a regra vigente, aprovada pela pessoa. Nao passa pela entrada: aprovar nao e pedir regra.
+
+    O turno gravado e o da ultima geracao (o mesmo numero que o no 50 usou). `entrada` junta o que a pessoa escreveu:
+    a descricao e os pedidos de mudanca ate esta regra. Esvazia `aprovacao` para a proxima conversa nao regravar.
+    """
+    if not estado.get("gobr_atual"):
+        raise ErroNo("aprovacao recebida sem gobr_atual: nao ha regra gerada para gravar.")
+    ultimo = estado["historico"][-1]
+    entrada = "\n\nPedido de mudanca: ".join(h["entrada"] for h in estado["historico"])
+    g = modulo.gravar_regra(f"{estado['id_sessao']}-turno{ultimo['turno']}", entrada, estado["descricao_normalizada"],
+                            estado["regras_consulta"], estado["sem_chave"], estado["gobr_atual"],
+                            estado["metadados_normalizado"], estado["metadados_geracao"], ctx)
+    # custo_turno recomeca aqui, como na entrada: o gasto do turno anterior ja entrou no total do agente.py.
+    return {"exemplo_gravado": g.exemplo_id, "aprovacao": "", "custo_turno": g.custo_usd}
 
 
 # ============================================================================
@@ -181,4 +198,4 @@ def construir_grafo(cfg: ModuleType, orq: ModuleType, contextos: dict | None = N
 
 # Resolvido depois das funcoes: o nome em orquestracao.py ("executa") escolhe a funcao aqui.
 FUNCOES_NOS = {f.__name__: f for f in (classificar_entrada_turno, normalizar_descricao, normalizar_descricao_com_pedido, recuperar_exemplos,
-                                       gerar_primeira, gerar_reexecucao)}
+                                       gerar_primeira, gerar_reexecucao, persistir_regra)}

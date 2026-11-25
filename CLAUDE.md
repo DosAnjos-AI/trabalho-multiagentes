@@ -33,14 +33,15 @@ trabalho/
   .gitignore
   CLAUDE.md                 este arquivo
   govendas-rules.pdf        manual original do fornecedor
-  config.py                 configuracao, uma secao por no (30, 50, 60 e 80)
-  agente.py                 ponto de entrada: conversa de varios turnos no terminal (`.venv/bin/python -B agente.py`)
+  config.py                 configuracao, uma secao por no (30, 50, 60, 80 e 90)
+  agente.py                 ponto de entrada: conversa de varios turnos no terminal (`.venv/bin/python -B agente.py [id_da_conversa]`); pergunta se a pessoa aprova a regra
   orquestracao.py           mapa declarativo do grafo (estado, agentes, tools, nos, arestas); fonte unica do fluxo
   src/
     script30_entrada/       converte a entrada em texto e confere os minimos (so texto por ora); prompt `entrada_minimos` no BigQuery
     script50_normalizacao/  normalizacao da entrada; mesmo codigo usado no corpus
     script60_recuperacao/   exemplos (denso + Jaccard) e recorte do manual
     script80_geracao/       escreve o .gobr (modelo padrao gpt-6-luna; prompt no BigQuery)
+    script90_persistencia/  grava a regra aprovada em `exemplos` (INSERT, status `pendente`); unica escrita do projeto no BigQuery
     script10_orquestracao/  constroi o grafo LangGraph a partir de orquestracao.py e traz os nos adaptados; o campo `sem_chave` do estado leva ao usuario o que o manual nao cobriu
 ```
 
@@ -48,6 +49,8 @@ Os dados do projeto deixaram de viver em disco e passaram a viver no BigQuery, n
 `govendas_gobr` do projeto `multiagentes-514823`, nas tabelas `exemplos`, `prompts` e `manual`. O adendo de reexecucao do no 80 e a linha ativa de `prompts` com `tipo` `adendo_reexecucao_gobr`. O prompt do no 30 e a linha ativa de `prompts` com `tipo` `entrada_minimos` (v1, `prompt_entrada_minimos_v1.md`).
 
 Estado do grafo, campos da entrada: `entrada_bruta` (so registro), `tipo_entrada`, `status_entrada` (`aprovado`, `incompleto`, `fora_de_escopo`) e `faltantes` (`quem_atende`, `desfecho`, `conflito`). O no 30 devolve o texto em `descricao_usuario` (primeiro turno) ou `pedido_mudanca` (mudanca), e o no 50 le esses campos e `tipo_entrada`. Entrada reprovada encerra o turno; o `agente.py` pergunta o que falta, soma a resposta e chama de novo.
+
+Campos de aprovacao do estado: `aprovacao` (vazio | `aprovado`, preenchido pelo `agente.py`; o `START` e condicional por ele e leva ao no `persistencia`, que o esvazia), `exemplo_gravado` (`exemplo_id` da linha gravada) e `metadados_normalizado` e `metadados_geracao` (o que os nos 50 e 80 devolveram, para a gravacao). Operacao de escrita: o no 90 faz `INSERT` na tabela `exemplos` com `origem` `usuario` e `status_revisao` `pendente` (`ORIGEM_GRAVACAO` e `STATUS_GRAVACAO` em `config.py`); a recuperacao filtra `aprovado`, entao a linha so entra como exemplo depois da revisao do Mestre. Nenhum `UPDATE` nem `DELETE`: as 193 linhas do corpus sao congeladas.
 
 ## 4. Padrao de pastas
 
