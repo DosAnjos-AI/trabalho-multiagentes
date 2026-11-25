@@ -31,6 +31,10 @@ Uma `Recuperacao`: `exemplos`, `secoes_manual` (so o recorte), `apoio` (os tres 
 `LOCALIZACAO_EMBEDDING`, `PREFIXO_EMBEDDING`, `TETO_GASTO_NO60_USD`. Tambem usa `PROJETO_GCP`, `DATASET`,
 `TABELA_MANUAL` e `CARACTERES_POR_TOKEN_PESSIMISTA`.
 
+Prefixo, modelo, dimensao e endereco do embedding (`PREFIXO_EMBEDDING`, `MODELO_EMBEDDING`, `DIMENSOES`,
+`ENDERECO_EMBEDDING`) vem so do `config.py`; o no nao escreve nenhum desses valores. O texto embutido e o prefixo mais a
+descricao, sem corte de espaco, igual ao no 90. Mudar prefixo ou modelo invalida os vetores ja gravados.
+
 ## De onde vem o conteudo
 
 Tabelas `manual` (secoes e tres arquivos de apoio) e `exemplos` (descricao, regras, gobr e vetor gravado), lidas

@@ -66,8 +66,8 @@ def construir_contexto(cfg: ModuleType) -> Contexto:
     from google.cloud import bigquery
 
     credenciais, _ = google.auth.default(scopes=["https://www.googleapis.com/auth/cloud-platform"])
-    endpoint = (f"https://aiplatform.googleapis.com/v1/projects/{cfg.PROJETO_GCP}/locations/"
-                f"{cfg.LOCALIZACAO_EMBEDDING}/publishers/google/models/{cfg.MODELO_EMBEDDING}:embedContent")
+    endpoint = cfg.ENDERECO_EMBEDDING.format(projeto=cfg.PROJETO_GCP, localizacao=cfg.LOCALIZACAO_EMBEDDING,
+                                             modelo=cfg.MODELO_EMBEDDING)
     return Contexto(
         bq=bigquery.Client(project=cfg.PROJETO_GCP),
         tabela=f"{cfg.PROJETO_GCP}.{cfg.DATASET}.{cfg.TABELA_GRAVACAO}", credenciais=credenciais, endpoint=endpoint,

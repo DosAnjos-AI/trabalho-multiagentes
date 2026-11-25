@@ -18,6 +18,14 @@ operacao de escrita do projeto no BigQuery: um `INSERT` por parametro de consult
 `metadados_geracao.fornecedor` e `.temperatura` ficam NULL: o no 80 nao devolve esses dois valores e o no nao os
 fabrica. `metadados_normalizado.id_explicacao` e NULL para origem `usuario` (so o corpus tem arquivo de explicacao).
 
+## Embedding e metadado
+
+- Prefixo, modelo, dimensao e endereco do embedding (`PREFIXO_EMBEDDING`, `MODELO_EMBEDDING`, `DIMENSOES`,
+  `ENDERECO_EMBEDDING`) vem so do `config.py`, as mesmas chaves do no 60. O texto embutido e o prefixo mais a
+  descricao, sem corte de espaco. Mudar prefixo ou modelo invalida os vetores ja gravados.
+- Regra de metadado: so valor real da execucao. Campo que o no nao tem como preencher fica NULL e e nomeado (aqui,
+  `fornecedor` e `temperatura` da geracao, e `id_explicacao`), nunca preenchido com valor plausivel.
+
 ## Regras
 
 - Aprovar o mesmo turno duas vezes nao grava duas linhas: o `exemplo_id` e conferido antes, sem chamar o embedding.

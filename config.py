@@ -94,7 +94,13 @@ MODELOS_EMBEDDING = {
 MODELO_EMBEDDING = "gemini-embedding-2"
 DIMENSOES = 3072
 LOCALIZACAO_EMBEDDING = "us"
-# Mesmo prefixo dos documentos em `exemplos` (formato B do teste de prefixo); mudar aqui exige recalcular os documentos.
+# Endereco do servico de embedding; {projeto}, {localizacao} e {modelo} saem das chaves PROJETO_GCP,
+# LOCALIZACAO_EMBEDDING e MODELO_EMBEDDING. Os nos 60 e 90 so preenchem o molde, nenhum escreve o endereco.
+ENDERECO_EMBEDDING = ("https://aiplatform.googleapis.com/v1/projects/{projeto}/locations/{localizacao}"
+                      "/publishers/google/models/{modelo}:embedContent")
+# ATENCAO: o texto embutido e PREFIXO_EMBEDDING + descricao, sem corte de espaco, nos dois nos. O prefixo entra no
+# calculo do `hash_texto_embedding` das linhas de `exemplos`: mudar este valor, MODELO_EMBEDDING ou DIMENSOES invalida
+# todos os vetores ja gravados (busca e gravacao deixam de combinar, sem erro e sem aviso).
 PREFIXO_EMBEDDING = "task: sentence similarity | query: "
 # Teto de gasto do embedding por execucao, em dolares. Valor desta rodada, definido pelo Mestre.
 TETO_GASTO_NO60_USD = 0.10
@@ -204,7 +210,8 @@ _validar()
 
 def _validar_no60() -> None:
     """Validacao do no 60; roda na importacao, depois da validacao do no 50."""
-    for nome in ("TABELA_EXEMPLOS", "STATUS_BUSCA", "LOCALIZACAO_EMBEDDING", "PREFIXO_EMBEDDING"):
+    for nome in ("TABELA_EXEMPLOS", "STATUS_BUSCA", "LOCALIZACAO_EMBEDDING", "PREFIXO_EMBEDDING",
+                 "ENDERECO_EMBEDDING"):
         _texto(nome)
     _em("STATUS_BUSCA", ("aprovado",))
     _numero_positivo("N1_DENSO", (int,))

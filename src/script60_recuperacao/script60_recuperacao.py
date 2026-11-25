@@ -120,8 +120,8 @@ def construir_contexto(cfg: ModuleType) -> Contexto:
                                   "regras_extraidas": list(r["regras_extraidas"]), "sem_chave": list(r["sem_chave"]),
                                   "gobr": r["gobr"]} for r in ex}
     credenciais, _ = google.auth.default(scopes=["https://www.googleapis.com/auth/cloud-platform"])
-    endpoint = (f"https://aiplatform.googleapis.com/v1/projects/{cfg.PROJETO_GCP}/locations/"
-                f"{cfg.LOCALIZACAO_EMBEDDING}/publishers/google/models/{cfg.MODELO_EMBEDDING}:embedContent")
+    endpoint = cfg.ENDERECO_EMBEDDING.format(projeto=cfg.PROJETO_GCP, localizacao=cfg.LOCALIZACAO_EMBEDDING,
+                                             modelo=cfg.MODELO_EMBEDDING)
     info = cfg.MODELOS_EMBEDDING[cfg.MODELO_EMBEDDING]
     return Contexto(
         credenciais=credenciais, secoes=secoes, apoio=apoio, ids=tuple(r["exemplo_id"] for r in ex),

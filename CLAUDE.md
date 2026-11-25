@@ -134,3 +134,13 @@ Resultados completos dos testes: pasta local `resultados_teste_v3/`, ao lado do 
 - O gabarito de algumas regras usa escopo de grupo onde a descricao diz "do vendedor".
 - Cobertura real do manual em producao ainda nao medida (precisa do normalizador na cadeia).
 - Nao existe rotina de edicao de prompts e manual no BigQuery.
+
+## 13. Configuracao e metadado
+
+- Decisao mora no config.py, nunca no codigo do no. Prefixo, modelo, dimensao,
+  nome de tabela, nome de tipo de prompt e endereco de servico sao configuracao.
+  Mudar o prefixo ou o modelo de embedding invalida todos os vetores ja gravados.
+- Metadado so com valor real da execucao. Campo que o no nao tem como preencher
+  fica vazio e e nomeado no relatorio, com o motivo. Nunca preencher com valor
+  plausivel, porque falso positivo em metadado contamina analise futura sem
+  deixar rastro.

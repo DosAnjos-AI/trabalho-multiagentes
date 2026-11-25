@@ -17,7 +17,7 @@ dos tokens. Nao escreve em disco nem no BigQuery.
 ## O que devolve
 
 Um `Entrada` com quatro campos do prompt: `tipo`, `texto`, `status` (`aprovado`, `incompleto`, `fora_de_escopo`) e
-`faltantes` (tokens `quem_atende`, `desfecho`, `conflito`), mais `custo_usd`, `metadados` e `resposta_crua`.
+`faltantes` (tokens `quem_atende`, `desfecho`, `conflito`), mais `custo_usd`.
 Status ou token fora do conjunto, cabecalho ausente ou fora de ordem, tipo diferente do enviado e resposta cortada
 levantam erro (falha alta).
 
