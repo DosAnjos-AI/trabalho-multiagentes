@@ -76,6 +76,21 @@ VARIAVEL_CHAVE = "CHAVE_OPENAI"
 MODELO_NO30 = MODELO
 # Valor da coluna `tipo` da tabela de prompts; o no exige exatamente uma linha ativa deste tipo.
 TIPO_PROMPT_NO30 = "entrada_minimos"
+# Tipos que o no converte hoje. Fora desta lista, mas dentro de TIPOS_ENTRADA, o no levanta erro dizendo que o tipo
+# nao foi provado possivel. Audio ficou de fora: o modelo do no recusou o bloco `input_audio` (prova de 2026-11-24).
+# Misto ficou de fora: o agente.py entrega um arquivo por turno, entao nao ha como compor dois tipos.
+TIPOS_ENTRADA_IMPLEMENTADOS = ("texto", "imagem", "documento")
+# Extensao do arquivo -> (tipo de entrada, tipo MIME). So entra formato que a prova mostrou que o modelo aceita.
+EXTENSOES_ENTRADA = {
+    ".png": ("imagem", "image/png"),
+    ".pdf": ("documento", "application/pdf"),
+}
+# Limite de tamanho do arquivo, em bytes, por tipo. Valor desta rodada (decisao de custo e de seguranca do Mestre).
+LIMITE_BYTES_ENTRADA = {"imagem": 5_000_000, "documento": 10_000_000}
+# Tokens de entrada que a projecao de custo supoe para a midia (nao ha tokenizador local; imagem e pagina nao
+# crescem com os bytes). HIPOTESE: a prova mediu 480 tokens (imagem) e 277 (PDF de uma pagina); estes valores
+# deixam folga para documento de varias paginas.
+TOKENS_PROJECAO_MIDIA = {"imagem": 3000, "documento": 8000}
 
 # ============================================================================
 # NO 60 - RECUPERACAO
@@ -250,6 +265,23 @@ def _validar_no30() -> None:
     """Validacao do no 30; roda na importacao, depois da validacao do no 80."""
     _texto("TIPO_PROMPT_NO30")
     _em("MODELO_NO30", _valor("MODELOS"))
+    implementados = _valor("TIPOS_ENTRADA_IMPLEMENTADOS")
+    fora = [t for t in implementados if t not in TIPOS_ENTRADA]
+    if "texto" not in implementados or fora:
+        raise ErroConfig(f"TIPOS_ENTRADA_IMPLEMENTADOS recebido: {list(implementados)!r}. Aceitos: 'texto' mais "
+                         f"subconjunto de {list(TIPOS_ENTRADA)}. Configure em config.py.")
+    midia = [t for t in implementados if t != "texto"]
+    extensoes = _valor("EXTENSOES_ENTRADA")
+    for ext, par in extensoes.items():
+        if not ext.startswith(".") or ext != ext.lower() or len(par) != 2 or par[0] not in midia:
+            raise ErroConfig(f"EXTENSOES_ENTRADA recebido: {ext!r}: {par!r}. Aceita extensao minuscula com ponto "
+                             f"-> (tipo em {midia}, MIME). Configure em config.py.")
+    for nome in ("LIMITE_BYTES_ENTRADA", "TOKENS_PROJECAO_MIDIA"):
+        tabela = _valor(nome)
+        if set(tabela) != set(midia) or any(isinstance(v, bool) or not isinstance(v, int) or v <= 0
+                                            for v in tabela.values()):
+            raise ErroConfig(f"{nome} recebido: {tabela!r}. Aceita uma chave por tipo de midia implementado "
+                             f"{midia}, com inteiro > 0. Configure em config.py.")
 
 
 _validar_no30()

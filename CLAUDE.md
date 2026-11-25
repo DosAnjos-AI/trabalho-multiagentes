@@ -37,7 +37,7 @@ trabalho/
   agente.py                 ponto de entrada: conversa de varios turnos no terminal (`.venv/bin/python -B agente.py [id_da_conversa]`); pergunta se a pessoa aprova a regra
   orquestracao.py           mapa declarativo do grafo (estado, agentes, tools, nos, arestas); fonte unica do fluxo
   src/
-    script30_entrada/       converte a entrada em texto e confere os minimos (so texto por ora); prompt `entrada_minimos` no BigQuery
+    script30_entrada/       converte a entrada em texto e confere os minimos (texto, imagem e documento); prompt `entrada_minimos` no BigQuery
     script50_normalizacao/  normalizacao da entrada; mesmo codigo usado no corpus
     script60_recuperacao/   exemplos (denso + Jaccard) e recorte do manual
     script80_geracao/       escreve o .gobr (modelo padrao gpt-6-luna; prompt no BigQuery)
@@ -47,6 +47,8 @@ trabalho/
 
 Os dados do projeto deixaram de viver em disco e passaram a viver no BigQuery, no dataset
 `govendas_gobr` do projeto `multiagentes-514823`, nas tabelas `exemplos`, `prompts` e `manual`. O adendo de reexecucao do no 80 e a linha ativa de `prompts` com `tipo` `adendo_reexecucao_gobr`. O prompt do no 30 e a linha ativa de `prompts` com `tipo` `entrada_minimos` (v1, `prompt_entrada_minimos_v1.md`).
+
+Entrada aceita pelo no 30: `texto` e, por caminho de arquivo digitado no `agente.py`, `imagem` (`.png`, ate 5 000 000 bytes) e `documento` (`.pdf`, ate 10 000 000 bytes); a conversao e do modelo do no (`gpt-6.1-terra`), provada em 2026-11-24. `audio` (modelo recusou `input_audio`) e `misto` (um arquivo por turno) ficam de fora, dependem de decisao do Mestre. Tipos, extensoes e limites moram no `config.py`.
 
 Estado do grafo, campos da entrada: `entrada_bruta` (so registro), `tipo_entrada`, `status_entrada` (`aprovado`, `incompleto`, `fora_de_escopo`) e `faltantes` (`quem_atende`, `desfecho`, `conflito`). O no 30 devolve o texto em `descricao_usuario` (primeiro turno) ou `pedido_mudanca` (mudanca), e o no 50 le esses campos e `tipo_entrada`. Entrada reprovada encerra o turno; o `agente.py` pergunta o que falta, soma a resposta e chama de novo.
 

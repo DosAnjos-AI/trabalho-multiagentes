@@ -1,7 +1,7 @@
 """Ponto de entrada: conversa de varios turnos pelo terminal, no mesmo estado do grafo.
 
 Uso: .venv/bin/python -B agente.py [id_da_conversa]
-Primeira linha: descricao da regra. Depois de cada regra gerada o programa pergunta se a pessoa aprova: sim grava a
+Primeira linha: descricao da regra, ou o caminho de um arquivo (extensoes em config.EXTENSOES_ENTRADA). Depois de cada regra gerada o programa pergunta se a pessoa aprova: sim grava a
 regra no BigQuery (status pendente de revisao); nao pede o que mudar, e a linha seguinte e um pedido de mudanca.
 Linha vazia (ou Ctrl+D) encerra.
 Se a entrada nao traz o minimo, o programa pergunta o que falta e soma a resposta ao que a pessoa ja disse.
@@ -31,6 +31,15 @@ MENSAGEM_FORA_DE_ESCOPO = ("Eu escrevo regras de atendimento comercial na lingua
                            "Descreva a regra que voce quer, por exemplo quem atende e o que deve acontecer.")
 
 
+def achar_arquivo(linha: str) -> Path | None:
+    """Caminho do arquivo se a linha digitada for um arquivo existente; None se for texto."""
+    try:
+        caminho = Path(linha.strip().strip("'\"")).expanduser()
+        return caminho if caminho.is_file() else None
+    except (OSError, ValueError):  # texto longo demais ou com caractere invalido nao e caminho
+        return None
+
+
 def perguntar_aprovacao() -> bool | None:
     """True se a pessoa aprova; False se recusa; None se a entrada acabou (Ctrl+D)."""
     while True:
@@ -57,15 +66,37 @@ def main() -> None:
             break
         if not texto:
             break
+        # Caminho de arquivo existente vira midia; o tipo sai da extensao (o no 30 nao adivinha). Com pergunta
+        # pendente a linha e sempre resposta em texto: trocar a entrada no meio perderia o que a pessoa ja disse.
+        arquivo = None if pendente else achar_arquivo(texto)
+        tipo = "texto"
+        if arquivo is not None:
+            if arquivo.suffix.lower() not in config.EXTENSOES_ENTRADA:
+                print(f"\nExtensao {arquivo.suffix!r} nao aceita. Aceitas: {list(config.EXTENSOES_ENTRADA)}. "
+                      "Envie outro arquivo ou digite o texto.\n")
+                continue
+            tipo = config.EXTENSOES_ENTRADA[arquivo.suffix.lower()][0]
+            texto = str(arquivo)
         # Soma, nunca substitui: o no 30 recebe o pedido original e o complemento, na ordem em que a pessoa falou.
         bruta = f"{pendente}\n{texto}" if pendente else texto
-        entrada = {"entrada_bruta": bruta, "tipo_entrada": "texto"}
+        entrada = {"entrada_bruta": bruta, "tipo_entrada": tipo}
         entrada.update({"pedido_mudanca": bruta} if gerou else {"id_sessao": THREAD_ID})
-        estado = grafo.invoke(entrada, cfg)
+        try:
+            estado = grafo.invoke(entrada, cfg)
+        except ValueError as erro:
+            # Midia invalida (arquivo grande, ilegivel) nao derruba a conversa; erro de texto continua fatal.
+            if tipo == "texto":
+                raise
+            print(f"\nNao foi possivel usar o arquivo: {erro}\n")
+            continue
         total += estado["custo_turno"]
         status = estado["status_entrada"]
+        if tipo != "texto":
+            transcrito = estado["pedido_mudanca"] if gerou else estado["descricao_usuario"]
+            print(f"\nTexto transcrito de {tipo}:\n{transcrito}")
         if status == "incompleto":
-            pendente = bruta
+            # Em midia, o que fica pendente e o texto transcrito: a resposta da pessoa soma a ele.
+            pendente = bruta if tipo == "texto" else transcrito
             print("\n" + "\n".join(PERGUNTAS[t] for t in estado["faltantes"]))
             print(f"\n[custo do turno US$ {estado['custo_turno']:.6f}; total US$ {total:.6f}]\n")
             continue

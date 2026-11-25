@@ -8,10 +8,25 @@ dos tokens. Nao escreve em disco nem no BigQuery.
 
 `classificar_entrada(tipo_entrada, turno, conteudo, ctx)`
 
-- `tipo_entrada`: `texto`, `audio`, `imagem`, `documento` ou `misto`. **Nesta etapa so `texto`**: os demais levantam
-  erro dizendo que a midia entra em etapa propria.
+- `tipo_entrada`: `texto`, `audio`, `imagem`, `documento` ou `misto`. O chamador informa o tipo; o no nao adivinha.
+  Implementados (`TIPOS_ENTRADA_IMPLEMENTADOS`): `texto`, `imagem` e `documento`. `audio` e `misto` levantam erro
+  dizendo que o tipo nao foi provado possivel e que implementa-lo depende de decisao do Mestre.
 - `turno`: `primeiro` ou `mudanca`.
-- `conteudo`: o que a pessoa disse. Quando ela completa um pedido, o chamador soma o pedido original e o complemento.
+- `conteudo`: para `texto`, o que a pessoa disse (quando ela completa um pedido, o chamador soma o pedido original e o
+  complemento). Para `imagem` e `documento`, o caminho do arquivo; o modelo le o arquivo e o no devolve o texto.
+
+## Midia aceita
+
+| Tipo | Extensao | Limite | Prova (modelo `gpt-6.1-terra`, 2026-11-24) |
+|---|---|---|---|
+| imagem | `.png` | 5 000 000 bytes | aceitou; `image_url` com data URL base64 |
+| documento | `.pdf` | 10 000 000 bytes | aceitou; bloco `file` com `file_data` base64 |
+| audio | (nenhuma) | - | recusado: `Content blocks are expected to be either text or image_url type` |
+| misto | (nenhuma) | - | nao implementado: o `agente.py` entrega um arquivo por turno |
+
+Extensoes, limites e a projecao de tokens de midia estao em `config.py` (`EXTENSOES_ENTRADA`, `LIMITE_BYTES_ENTRADA`,
+`TOKENS_PROJECAO_MIDIA`). Arquivo inexistente, extensao diferente do tipo ou acima do limite levanta `ErroEntrada` com o
+valor recebido e o limite. Jpeg, gif, webp e `.txt` nao foram provados e ficam fora da lista.
 - `ctx`: o `Contexto`, criado uma vez por `construir_contexto(config)`.
 
 ## O que devolve
