@@ -167,6 +167,15 @@ STATUS_GRAVACAO = "pendente"
 TETO_GASTO_NO90_USD = 0.10
 
 # ============================================================================
+# MIDDLEWARE (script20) - CONTADOR DE CUSTO E TETO DA SESSAO
+# ============================================================================
+# Teto acumulado da sessao (um processo do agente.py), em dolares: modelo de linguagem, embedding e reconhecimento de
+# fala. BigQuery nao conta (a conta ja tem limite automatico). Conta: 5 x US$ 0,0147 (media medida por turno) x
+# 8 turnos previstos = US$ 0,588, arredondado para cima: US$ 0,60. E rede de protecao contra laco descontrolado:
+# ao atingir o teto, a proxima chamada de no e bloqueada.
+TETO_SESSAO_USD = 0.60
+
+# ============================================================================
 # AMBIENTE
 # ============================================================================
 # Arquivo com as chaves de API (ignorado pelo git), na mesma pasta deste arquivo. Variaveis esperadas: VARIAVEL_CHAVE.
@@ -241,6 +250,14 @@ def _validar() -> None:
 
 
 _validar()
+
+
+def _validar_middleware() -> None:
+    """Validacao do middleware; roda na importacao."""
+    _numero_positivo("TETO_SESSAO_USD")
+
+
+_validar_middleware()
 
 
 def _validar_no60() -> None:

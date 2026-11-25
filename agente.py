@@ -17,6 +17,7 @@ sys.path[:0] = [str(RAIZ), str(RAIZ / "src")]
 import config
 import orquestracao
 from script10_orquestracao.script10_orquestracao import construir_grafo
+from script20_middleware.script20_middleware import ErroTeto, Medidor
 
 # Uma conversa por execucao; a memoria do grafo e do processo. O id e o primeiro argumento (padrao: conversa1) e
 # entra no exemplo_id da regra gravada.
@@ -54,10 +55,27 @@ def perguntar_aprovacao() -> bool | None:
             return False
 
 
+def linha_custo(medidor: Medidor, custo_turno: float) -> str:
+    """Fim de turno: custo do turno, acumulado contra o teto e latencia por no (segundos)."""
+    latencias = " ".join(f"{no}={s:.3f}s" for no, s in medidor.fechar_turno().items())
+    return (f"\n[custo do turno US$ {custo_turno:.6f}; acumulado US$ {medidor.acumulado:.6f} "
+            f"de US$ {medidor.teto:g}; latencia: {latencias}]\n")
+
+
 def main() -> None:
-    grafo = construir_grafo(config, orquestracao)
+    medidor = Medidor(config.TETO_SESSAO_USD)
+    try:
+        conversar(medidor)
+    except ErroTeto as erro:
+        # Teto e rede de protecao: encerra a sessao sem tentar de novo.
+        print(f"\n{erro}\nSessao encerrada.")
+        sys.exit(1)
+    print(f"\nAcumulado final da sessao: US$ {medidor.acumulado:.6f} de US$ {medidor.teto:g}.")
+
+
+def conversar(medidor: Medidor) -> None:
+    grafo = construir_grafo(config, orquestracao, medidor)
     cfg = {"configurable": {"thread_id": THREAD_ID}}
-    total = 0.0
     gerou = False      # a primeira regra ja saiu: as entradas seguintes sao pedidos de mudanca
     pendente = ""      # texto de uma entrada incompleta; a resposta da pessoa e somada a ele
     while True:
@@ -90,7 +108,6 @@ def main() -> None:
                 raise
             print(f"\nNao foi possivel usar o arquivo: {erro}\n")
             continue
-        total += estado["custo_turno"]
         status = estado["status_entrada"]
         if tipo != "texto":
             transcrito = estado["pedido_mudanca"] if gerou else estado["descricao_usuario"]
@@ -99,12 +116,12 @@ def main() -> None:
             # Em midia, o que fica pendente e o texto transcrito: a resposta da pessoa soma a ele.
             pendente = bruta if tipo == "texto" else transcrito
             print("\n" + "\n".join(PERGUNTAS[t] for t in estado["faltantes"]))
-            print(f"\n[custo do turno US$ {estado['custo_turno']:.6f}; total US$ {total:.6f}]\n")
+            print(linha_custo(medidor, estado["custo_turno"]))
             continue
         pendente = ""  # fora_de_escopo descarta a entrada alheia; aprovado ja a consumiu
         if status == "fora_de_escopo":
             print(f"\n{MENSAGEM_FORA_DE_ESCOPO}")
-            print(f"\n[custo do turno US$ {estado['custo_turno']:.6f}; total US$ {total:.6f}]\n")
+            print(linha_custo(medidor, estado["custo_turno"]))
             continue
         gerou = True
         print(f"\n{estado['gobr_atual']}")
@@ -113,7 +130,7 @@ def main() -> None:
             itens = "\n".join(f"  - {item}" for item in estado["sem_chave"])
             print("\nRessalva: os itens abaixo nao foram encontrados no manual e podem nao estar cobertos "
                   f"pela regra gerada acima:\n{itens}")
-        print(f"\n[custo do turno US$ {estado['custo_turno']:.6f}; total US$ {total:.6f}]\n")
+        print(linha_custo(medidor, estado["custo_turno"]))
         aprovada = perguntar_aprovacao()
         if aprovada is None:
             break
@@ -121,9 +138,8 @@ def main() -> None:
             print("\nO que voce quer mudar na regra?")
             continue
         estado = grafo.invoke({"aprovacao": "aprovado"}, cfg)
-        total += estado["custo_turno"]
         print(f"\nRegra gravada como {estado['exemplo_gravado']} (status {config.STATUS_GRAVACAO}, aguarda revisao).")
-        print(f"\n[custo do turno US$ {estado['custo_turno']:.6f}; total US$ {total:.6f}]\n")
+        print(linha_custo(medidor, estado["custo_turno"]))
 
 
 if __name__ == "__main__":

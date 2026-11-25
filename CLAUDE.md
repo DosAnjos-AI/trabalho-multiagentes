@@ -42,6 +42,7 @@ trabalho/
     script60_recuperacao/   exemplos (denso + Jaccard) e recorte do manual
     script80_geracao/       escreve o .gobr (modelo padrao gpt-6-luna; prompt no BigQuery)
     script90_persistencia/  grava a regra aprovada em `exemplos` (INSERT, status `pendente`); unica escrita do projeto no BigQuery
+    script20_middleware/    Medidor: latencia por no, custo acumulado da sessao e parada dura no teto (`TETO_SESSAO_USD`); transversal, nao e no do grafo
     script10_orquestracao/  constroi o grafo LangGraph a partir de orquestracao.py e traz os nos adaptados; o campo `sem_chave` do estado leva ao usuario o que o manual nao cobriu
 ```
 
@@ -128,6 +129,15 @@ Resultados completos dos testes: pasta local `resultados_teste_v3/`, ao lado do 
 | Prompt | v2c ativo no BigQuery (tipo `geracao_gobr`) | v3 empatou e e 5,6% menor, mas fica inativo; v1 inativa (licenca para omitir trecho) |
 | Recuperacao | `N1_DENSO` = 2 e `N2_JACCARD` = 2 mantidos | A uniao denso + Jaccard entregou 138 de 139 secoes exigidas, no melhor caso: a consulta usou as regras do proprio corpus; em producao virao do normalizador |
 
+Middleware (script20): o construtor do grafo embrulha a chamada de cada no; o `Medidor` soma o `custo_turno` que o no
+ja devolve e bloqueia a proxima chamada quando o acumulado da sessao atinge `TETO_SESSAO_USD` (US$ 0,60 = 5 x US$ 0,0147
+x 8 turnos; modelo, embedding e fala; BigQuery nao conta). O `agente.py` imprime custo do turno, acumulado e latencia por
+no, e encerra a sessao ao bloquear. Contador vale por processo.
+
+Teste de injecao de prompt (2026-11-24, so medicao, sem contencao): ataque A (instrucao direta no texto), B (trocar o papel
+do no de entrada e pedir o prompt) e C (instrucao dentro de imagem .png) ficaram CONTIDOS. Nenhum trecho do prompt
+`entrada_minimos` vazou. Amostra de um ataque por tipo: nao prova imunidade.
+
 ## 12. Dividas
 
 - `langgraph` instalado no `.venv` sem arquivo de dependencias no repositorio.
@@ -136,6 +146,7 @@ Resultados completos dos testes: pasta local `resultados_teste_v3/`, ao lado do 
 - O gabarito de algumas regras usa escopo de grupo onde a descricao diz "do vendedor".
 - Cobertura real do manual em producao ainda nao medida (precisa do normalizador na cadeia).
 - Nao existe rotina de edicao de prompts e manual no BigQuery.
+- Teste de injecao com uma amostra por ataque; variar redacao e repetir antes de afirmar robustez.
 
 ## 13. Configuracao e metadado
 

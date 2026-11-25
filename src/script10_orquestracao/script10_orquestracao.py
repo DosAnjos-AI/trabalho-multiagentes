@@ -5,7 +5,7 @@ le aquele arquivo, resolve cada modulo por nome e liga as funcoes dos nos 30, 50
 do estado que muda. Em disco nada e escrito; no BigQuery so o no 90 escreve, uma linha por aprovacao.
 
 Uso (a raiz do projeto e `src/` precisam estar no sys.path):
-    grafo = construir_grafo(config, orquestracao)
+    grafo = construir_grafo(config, orquestracao, Medidor(config.TETO_SESSAO_USD))
     cfg = {"configurable": {"thread_id": "conversa1"}}
     grafo.invoke({"id_sessao": "conversa1", "entrada_bruta": "...", "tipo_entrada": "texto"}, cfg)  # primeira geracao
     grafo.invoke({"entrada_bruta": "...", "tipo_entrada": "texto", "pedido_mudanca": "..."}, cfg)  # reexecucao
@@ -174,8 +174,9 @@ def construir_contextos(cfg: ModuleType, orq: ModuleType) -> dict:
     return contextos
 
 
-def construir_grafo(cfg: ModuleType, orq: ModuleType, contextos: dict | None = None):
-    """Monta e compila o grafo a partir do mapa de orquestracao.py. `contextos` evita reler o BigQuery em testes."""
+def construir_grafo(cfg: ModuleType, orq: ModuleType, medidor, contextos: dict | None = None):
+    """Monta e compila o grafo a partir do mapa de orquestracao.py. `contextos` evita reler o BigQuery em testes.
+    `medidor` (script20) embrulha a chamada de cada no; sem ele nao ha teto, por isso nao tem valor padrao."""
     _validar(orq)
     contextos = contextos or construir_contextos(cfg, orq)
     estado = TypedDict("Estado", {campo: TIPOS_ESTADO[tipo] for campo, (tipo, _) in orq.ESTADO.items()})
@@ -183,7 +184,9 @@ def construir_grafo(cfg: ModuleType, orq: ModuleType, contextos: dict | None = N
     for no, d in orq.NOS.items():
         modulo, ctx = contextos[d["usa"]]
         # Fecha sobre modulo e contexto; o argumento padrao evita que todos os nos apontem para o ultimo do laco.
-        grafo.add_node(no, lambda e, _f=FUNCOES_NOS[d["executa"]], _m=modulo, _c=ctx: _f(e, _m, _c))
+        f = FUNCOES_NOS[d["executa"]]
+        chamada = lambda e, _f=f, _m=modulo, _c=ctx: _f(e, _m, _c)
+        grafo.add_node(no, medidor.embrulhar(no, chamada, f.__name__ in FUNCOES_QUE_ZERAM_CUSTO))
     for origem, destino in orq.ARESTAS:
         grafo.add_edge(EXTREMOS.get(origem, origem), EXTREMOS.get(destino, destino))
     for c in orq.ARESTAS_CONDICIONAIS:
@@ -195,6 +198,9 @@ def construir_grafo(cfg: ModuleType, orq: ModuleType, contextos: dict | None = N
             {rotulo: EXTREMOS.get(d, d) for rotulo, d in destinos.items()})
     return grafo.compile(checkpointer=MEMORIAS[orq.MEMORIA]())
 
+
+# Nos que recomecam `custo_turno` do zero (o medidor nao desconta o valor do turno anterior ao somar o custo deles).
+FUNCOES_QUE_ZERAM_CUSTO = ("classificar_entrada_turno", "persistir_regra")
 
 # Resolvido depois das funcoes: o nome em orquestracao.py ("executa") escolhe a funcao aqui.
 FUNCOES_NOS = {f.__name__: f for f in (classificar_entrada_turno, normalizar_descricao, normalizar_descricao_com_pedido, recuperar_exemplos,

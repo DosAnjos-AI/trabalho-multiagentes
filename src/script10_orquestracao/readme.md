@@ -4,11 +4,14 @@
 funcoes dos nos, que adaptam os nos 30, 50, 60, 80 e 90 ao estado do grafo. O mapa (estado, agentes, tools, nos, arestas) nao
 vive aqui: para mudar uma ligacao, edite `orquestracao.py`.
 
-- `construir_grafo(config, orquestracao)` valida o mapa, le o contexto de cada no uma vez no BigQuery e compila o grafo
+- `construir_grafo(config, orquestracao, medidor)` valida o mapa, le o contexto de cada no uma vez no BigQuery e compila o grafo
   com memoria em processo.
 - O `START` e condicional pelo campo `aprovacao`: vazio segue para `entrada` (fluxo normal); preenchido vai para
   `persistencia -> END` (no 90), porque aprovar nao e pedir regra. A persistencia grava a regra vigente em `exemplos`
   com status `pendente`, devolve `exemplo_gravado`, esvazia `aprovacao` e zera `custo_turno` para o custo do embedding.
+- Middleware (script20): o construtor embrulha a funcao de cada no com `medidor.embrulhar`, que mede latencia, soma o
+  custo ao acumulado da sessao e bloqueia o no quando o acumulado atinge `TETO_SESSAO_USD`. O medidor e passado pelo
+  `agente.py`, sem valor padrao: sem ele nao ha teto. A forma do grafo nao muda.
 - Os campos `metadados_normalizado` e `metadados_geracao` guardam o que os nos 50 e 80 devolveram, para a persistencia.
 - Todo turno sem aprovacao comeca no no `entrada` (no 30). Aprovado, primeira geracao: `normalizacao -> recuperacao -> geracao`.
   Aprovado com `pedido_mudanca` preenchido: `normalizacao_pedido -> recuperacao -> geracao_reexecucao`.
