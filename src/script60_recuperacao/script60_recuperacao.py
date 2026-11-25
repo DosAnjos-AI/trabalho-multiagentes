@@ -1,9 +1,10 @@
 """No de recuperacao: dada uma consulta normalizada, devolve os exemplos .gobr mais proximos e o recorte do manual.
 
 So le o BigQuery; nao grava nada nem em disco nem na nuvem. A saida e um objeto devolvido pela funcao.
-Na partida (`construir_contexto`) carrega uma vez: os tres arquivos de apoio (fixos, entregues em todo turno), os
-exemplos filtrados com seus vetores e a credencial do embedding. As secoes do manual NAO sao lidas na partida: cada
-turno le so as que o recorte pede, e as ja lidas ficam em memoria do processo (ver `_carregar_secoes`).
+Na partida (`construir_contexto`) carrega uma vez: os tres arquivos de apoio (fixos, entregues em todo turno) e a
+credencial do embedding. Os exemplos NAO sao baixados: a semelhanca (cosseno e Jaccard) e calculada dentro do BigQuery
+a cada turno e so os exemplos escolhidos voltam (ver `_pontuar` e `_ler_exemplos`). As secoes do manual tambem sao lidas
+sob demanda, e as ja lidas ficam em memoria do processo (ver `_carregar_secoes`).
 O manual inteiro nunca e devolvido: sai so o recorte (ver `recuperar`).
 Nenhuma funcao deste modulo le configuracao global: o config entra so em `construir_contexto`, como parametro.
 
@@ -49,9 +50,8 @@ class Contexto:
     tabela_manual: str
     secoes: dict          # caminho -> texto das secoes ja lidas; comeca vazio e cresce por turno (memoria do processo)
     apoio: dict           # caminho -> texto, os tres arquivos de apoio
-    ids: tuple            # exemplo_id, na ordem das linhas de `matriz`
-    exemplos: dict        # exemplo_id -> {explicacao_normalizada, regras_extraidas, sem_chave, gobr}
-    matriz: object        # numpy (n, dimensoes), cada linha ja dividida pela norma
+    tabela_exemplos: str
+    status_busca: str     # so linhas com este status_revisao entram na busca
     n1_denso: int
     n2_jaccard: int
     modelo_embedding: str
@@ -78,12 +78,6 @@ class Recuperacao:
     custo_usd: float
 
 
-def jaccard(a: set, b: set) -> float:
-    """Sobreposicao entre dois conjuntos de caminhos. Dois conjuntos vazios valem 0 (nao ha o que comparar)."""
-    uniao = a | b
-    return len(a & b) / len(uniao) if uniao else 0.0
-
-
 def construir_contexto(cfg: ModuleType) -> Contexto:
     """Le o BigQuery e prepara a credencial, uma vez. Falha alto, antes de qualquer chamada paga."""
     import google.auth
@@ -103,33 +97,27 @@ def construir_contexto(cfg: ModuleType) -> Contexto:
                            f"ausentes ou fora de um por tipo (esperados: {list(TIPOS_APOIO)}). "
                            f"Tabela configurada em {ARQ_CONFIG} (TABELA_MANUAL).")
 
-    # Filtro como parametro de consulta: a lista de aceitos vem do config, nao do SQL.
-    consulta = (f"SELECT exemplo_id, explicacao_normalizada, regras_extraidas, sem_chave, gobr, embedding "
-                f"FROM `{base}.{cfg.TABELA_EXEMPLOS}` WHERE status_revisao = @status "
-                f"ORDER BY exemplo_id")
-    params = [bigquery.ScalarQueryParameter("status", "STRING", cfg.STATUS_BUSCA)]
-    config_job = bigquery.QueryJobConfig(query_parameters=params)
-    ex = [dict(r) for r in bq.query(consulta, job_config=config_job).result()]
-    if not ex:
-        raise ErroContexto(f"{base}.{cfg.TABELA_EXEMPLOS}: nenhuma linha com "
+    # Conferencia da partida sem baixar vetor: o BigQuery conta as linhas aprovadas e as de vetor com tamanho errado.
+    tabela_exemplos = f"{base}.{cfg.TABELA_EXEMPLOS}"
+    consulta = (f"SELECT COUNT(*) AS n, COUNTIF(ARRAY_LENGTH(embedding) != @dim) AS ruins, "
+                f"ANY_VALUE(IF(ARRAY_LENGTH(embedding) != @dim, exemplo_id, NULL)) AS primeiro_ruim "
+                f"FROM `{tabela_exemplos}` WHERE status_revisao = @status")
+    params = [bigquery.ScalarQueryParameter("status", "STRING", cfg.STATUS_BUSCA),
+              bigquery.ScalarQueryParameter("dim", "INT64", cfg.DIMENSOES)]
+    conf = next(iter(bq.query(consulta, job_config=bigquery.QueryJobConfig(query_parameters=params)).result()))
+    if not conf["n"]:
+        raise ErroContexto(f"{tabela_exemplos}: nenhuma linha com "
                            f"status_revisao={cfg.STATUS_BUSCA!r}. Filtro configurado em {ARQ_CONFIG}.")
-    ruins = [r["exemplo_id"] for r in ex if len(r["embedding"]) != cfg.DIMENSOES]
-    if ruins:
-        raise ErroContexto(f"{len(ruins)} exemplos com embedding de tamanho diferente de {cfg.DIMENSOES} "
-                           f"(DIMENSOES em {ARQ_CONFIG}); primeiro: {ruins[0]!r}.")
-    matriz = np.array([r["embedding"] for r in ex], dtype=np.float64)
-    # Normaliza aqui para o cosseno virar produto interno; nao se presume que o banco ja normalizou.
-    matriz = matriz / np.linalg.norm(matriz, axis=1, keepdims=True)
-    exemplos = {r["exemplo_id"]: {"exemplo_id": r["exemplo_id"], "explicacao_normalizada": r["explicacao_normalizada"],
-                                  "regras_extraidas": list(r["regras_extraidas"]), "sem_chave": list(r["sem_chave"]),
-                                  "gobr": r["gobr"]} for r in ex}
+    if conf["ruins"]:
+        raise ErroContexto(f"{conf['ruins']} exemplos com embedding de tamanho diferente de {cfg.DIMENSOES} "
+                           f"(DIMENSOES em {ARQ_CONFIG}); primeiro: {conf['primeiro_ruim']!r}.")
     credenciais, _ = google.auth.default(scopes=["https://www.googleapis.com/auth/cloud-platform"])
     endpoint = cfg.ENDERECO_EMBEDDING.format(projeto=cfg.PROJETO_GCP, localizacao=cfg.LOCALIZACAO_EMBEDDING,
                                              modelo=cfg.MODELO_EMBEDDING)
     info = cfg.MODELOS_EMBEDDING[cfg.MODELO_EMBEDDING]
     return Contexto(
-        credenciais=credenciais, bq=bq, tabela_manual=tabela_manual, secoes={}, apoio=apoio, ids=tuple(r["exemplo_id"] for r in ex),
-        exemplos=exemplos, matriz=matriz, n1_denso=cfg.N1_DENSO, n2_jaccard=cfg.N2_JACCARD,
+        credenciais=credenciais, bq=bq, tabela_manual=tabela_manual, secoes={}, apoio=apoio,
+        tabela_exemplos=tabela_exemplos, status_busca=cfg.STATUS_BUSCA, n1_denso=cfg.N1_DENSO, n2_jaccard=cfg.N2_JACCARD,
         modelo_embedding=cfg.MODELO_EMBEDDING, dimensoes=cfg.DIMENSOES, endpoint=endpoint, projeto=cfg.PROJETO_GCP,
         prefixo=cfg.PREFIXO_EMBEDDING, usd_por_milhao=info["usd_por_milhao"],
         caracteres_por_token=cfg.CARACTERES_POR_TOKEN_PESSIMISTA, teto_gasto_usd=float(cfg.TETO_GASTO_NO60_USD),
@@ -156,6 +144,53 @@ def _carregar_secoes(ctx: Contexto, caminhos: list, origem: str) -> None:
                          f"Confira regras_extraidas da consulta, ou a tabela configurada em "
                          f"{ARQ_CONFIG} (TABELA_MANUAL).")
     ctx.secoes.update(lidas)
+
+
+def _pontuar(ctx: Contexto, vetor: np.ndarray, regras: list, excluir_ids: frozenset) -> tuple[dict, dict]:
+    """Cosseno e Jaccard de cada exemplo aprovado, calculados no BigQuery; so dois numeros por exemplo voltam.
+
+    Cosseno: 1 - COSINE_DISTANCE(embedding, @vetor). Jaccard: |chaves em comum| / |uniao das chaves|, ambos sobre
+    conjuntos (DISTINCT); dois conjuntos vazios valem 0. Vetor e chaves vao como parametro, nunca no texto da consulta.
+    """
+    from google.cloud import bigquery
+
+    consulta = f"""
+        WITH base AS (
+          SELECT exemplo_id, 1 - COSINE_DISTANCE(embedding, @vetor) AS cosseno,
+                 (SELECT COUNT(DISTINCT c) FROM UNNEST(regras_extraidas) AS c WHERE c IN UNNEST(@regras)) AS comuns,
+                 (SELECT COUNT(DISTINCT c) FROM UNNEST(regras_extraidas) AS c) AS n_exemplo
+          FROM `{ctx.tabela_exemplos}`
+          WHERE status_revisao = @status AND exemplo_id NOT IN UNNEST(@excluir))
+        SELECT exemplo_id, cosseno, IFNULL(SAFE_DIVIDE(comuns, n_exemplo + @n_consulta - comuns), 0) AS jaccard
+        FROM base"""
+    params = [bigquery.ArrayQueryParameter("vetor", "FLOAT64", vetor.tolist()),
+              bigquery.ArrayQueryParameter("regras", "STRING", regras),
+              bigquery.ArrayQueryParameter("excluir", "STRING", sorted(excluir_ids)),
+              bigquery.ScalarQueryParameter("status", "STRING", ctx.status_busca),
+              bigquery.ScalarQueryParameter("n_consulta", "INT64", len(regras))]
+    linhas = list(ctx.bq.query(consulta, job_config=bigquery.QueryJobConfig(query_parameters=params)).result())
+    if not linhas:
+        raise ErroContexto(f"{ctx.tabela_exemplos}: nenhuma linha com status_revisao={ctx.status_busca!r} "
+                           f"depois de excluir {len(excluir_ids)} ids. Filtro configurado em {ARQ_CONFIG}.")
+    return {r["exemplo_id"]: float(r["cosseno"]) for r in linhas}, {r["exemplo_id"]: float(r["jaccard"]) for r in linhas}
+
+
+def _ler_exemplos(ctx: Contexto, ids: list) -> dict:
+    """Le so os exemplos escolhidos, sem a coluna `embedding`."""
+    from google.cloud import bigquery
+
+    consulta = (f"SELECT exemplo_id, explicacao_normalizada, regras_extraidas, sem_chave, gobr "
+                f"FROM `{ctx.tabela_exemplos}` WHERE status_revisao = @status AND exemplo_id IN UNNEST(@ids)")
+    params = [bigquery.ScalarQueryParameter("status", "STRING", ctx.status_busca),
+              bigquery.ArrayQueryParameter("ids", "STRING", ids)]
+    lidos = {r["exemplo_id"]: {"exemplo_id": r["exemplo_id"], "explicacao_normalizada": r["explicacao_normalizada"],
+                               "regras_extraidas": list(r["regras_extraidas"]), "sem_chave": list(r["sem_chave"]),
+                               "gobr": r["gobr"]}
+             for r in ctx.bq.query(consulta, job_config=bigquery.QueryJobConfig(query_parameters=params)).result()}
+    faltam = [i for i in ids if i not in lidos]
+    if faltam:
+        raise ErroContexto(f"{ctx.tabela_exemplos}: exemplos {faltam!r} escolhidos pela busca nao foram lidos.")
+    return lidos
 
 
 def embutir_consulta(ctx: Contexto, texto: str) -> tuple[np.ndarray, int, float]:
@@ -205,11 +240,7 @@ def recuperar(texto: str, regras_consulta: list, ctx: Contexto, *, excluir_ids: 
     tokens, custo_emb = 0, 0.0
     if vetor_consulta is None:
         vetor_consulta, tokens, custo_emb = embutir_consulta(ctx, texto)
-    cosseno = ctx.matriz @ vetor_consulta  # produto interno de vetores normalizados = cosseno
-    validos = [i for i, eid in enumerate(ctx.ids) if eid not in excluir_ids]
-    cos = {ctx.ids[i]: float(cosseno[i]) for i in validos}
-    conj_consulta = set(regras)
-    jac = {eid: jaccard(conj_consulta, set(ctx.exemplos[eid]["regras_extraidas"])) for eid in cos}
+    cos, jac = _pontuar(ctx, vetor_consulta, regras, excluir_ids)
 
     # Ramo denso: maior cosseno; o id so desempata a ordem de impressao, nao a escolha (cossenos reais nao empatam).
     ordem_denso = sorted(cos, key=lambda e: (-cos[e], e))
@@ -238,10 +269,11 @@ def recuperar(texto: str, regras_consulta: list, ctx: Contexto, *, excluir_ids: 
               "empatados": [{"exemplo_id": e, "cosseno": cos[e]} for e in empatados],
               "empate_residual_apos_denso": residual}
 
+    exemplos = _ler_exemplos(ctx, list(entrada))
     # Recorte: regras da consulta + regras dos exemplos da uniao, sem duplicata. Nunca o manual inteiro.
     caminhos = list(regras)
     for eid in entrada:
-        for c in ctx.exemplos[eid]["regras_extraidas"]:
+        for c in exemplos[eid]["regras_extraidas"]:
             if c not in caminhos:
                 caminhos.append(c)
     # Uma leitura so, para a consulta e os exemplos juntos; a ordem de `caminhos` (e do recorte) nao muda.
@@ -249,7 +281,7 @@ def recuperar(texto: str, regras_consulta: list, ctx: Contexto, *, excluir_ids: 
     recorte = {c: ctx.secoes[c] for c in caminhos}
 
     return Recuperacao(
-        exemplos=[ctx.exemplos[e] for e in entrada], secoes_manual=recorte, apoio=dict(ctx.apoio),
+        exemplos=[exemplos[e] for e in entrada], secoes_manual=recorte, apoio=dict(ctx.apoio),
         registro=list(entrada.values()), caminhos_recorte=caminhos, empate_jaccard=empate,
         tokens_embedding=tokens, custo_usd=custo_emb,
     )

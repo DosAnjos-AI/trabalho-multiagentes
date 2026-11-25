@@ -37,9 +37,22 @@ descricao, sem corte de espaco, igual ao no 90. Mudar prefixo ou modelo invalida
 
 ## De onde vem o conteudo
 
-Tabela `exemplos` (descricao, regras, gobr e vetor gravado) e os tres arquivos de apoio da tabela `manual`, lidos
-uma vez em `construir_contexto`. As secoes do manual sao lidas sob demanda: em cada turno o no pede ao BigQuery so as
-secoes do recorte que ainda nao leu (uma consulta no maximo, nenhuma se todas ja estao em memoria) e guarda o resultado
-em memoria do processo; nada vai a disco. A escolha do recorte nao mudou, so o momento da leitura. A credencial do
-embedding vem do `google.auth.default`. Secao citada que nao existe no manual interrompe o no, com o nome dela; a
-conferencia agora acontece depois do embedding da consulta (custo desprezivel), numa leitura so.
+Tabela `exemplos` e os tres arquivos de apoio da tabela `manual` (lidos uma vez em `construir_contexto`). Os exemplos
+NAO sao baixados: nenhum vetor de 3072 posicoes chega a memoria da aplicacao, salvo o da propria consulta. Em cada turno
+o no faz duas consultas ao BigQuery, com vetor e chaves como parametro (nunca no texto da consulta):
+
+1. `_pontuar`: para cada exemplo com `status_revisao = STATUS_BUSCA` (e fora de `excluir_ids`), devolve so `exemplo_id`,
+   `cosseno` e `jaccard`. Cosseno = `1 - COSINE_DISTANCE(embedding, @vetor)` (funcao nativa do BigQuery; normaliza os
+   dois vetores sozinha). Jaccard = chaves em comum / uniao das chaves, sobre conjuntos (`COUNT(DISTINCT ...)`), com
+   dois conjuntos vazios valendo 0. A ordenacao, o corte em `N1_DENSO` e `N2_JACCARD`, o desempate e a uniao continuam
+   no Python, sobre essas duas colunas numericas, com a mesma regra de antes.
+2. `_ler_exemplos`: le so os exemplos escolhidos (ate 4), com explicacao, regras, `sem_chave` e `gobr`, sem `embedding`.
+
+Na partida o BigQuery apenas conta as linhas aprovadas e as de vetor com tamanho errado (nada e baixado). Equivalencia
+com a versao anterior (leitura do corpus e numpy) medida em cinco entradas: mesmos exemplos, mesma ordem, diferenca
+de cosseno abaixo de 4e-15 e Jaccard identico.
+
+As secoes do manual sao lidas sob demanda: em cada turno o no pede ao BigQuery so as secoes do recorte que ainda nao
+leu (uma consulta no maximo, nenhuma se todas ja estao em memoria) e guarda o resultado em memoria do processo; nada
+vai a disco. A credencial do embedding vem do `google.auth.default`. Secao citada que nao existe no manual interrompe o
+no, com o nome dela.

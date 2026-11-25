@@ -74,6 +74,12 @@ nao monta `misto`. (4) Teto editavel na barra lateral do `app.py`, valor inicial
 da sessao a partir da proxima chamada de no; reais por `CAMBIO_BRL_POR_USD` (estimativa, sem servico externo).
 (5) `ARQ_ICONE` e `TITULO_ABA` no `config.py`.
 
+Etapa 6C (2026-11-25): a busca por semelhanca acontece dentro do BigQuery e o corpus deixou de ser carregado na memoria.
+O no 60 manda o vetor da consulta e as chaves como parametro; `COSINE_DISTANCE` e o Jaccard sao calculados na consulta,
+que devolve so `exemplo_id`, `cosseno` e `jaccard`; uma segunda consulta le os ate 4 exemplos escolhidos, sem `embedding`.
+Criterio de escolha, quantidades, filtro `aprovado` e uniao nao mudaram. Medido em cinco entradas: mesmos exemplos, mesma
+ordem. Partida (mediana de tres): 26,65 s antes, 7,85 s depois.
+
 Estado do grafo, campos da entrada: `entrada_bruta` (so registro), `tipo_entrada`, `status_entrada` (`aprovado`, `incompleto`, `fora_de_escopo`) e `faltantes` (`quem_atende`, `desfecho`, `conflito`). O no 30 devolve o texto em `descricao_usuario` (primeiro turno) ou `pedido_mudanca` (mudanca), e o no 50 le esses campos e `tipo_entrada`. Entrada reprovada encerra o turno; o `agente.py` pergunta o que falta, soma a resposta e chama de novo.
 
 Campos de aprovacao do estado: `aprovacao` (vazio | `aprovado`, preenchido pelo `agente.py`; o `START` e condicional por ele e leva ao no `persistencia`, que o esvazia), `exemplo_gravado` (`exemplo_id` da linha gravada) e `metadados_normalizado` e `metadados_geracao` (o que os nos 50 e 80 devolveram, para a gravacao). Operacao de escrita: o no 90 faz `INSERT` na tabela `exemplos` com `origem` `usuario` e `status_revisao` `pendente` (`ORIGEM_GRAVACAO` e `STATUS_GRAVACAO` em `config.py`); a recuperacao filtra `aprovado`, entao a linha so entra como exemplo depois da revisao do Mestre. Nenhum `UPDATE` nem `DELETE`: as 193 linhas do corpus sao congeladas.
@@ -172,7 +178,7 @@ nao levantou erro). Provas legitimas A a F passaram. Doze ataques com uma redaca
 - O gabarito de algumas regras usa escopo de grupo onde a descricao diz "do vendedor".
 - Cobertura real do manual em producao ainda nao medida (precisa do normalizador na cadeia).
 - Nao existe rotina de edicao de prompts e manual no BigQuery.
-- Primeira carga de cerca de 45 s: 24 s sao os exemplos com vetor (leitura unica na partida); carregar sob demanda exige decisao do Mestre.
+- Busca dentro do BigQuery (etapa 6C): cada turno paga duas consultas (cerca de 1 a 2 s cada) e o corpus pode crescer em bytes processados por consulta; sem indice vetorial, que e decisao do Mestre.
 - `CAMBIO_BRL_POR_USD` e estimativa (5,50); o Mestre confirma o valor.
 - Ataque 8 (campo extra) passa pelos nos 50 e 80, cujos prompts nao foram alterados; decisao do Mestre.
 - Injecao testada com uma redacao por ataque; variar redacao, audio e repeticao antes de afirmar robustez.
