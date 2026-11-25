@@ -11,6 +11,10 @@ A chave da API vem do arquivo .env, carregado pelo config.py na importacao.
 import sys
 from pathlib import Path
 
+import requests
+from google.api_core.exceptions import GoogleAPIError
+from openai import OpenAIError
+
 RAIZ = Path(__file__).resolve().parent
 sys.path[:0] = [str(RAIZ), str(RAIZ / "src")]
 
@@ -23,14 +27,8 @@ from script20_middleware.script20_middleware import ErroTeto, Medidor
 # entra no exemplo_id da regra gravada.
 THREAD_ID = sys.argv[1] if len(sys.argv) > 1 else "conversa1"
 
-# O no 30 so devolve tokens; o texto que a pessoa le e daqui.
-PERGUNTAS = {
-    "quem_atende": "Quais vendedores ou equipes a regra cobre?",
-    "desfecho": "O que o conjunto de regras faz: monta carteira, define atendimento, dispara alerta ou marca tag?",
-    "conflito": "Atendimento e alerta sao dois conjuntos de regras separados; qual vem agora?",
-}
-MENSAGEM_FORA_DE_ESCOPO = ("Eu escrevo regras de atendimento comercial na linguagem GOBR do goVendas. "
-                           "Descreva a regra que voce quer, por exemplo quem atende e o que deve acontecer.")
+# Recusa de servico externo: mensagem curta e a conversa continua (ErroTeto segue encerrando a sessao).
+ERROS_SERVICO = (OpenAIError, GoogleAPIError, requests.RequestException)
 
 
 def achar_arquivo(linha: str) -> Path | None:
@@ -102,6 +100,10 @@ def conversar(medidor: Medidor) -> None:
         entrada.update({"pedido_mudanca": bruta} if gerou else {"id_sessao": THREAD_ID})
         try:
             estado = grafo.invoke(entrada, cfg)
+        except ERROS_SERVICO as erro:
+            print("\n" + config.MENSAGEM_SERVICO_RECUSOU.format(erro=type(erro).__name__) + "\n")
+            medidor.fechar_turno()
+            continue
         except ValueError as erro:
             # Midia invalida (arquivo grande, ilegivel) nao derruba a conversa; erro de texto continua fatal.
             if tipo == "texto":
@@ -115,12 +117,12 @@ def conversar(medidor: Medidor) -> None:
         if status == "incompleto":
             # Em midia, o que fica pendente e o texto transcrito: a resposta da pessoa soma a ele.
             pendente = bruta if tipo == "texto" else transcrito
-            print("\n" + "\n".join(PERGUNTAS[t] for t in estado["faltantes"]))
+            print("\n" + "\n".join(config.PERGUNTAS_FALTANTES[t] for t in estado["faltantes"]))
             print(linha_custo(medidor, estado["custo_turno"]))
             continue
         pendente = ""  # fora_de_escopo descarta a entrada alheia; aprovado ja a consumiu
         if status == "fora_de_escopo":
-            print(f"\n{MENSAGEM_FORA_DE_ESCOPO}")
+            print(f"\n{config.MENSAGEM_FORA_DE_ESCOPO}")
             print(linha_custo(medidor, estado["custo_turno"]))
             continue
         gerou = True
@@ -128,17 +130,21 @@ def conversar(medidor: Medidor) -> None:
         # A ressalva sai na conversa, nunca dentro do arquivo: o prompt de geracao proibe texto alheio a regra.
         if estado["sem_chave"]:
             itens = "\n".join(f"  - {item}" for item in estado["sem_chave"])
-            print("\nRessalva: os itens abaixo nao foram encontrados no manual e podem nao estar cobertos "
-                  f"pela regra gerada acima:\n{itens}")
+            print("\n" + config.MENSAGEM_RESSALVA.format(itens=itens))
         print(linha_custo(medidor, estado["custo_turno"]))
         aprovada = perguntar_aprovacao()
         if aprovada is None:
             break
         if not aprovada:
-            print("\nO que voce quer mudar na regra?")
+            print("\n" + config.PERGUNTA_MUDANCA)
             continue
-        estado = grafo.invoke({"aprovacao": "aprovado"}, cfg)
-        print(f"\nRegra gravada como {estado['exemplo_gravado']} (status {config.STATUS_GRAVACAO}, aguarda revisao).")
+        try:
+            estado = grafo.invoke({"aprovacao": "aprovado"}, cfg)
+        except ERROS_SERVICO as erro:
+            print("\n" + config.MENSAGEM_SERVICO_RECUSOU.format(erro=type(erro).__name__) + "\n")
+            medidor.fechar_turno()
+            continue
+        print("\n" + config.MENSAGEM_GRAVADA.format(exemplo_id=estado["exemplo_gravado"], status=config.STATUS_GRAVACAO))
         print(linha_custo(medidor, estado["custo_turno"]))
 
 

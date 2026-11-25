@@ -180,6 +180,58 @@ TETO_GASTO_NO90_USD = 0.10
 TETO_SESSAO_USD = 0.60
 
 # ============================================================================
+# CONVERSA E INTERFACE (agente.py no terminal e app.py no navegador leem daqui)
+# ============================================================================
+# Texto fixo que a pessoa le. O no 30 so devolve tokens (`faltantes`); a frase de cada um e daqui.
+PERGUNTAS_FALTANTES = {
+    "quem_atende": "Quais vendedores ou equipes a regra cobre?",
+    "desfecho": "O que o conjunto de regras faz: monta carteira, define atendimento, dispara alerta ou marca tag?",
+    "conflito": "Atendimento e alerta são dois conjuntos de regras separados; qual vem agora?",
+}
+MENSAGEM_FORA_DE_ESCOPO = ("Eu escrevo regras de atendimento comercial na linguagem GOBR do goVendas. "
+                           "Descreva a regra que você quer, por exemplo quem atende e o que deve acontecer.")
+# {erro}: nome da excecao do servico (sem a mensagem dela, que pode trazer dados da conta).
+MENSAGEM_SERVICO_RECUSOU = "Um serviço externo recusou a chamada ({erro}). Aguarde um instante e tente de novo."
+PERGUNTA_MUDANCA = "O que você quer mudar na regra?"
+# {itens} e a lista de itens que o manual nao cobriu; a ressalva sai na conversa, nunca dentro do .gobr.
+MENSAGEM_RESSALVA = ("Ressalva: os itens abaixo não foram encontrados no manual e podem não estar cobertos "
+                     "pela regra gerada acima:\n{itens}")
+# {exemplo_id} e {status}: identificador da linha gravada e STATUS_GRAVACAO.
+MENSAGEM_GRAVADA = "Regra gravada como {exemplo_id} (status {status}, aguarda revisão)."
+
+# Interface no navegador (Streamlit).
+NOME_AGENTE = "Agente de regras GOBR"
+ARQ_LOGO = "logo.png"  # na raiz do projeto; desenho branco com fundo transparente, por isso vai sobre o verde
+# Etapa que a pessoa ve enquanto cada no roda (uma chave por no de orquestracao.py).
+ETAPAS_PROGRESSO = {
+    "entrada": "Lendo a sua entrada",
+    "normalizacao": "Organizando a descrição",
+    "normalizacao_pedido": "Organizando a descrição com o seu pedido de mudança",
+    "recuperacao": "Buscando exemplos",
+    "geracao": "Escrevendo a regra",
+    "geracao_reexecucao": "Reescrevendo a regra com a sua mudança",
+    "persistencia": "Gravando a regra",
+}
+ETAPA_PRONTO = "Pronto"
+BOTAO_APROVAR = "Aprovar a regra"
+BOTAO_MUDANCA = "Pedir mudança"
+CAMPO_ENTRADA = "Descreva a regra ou envie um arquivo (.png, .pdf, .wav)"
+MENSAGEM_BOAS_VINDAS = ("Olá. Descreva a regra de atendimento que você quer, por texto ou por arquivo "
+                        "(imagem .png, documento .pdf ou áudio .wav). Eu escrevo a regra na linguagem GOBR.")
+# {extensao}, {aceitas}
+MENSAGEM_EXTENSAO = "Extensão {extensao} não aceita. Aceitas: {aceitas}. Envie outro arquivo ou digite o texto."
+# {tamanho}, {limite}: bytes
+MENSAGEM_ARQUIVO_GRANDE = "Arquivo com {tamanho} bytes, acima do limite de {limite} bytes para este tipo. Envie um menor."
+MENSAGEM_ARQUIVO_INVALIDO = "Não foi possível usar o arquivo: {erro}"
+MENSAGEM_TEXTO_E_ARQUIVO = "Envie o texto ou o arquivo, um por vez."
+MENSAGEM_ARQUIVO_NA_PERGUNTA = "Responda a pergunta acima em texto; o arquivo foi descartado."
+MENSAGEM_ENTRADA_ENCERRADA = "Sessão encerrada: o teto de custo foi atingido."
+# {tipo}, {texto}
+MENSAGEM_TRANSCRICAO = "Texto transcrito de {tipo}:\n\n{texto}"
+# Cores da marca, lidas da pagina do goVendas. HIPOTESE: estimativa a partir de captura de tela, nao do estilo do site.
+PALETA = {"verde": "#00E08A", "amarelo": "#FFD200", "branco": "#FFFFFF", "escuro": "#15241C"}
+
+# ============================================================================
 # AMBIENTE
 # ============================================================================
 # Arquivo com as chaves de API (ignorado pelo git), na mesma pasta deste arquivo. Variaveis esperadas: VARIAVEL_CHAVE.
@@ -347,6 +399,26 @@ def _validar_no90() -> None:
 
 
 _validar_no90()
+
+
+def _validar_interface() -> None:
+    """Validacao do texto da conversa e da interface; roda na importacao, depois da validacao do no 90."""
+    for nome in ("MENSAGEM_FORA_DE_ESCOPO", "MENSAGEM_SERVICO_RECUSOU", "PERGUNTA_MUDANCA", "MENSAGEM_RESSALVA", "MENSAGEM_GRAVADA", "NOME_AGENTE",
+                 "ARQ_LOGO", "ETAPA_PRONTO", "BOTAO_APROVAR", "BOTAO_MUDANCA", "CAMPO_ENTRADA", "MENSAGEM_BOAS_VINDAS",
+                 "MENSAGEM_EXTENSAO", "MENSAGEM_ARQUIVO_GRANDE", "MENSAGEM_ARQUIVO_INVALIDO", "MENSAGEM_TEXTO_E_ARQUIVO",
+                 "MENSAGEM_ARQUIVO_NA_PERGUNTA", "MENSAGEM_ENTRADA_ENCERRADA", "MENSAGEM_TRANSCRICAO"):
+        _texto(nome)
+    for nome, chaves in (("PERGUNTAS_FALTANTES", ("quem_atende", "desfecho", "conflito")),
+                         ("ETAPAS_PROGRESSO", ("entrada", "normalizacao", "normalizacao_pedido", "recuperacao",
+                                               "geracao", "geracao_reexecucao", "persistencia")),
+                         ("PALETA", ("verde", "amarelo", "branco", "escuro"))):
+        tabela = _valor(nome)
+        if set(tabela) != set(chaves) or any(not isinstance(v, str) or not v.strip() for v in tabela.values()):
+            raise ErroConfig(f"{nome} recebido: {tabela!r}. Aceita uma chave por item de {list(chaves)}, com texto "
+                             f"nao vazio. Configure em config.py.")
+
+
+_validar_interface()
 
 
 def _carregar_env() -> None:

@@ -1,0 +1,7 @@
+# Tema claro com a paleta do goVendas (mesmos valores de PALETA em config.py; HIPOTESE: estimados de captura de tela).
+[theme]
+base = "light"
+primaryColor = "#00E08A"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F2F5F3"
+textColor = "#15241C"

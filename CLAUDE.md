@@ -35,6 +35,11 @@ trabalho/
   govendas-rules.pdf        manual original do fornecedor
   config.py                 configuracao, uma secao por no (30, 50, 60, 80 e 90)
   agente.py                 ponto de entrada: conversa de varios turnos no terminal (`.venv/bin/python -B agente.py [id_da_conversa]`); pergunta se a pessoa aprova a regra
+  app.py                    interface de chat no navegador (Streamlit): mesma conversa do agente.py, com progresso no a no
+  requirements.txt          dependencias diretas com versao fixada (as que o codigo importa, mais streamlit)
+  logo.png                  logo do goVendas (desenho branco, fundo transparente); usado so no cabecalho verde de app.py
+  .streamlit/config.toml    tema claro do Streamlit com a paleta do goVendas
+  readme.md                 como rodar pelo terminal e pelo navegador
   orquestracao.py           mapa declarativo do grafo (estado, agentes, tools, nos, arestas); fonte unica do fluxo
   src/
     script30_entrada/       converte a entrada em texto e confere os minimos (texto, imagem e documento); prompt `entrada_minimos` no BigQuery
@@ -50,6 +55,13 @@ Os dados do projeto deixaram de viver em disco e passaram a viver no BigQuery, n
 `govendas_gobr` do projeto `multiagentes-514823`, nas tabelas `exemplos`, `prompts` e `manual`. O adendo de reexecucao do no 80 e a linha ativa de `prompts` com `tipo` `adendo_reexecucao_gobr`. O prompt do no 30 e a linha ativa de `prompts` com `tipo` `entrada_minimos` (v2, `prompt_entrada_minimos_v2.md`, com secao de defesa contra injecao; v1 inativa).
 
 Entrada aceita pelo no 30: `texto` e, por caminho de arquivo digitado no `agente.py`, `imagem` (`.png`, ate 5 000 000 bytes), `documento` (`.pdf`, ate 10 000 000 bytes), convertidos pelo modelo do no (`gpt-6.1-terra`, provado em 2026-11-24), e `audio` (`.wav`, ate 5 000 000 bytes e 55 s), transcrito pelo Speech-to-Text v2 do Google Cloud (modelo `long`, pt-BR, REST com ADC, reconhecimento direto sem bucket; o modelo do no recusa audio) antes de ir ao modelo. `misto` (um arquivo por turno) fica de fora, depende de decisao do Mestre. Tipos, extensoes e limites moram no `config.py`.
+
+Interface no navegador (`app.py`, Streamlit): `.venv/bin/python -B -m streamlit run app.py`. Consome o
+grafo e o `Medidor` sem alterar nenhum dos dois; o progresso no a no vem de `MedidorComProgresso`, subclasse em `app.py` que
+avisa o inicio de cada no (o `Medidor` so mede o fim). Texto fixo (perguntas, fora de escopo, ressalva, gravacao, etapas de
+progresso, paleta) mora no `config.py` e e lido pelo terminal e pela interface. Cada sessao do navegador tem o proprio
+`Medidor` e o proprio `thread_id` (`web-<8 hex>`); o contexto dos nos (BigQuery, cerca de 45 s) e lido uma vez por processo.
+Dependencias: `requirements.txt` (`.venv/bin/python -B -m pip install -r requirements.txt`).
 
 Estado do grafo, campos da entrada: `entrada_bruta` (so registro), `tipo_entrada`, `status_entrada` (`aprovado`, `incompleto`, `fora_de_escopo`) e `faltantes` (`quem_atende`, `desfecho`, `conflito`). O no 30 devolve o texto em `descricao_usuario` (primeiro turno) ou `pedido_mudanca` (mudanca), e o no 50 le esses campos e `tipo_entrada`. Entrada reprovada encerra o turno; o `agente.py` pergunta o que falta, soma a resposta e chama de novo.
 
@@ -143,7 +155,7 @@ nao levantou erro). Provas legitimas A a F passaram. Doze ataques com uma redaca
 
 ## 12. Dividas
 
-- `langgraph` instalado no `.venv` sem arquivo de dependencias no repositorio.
+- `requirements.txt` fixa so as dependencias diretas; as transitivas nao estao travadas (nao ha lockfile).
 - Lacuna do manual sobre o limite da frequencia do historico (29 de 193 exemplos usam a construcao); caso 190.
 - Decisao pendente do Mestre: `sem venda ou prospects` (manual 06-01) contra `sem venda` (corpus).
 - O gabarito de algumas regras usa escopo de grupo onde a descricao diz "do vendedor".
