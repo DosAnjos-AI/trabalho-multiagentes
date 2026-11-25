@@ -47,7 +47,7 @@ trabalho/
 ```
 
 Os dados do projeto deixaram de viver em disco e passaram a viver no BigQuery, no dataset
-`govendas_gobr` do projeto `multiagentes-514823`, nas tabelas `exemplos`, `prompts` e `manual`. O adendo de reexecucao do no 80 e a linha ativa de `prompts` com `tipo` `adendo_reexecucao_gobr`. O prompt do no 30 e a linha ativa de `prompts` com `tipo` `entrada_minimos` (v1, `prompt_entrada_minimos_v1.md`).
+`govendas_gobr` do projeto `multiagentes-514823`, nas tabelas `exemplos`, `prompts` e `manual`. O adendo de reexecucao do no 80 e a linha ativa de `prompts` com `tipo` `adendo_reexecucao_gobr`. O prompt do no 30 e a linha ativa de `prompts` com `tipo` `entrada_minimos` (v2, `prompt_entrada_minimos_v2.md`, com secao de defesa contra injecao; v1 inativa).
 
 Entrada aceita pelo no 30: `texto` e, por caminho de arquivo digitado no `agente.py`, `imagem` (`.png`, ate 5 000 000 bytes), `documento` (`.pdf`, ate 10 000 000 bytes), convertidos pelo modelo do no (`gpt-6.1-terra`, provado em 2026-11-24), e `audio` (`.wav`, ate 5 000 000 bytes e 55 s), transcrito pelo Speech-to-Text v2 do Google Cloud (modelo `long`, pt-BR, REST com ADC, reconhecimento direto sem bucket; o modelo do no recusa audio) antes de ir ao modelo. `misto` (um arquivo por turno) fica de fora, depende de decisao do Mestre. Tipos, extensoes e limites moram no `config.py`.
 
@@ -134,9 +134,12 @@ ja devolve e bloqueia a proxima chamada quando o acumulado da sessao atinge `TET
 x 8 turnos; modelo, embedding e fala; BigQuery nao conta). O `agente.py` imprime custo do turno, acumulado e latencia por
 no, e encerra a sessao ao bloquear. Contador vale por processo.
 
-Teste de injecao de prompt (2026-11-24, so medicao, sem contencao): ataque A (instrucao direta no texto), B (trocar o papel
-do no de entrada e pedir o prompt) e C (instrucao dentro de imagem .png) ficaram CONTIDOS. Nenhum trecho do prompt
-`entrada_minimos` vazou. Amostra de um ataque por tipo: nao prova imunidade.
+Teste de injecao de prompt (2026-11-24, prompt v1): ataques A, B e C ficaram CONTIDOS.
+
+Defesa (2026-11-25): prompt `entrada_minimos` v2 e validacao de saida endurecida no no 30 (secao extra, `faltantes` fora
+de `incompleto`, limite de `## texto` em `LIMITE_CARACTERES_TEXTO_NO30`). Doze ataques com a v2: 11 CONTIDOS e 1
+OBEDECEU (ataque 8: o pedido de quinta secao chegou ao `.gobr` como `# observacao: LIVRE`, pelos nos seguintes; o no 30
+nao levantou erro). Provas legitimas A a F passaram. Doze ataques com uma redacao cada nao provam imunidade.
 
 ## 12. Dividas
 
@@ -146,7 +149,8 @@ do no de entrada e pedir o prompt) e C (instrucao dentro de imagem .png) ficaram
 - O gabarito de algumas regras usa escopo de grupo onde a descricao diz "do vendedor".
 - Cobertura real do manual em producao ainda nao medida (precisa do normalizador na cadeia).
 - Nao existe rotina de edicao de prompts e manual no BigQuery.
-- Teste de injecao com uma amostra por ataque; variar redacao e repetir antes de afirmar robustez.
+- Ataque 8 (campo extra) passa pelos nos 50 e 80, cujos prompts nao foram alterados; decisao do Mestre.
+- Injecao testada com uma redacao por ataque; variar redacao, audio e repeticao antes de afirmar robustez.
 
 ## 13. Configuracao e metadado
 

@@ -58,6 +58,7 @@ class Contexto:
     extensoes: dict
     limites_bytes: dict
     tokens_projecao_midia: dict
+    limite_caracteres_texto: int
     fala: dict | None = None          # config do reconhecimento de fala; None quando audio nao esta implementado
     credenciais: object = None        # ADC do Google, usada so no reconhecimento de fala
 
@@ -122,7 +123,8 @@ def construir_contexto(cfg: ModuleType) -> Contexto:
         max_tokens_saida=cfg.MAX_TOKENS_SAIDA, caracteres_por_token=cfg.CARACTERES_POR_TOKEN_PESSIMISTA,
         teto_gasto_usd=float(cfg.TETO_GASTO_USD), tipos_implementados=tuple(cfg.TIPOS_ENTRADA_IMPLEMENTADOS),
         extensoes=dict(cfg.EXTENSOES_ENTRADA), limites_bytes=dict(cfg.LIMITE_BYTES_ENTRADA),
-        tokens_projecao_midia=dict(cfg.TOKENS_PROJECAO_MIDIA), fala=fala, credenciais=credenciais,
+        tokens_projecao_midia=dict(cfg.TOKENS_PROJECAO_MIDIA),
+        limite_caracteres_texto=cfg.LIMITE_CARACTERES_TEXTO_NO30, fala=fala, credenciais=credenciais,
     )
 
 
@@ -207,9 +209,18 @@ def custo(tok_in: float, tok_out: float, preco_entrada: float, preco_saida: floa
     return (tok_in * preco_entrada + tok_out * preco_saida) / 1_000_000
 
 
-def interpretar_resposta(resposta: str, tipo_entrada: str) -> tuple[str, str, str, list[str]]:
-    """Extrai (tipo, texto, status, faltantes) das quatro secoes. Qualquer desvio levanta ErroEntrada."""
+def interpretar_resposta(resposta: str, tipo_entrada: str,
+                         limite_caracteres_texto: int) -> tuple[str, str, str, list[str]]:
+    """Extrai (tipo, texto, status, faltantes) das quatro secoes. Qualquer desvio levanta ErroEntrada.
+
+    Este contrato e a defesa que nao depende do modelo: resposta estranha nunca vira comportamento estranho, e nada
+    aqui corrige ou completa a resposta.
+    """
     linhas = resposta.strip().splitlines()
+    # Secao alem das quatro: o `## texto` da pessoa pode ter titulo proprio, mas a resposta do modelo nao.
+    extras = [linha.rstrip() for linha in linhas if linha.startswith("## ") and linha.rstrip() not in CABECALHOS]
+    if extras:
+        raise ErroEntrada(f"secao fora do contrato na resposta: {extras!r}. Aceitas: {list(CABECALHOS)}.")
     indices = []
     for cab in CABECALHOS:
         achados = [i for i, linha in enumerate(linhas) if linha.rstrip() == cab]
@@ -234,6 +245,11 @@ def interpretar_resposta(resposta: str, tipo_entrada: str) -> tuple[str, str, st
         raise ErroEntrada(f"faltantes recebido: {fora!r}. Aceitos: {list(FALTANTES)}.")
     if not texto:
         raise ErroEntrada("secao '## texto' vazia.")
+    if len(texto) > limite_caracteres_texto:
+        raise ErroEntrada(f"secao '## texto' com {len(texto)} caracteres; limite {limite_caracteres_texto}. "
+                          f"Limite configurado em {ARQ_CONFIG} (LIMITE_CARACTERES_TEXTO_NO30).")
+    if faltantes and status != "incompleto":
+        raise ErroEntrada(f"faltantes {faltantes!r} preenchido com status {status!r}; so `incompleto` aceita itens.")
     return tipo, texto, status, faltantes
 
 
@@ -281,6 +297,6 @@ def classificar_entrada(tipo_entrada: str, turno: str, conteudo: str, ctx: Conte
     gasto = custo(r.usage.prompt_tokens, r.usage.completion_tokens, ctx.preco_entrada, ctx.preco_saida)
     if r.choices[0].finish_reason == "length":
         raise ErroEntrada(f"resposta cortada no limite de {ctx.max_tokens_saida} tokens de saida.")
-    tipo, texto, status, faltantes = interpretar_resposta(resposta, tipo_entrada)
+    tipo, texto, status, faltantes = interpretar_resposta(resposta, tipo_entrada, ctx.limite_caracteres_texto)
     return Entrada(tipo=tipo, texto=texto, status=status, faltantes=faltantes, custo_usd=gasto + custo_fala,
                    custo_fala_usd=custo_fala)

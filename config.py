@@ -76,6 +76,10 @@ VARIAVEL_CHAVE = "CHAVE_OPENAI"
 MODELO_NO30 = MODELO
 # Valor da coluna `tipo` da tabela de prompts; o no exige exatamente uma linha ativa deste tipo.
 TIPO_PROMPT_NO30 = "entrada_minimos"
+# Limite de caracteres da secao `## texto` devolvida pelo modelo. Texto acima disso (eco de prompt, resposta
+# inflada por injecao) levanta erro. Valor desta rodada: cobre cerca de 6 paginas de PDF transcrito e fica bem abaixo
+# do que MAX_TOKENS_SAIDA permitiria; ajustar se documentos reais passarem disso.
+LIMITE_CARACTERES_TEXTO_NO30 = 20000
 # Tipos que o no converte hoje. Fora desta lista, mas dentro de TIPOS_ENTRADA, o no levanta erro.
 # Misto ficou de fora: o agente.py entrega um arquivo por turno, entao nao ha como compor dois tipos.
 # Audio entra por servico de reconhecimento de fala (secao abaixo): o modelo do no recusa bloco de audio
@@ -301,6 +305,7 @@ _validar_no80()
 def _validar_no30() -> None:
     """Validacao do no 30; roda na importacao, depois da validacao do no 80."""
     _texto("TIPO_PROMPT_NO30")
+    _numero_positivo("LIMITE_CARACTERES_TEXTO_NO30", (int,))
     _em("MODELO_NO30", _valor("MODELOS"))
     implementados = _valor("TIPOS_ENTRADA_IMPLEMENTADOS")
     fora = [t for t in implementados if t not in TIPOS_ENTRADA]
