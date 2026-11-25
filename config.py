@@ -76,21 +76,41 @@ VARIAVEL_CHAVE = "CHAVE_OPENAI"
 MODELO_NO30 = MODELO
 # Valor da coluna `tipo` da tabela de prompts; o no exige exatamente uma linha ativa deste tipo.
 TIPO_PROMPT_NO30 = "entrada_minimos"
-# Tipos que o no converte hoje. Fora desta lista, mas dentro de TIPOS_ENTRADA, o no levanta erro dizendo que o tipo
-# nao foi provado possivel. Audio ficou de fora: o modelo do no recusou o bloco `input_audio` (prova de 2026-11-24).
+# Tipos que o no converte hoje. Fora desta lista, mas dentro de TIPOS_ENTRADA, o no levanta erro.
 # Misto ficou de fora: o agente.py entrega um arquivo por turno, entao nao ha como compor dois tipos.
-TIPOS_ENTRADA_IMPLEMENTADOS = ("texto", "imagem", "documento")
-# Extensao do arquivo -> (tipo de entrada, tipo MIME). So entra formato que a prova mostrou que o modelo aceita.
+# Audio entra por servico de reconhecimento de fala (secao abaixo): o modelo do no recusa bloco de audio
+# (prova de 2026-11-24), entao ele so recebe o texto ja transcrito.
+TIPOS_ENTRADA_IMPLEMENTADOS = ("texto", "imagem", "documento", "audio")
+# Extensao do arquivo -> (tipo de entrada, tipo MIME). So entra formato que a prova mostrou que o conversor aceita.
+# Audio: so .wav, o unico formato provado e o unico cuja duracao o no confere com a biblioteca padrao.
 EXTENSOES_ENTRADA = {
     ".png": ("imagem", "image/png"),
     ".pdf": ("documento", "application/pdf"),
+    ".wav": ("audio", "audio/wav"),
 }
 # Limite de tamanho do arquivo, em bytes, por tipo. Valor desta rodada (decisao de custo e de seguranca do Mestre).
-LIMITE_BYTES_ENTRADA = {"imagem": 5_000_000, "documento": 10_000_000}
-# Tokens de entrada que a projecao de custo supoe para a midia (nao ha tokenizador local; imagem e pagina nao
-# crescem com os bytes). HIPOTESE: a prova mediu 480 tokens (imagem) e 277 (PDF de uma pagina); estes valores
-# deixam folga para documento de varias paginas.
-TOKENS_PROJECAO_MIDIA = {"imagem": 3000, "documento": 8000}
+# Audio: 5 MB cobre 55 s de WAV mono em 44,1 kHz; o servico aceita mais (HIPOTESE, nao provado), mas nao e preciso.
+LIMITE_BYTES_ENTRADA = {"imagem": 5_000_000, "documento": 10_000_000, "audio": 5_000_000}
+# Tokens de entrada que a projecao de custo supoe para a midia lida pelo modelo (nao ha tokenizador local; imagem e
+# pagina nao crescem com os bytes). Medido: 480 tokens (imagem) e 277 (PDF de uma pagina). Margem: cerca de 2x na
+# imagem e 5x no documento, que pode ter varias paginas. Audio nao entra: o modelo recebe texto transcrito.
+TOKENS_PROJECAO_MIDIA = {"imagem": 1000, "documento": 1500}
+
+# --- Reconhecimento de fala (audio do no 30) ---
+# Speech-to-Text v2, chamada direta (sincrona) com reconhecedor implicito `_`: nao cria recurso no projeto.
+# {projeto} e {localizacao} saem de PROJETO_GCP e LOCALIZACAO_FALA.
+ENDERECO_FALA = ("https://speech.googleapis.com/v2/projects/{projeto}/locations/{localizacao}"
+                 "/recognizers/_:recognize")
+# `global` e a localizacao onde o modelo `long` tem pt-BR (lista lida do servico em 2026-11-24).
+LOCALIZACAO_FALA = "global"
+MODELO_FALA = "long"
+IDIOMA_FALA = "pt-BR"
+# O servico recusa audio acima de 60 s no reconhecimento direto ("Audio can be of a maximum of 60 seconds.",
+# provado em 2026-11-24). Acima disso so por lote, que exige bucket. 55 deixa margem.
+LIMITE_SEGUNDOS_AUDIO = 55
+# HIPOTESE: US$ por minuto de audio, faixa inicial dos modelos padrao (as paginas de preco consultadas divergem entre
+# si; confirmar na fatura). A duracao faturada e real (vem na resposta); so o preco e hipotese.
+PRECO_FALA_USD_POR_MINUTO = 0.016
 
 # ============================================================================
 # NO 60 - RECUPERACAO
@@ -276,12 +296,21 @@ def _validar_no30() -> None:
         if not ext.startswith(".") or ext != ext.lower() or len(par) != 2 or par[0] not in midia:
             raise ErroConfig(f"EXTENSOES_ENTRADA recebido: {ext!r}: {par!r}. Aceita extensao minuscula com ponto "
                              f"-> (tipo em {midia}, MIME). Configure em config.py.")
-    for nome in ("LIMITE_BYTES_ENTRADA", "TOKENS_PROJECAO_MIDIA"):
+    # Audio nao tem projecao de tokens: o modelo recebe o texto transcrito, que a projecao mede pelo tamanho.
+    for nome, tipos in (("LIMITE_BYTES_ENTRADA", midia), ("TOKENS_PROJECAO_MIDIA", [t for t in midia if t != "audio"])):
         tabela = _valor(nome)
-        if set(tabela) != set(midia) or any(isinstance(v, bool) or not isinstance(v, int) or v <= 0
+        if set(tabela) != set(tipos) or any(isinstance(v, bool) or not isinstance(v, int) or v <= 0
                                             for v in tabela.values()):
-            raise ErroConfig(f"{nome} recebido: {tabela!r}. Aceita uma chave por tipo de midia implementado "
-                             f"{midia}, com inteiro > 0. Configure em config.py.")
+            raise ErroConfig(f"{nome} recebido: {tabela!r}. Aceita uma chave por tipo de midia {tipos}, "
+                             f"com inteiro > 0. Configure em config.py.")
+    if "audio" in implementados:
+        for nome in ("ENDERECO_FALA", "LOCALIZACAO_FALA", "MODELO_FALA", "IDIOMA_FALA"):
+            _texto(nome)
+        _numero_positivo("LIMITE_SEGUNDOS_AUDIO")
+        _numero_positivo("PRECO_FALA_USD_POR_MINUTO")
+        if _valor("LIMITE_SEGUNDOS_AUDIO") >= 60:
+            raise ErroConfig(f"LIMITE_SEGUNDOS_AUDIO recebido: {LIMITE_SEGUNDOS_AUDIO!r}. Aceito: abaixo de 60, o "
+                             f"limite do reconhecimento direto. Configure em config.py.")
 
 
 _validar_no30()

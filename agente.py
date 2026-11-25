@@ -1,7 +1,8 @@
 """Ponto de entrada: conversa de varios turnos pelo terminal, no mesmo estado do grafo.
 
 Uso: .venv/bin/python -B agente.py [id_da_conversa]
-Primeira linha: descricao da regra, ou o caminho de um arquivo (extensoes em config.EXTENSOES_ENTRADA). Depois de cada regra gerada o programa pergunta se a pessoa aprova: sim grava a
+Primeira linha: descricao da regra, ou o caminho de um arquivo (extensoes em config.EXTENSOES_ENTRADA:
+png, pdf e wav; o wav e transcrito pelo reconhecimento de fala do Google Cloud, ate config.LIMITE_SEGUNDOS_AUDIO). Depois de cada regra gerada o programa pergunta se a pessoa aprova: sim grava a
 regra no BigQuery (status pendente de revisao); nao pede o que mudar, e a linha seguinte e um pedido de mudanca.
 Linha vazia (ou Ctrl+D) encerra.
 Se a entrada nao traz o minimo, o programa pergunta o que falta e soma a resposta ao que a pessoa ja disse.

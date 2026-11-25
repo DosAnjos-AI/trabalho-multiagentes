@@ -12,6 +12,7 @@ Uso:
 import base64
 import hashlib
 import os
+import wave
 from dataclasses import dataclass
 from pathlib import Path
 from types import ModuleType
@@ -57,6 +58,8 @@ class Contexto:
     extensoes: dict
     limites_bytes: dict
     tokens_projecao_midia: dict
+    fala: dict | None = None          # config do reconhecimento de fala; None quando audio nao esta implementado
+    credenciais: object = None        # ADC do Google, usada so no reconhecimento de fala
 
 
 @dataclass
@@ -66,7 +69,8 @@ class Entrada:
     texto: str
     status: str
     faltantes: list[str]
-    custo_usd: float
+    custo_usd: float            # total do no: modelo mais reconhecimento de fala
+    custo_fala_usd: float = 0.0  # so a parte do reconhecimento de fala, para reportar em separado
 
 
 def _sha256(texto: str) -> str:
@@ -105,13 +109,20 @@ def construir_contexto(cfg: ModuleType) -> Contexto:
     bq = bigquery.Client(project=cfg.PROJETO_GCP)
     linha = _ler_prompt_ativo(bq, f"{cfg.PROJETO_GCP}.{cfg.DATASET}.{cfg.TABELA_PROMPTS}", cfg.TIPO_PROMPT_NO30)
     info = cfg.MODELOS[cfg.MODELO_NO30]
+    fala = credenciais = None
+    if "audio" in cfg.TIPOS_ENTRADA_IMPLEMENTADOS:
+        import google.auth
+        credenciais, _ = google.auth.default(scopes=["https://www.googleapis.com/auth/cloud-platform"])
+        fala = {"endereco": cfg.ENDERECO_FALA.format(projeto=cfg.PROJETO_GCP, localizacao=cfg.LOCALIZACAO_FALA),
+                "modelo": cfg.MODELO_FALA, "idioma": cfg.IDIOMA_FALA, "projeto": cfg.PROJETO_GCP,
+                "limite_segundos": cfg.LIMITE_SEGUNDOS_AUDIO, "preco_minuto": cfg.PRECO_FALA_USD_POR_MINUTO}
     return Contexto(
         cliente=OpenAI(api_key=chave), prompt=linha["texto"], id_prompt=linha["arquivo"], hash_prompt=linha["hash"],
         modelo=cfg.MODELO_NO30, preco_entrada=info["entrada_por_milhao"], preco_saida=info["saida_por_milhao"],
         max_tokens_saida=cfg.MAX_TOKENS_SAIDA, caracteres_por_token=cfg.CARACTERES_POR_TOKEN_PESSIMISTA,
         teto_gasto_usd=float(cfg.TETO_GASTO_USD), tipos_implementados=tuple(cfg.TIPOS_ENTRADA_IMPLEMENTADOS),
         extensoes=dict(cfg.EXTENSOES_ENTRADA), limites_bytes=dict(cfg.LIMITE_BYTES_ENTRADA),
-        tokens_projecao_midia=dict(cfg.TOKENS_PROJECAO_MIDIA),
+        tokens_projecao_midia=dict(cfg.TOKENS_PROJECAO_MIDIA), fala=fala, credenciais=credenciais,
     )
 
 
@@ -137,6 +148,59 @@ def montar_parte_midia(tipo_entrada: str, caminho: str, ctx: Contexto) -> dict:
     if tipo_entrada == "imagem":
         return {"type": "image_url", "image_url": {"url": f"data:{mime};base64,{dados}"}}
     return {"type": "file", "file": {"filename": arq.name, "file_data": f"data:{mime};base64,{dados}"}}
+
+
+def transcrever_audio(caminho: str, ctx: Contexto) -> tuple[str, float]:
+    """Transcreve o .wav com o reconhecimento de fala e devolve (texto, custo em USD).
+
+    Confere extensao, tamanho e duracao antes da chamada paga. O custo usa a duracao faturada devolvida pelo
+    servico; so o preco por minuto e configuracao. Silencio ou resposta sem texto levanta erro: texto vazio nunca
+    segue para o modelo.
+    """
+    import google.auth.transport.requests
+    import requests
+
+    arq = Path(caminho.strip())
+    if not arq.is_file():
+        raise ErroEntrada(f"arquivo de audio inexistente: {str(arq)!r}.")
+    tipo_ext, _ = ctx.extensoes.get(arq.suffix.lower(), (None, None))
+    if tipo_ext != "audio":
+        raise ErroEntrada(f"extensao {arq.suffix!r} recebida para tipo 'audio'. Aceitas para o tipo: "
+                          f"{[e for e, (t, _) in ctx.extensoes.items() if t == 'audio']}. Configure em {ARQ_CONFIG}.")
+    tamanho, limite = arq.stat().st_size, ctx.limites_bytes["audio"]
+    if tamanho > limite:
+        raise ErroEntrada(f"arquivo de audio com {tamanho} bytes; limite {limite} bytes. "
+                          f"Limite configurado em {ARQ_CONFIG} (LIMITE_BYTES_ENTRADA).")
+    try:
+        with wave.open(str(arq), "rb") as w:
+            duracao = w.getnframes() / w.getframerate()
+    except (wave.Error, EOFError) as erro:
+        raise ErroEntrada(f"arquivo .wav ilegivel: {erro}.") from erro
+    fala = ctx.fala
+    if duracao > fala["limite_segundos"]:
+        raise ErroEntrada(f"audio com {duracao:.1f} s; limite {fala['limite_segundos']} s "
+                          f"(reconhecimento direto). Limite configurado em {ARQ_CONFIG} (LIMITE_SEGUNDOS_AUDIO).")
+    if not ctx.credenciais.valid:
+        ctx.credenciais.refresh(google.auth.transport.requests.Request())
+    corpo = {"config": {"autoDecodingConfig": {}, "languageCodes": [fala["idioma"]], "model": fala["modelo"]},
+             "content": base64.b64encode(arq.read_bytes()).decode("ascii")}
+    r = requests.post(fala["endereco"], json=corpo, timeout=120, headers={
+        "Authorization": f"Bearer {ctx.credenciais.token}", "x-goog-user-project": fala["projeto"]})
+    if not r.ok:
+        # So a mensagem do servico: o cabecalho com o token nunca entra no erro.
+        raise ErroEntrada(f"reconhecimento de fala falhou (HTTP {r.status_code}): "
+                          f"{r.json().get('error', {}).get('message', r.text[:300])}")
+    dados = r.json()
+    faturado = dados.get("metadata", {}).get("totalBilledDuration", "")
+    if not faturado.endswith("s"):
+        raise ErroEntrada(f"resposta do reconhecimento de fala sem duracao faturada: {str(dados)[:300]!r}.")
+    gasto = float(faturado[:-1]) / 60 * fala["preco_minuto"]
+    partes = [res["alternatives"][0].get("transcript", "").strip()
+              for res in dados.get("results", []) if res.get("alternatives")]
+    texto = " ".join(p for p in partes if p)
+    if not texto:
+        raise ErroEntrada("nenhuma fala reconhecida no audio.")
+    return texto, gasto
 
 
 def custo(tok_in: float, tok_out: float, preco_entrada: float, preco_saida: float) -> float:
@@ -176,20 +240,26 @@ def interpretar_resposta(resposta: str, tipo_entrada: str) -> tuple[str, str, st
 def classificar_entrada(tipo_entrada: str, turno: str, conteudo: str, ctx: Contexto) -> Entrada:
     """Converte a entrada em texto e classifica os minimos.
 
-    Para `texto`, `conteudo` e o que a pessoa disse. Para `imagem` e `documento`, e o caminho do arquivo: o tipo vem
-    do chamador (o no nao adivinha) e a conversao em texto e do modelo.
+    Para `texto`, `conteudo` e o que a pessoa disse. Para `imagem`, `documento` e `audio`, e o caminho do arquivo: o tipo
+    vem do chamador (o no nao adivinha). Imagem e documento sao convertidos pelo modelo; audio, pelo reconhecimento
+    de fala, antes do modelo.
     """
     if tipo_entrada not in TIPOS:
         raise ErroConfig(f"tipo_entrada recebido: {tipo_entrada!r}. Aceitos: {list(TIPOS)}.")
     if tipo_entrada not in ctx.tipos_implementados:
         raise ErroConfig(f"tipo_entrada recebido: {tipo_entrada!r}. Implementados: {list(ctx.tipos_implementados)}. "
-                         f"O tipo nao foi provado possivel com o modelo {ctx.modelo!r}; implementa-lo depende de "
-                         f"decisao do Mestre (lista em {ARQ_CONFIG}, TIPOS_ENTRADA_IMPLEMENTADOS).")
+                         f"O tipo nao e implementado porque o agente.py entrega um arquivo por turno, sem como "
+                         f"compor mais de um tipo; implementa-lo depende de decisao do Mestre "
+                         f"(lista em {ARQ_CONFIG}, TIPOS_ENTRADA_IMPLEMENTADOS).")
     if turno not in TURNOS:
         raise ErroConfig(f"turno recebido: {turno!r}. Aceitos: {list(TURNOS)}.")
     if not conteudo or not conteudo.strip():
         raise ErroEntrada("conteudo da entrada vazio.")
-    midia = tipo_entrada != "texto"
+    # Audio e convertido antes do modelo: ele recebe o texto transcrito, como se fosse texto digitado.
+    custo_fala = 0.0
+    if tipo_entrada == "audio":
+        conteudo, custo_fala = transcrever_audio(conteudo, ctx)
+    midia = tipo_entrada not in ("texto", "audio")
     # Em midia, o texto da mensagem so avisa que o anexo e a entrada; o conteudo real vai no bloco anexado.
     usuario = montar_mensagem_usuario(tipo_entrada, turno, "(midia anexada a esta mensagem)" if midia else conteudo)
     mensagem = usuario
@@ -212,4 +282,5 @@ def classificar_entrada(tipo_entrada: str, turno: str, conteudo: str, ctx: Conte
     if r.choices[0].finish_reason == "length":
         raise ErroEntrada(f"resposta cortada no limite de {ctx.max_tokens_saida} tokens de saida.")
     tipo, texto, status, faltantes = interpretar_resposta(resposta, tipo_entrada)
-    return Entrada(tipo=tipo, texto=texto, status=status, faltantes=faltantes, custo_usd=gasto)
+    return Entrada(tipo=tipo, texto=texto, status=status, faltantes=faltantes, custo_usd=gasto + custo_fala,
+                   custo_fala_usd=custo_fala)
